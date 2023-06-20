@@ -115,6 +115,25 @@ Express the Kinetic Hamiltonian {symbols} in terms of {momentum space ops}. Simp
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encountered undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):
 {Def of variables}
 
+===
+EXAMPLE:  
+Write a Kinetic Hamiltonian $\hat{H}$ in the second quantized form in the real space, $\hat{H}=\sum_{i,j} t(R_i-R_j) c^\dagger(R_i) c(R_j)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{H}$, we get  
+$$\hat{H} = \sum_{i,j} t(R_i-R_j) \frac{1}{\sqrt{N}} \sum_{k_1} c^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{\sqrt{N}} \sum_{k_2} c(k_2) e^{i k_2 \cdot R_j} =\frac{1}{N} \sum_{i,j}\sum_{k_1,k_2} c^\dagger(k_1)  c(k_2)  e^{-i k_1\cdot R_i} e^{i k_2 \cdot R_j} t(R_i-R_j) $$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{H}=\frac{1}{N} \sum_{i,n} \sum_{k_1,k_2} c^\dagger(k_1)  c(k_2) t(n) e^{-i (k_1-k_2)\cdot R_i} e^{-i k_2 \cdot n}$$
+Because $\frac{1}{N}\sum_{i} e^{-i (k_1-k_2)\cdot R_i} = \delta(k_1,k_2)$, where $\delta(k_1,k_2)$ is the Kronecker delta function.  
+therefore   
+$$\hat{H}=\sum_{k_1,k_2} \sum_{n} t(n) e^{-i k_2 \cdot n} c^\dagger(k_1)  c(k_2) \delta(k_1,k_2)$$
+Using the property of Kronecker delta function and sum over $k_2$, we obtain  
+$$\hat{H}=\sum_{k_1} \sum_{n} t(n) e^{-i k_1 \cdot n} c^\dagger(k_1)  c(k_1) $$
+For simplicity, we replace $k_1$ with $k$, we obtain  
+$$\hat{H}=\sum_{k} \sum_{n} t(n) e^{-i k \cdot n} c^\dagger(k)  c(k)$$
+If we define energy dispersion $E(k)=\sum_{n} t(n) e^{-i k \cdot n}$, where $n$ is the summation of all hopping pairs, the Hamiltonian in the momentum space is 
+$$\hat{H}=\sum_{k} E(k) c^\dagger(k)  c(k)$$
 
 ## Particle-hole transformation
 **Prompt:**  
@@ -194,14 +213,15 @@ You should recall that the Hartree term in {Hartree}.
 Return the final simplified Hartree term {symbol}.
 
 ===  
-EXAMPLE:
-Given a Hamiltonian $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) \rangle c_{\sigma_2}^\dagger(k_2) c_{\sigma_3}(k_3) + \langle c_{\sigma_2}^\dagger(k_2) c_{\sigma_3}(k_3) \rangle c_{\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) ) \delta_{k_1+k_2,k_3+k_4}$, where $V(q)=V(-q)$.  
-In the second term, we relabel the index to swap the index in expected value and the index in quadratic operators, namely, $\sigma_1 \leftrightarrow \sigma_2$, $\sigma_3 \leftrightarrow \sigma_4$, $k_1 \leftrightarrow k_2$, $k_3 \leftrightarrow k_4$. After the replacement, the second term becomes $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_2-k_3) \langle c_{\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) \rangle c_{\sigma_2}^\dagger(k_2) c_{\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.  
-Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_4-k_1) \langle c_{\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) \rangle c_{\sigma_2}^\dagger(k_2) c_{\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
-Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) \rangle c_{\sigma_2}^\dagger(k_2) c_{\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$. Note that this form of second term after relabeling is identical to the first term.  
-Finally, we have the simplified Hamiltonian as  $\hat{H}=2\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) \rangle c_{\sigma_2}^\dagger(k_2) c_{\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
+EXAMPLE:  
+Given a Hamiltonian where the Hartree term $\hat{H}^{Hartree}=\sum_{k_1,k_2, k_3, k_4,b_1,b_2,b_3,b_4} V(k_1-k_4+b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_4) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_3) \delta_{k_1+k_2+b_1+b_2,k_3+k_4+b_3+b_4}$, where $k_i$ is the momentum inside first Brilloun zone and $b_i$ is the reciprocal lattice.   
+Inside the expected value, we realize $\langle c_{b_1}^\dagger(k_1) c_{b_4}(k_4) \rangle$ is nonzero only when $k_1=k_4$, i.e., $\langle c_{b_1}^\dagger(k_1) c_{b_4}(k_4) \rangle=\langle c_{b_1}^\dagger(k_1) c_{b_4}(k_4) \rangle\delta_{k_1,k_4}$.  
+Thus, the Hartree term becomes $\sum_{k_1,k_2, k_3, k_4,b_1,b_2,b_3,b_4} V(k_1-k_4+b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_4) \rangle \delta_{k_1,k_4} c_{b_2}^\dagger(k_2) c_{b_3}(k_3) \delta_{k_1+k_2+b_1+b_2,k_3+k_4+b_3+b_4}$.  
+Use the property of Kronecker delta function $\delta_{k_1,k_4}$ to sum over $k_4$, we have $\sum_{k_1, k_2, k_3,b_1,b_2,b_3,b_4} V(k_1-k_1+b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_3) \delta_{k_1+k_2+b_1+b_2,k_3+k_1+b_3+b_4}=\sum_{k_1, k_2, k_3,b_1,b_2,b_3,b_4} V(b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_3) \delta_{k_2+b_1+b_2,k_3+b_3+b_4}$.  
+Because $k_i$ is momentum inside first Brilloun zone while $b_i$ is the reciprocal lattice. It is only when $k_2=k_3$ that $\delta_{k_2+b_1+b_2,k_3+b_3+b_4}$ is nonzero, i.e., $\delta_{k_2+b_1+b_2,k_3+b_3+b_4}=\delta_{b_1+b_2,b_3+b_4}\delta_{k_2,k_3}$. Therefore, the Hartree term simplifies to $\sum_{k_1, k_2, k_3,b_1,b_2,b_3,b_4} V(b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_3) \delta_{b_1+b_2,b_3+b_4}\delta_{k_2,k_3}=\sum_{k_1, k_2,b_1,b_2,b_3,b_4} V(b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_2) \delta_{b_1+b_2,b_3+b_4}$.  
+Therefore, the final simplified Hartree term after reducing two momenta is $\hat{H}^{Hartree}=\sum_{k_1, k_2,b_1,b_2,b_3,b_4}  V(b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_2) \delta_{b_1+b_2,b_3+b_4} \delta_{b_1+b_2,b_3+b_4}$ 
 
-## Reduce momentum in the Fock term (momentum in BZ + reciprocal lattice )
+## Reduce momentum in Fock term (momentum in BZ + reciprocal lattice )
 **Prompt:**  
 You will be instructed to simplify the Fock term in {symbols} by reducing the momentum inside the expected value {expected}.  
 The expected value {expected} is only nonzero when the two momenta $k_i,k_j$ is the same, namely, {expected}.  
