@@ -6,3 +6,4 @@
   - Kinetic term (Continuum model vs Lattice model)
   - MF parameters (Normal vs SC, Zero momentum vs Finite momentum)
 - [ ] Resolving the issue of long-term memory by saving intermediate results on file.
+- [ ] Bard benchmark and comparison
