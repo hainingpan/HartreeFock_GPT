@@ -100,11 +100,11 @@ Use the following conventions for the symbols (You should also obey the conventi
 ===  
 EXAMPLE:  
 Write a Hamiltonian $\hat{H}$ in the second quantized form, $\hat{H}=\int dr \psi(r)^\dagger H(r) \psi(r)$, where $r$ is integrated over the entire real space.  
-Define the Fourier transformation $c^\dagger(k)=\frac{1}{\sqrt{N V}} \int \psi^\dagger(r) e^{i k \cdot r} dr$, where $r$ is integrated over the entire real space, $N$ is the number of unit cells, and $V$ is the area of the unit cell in the real space.  
-This leads to the inverse Fourier transformation $\psi^\dagger(r) = \frac{1}{\sqrt{N \Omega}} \sum_k c^\dagger(k) e^{-i k \cdot r}$, where $k$ is summed over the extended Brillouin zone (i.e., the entire momentum space), $\Omega$ is the area of Brillouin zone in the momentum space.  
+Define the Fourier transformation $c^\dagger(k)=\frac{1}{\sqrt{V}} \int \psi^\dagger(r) e^{i k \cdot r} dr$, where $r$ is integrated over the entire real space, and $V$ is the area of the unit cell in the real space.  
+This leads to the inverse Fourier transformation $\psi^\dagger(r) = \frac{1}{\sqrt{V}} \sum_k c^\dagger(k) e^{-i k \cdot r}$, where $k$ is summed over the extended Brillouin zone (i.e., the entire momentum space), $\Omega$ is the area of Brillouin zone in the momentum space.  
 Thus, substitute $\psi^\dagger(r)$ and $\psi(r)$ into $\hat{H}$, we get  
-$$\hat{H} = \int dr \frac{1}{\sqrt{N \Omega}} \sum_{k_1} c^\dagger(k_1) e^{-i k_1 \cdot r} H(r) \frac{1}{\sqrt{N \Omega}} \sum_{k_2} c(k_2) e^{i k_2 \cdot r} =\sum_{k_1,k_2} c^\dagger(k_1) \frac{1}{N\Omega} \int dr e^{-i (k_1-k_2)\cdot r} H(r) c(k_2) = \sum_{k_1,k_2} c^\dagger(k_1) H(k_1,k_2) c(k_2)$$  
-, where we define the Fourier transformation of $H(r)$ as $H(k_1,k_2)=\frac{1}{N\Omega} \int dr e^{-i (k_1-k_2)\cdot r} H(r)$.
+$$\hat{H} = \int dr \frac{1}{\sqrt{V}} \sum_{k_1} c^\dagger(k_1) e^{-i k_1 \cdot r} H(r) \frac{1}{\sqrt{V}} \sum_{k_2} c(k_2) e^{i k_2 \cdot r} =\sum_{k_1,k_2} c^\dagger(k_1) \frac{1}{V} \int dr e^{-i (k_1-k_2)\cdot r} H(r) c(k_2) = \sum_{k_1,k_2} c^\dagger(k_1) H(k_1,k_2) c(k_2)$$  
+, where we define the Fourier transformation of $H(r)$ as $H(k_1,k_2)=\frac{1}{V} \int dr e^{-i (k_1-k_2)\cdot r} H(r)$.
 
 ## Convert Hamiltonian in real space to momentum space (lattice version)
 **Prompt:**  
