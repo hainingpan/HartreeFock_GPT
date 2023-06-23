@@ -112,7 +112,7 @@ Now you will be instructed to convert the Kinetic Hamiltonian {symbols} in the s
 To do that, you should apply the Fourier transformation to {real space creation op} in the real space to the {momentum space creation op} in the momentum space, which is defined as {def of Fourier transformation}, where $i$ is integrated over all sites in the entire real space. You should follow the EXAMPLE below to apply the Fourier transformation.
 Express the Kinetic Hamiltonian {symbols} in terms of {momentum space ops}. Simplify any summation index if possible.
 
-Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encountered undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):
 {Def of variables}
 
 ===
@@ -182,11 +182,11 @@ The quadratic terms mean terms that are proportional to {creation op & annihilat
 You should only preserve the quadratic terms in {symbol}, which is called {symbol}.
 Return this Hamiltonian {symbol}.  
 
-Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encountered undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
 {def of var}
 
 # Simplify the MF quadratic term
-## Relabel the index 
+## Swap the index 
 **Prompt:**  
 You will be instructed to simplify the quadratic term {symbol} through relabeling the index to combine the two Hartree/Fock term into one Hartree/Fock term.  
 The logic is that the expected value ({expected}) in the first Hartree term ({Hartree}) has the same form as the qudratic operators in the second Hartree term ({expected}), and vice versa.  
