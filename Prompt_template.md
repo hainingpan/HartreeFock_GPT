@@ -26,6 +26,15 @@ Return the expression for {var} in the Kinetic Hamiltonian, and substitute it in
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
 {def of var}
 
+## Construct Kinetic Hamiltonian (lattice version)
+**Prompt:**  
+You will be instructed to describe the kinetic term of Hamiltonian in {system} in the {real|momentum} space in the {single-particle|second-quantized} form.   
+The degrees of freedom of the system are: {dof}  
+Express the Kinetic Hamiltonian {symbol} using {var} which are only on the diagonal terms, and arrange the basis in the order of {order}.
+
+Use the following conventions for the symbols:  
+{def of var}
+
 ## Construct Potential Hamiltonian
 **Prompt:**  
 Now you will be instructed to describe the potential term of Hamiltonian {system} in the {real|momentum} space in the {single-particle|second-quantized} form.  
