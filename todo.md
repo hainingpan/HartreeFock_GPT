@@ -1,9 +1,13 @@
 # 2023/06/19
-- [ ] Identify boundaries of utilizing LLM by few-shot prompting to solve HF problems. Document the successful cases as well as failed cases, especially the failed ones will form the key messages of the ppaer.
+- [x] Identify boundaries of utilizing LLM by few-shot prompting to solve HF problems. Document the successful cases as well as failed cases, especially the failed ones will form the key messages of the ppaer.
+  - Mathematical derivation
 - [ ] Demonstrate LLM's Capability of Knowledge : Assess the extent to which LLM can understand physics without relying on explicit examples.
 - [ ] Demonstrate LLM's Capability of Generality: Evaluate the degree to which LLM can be teached with examples.
-- [ ] Tag the collection of papers in Zotero, and find missing genres after that. Categorize by multiple dimensions such as:
-  - Kinetic term (Continuum model vs Lattice model)
-  - MF parameters (Normal vs SC, Zero momentum vs Finite momentum)
-- [ ] Resolving the issue of long-term memory by saving intermediate results on file.
-- [ ] Bard benchmark and comparison
+- [x] Tag the collection of papers in Zotero, and find missing genres after that. Categorize by multiple dimensions (**bold** indicates "Contained"):
+  - Kinetic term ( **Continuum model** | **Lattice model**)
+  - Wick's theorem (**Normal order** | Superconducting order | Normal and Superconducting order)
+    - Normal order parameter  (**Hartree term** | Fock term | **Hartree and Fock terms**)
+  - Particle statistics (**Fermion systems** | Bosonic systems )
+  - Quasiparticle type (**Electron** | Parton | Slave boson)
+- [x] Resolving the issue of long-term memory by saving intermediate results on file.
+- [x] Bard benchmark and comparison
