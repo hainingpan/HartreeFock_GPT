@@ -5,6 +5,7 @@
 - [ ] Demonstrate LLM's Capability of Generality: Evaluate the degree to which LLM can be teached with examples.
 - [x] Tag the collection of papers in Zotero, and find missing genres after that. Categorize by multiple dimensions (**bold** indicates "Contained"):
   - Kinetic term ( **Continuum model** | **Lattice model**)
+  - Mean field working space (**Momentum space** | Real space)
   - Wick's theorem (**Normal order** | Superconducting order | Normal and Superconducting order)
     - Normal order parameter  (**Hartree term** | Fock term | **Hartree and Fock terms**)
   - Particle statistics (**Fermion systems** | Bosonic systems )

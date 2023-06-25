@@ -1,3 +1,8 @@
+# README
+The template closely adheres to the syntax rules of Python f-string formatting.    
+- The {} placeholders are intended for string substitutions.
+- The [] brackets denote optional strings.
+
 # Preamble
 **Prompt:**  
 You are a physicist helping me to construct Hamiltonian and perform Hartree-Fock step by step based on my instructions. 
@@ -8,7 +13,7 @@ Confirm and repeat your duty if you understand it.
 
 # Hamiltonian construction
 
-## Construct Kinetic Hamiltonian
+## Construct Kinetic Hamiltonian (continuum version)
 **Prompt:**  
 You will be instructed to describe the kinetic term of Hamiltonian in {system} in the {real|momentum} space in the {single-particle|second-quantized} form.   
 The degrees of freedom of the system are: {dof}  
@@ -17,7 +22,20 @@ Express the Kinetic Hamiltonian {symbol} using {var} which are only on the diago
 Use the following conventions for the symbols:  
 {def of var}
 
-## Define each term in Kinetic Hamiltonian
+## Construct Kinetic Hamiltonian (lattice version)
+**Prompt:**  
+You will be instructed to describe the kinetic term of Hamiltonian in {system} in the {real|momentum} space in the {single-particle|second-quantized} form.   
+The degrees of freedom of the system are: {dof}     
+The kinetic term is a tight-binding model composed of the following hopping process: 
+1. {site i} and {site j} with the hopping amplitude {hopping}.  
+You should ensure the hermiticity of the Hamiltonian.
+The summation should be taken over all spin index and all real space positions.  
+Return the Kinetic Hamiltonian {symbol}.
+
+Use the following conventions for the symbols:  
+{def of var}
+
+## Define each term in Kinetic Hamiltonian (continuum version)
 **Prompt:**  
 Now you will be instructed to construct each term in the matrix, namely {var}.  
 {Def of each var}
@@ -26,16 +44,9 @@ Return the expression for {var} in the Kinetic Hamiltonian, and substitute it in
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
 {def of var}
 
-## Construct Kinetic Hamiltonian (lattice version)
-**Prompt:**  
-You will be instructed to describe the kinetic term of Hamiltonian in {system} in the {real|momentum} space in the {single-particle|second-quantized} form.   
-The degrees of freedom of the system are: {dof}  
-Express the Kinetic Hamiltonian {symbol} using {var} which are only on the diagonal terms, and arrange the basis in the order of {order}.
 
-Use the following conventions for the symbols:  
-{def of var}
 
-## Construct Potential Hamiltonian
+## Construct Potential Hamiltonian (continuum version)
 **Prompt:**  
 Now you will be instructed to describe the potential term of Hamiltonian {system} in the {real|momentum} space in the {single-particle|second-quantized} form.  
 The potential Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian {symbol}.  
@@ -45,13 +56,25 @@ Express the potential Hamiltonian {symbol} using {var}.
 Use the following conventions for the symbols (You should also remember the conventions in my previous prompts if there are no conflicts. If you have conflicts in the conventions, you should stop and let me know):  
 {def of var}
 
-## Define each term in Potential Hamiltonian
+## Define each term in Potential Hamiltonian (continuum version)
 **Prompt:**  
 Now you will be instructed to construct each term in the matrix {symbol}, namely, the intralayer potential {terms}.  
 {def of each term}  
 Return the expressions for {symbol}, and substitute it into the potential Hamiltonian {symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or have conflicts in the conventions, you should stop and let me know):  
+{def of var}
+
+## Construct interaction Hamiltonian (real space, lattice version)
+**Prompt:**  
+Now you will be instructed to construct the interaction part of the Hamiltonian, {symbol} in the real space in the second-quantized form.   
+The interacting Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian {symbol}.  
+The interaction is a density-density interaction composed of the following process:
+1. onsite interaction between {site i} and {site j} with interaction strength {interaction}
+The summation should be taken over all spin index and all real space positions.  
+Return the interaction term {symbol} in terms of {symbol}.
+
+Use the following conventions for the symbols (You should also remember the conventions in my previous prompts if there are no conflicts. If you have conflicts in the conventions, you should stop and let me know): 
 {def of var}
 
 ## Construct interaction Hamiltonian (momentum space)
@@ -97,7 +120,7 @@ Use the following conventions for the symbols (You should also obey the conventi
 EXAMPLE:  
 For a $\hat{H}=\vec{\psi}^\dagger H \vec{\psi}$, where $\vec{\psi}=\begin{pmatrix} \psi_a \\ \psi_b \end{pmatrix}$ and $\vec{\psi}^\dagger=\begin{pmatrix} \psi_a^\dagger & \psi_b^\dagger \end{pmatrix}$, we can expand it as  $\hat{H}=\sum_{i,j=\{a,b\}} \psi_i^\dagger H_{i,j} \psi_j$.  
 
-## Convert Hamiltonian in real space to momentum space (continuum version)
+## Convert noninteracting Hamiltonian in real space to momentum space (continuum version)
 **Prompt:**  
 Now you will be instructed to convert the total noninteracting Hamiltonian in the second quantized form from the basis in real space to the basis by momentum space.  
 To do that, you should apply the Fourier transformation to {real space creation op} in the real space to the {momentum space creation op} in the momentum space, which is defined as {def of Fourier Transformation}, where $r$ is integrated over the {entire real space|first Briiloun zone}. You should follow the EXAMPLE below to apply the Fourier transformation.  
@@ -115,10 +138,10 @@ Thus, substitute $\psi^\dagger(r)$ and $\psi(r)$ into $\hat{H}$, we get
 $$\hat{H} = \int dr \frac{1}{\sqrt{V}} \sum_{k_1} c^\dagger(k_1) e^{-i k_1 \cdot r} H(r) \frac{1}{\sqrt{V}} \sum_{k_2} c(k_2) e^{i k_2 \cdot r} =\sum_{k_1,k_2} c^\dagger(k_1) \frac{1}{V} \int dr e^{-i (k_1-k_2)\cdot r} H(r) c(k_2) = \sum_{k_1,k_2} c^\dagger(k_1) H(k_1,k_2) c(k_2)$$  
 , where we define the Fourier transformation of $H(r)$ as $H(k_1,k_2)=\frac{1}{V} \int dr e^{-i (k_1-k_2)\cdot r} H(r)$.
 
-## Convert Hamiltonian in real space to momentum space (lattice version)
+## Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
 **Prompt:**  
 Now you will be instructed to convert the Kinetic Hamiltonian {symbols} in the second quantized form from the basis in real space to the basis in momentum space. 
-To do that, you should apply the Fourier transformation to {real space creation op} in the real space to the {momentum space creation op} in the momentum space, which is defined as {def of Fourier transformation}, where $i$ is integrated over all sites in the entire real space. You should follow the EXAMPLE below to apply the Fourier transformation.
+To do that, you should apply the Fourier transformation to {real space creation op} in the real space to the {momentum space creation op} in the momentum space, which is defined as {def of Fourier transformation}, where {real var} is integrated over all sites in the entire real space. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that {hopping} have no position dependence now.]
 Express the Kinetic Hamiltonian {symbols} in terms of {momentum space ops}. Simplify any summation index if possible.
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):
@@ -143,6 +166,28 @@ For simplicity, we replace $k_1$ with $k$, we obtain
 $$\hat{H}=\sum_{k} \sum_{n} t(n) e^{-i k \cdot n} c^\dagger(k)  c(k)$$
 If we define energy dispersion $E(k)=\sum_{n} t(n) e^{-i k \cdot n}$, where $n$ is the summation of all hopping pairs, the Hamiltonian in the momentum space is 
 $$\hat{H}=\sum_{k} E(k) c^\dagger(k)  c(k)$$
+
+## Convert interacting Hamiltonian in real space to momentum space (lattice version)
+**Prompt:**  
+Now you will be instructed to convert the interacting Hamiltonian {symbol} in the {single particle | second quantized} form the basis in real space to the basis in momentum space. [You will be instructed to perform the transformation to the first term with {symbol}.]
+To do that, you should apply the Fourier transformation to {real space creation op} in the real space to the {momentum space creation op} in the momentum space, which is defined as {def of Fourier transformation}, where {real var} is integrated over all sites in the entire real space, and {momentum var} is defined within fhe first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. Note that the interaction {symbol} is onsite.  
+Express the first term in interacting Hamiltonian {symbol} with {symbol} in terms of {momentum space ops}. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form in the real space, $\hat{H}^{int}=\sum_{s,s'}\sum_{i,j} U(R_i-R_j) c_s^\dagger(R_i) c_{s'}^\dagger(R_j) c_{s'}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{H}^{int}$, we get  
+$$\hat{H}^{int} = \sum_{s,s'}\sum_{i,j} U(R_i-R_j) \frac{1}{\sqrt{N}} \sum_{k_1} c_s^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{\sqrt{N}} \sum_{k_2} c_{s'}^\dagger(k_2) e^{-i k_2 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_3} c_{s'}(k_3) e^{i k_3 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_4} c_s(k_4) e^{i k_4 \cdot R_i}=\sum_{s,s'}\sum_{i,j}\frac{1}{N^2}\sum_{k_1,k_2,k_3,k_4}U(R_i-R_j)c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot R_i} e^{-i(k_2-k_3)\cdot R_j}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{H}^{int}=\frac{1}{N^2} \sum_{j,n} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(n) c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot n} e^{-i(k_1-k_4+k_2-k_3)\cdot r_j }$$
+Because $\frac{1}{N}\sum_{i} e^{-i (k_1-k_4+k_2-k_3)\cdot R_i} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{n} U(n) e^{-i (k_1-k_4) \cdot n} c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4) \sum_{G} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{n} U(n) e^{-i k \cdot n}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4}  U(k_1-k_4) c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4) \sum_{G} \delta(k_1-k_4+k_2-k_3,G)$$
 
 ## Particle-hole transformation
 **Prompt:**  
@@ -180,8 +225,12 @@ Use the following conventions for the symbols (You should also obey the conventi
 {def of var}
 
 ===
-EXAMPLE:  
+EXAMPLE1:  
 For a four-fermion term $a_1^\dagger a_2^\dagger a_3 a_4$, using Wick's theorem and preserving only the normal terms. this is expanded as $a_1^\dagger a_2^\dagger a_3 a_4 = \langle a_1^\dagger a_4 \rangle a_2^\dagger a_3 + \langle a_2^\dagger a_3 \rangle a_1^\dagger a_4 - \langle a_1^\dagger a_4 \rangle \langle a_2^\dagger a_3\rangle - \langle a_1^\dagger a_3 \rangle a_2^\dagger a_4 - \langle a_2^\dagger a_4 \rangle a_1^\dagger a_3 + \langle a_1^\dagger a_3\rangle \langle a_2^\dagger a_4 \rangle$  
+Be cautious about the order of the index and sign before each term here.
+
+EXAMPLE 2:  
+For a four-fermion term $a_1^\dagger a_2 a_3^\dagger a_4$, using Wick's theorem and preserving only the normal terms. this is expanded as $a_1^\dagger a_2 a_3^\dagger a_4 = \langle a_1^\dagger a_2 \rangle a_3^\dagger a_4 + \langle a_3^\dagger a_4 \rangle a_1^\dagger a_2 - \langle a_1^\dagger a_2 \rangle \langle a_3^\dagger a_4\rangle - \langle a_1^\dagger a_4 \rangle a_3^\dagger a_2 - \langle a_3^\dagger a_2 \rangle a_1^\dagger a_4 + \langle a_1^\dagger a_4\rangle \langle a_3^\dagger a_2 \rangle$  
 Be cautious about the order of the index and sign before each term here.
 
 ## Extract quadratic term
@@ -194,8 +243,23 @@ Return this Hamiltonian {symbol}.
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
 {def of var}
 
+# Order parameters
+## Charge density wave only
+**Prompt:**  
+You will be instructed to focus on the symmetry breaking associated with the charge density waves. You will perform the transformation to {symbol}.  
+Here, charge density waves mean that only the expected value in the form of Hartree term (i.e., $\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) should be the preserved. All other expected value terms should be dropped.  
+Return the simplified Hamiltonian with {symbol}.  
+
+
 # Simplify the MF quadratic term
-## Swap the index 
+## Swap the index only [first term]
+**Prompt:**  
+You will be instructed to simplify the quadratic term {symbol} through relabeling the index.  
+The logic is that the expected value ({expected}) in the first Hartree term ({firstHartree}) has the same momentum dependence as the quadratic operators ({quadratic}) in the second Hartree term ({secondHartree}), and vice versa. Namely, this means a replacement of {relabelling} applied to ONLY the second Hartree term.  
+This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Hartree term, you can make the second Hartree term look identical to the first Hartree term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
+Return the simplied {symbol}.
+
+## Swap the index to combine Hartree and Fock terms 
 **Prompt:**  
 You will be instructed to simplify the quadratic term {symbol} through relabeling the index to combine the two Hartree/Fock term into one Hartree/Fock term.  
 The logic is that the expected value ({expected}) in the first Hartree term ({Hartree}) has the same form as the qudratic operators in the second Hartree term ({expected}), and vice versa.  
@@ -214,7 +278,7 @@ Finally, we have the simplified Hamiltonian as  $\hat{H}=2\sum_{k_1,k_2, k_3, k_
 ## Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice )
 **Prompt:**  
 You will be instructed to simplify the Hartree term in {symbol} by reducing the momentum inside the expected value {expected}.  
-The expected value {symbol} is only nonzero when the two momenta $k_i,k_j$ is the same, namely, {expected value}.  
+The expected value {symbol} is only nonzero when the two momenta $k_i,k_j$ is the same, namely, {expected value identity}.  
 You should use the property of Kronecker delta function $\delta_{k_i,k_j}$ to reduce one momentum $k_i$ but not $b_i$.
 Once you reduce one momentum inside the expected value $\langle\dots\rangle$. You will also notice the total momentum conservation will reduce another momentum in the quadratic term. Therefore, you should end up with only two momenta left in the summation.  
 You should follow the EXAMPLE below to reduce one momentum in the Hartree term, and another momentum in the quadratic term.  
@@ -229,6 +293,27 @@ Thus, the Hartree term becomes $\sum_{k_1,k_2, k_3, k_4,b_1,b_2,b_3,b_4} V(k_1-k
 Use the property of Kronecker delta function $\delta_{k_1,k_4}$ to sum over $k_4$, we have $\sum_{k_1, k_2, k_3,b_1,b_2,b_3,b_4} V(k_1-k_1+b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_3) \delta_{k_1+k_2+b_1+b_2,k_3+k_1+b_3+b_4}=\sum_{k_1, k_2, k_3,b_1,b_2,b_3,b_4} V(b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_3) \delta_{k_2+b_1+b_2,k_3+b_3+b_4}$.  
 Because $k_i$ is momentum inside first Brilloun zone while $b_i$ is the reciprocal lattice. It is only when $k_2=k_3$ that $\delta_{k_2+b_1+b_2,k_3+b_3+b_4}$ is nonzero, i.e., $\delta_{k_2+b_1+b_2,k_3+b_3+b_4}=\delta_{b_1+b_2,b_3+b_4}\delta_{k_2,k_3}$. Therefore, the Hartree term simplifies to $\sum_{k_1, k_2, k_3,b_1,b_2,b_3,b_4} V(b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_3) \delta_{b_1+b_2,b_3+b_4}\delta_{k_2,k_3}=\sum_{k_1, k_2,b_1,b_2,b_3,b_4} V(b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_2) \delta_{b_1+b_2,b_3+b_4}$.  
 Therefore, the final simplified Hartree term after reducing two momenta is $\hat{H}^{Hartree}=\sum_{k_1, k_2,b_1,b_2,b_3,b_4}  V(b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_2) \delta_{b_1+b_2,b_3+b_4} \delta_{b_1+b_2,b_3+b_4}$ 
+
+## Reduce momentum in Hartree term (momentum in BZ)
+**Prompt:**  
+You will be instructed to simplify the Hartree term {symbol} by reducing the momentum inside the expected value {expected}.  
+The expected value {symbol} is only nonzero when the two momenta $k_i,k_j$ is the same, namely, {expected value identity}.  
+You should use the property of Kronecker delta function $\delta_{k_i,k_j}$ to reduce one momentum $k_i$.
+Once you reduce one momentum inside the expected value $\langle\dots\rangle$. You will also notice the total momentum conservation will reduce another momentum in the quadratic term. Therefore, you should end up with only two momenta left in the summation.  
+You should follow the EXAMPLE below to reduce one momentum in the Hartree term, and another momentum in the quadratic term.  
+You should recall that the Hartree term in {Hartree}.  
+Return the final simplified Hartree term {Hartree}.
+
+===  
+EXAMPLE:  
+Given a Hamiltonian where the Hartree term $\hat{H}^{Hartree}=\sum_{k_1,k_2, k_3, k_4,s_1,s_2} V(k_1-k_4) \langle c_{s_1}^\dagger(k_1) c_{s_1}(k_4) \rangle c_{s_2}^\dagger(k_2) c_{s_2}(k_3) \sum_{G}\delta_{k_1+k_2-k_3-k_4,G}$, where $k_i$ is the momentum inside first Brilloun zone, $G$ is the reciprocal lattice vectors, and $s_i$ is a certain index for the degree of freedom other than momentum.   
+Inside the expected value, we realize $\langle c_{s_1}^\dagger(k_1) c_{s_1}(k_4) \rangle$ is nonzero only when $k_1=k_4$, i.e., $\langle c_{s_1}^\dagger(k_1) c_{s_1}(k_4) \rangle=\langle c_{s_1}^\dagger(k_1) c_{s_1}(k_4) \rangle\delta_{k_1,k_4}$.  
+Thus, the Hartree term becomes $\sum_{k_1,k_2, k_3, k_4,s_1,s_2} V(k_1-k_4) \langle c_{s_1}^\dagger(k_1) c_{s_1}(k_4) \rangle \delta_{k_1,k_4} c_{s_2}^\dagger(k_2) c_{s_2}(k_3) \sum_{G}\delta_{k_1+k_2-k_3-k_4,G}$.  
+Use the property of Kronecker delta function $\delta_{k_1,k_4}$ to sum over $k_4$, we have $\sum_{k_1, k_2, k_3,s_1,s_2} V(k_1-k_1) \langle c_{s_1}^\dagger(k_1) c_{s_1}(k_1) \rangle c_{s_2}^\dagger(k_2) c_{s_2}(k_3) \sum_{G}\delta_{k_1+k_2-k_3-k_1,G}=\sum_{k_1, k_2, k_3,s_1,s_2} V(0) \langle c_{s_1}^\dagger(k_1) c_{s_1}(k_1) \rangle c_{s_2}^\dagger(k_2) c_{s_2}(k_3) \sum_{G}\delta_{k_2-k_3,G}$.  
+We can further simplify $\sum_{G}\delta_{k_2-k_3,G}$. Because $k_i$ is momentum inside first Brilloun zone, and the difference between $k_2$ and $k_3$ cannot exceed the first shell of reciprocal lattice vector, which means $G$ can only take the value of the origin point in the reciprocal lattice, therefore, $\sum_{G}\delta_{k_2-k_3,G}=\delta_{k_2-k_3,0}$.   
+Thus, the Hartree term simplifies to $\sum_{k_1, k_2, k_3,s_1,s_2} V(0) \langle c_{s_1}^\dagger(k_1) c_{s_1}(k_1) \rangle c_{s_2}^\dagger(k_2) c_{s_2}(k_3) \delta_{k_2-k_3,0}=\sum_{k_1, k_2,s_1,s_2} V(0) \langle c_{s_1}^\dagger(k_1) c_{s_1}(k_1) \rangle c_{s_2}^\dagger(k_2) c_{s_2}(k_2)$.  
+Therefore, the final simplified Hartree term after reducing one momentum is $\hat{H}^{Hartree}=\sum_{k_1, k_2,s_1,s_2} V(0) \langle c_{s_1}^\dagger(k_1) c_{s_1}(k_1) \rangle c_{s_2}^\dagger(k_2) c_{s_2}(k_2)$ 
+
 
 ## Reduce momentum in Fock term (momentum in BZ + reciprocal lattice )
 **Prompt:**  
@@ -258,3 +343,34 @@ and the Fock term {Fock}.
 You should perform the same trick of relabeling the index in the Fock term to make the quadratic operators in the Fock term the same as those in the Hartree term. The relabeling should be done with a swap : $b_3\leftrightarrow b_4$.
 You should add them, relabel the index in Fock term, and simply their sum. 
 Return the final sum of Hartree and Fock term. 
+
+# Mathematical Simplify
+## Mathematical simplify: Euler's formula
+**Prompt:**  
+You will be instructed to simplify {equation}.  
+You should convert the exponential to the trigonometrical functions using Euler's formula.  
+Return the simplified {equation}.  
+
+## Mathematical simplify: prosthaphaeresis
+**Prompt:**  
+You will be instructed to simplify {equation}.  
+You should simplify the trigonometrical functions using prosthaphaeresis.  
+Return the simplified {equation}. 
+
+## Mathematical simplify: Expand using Associative property
+**Prompt:**  
+Now you will be instructed to expand {equation}.  
+Express the {equation} in the expanded form.
+
+## Mathematical simplify: Combine using Associative property
+**Prompt:**  
+Now you will be instructed to expand the product {equation}.  
+After expansion, you can introduce a sign variable {symbol} before $\hat{x}/2$, where take values of {values} to combine the {num of terms} term in to one term.
+Express the {equation} in the expanded form.
+
+
+## Mathematical simplify: reduce index
+**Prompt:**  
+You will be instructed to simplify the {equation}.  
+You should perform constant term summation by reducing the unnecessary indices {index}.
+Return the simplified Kinetic Hamiltonian {equation}.
