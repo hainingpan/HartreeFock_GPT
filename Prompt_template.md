@@ -4,6 +4,7 @@ The template closely adheres to the syntax rules of Python f-string formatting.
 - The [] brackets denote optional strings.
 
 # Preamble
+## Preamble
 **Prompt:**  
 You are a physicist helping me to construct Hamiltonian and perform Hartree-Fock step by step based on my instructions. 
 You should follow the instruction strictly.
@@ -43,8 +44,6 @@ Return the expression for {var} in the Kinetic Hamiltonian, and substitute it in
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
 {def of var}
-
-
 
 ## Construct Potential Hamiltonian (continuum version)
 **Prompt:**  
@@ -252,6 +251,13 @@ Return the simplified Hamiltonian with {symbol}.
 
 
 # Simplify the MF quadratic term
+## Expand interaction
+**Prompt:**  
+You will be instructed to expand interaction term {symbol} in the MF quadratic term {symbol}.
+If you find the interaction form factor in {symbol} does not contain any momentun that is not in the summation sign. The interaction term is already expanded. No action to perform on interaction term.
+Otherwise, you will expand {symbol} by replacing {momentum} with the momentum {momentum}.
+Return {symbol} with expanded interaction.
+
 ## Swap the index only [first term]
 **Prompt:**  
 You will be instructed to simplify the quadratic term {symbol} through relabeling the index.  
@@ -343,6 +349,16 @@ and the Fock term {Fock}.
 You should perform the same trick of relabeling the index in the Fock term to make the quadratic operators in the Fock term the same as those in the Hartree term. The relabeling should be done with a swap : $b_3\leftrightarrow b_4$.
 You should add them, relabel the index in Fock term, and simply their sum. 
 Return the final sum of Hartree and Fock term. 
+
+## Construct full Hamiltonian after HF
+**Prompt:**  
+Now you will be instructed to construct the entire Hamiltonian after the Hartree-Fock approximation {symbol}. 
+You should first recall the Kinetic Hamiltonian {symbol}, which is {def}.  
+You should then combine {symbol} with the interacting Hamiltonian {symbol} after the Hartree-Fock approximation, which is the entire Hamiltonian {symbol} after Hartree-Fock.  
+Return the expression for {symbol}.  
+
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+{def of var}
 
 # Mathematical Simplify
 ## Mathematical simplify: Euler's formula
