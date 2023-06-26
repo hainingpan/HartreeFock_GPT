@@ -4,11 +4,12 @@
 - [ ] Demonstrate LLM's Capability of Knowledge : Assess the extent to which LLM can understand physics without relying on explicit examples.
 - [ ] Demonstrate LLM's Capability of Generality: Evaluate the degree to which LLM can be teached with examples.
 - [x] Tag the collection of papers in Zotero, and find missing genres after that. Categorize by multiple dimensions (**bold** indicates "Contained"):
-  - Kinetic term ( **Continuum model** | **Lattice model**)
-  - Mean field working space (**Momentum space** | Real space)
-  - Wick's theorem (**Normal order** | Superconducting order | Normal and Superconducting order)
-    - Normal order parameter  (**Hartree term** | Fock term | **Hartree and Fock terms**)
-  - Particle statistics (**Fermion systems** | Bosonic systems )
-  - Quasiparticle type (**Electron** | Parton | Slave boson)
+  - Kinetic term (**continuum model** | **lattice model**)
+  - Mean field working space (**momentum space** | real space)
+  - Wick's theorem (**normal order** | superconducting order | normal and superconducting order)
+    - Normal order parameter  (**hartree term** | fock term | **hartree and fock terms**)
+  - Particle statistics (**fermion systems** | bosonic systems )
+  - Quasiparticle type (**electron** | Parton | Slave boson)
+  - ![Tag statistics](tag_stat.png)
 - [x] Resolving the issue of long-term memory by saving intermediate results on file.
 - [x] Bard benchmark and comparison
