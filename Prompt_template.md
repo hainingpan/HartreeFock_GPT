@@ -9,7 +9,7 @@ Thus the workflow for each type is:
 
 ```mermaid
 flowchart 
-    subgraph title["`**continuum, first-quantized, hartree**`"]
+    subgraph title["continuum, first-quantized, hartree"]
         direction LR
         subgraph A["Preamble"]
             direction TB
