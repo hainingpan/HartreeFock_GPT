@@ -16,17 +16,20 @@
 
 
 # 2023/06/26
-i
-table showing the workflow
+- [ ] table showing the workflow
+  - continuum vs lattice
+  - single-particle vs secodn-qunatized
+  - order parmaters choice
 
-1. continuum vs lattice
-2. single-particle vs secodn-qunatized
-3. order parmaters choice
+- [ ] make workflow consistent, especially for 2004.04168, 1812.04213
+- [ ] 10-20 papers per day, goal: ~ 200 papers
+  - Google scholar
+  - Scite
+  - US top 20 univ faculties
 
+  
 specific concept Bard in falling short
 send email 2 days before
 communicate on small pieces which are unknown to others
 
-10-20 papers per day, on mean-field, no fractionlization, no gauge fluctuation, goal: ~ 200 papers
-us top 20 univ, prof, always have , subir, ashvin, joel moore, 
 

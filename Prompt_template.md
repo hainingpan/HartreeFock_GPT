@@ -5,60 +5,427 @@ The template closely adheres to the syntax rules of Python f-string formatting.
 
 # Workflow
 Our template will be divided based on the following aspects: (continuum, lattice), (first-quantized, second-quantized), (hartree, fock, hartree-fock)  
-Thus the workflow for each type is:   
+Thus the workflow for each type is:  
 
+## lattice, second-quantized, hartree
+**Example**: [1106.6060](1106.6060/1106.6060.md)
 ```mermaid
-flowchart 
-    subgraph title["continuum, first-quantized, hartree"]
-        direction LR
-        subgraph A["Preamble"]
-            direction TB
-            a1["Preamble"]
-        end
-        subgraph B["Hamiltonian construction"]
-            direction TB
-            b1["Construct Kinetic Hamiltonian (continuum version)"]
-            b2["Define each term in Kinetic Hamiltonian (continuum version)"]
-            b3["Construct Potential Hamiltonian (continuum version)"]
-            b4["Define each term in Potential Hamiltonian (continuum version)"]
-            b5["Construct interaction Hamiltonian (momentum space)"]
-            b6["Convert from single-particle to second-quantized form, return in matrix"]
-            b7["Convert from single-particle to second-quantized form, return in summation"]
-            b8["Convert noninteracting Hamiltonian in real space to momentum space (continuum version)"]
-            b1-->b2
-            b2-->b3
-            b3-->b4
-            b4-->b5
-            b5-->b6
-            b6-->b7
-            b7-->b8
-        end
-        subgraph C["Mean-field theory"]
-            direction TB
-            c1["Wick's theorem"]
-            c2["Extract quadratic term"]
-            c1-->c2
-        end
-        subgraph D["Order parameters"]
-            direction TB
-            d1["Hartree term only"]
-        end
-        subgraph E["Simplify the MF quadratic term"]
-            direction TB
-            e1["Expand interaction"]
-            e2["Swap the index to combine Hartree and Fock terms"]
-            e3["Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)"]
-            e4["Construct full Hamiltonian after HF"]
-            e1-->e2
-            e2-->e3
-            e3-->e4
-        end
-        A==>B
-        B==>C
-        C==>D
-        D==>E
+flowchart LR
+    subgraph A["Preamble"]
+        direction TB
+        a1["Preamble"]
     end
+    subgraph B["Hamiltonian construction"]
+        direction TB
+        b1["Construct Kinetic Hamiltonian (lattice version)"]
+        b2["Construct interaction Hamiltonian (real space, lattice version)"]
+        b3["Convert noninteracting Hamiltonian in real space to momentum space (lattice version)"]
+        b4["Convert interacting Hamiltonian in real space to momentum space (lattice version)"]
+        b1-->b2
+        b2-->b3
+        b3-->b4
+    end
+    subgraph C["Mean-field theory"]
+        direction TB
+        c1["Wick's theorem"]
+        c2["Extract quadratic term"]
+        c1-->c2
+    end
+    subgraph D["Order parameters"]
+        direction TB
+        d1["Hartree term only"]
+    end
+    subgraph E["Simplify the MF quadratic term"]
+        direction TB
+        e1["Expand interaction"]
+        e2["Swap the index only"]
+        e3["Reduce momentum in Hartree term (momentum in BZ)"]
+        e4["Construct full Hamiltonian after HF"]
+        e1-->e2
+        e2-->e3
+        e3-->e4
+    end
+    A==>B
+    B==>C
+    C==>D
+    D==>E
 ```
+## lattice, second-quantized, fock
+```mermaid
+flowchart LR
+    subgraph A["Preamble"]
+        direction TB
+        a1["Preamble"]
+    end
+    subgraph B["Hamiltonian construction"]
+        direction TB
+        b1["Construct Kinetic Hamiltonian (lattice version)"]
+        b2["Construct interaction Hamiltonian (real space, lattice version)"]
+        b3["Convert noninteracting Hamiltonian in real space to momentum space (lattice version)"]
+        b4["Convert interacting Hamiltonian in real space to momentum space (lattice version)"]
+        b1-->b2
+        b2-->b3
+        b3-->b4
+    end
+    subgraph C["Mean-field theory"]
+        direction TB
+        c1["Wick's theorem"]
+        c2["Extract quadratic term"]
+        c1-->c2
+    end
+    subgraph D["Order parameters"]
+        direction TB
+        d1["Fock term only"]
+    end
+    subgraph E["Simplify the MF quadratic term"]
+        direction TB
+        e1["Expand interaction"]
+        e2["Swap the index only"]
+        e3["Reduce momentum in Fock term (momentum in BZ)"]
+        e4["Construct full Hamiltonian after HF"]
+        e1-->e2
+        e2-->e3
+        e3-->e4
+    end
+    A==>B
+    B==>C
+    C==>D
+    D==>E
+```
+## lattice, second-quantized, hartree-fock
+**Example**: [2004.04168](2004.04168/2004.04168.md)
+```mermaid
+flowchart LR
+    subgraph A["Preamble"]
+        direction TB
+        a1["Preamble"]
+    end
+    subgraph B["Hamiltonian construction"]
+        direction TB
+        b1["Construct Kinetic Hamiltonian (lattice version)"]
+        b2["Construct interaction Hamiltonian (real space, lattice version)"]
+        b3["Convert noninteracting Hamiltonian in real space to momentum space (lattice version)"]
+        b4["Convert interacting Hamiltonian in real space to momentum space (lattice version)"]
+        b1-->b2
+        b2-->b3
+        b3-->b4
+    end
+    subgraph C["Mean-field theory"]
+        direction TB
+        c1["Wick's theorem"]
+        c2["Extract quadratic term"]
+        c1-->c2
+    end
+    subgraph E["Simplify the MF quadratic term"]
+        direction TB
+        e1["Expand interaction"]
+        e2["Swap the index only"]
+        e3["Reduce momentum in Hartree term (momentum in BZ)"]
+        e4["Reduce momentum in Fock term (momentum in BZ)"]
+        e5["Combine the Hartree and Fock term"]
+        e6["Construct full Hamiltonian after HF"]
+        e1-->e2
+        e2-->e3
+        e3-->e4
+        e4-->e5
+        e5-->e6
+    end
+    A==>B
+    B==>C
+    C==>E
+```
+
+
+## continuum, first-quantized, hartree
+```mermaid
+flowchart LR
+    subgraph A["Preamble"]
+        direction TB
+        a1["Preamble"]
+    end
+    subgraph B["Hamiltonian construction"]
+        direction TB
+        b1["Construct Kinetic Hamiltonian (continuum version)"]
+        b2["Define each term in Kinetic Hamiltonian (continuum version)"]
+        b3["Construct Potential Hamiltonian (continuum version)"]
+        b4["Define each term in Potential Hamiltonian (continuum version)"]
+        b5["Convert from single-particle to second-quantized form, return in matrix"]
+        b6["Convert from single-particle to second-quantized form, return in summation"]
+        b7["Convert noninteracting Hamiltonian in real space to momentum space (continuum version)"]
+        b8["Construct interaction Hamiltonian (momentum space)"]
+        b1-->b2
+        b2-->b3
+        b3-->b4
+        b4-->b5
+        b5-->b6
+        b6-->b7
+        b7-->b8
+    end
+    subgraph C["Mean-field theory"]
+        direction TB
+        c1["Wick's theorem"]
+        c2["Extract quadratic term"]
+        c1-->c2
+    end
+    subgraph D["Order parameters"]
+        direction TB
+        d1["Hartree term only"]
+    end
+    subgraph E["Simplify the MF quadratic term"]
+        direction TB
+        e1["Expand interaction"]
+        e2["Swap the index to combine Hartree and Fock terms"]
+        e3["Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)"]
+        e4["Construct full Hamiltonian after HF"]
+        e1-->e2
+        e2-->e3
+        e3-->e4
+    end
+    A==>B
+    B==>C
+    C==>D
+    D==>E
+```
+## continuum, first-quantized, fock
+```mermaid
+flowchart LR
+    subgraph A["Preamble"]
+        direction TB
+        a1["Preamble"]
+    end
+    subgraph B["Hamiltonian construction"]
+        direction TB
+        b1["Construct Kinetic Hamiltonian (continuum version)"]
+        b2["Define each term in Kinetic Hamiltonian (continuum version)"]
+        b3["Construct Potential Hamiltonian (continuum version)"]
+        b4["Define each term in Potential Hamiltonian (continuum version)"]
+        b5["Convert from single-particle to second-quantized form, return in matrix"]
+        b6["Convert from single-particle to second-quantized form, return in summation"]
+        b7["Convert noninteracting Hamiltonian in real space to momentum space (continuum version)"]
+        b8["Construct interaction Hamiltonian (momentum space)"]
+        b1-->b2
+        b2-->b3
+        b3-->b4
+        b4-->b5
+        b5-->b6
+        b6-->b7
+        b7-->b8
+    end
+    subgraph C["Mean-field theory"]
+        direction TB
+        c1["Wick's theorem"]
+        c2["Extract quadratic term"]
+        c1-->c2
+    end
+    subgraph D["Order parameters"]
+        direction TB
+        d1["Fock term only"]
+    end
+    subgraph E["Simplify the MF quadratic term"]
+        direction TB
+        e1["Expand interaction"]
+        e2["Swap the index to combine Hartree and Fock terms"]
+        e3["Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)"]
+        e4["Construct full Hamiltonian after HF"]
+        e1-->e2
+        e2-->e3
+        e3-->e4
+    end
+    A==>B
+    B==>C
+    C==>D
+    D==>E
+```
+
+## continuum, first-quantized, hartree-fock
+**Example**: [2111.01152](2111.01152/2111.01152.md), [2108.02159](2108.02159/2108.02159.md), [1812.04213](1812.04213/1812.04213.md)
+```mermaid
+flowchart LR
+    subgraph A["Preamble"]
+        direction TB
+        a1["Preamble"]
+    end
+    subgraph B["Hamiltonian construction"]
+        direction TB
+        b1["Construct Kinetic Hamiltonian (continuum version)"]
+        b2["Define each term in Kinetic Hamiltonian (continuum version)"]
+        b3["Construct Potential Hamiltonian (continuum version)"]
+        b4["Define each term in Potential Hamiltonian (continuum version)"]
+        b5["Convert from single-particle to second-quantized form, return in matrix"]
+        b6["Convert from single-particle to second-quantized form, return in summation"]
+        b7["Convert noninteracting Hamiltonian in real space to momentum space (continuum version)"]
+        b8["Construct interaction Hamiltonian (momentum space)"]
+        b1-->b2
+        b2-->b3
+        b3-->b4
+        b4-->b5
+        b5-->b6
+        b6-->b7
+        b7-->b8
+    end
+    subgraph C["Mean-field theory"]
+        direction TB
+        c1["Wick's theorem"]
+        c2["Extract quadratic term"]
+        c1-->c2
+    end
+    subgraph E["Simplify the MF quadratic term"]
+        direction TB
+        e1["Expand interaction"]
+        e2["Swap the index to combine Hartree and Fock terms"]
+        e3["Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)"]
+        e4["Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)"]
+        e5["Combine the Hartree and Fock term"]
+        e6["Construct full Hamiltonian after HF"]
+        e1-->e2
+        e2-->e3
+        e3-->e4
+        e4-->e5
+        e5-->e6
+    end
+    A==>B
+    B==>C
+    C==>E
+```
+
+## continuum, second-quantized, hartree
+```mermaid
+flowchart LR
+    subgraph A["Preamble"]
+        direction TB
+        a1["Preamble"]
+    end
+    subgraph B["Hamiltonian construction"]
+        direction TB
+        b1["Construct Kinetic Hamiltonian (continuum version)"]
+        b2["Define each term in Kinetic Hamiltonian (continuum version)"]
+        b3["Construct Potential Hamiltonian (continuum version)"]
+        b4["Define each term in Potential Hamiltonian (continuum version)"]
+        b7["Convert noninteracting Hamiltonian in real space to momentum space (continuum version)"]
+        b8["Construct interaction Hamiltonian (momentum space)"]
+        b1-->b2
+        b2-->b3
+        b3-->b4
+        b4-->b7
+        b7-->b8
+    end
+    subgraph C["Mean-field theory"]
+        direction TB
+        c1["Wick's theorem"]
+        c2["Extract quadratic term"]
+        c1-->c2
+    end
+    subgraph D["Order parameters"]
+        direction TB
+        d1["Hartree term only"]
+    end
+    subgraph E["Simplify the MF quadratic term"]
+        direction TB
+        e1["Expand interaction"]
+        e2["Swap the index to combine Hartree and Fock terms"]
+        e3["Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)"]
+        e4["Construct full Hamiltonian after HF"]
+        e1-->e2
+        e2-->e3
+        e3-->e4
+    end
+    A==>B
+    B==>C
+    C==>D
+    D==>E
+```
+## continuum, second-quantized, fock
+```mermaid
+flowchart LR
+    subgraph A["Preamble"]
+        direction TB
+        a1["Preamble"]
+    end
+    subgraph B["Hamiltonian construction"]
+        direction TB
+        b1["Construct Kinetic Hamiltonian (continuum version)"]
+        b2["Define each term in Kinetic Hamiltonian (continuum version)"]
+        b3["Construct Potential Hamiltonian (continuum version)"]
+        b4["Define each term in Potential Hamiltonian (continuum version)"]
+        b7["Convert noninteracting Hamiltonian in real space to momentum space (continuum version)"]
+        b8["Construct interaction Hamiltonian (momentum space)"]
+        b1-->b2
+        b2-->b3
+        b3-->b4
+        b4-->b7
+        b7-->b8
+    end
+    subgraph C["Mean-field theory"]
+        direction TB
+        c1["Wick's theorem"]
+        c2["Extract quadratic term"]
+        c1-->c2
+    end
+    subgraph D["Order parameters"]
+        direction TB
+        d1["Fock term only"]
+    end
+    subgraph E["Simplify the MF quadratic term"]
+        direction TB
+        e1["Expand interaction"]
+        e2["Swap the index to combine Hartree and Fock terms"]
+        e3["Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)"]
+        e4["Construct full Hamiltonian after HF"]
+        e1-->e2
+        e2-->e3
+        e3-->e4
+    end
+    A==>B
+    B==>C
+    C==>D
+    D==>E
+```
+## continuum, second-quantized, hartree-fock
+```mermaid
+flowchart LR
+    subgraph A["Preamble"]
+        direction TB
+        a1["Preamble"]
+    end
+    subgraph B["Hamiltonian construction"]
+        direction TB
+        b1["Construct Kinetic Hamiltonian (continuum version)"]
+        b2["Define each term in Kinetic Hamiltonian (continuum version)"]
+        b3["Construct Potential Hamiltonian (continuum version)"]
+        b4["Define each term in Potential Hamiltonian (continuum version)"]
+        b7["Convert noninteracting Hamiltonian in real space to momentum space (continuum version)"]
+        b8["Construct interaction Hamiltonian (momentum space)"]
+        b1-->b2
+        b2-->b3
+        b3-->b4
+        b4-->b7
+        b7-->b8
+    end
+    subgraph C["Mean-field theory"]
+        direction TB
+        c1["Wick's theorem"]
+        c2["Extract quadratic term"]
+        c1-->c2
+    end
+    subgraph E["Simplify the MF quadratic term"]
+        direction TB
+        e1["Expand interaction"]
+        e2["Swap the index to combine Hartree and Fock terms"]
+        e3["Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)"]
+        e4["Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)"]
+        e5["Combine the Hartree and Fock term"]
+        e6["Construct full Hamiltonian after HF"]
+        e1-->e2
+        e2-->e3
+        e3-->e4
+        e4-->e5
+        e5-->e6
+    end
+    A==>B
+    B==>C
+    C==>E
+```
+
 
 
 # Preamble
@@ -302,8 +669,14 @@ Use the following conventions for the symbols (You should also obey the conventi
 # Order parameters
 ## Hartree term only
 **Prompt:**  
-You will be instructed to focus on the symmetry breaking associated with the charge density waves. You will perform the transformation to {symbol}.  
-Here, charge density waves mean that only the expected value in the form of Hartree term (i.e., $\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) should be the preserved. All other expected value terms should be dropped.  
+You will be instructed to focus on the symmetry breaking associated with the charge density waves and ferromagnetism. You will perform the transformation to {symbol}.  
+Here, hartree term only means that only the expected value in the form of Hartree term (i.e., $\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) should be the preserved. All other expected value terms should be dropped.  
+Return the simplified Hamiltonian with {symbol}.  
+
+## Fock term only
+**Prompt:**  
+You will be instructed to focus on the symmetry breaking associated with spin density wave. You will perform the transformation to {symbol}.  
+Here, fock term only means that only the expected value in the form of Fock term (i.e., $\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_2,s_2}(k_2) \rangle$), where $\alpha_1\neq \alpha_2$, $s_1\neq s_2$ should be the preserved. All other expected value terms should be dropped.  
 Return the simplified Hamiltonian with {symbol}.  
 
 
@@ -403,7 +776,7 @@ Therefore, the final simplified Fock term after reducing two momenta is $\hat{H}
 You will now be instructed to combine the Hartree term {symbol} and the Fock term {symbol}.  
 Recall that the Hartree term {Hartree},  
 and the Fock term {Fock}.  
-You should perform the same trick of relabeling the index in the Fock term to make the quadratic operators in the Fock term the same as those in the Hartree term. The relabeling should be done with a swap : $b_3\leftrightarrow b_4$.
+You should perform the same trick of relabeling the index in the Fock term to make the quadratic operators in the Fock term the same as those in the Hartree term. The relabeling should be done with a swap : {swap rule}.
 You should add them, relabel the index in Fock term, and simply their sum. 
 Return the final sum of Hartree and Fock term. 
 
