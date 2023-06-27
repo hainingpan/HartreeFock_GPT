@@ -3,6 +3,64 @@ The template closely adheres to the syntax rules of Python f-string formatting.
 - The {} placeholders are intended for string substitutions.
 - The [] brackets denote optional strings.
 
+# Workflow
+Our template will be divided based on the following aspects: (continuum, lattice), (first-quantized, second-quantized), (hartree, fock, hartree-fock)  
+Thus the workflow for each type is:   
+
+```mermaid
+flowchart 
+    subgraph title["`**continuum, first-quantized, hartree**`"]
+        direction LR
+        subgraph A["Preamble"]
+            direction TB
+            a1["Preamble"]
+        end
+        subgraph B["Hamiltonian construction"]
+            direction TB
+            b1["Construct Kinetic Hamiltonian (continuum version)"]
+            b2["Define each term in Kinetic Hamiltonian (continuum version)"]
+            b3["Construct Potential Hamiltonian (continuum version)"]
+            b4["Define each term in Potential Hamiltonian (continuum version)"]
+            b5["Construct interaction Hamiltonian (momentum space)"]
+            b6["Convert from single-particle to second-quantized form, return in matrix"]
+            b7["Convert from single-particle to second-quantized form, return in summation"]
+            b8["Convert noninteracting Hamiltonian in real space to momentum space (continuum version)"]
+            b1-->b2
+            b2-->b3
+            b3-->b4
+            b4-->b5
+            b5-->b6
+            b6-->b7
+            b7-->b8
+        end
+        subgraph C["Mean-field theory"]
+            direction TB
+            c1["Wick's theorem"]
+            c2["Extract quadratic term"]
+            c1-->c2
+        end
+        subgraph D["Order parameters"]
+            direction TB
+            d1["Hartree term only"]
+        end
+        subgraph E["Simplify the MF quadratic term"]
+            direction TB
+            e1["Expand interaction"]
+            e2["Swap the index to combine Hartree and Fock terms"]
+            e3["Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)"]
+            e4["Construct full Hamiltonian after HF"]
+            e1-->e2
+            e2-->e3
+            e3-->e4
+        end
+        A==>B
+        B==>C
+        C==>D
+        D==>E
+    end
+```
+
+
 # Preamble
 ## Preamble
 **Prompt:**  
@@ -13,7 +71,6 @@ You will be learning background knowledge by examples if necessary.
 Confirm and repeat your duty if you understand it.
 
 # Hamiltonian construction
-
 ## Construct Kinetic Hamiltonian (continuum version)
 **Prompt:**  
 You will be instructed to describe the kinetic term of Hamiltonian in {system} in the {real|momentum} space in the {single-particle|second-quantized} form.   
@@ -95,7 +152,7 @@ EXAMPLE:
 For a Hamiltonian $H$, where $H=\begin{pmatrix} H_{a,a} & H_{a,b} \\ H_{b,a} & H_{b,b} \end{pmatrix}$ and the order of basis is (a), (b), we can construct the creation operators $\psi_a^\dagger$  and $\psi_b^\dagger$, and the annihilation operator $\psi_a$  and $\psi_b$.  
 The corresponding second quantized form is $\hat{H}=\vec{\psi}^\dagger H \vec{\psi}$, where $\vec{\psi}=\begin{pmatrix} \psi_a \\ \psi_b \end{pmatrix}$ and $\vec{\psi}^\dagger=\begin{pmatrix} \psi_a^\dagger & \psi_b^\dagger \end{pmatrix}$. 
 
-## Convert from single-particle to second-quantized form, return in the matrix
+## Convert from single-particle to second-quantized form, return in matrix
 **Prompt:**  
 Now you will be instructed to construct the second quantized form of the total noninteracting Hamiltonian in the {real|momentum} space.  
 The noninteracting Hamiltonian in the {real|momentum} space {symbol} is the sum of Kinetic Hamiltonian {symbol} and Potential Hamiltonian {symbol}.  
@@ -212,7 +269,7 @@ You should call this final version as {symbol} and remember it.
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
 {def of var}
 
-# Hartree-Fock approximation
+# Mean-field theory
 ## Wick's theorem
 **Prompt:**  
 Now You will be instructed to perform a Hartree-Fock approximation to expand the interaction term {symbol}.    
@@ -243,7 +300,7 @@ Use the following conventions for the symbols (You should also obey the conventi
 {def of var}
 
 # Order parameters
-## Charge density wave only
+## Hartree term only
 **Prompt:**  
 You will be instructed to focus on the symmetry breaking associated with the charge density waves. You will perform the transformation to {symbol}.  
 Here, charge density waves mean that only the expected value in the form of Hartree term (i.e., $\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) should be the preserved. All other expected value terms should be dropped.  
@@ -258,7 +315,7 @@ If you find the interaction form factor in {symbol} does not contain any momentu
 Otherwise, you will expand {symbol} by replacing {momentum} with the momentum {momentum}.
 Return {symbol} with expanded interaction.
 
-## Swap the index only [first term]
+## Swap the index only
 **Prompt:**  
 You will be instructed to simplify the quadratic term {symbol} through relabeling the index.  
 The logic is that the expected value ({expected}) in the first Hartree term ({firstHartree}) has the same momentum dependence as the quadratic operators ({quadratic}) in the second Hartree term ({secondHartree}), and vice versa. Namely, this means a replacement of {relabelling} applied to ONLY the second Hartree term.  
@@ -281,7 +338,7 @@ Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k
 Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) \rangle c_{\sigma_2}^\dagger(k_2) c_{\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$. Note that this form of second term after relabeling is identical to the first term.  
 Finally, we have the simplified Hamiltonian as  $\hat{H}=2\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) \rangle c_{\sigma_2}^\dagger(k_2) c_{\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
 
-## Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice )
+## Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
 **Prompt:**  
 You will be instructed to simplify the Hartree term in {symbol} by reducing the momentum inside the expected value {expected}.  
 The expected value {symbol} is only nonzero when the two momenta $k_i,k_j$ is the same, namely, {expected value identity}.  
@@ -321,7 +378,7 @@ Thus, the Hartree term simplifies to $\sum_{k_1, k_2, k_3,s_1,s_2} V(0) \langle 
 Therefore, the final simplified Hartree term after reducing one momentum is $\hat{H}^{Hartree}=\sum_{k_1, k_2,s_1,s_2} V(0) \langle c_{s_1}^\dagger(k_1) c_{s_1}(k_1) \rangle c_{s_2}^\dagger(k_2) c_{s_2}(k_2)$ 
 
 
-## Reduce momentum in Fock term (momentum in BZ + reciprocal lattice )
+## Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
 **Prompt:**  
 You will be instructed to simplify the Fock term in {symbols} by reducing the momentum inside the expected value {expected}.  
 The expected value {expected} is only nonzero when the two momenta $k_i,k_j$ is the same, namely, {expected}.  
