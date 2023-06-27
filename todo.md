@@ -13,3 +13,20 @@
   - ![Tag statistics](tag_stat.png)
 - [x] Resolving the issue of long-term memory by saving intermediate results on file.
 - [x] Bard benchmark and comparison
+
+
+# 2023/06/26
+i
+table showing the workflow
+
+1. continuum vs lattice
+2. single-particle vs secodn-qunatized
+3. order parmaters choice
+
+specific concept Bard in falling short
+send email 2 days before
+communicate on small pieces which are unknown to others
+
+10-20 papers per day, on mean-field, no fractionlization, no gauge fluctuation, goal: ~ 200 papers
+us top 20 univ, prof, always have , subir, ashvin, joel moore, 
+
