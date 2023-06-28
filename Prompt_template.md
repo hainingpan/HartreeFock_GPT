@@ -4,14 +4,16 @@ The template closely adheres to the syntax rules of Python f-string formatting.
 - The [] brackets denote optional strings.
 
 # Workflow
-The template will be divided based on the following aspects: 
-* continuum | lattice
-* first-quantized | second-quantized
-* Hartree | Fock | Hartree-Fock 
+This template file helps in annotating Hartree-Fock Mean-Field theory papers by providing a collection of prompts, which should be followed in a specific order based on the type of the paper.
 
-Note: "lattice version" and "first-quntized" are inherently incompatible, and therefore are not showing below.  
+We categorized the papers based on:
+* Hamiltonian: continuum | lattice
+* Formalism: first-quantized | second-quantized
+* Order parameter: Hartree | Fock | Hartree-Fock 
 
-The workflow for each type is:  
+**Note:** The combination of 'lattice' and 'first-quantized' is incompatible.
+
+Detailed workflows for each paper category are as follows:
 
 ## lattice, second-quantized, Hartree
 ![L_2_H](L_2_H.png)
