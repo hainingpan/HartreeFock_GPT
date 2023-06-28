@@ -103,6 +103,7 @@ flowchart LR
     D==>E
 ```
 ## lattice, second-quantized, Hartree-Fock
+![L_2_HF](L_2_HF.png)
 **Example**: [2004.04168](2004.04168/2004.04168.md)
 ```mermaid
 flowchart LR
@@ -147,6 +148,7 @@ flowchart LR
 
 
 ## continuum, first-quantized, Hartree
+![C_1_H](C_1_H.png)
 ```mermaid
 flowchart LR
     subgraph A["Preamble"]
@@ -197,6 +199,8 @@ flowchart LR
     D==>E
 ```
 ## continuum, first-quantized, Fock
+![C_1_F](C_1_F.png)
+
 ```mermaid
 flowchart LR
     subgraph A["Preamble"]
@@ -248,6 +252,7 @@ flowchart LR
 ```
 
 ## continuum, first-quantized, Hartree-Fock
+![C_1_HF](C_1_HF.png)
 **Example**: [2111.01152](2111.01152/2111.01152.md), [2108.02159](2108.02159/2108.02159.md), [1812.04213](1812.04213/1812.04213.md)
 ```mermaid
 flowchart LR
@@ -299,6 +304,7 @@ flowchart LR
 ```
 
 ## continuum, second-quantized, Hartree
+![C_2_H](C_2_H.png)
 ```mermaid
 flowchart LR
     subgraph A["Preamble"]
@@ -345,6 +351,7 @@ flowchart LR
     D==>E
 ```
 ## continuum, second-quantized, Fock
+![C_2_F](C_2_F.png)
 ```mermaid
 flowchart LR
     subgraph A["Preamble"]
@@ -391,6 +398,7 @@ flowchart LR
     D==>E
 ```
 ## continuum, second-quantized, Hartree-Fock
+![C_2_HF](C_2_HF.png)
 ```mermaid
 flowchart LR
     subgraph A["Preamble"]
