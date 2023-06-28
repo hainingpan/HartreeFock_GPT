@@ -32,4 +32,4 @@ specific concept Bard in falling short
 send email 2 days before
 communicate on small pieces which are unknown to others
 
-
+![L_2_H](L_2_H.png)  

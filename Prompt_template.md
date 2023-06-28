@@ -4,10 +4,17 @@ The template closely adheres to the syntax rules of Python f-string formatting.
 - The [] brackets denote optional strings.
 
 # Workflow
-Our template will be divided based on the following aspects: (continuum, lattice), (first-quantized, second-quantized), (hartree, fock, hartree-fock)  
-Thus the workflow for each type is:  
+The template will be divided based on the following aspects: 
+* continuum | lattice
+* first-quantized | second-quantized
+* Hartree | Fock | Hartree-Fock 
 
-## lattice, second-quantized, hartree
+Note: "lattice version" and "first-quntized" are inherently incompatible, and therefore are not showing below.  
+
+The workflow for each type is:  
+
+## lattice, second-quantized, Hartree
+![L_2_H](L_2_H.png)
 **Example**: [1106.6060](1106.6060/1106.6060.md)
 ```mermaid
 flowchart LR
@@ -50,7 +57,8 @@ flowchart LR
     C==>D
     D==>E
 ```
-## lattice, second-quantized, fock
+## lattice, second-quantized, Fock
+![L_2_F](L_2_F.png)
 ```mermaid
 flowchart LR
     subgraph A["Preamble"]
@@ -92,7 +100,7 @@ flowchart LR
     C==>D
     D==>E
 ```
-## lattice, second-quantized, hartree-fock
+## lattice, second-quantized, Hartree-Fock
 **Example**: [2004.04168](2004.04168/2004.04168.md)
 ```mermaid
 flowchart LR
@@ -136,7 +144,7 @@ flowchart LR
 ```
 
 
-## continuum, first-quantized, hartree
+## continuum, first-quantized, Hartree
 ```mermaid
 flowchart LR
     subgraph A["Preamble"]
@@ -186,7 +194,7 @@ flowchart LR
     C==>D
     D==>E
 ```
-## continuum, first-quantized, fock
+## continuum, first-quantized, Fock
 ```mermaid
 flowchart LR
     subgraph A["Preamble"]
@@ -237,7 +245,7 @@ flowchart LR
     D==>E
 ```
 
-## continuum, first-quantized, hartree-fock
+## continuum, first-quantized, Hartree-Fock
 **Example**: [2111.01152](2111.01152/2111.01152.md), [2108.02159](2108.02159/2108.02159.md), [1812.04213](1812.04213/1812.04213.md)
 ```mermaid
 flowchart LR
@@ -288,7 +296,7 @@ flowchart LR
     C==>E
 ```
 
-## continuum, second-quantized, hartree
+## continuum, second-quantized, Hartree
 ```mermaid
 flowchart LR
     subgraph A["Preamble"]
@@ -334,7 +342,7 @@ flowchart LR
     C==>D
     D==>E
 ```
-## continuum, second-quantized, fock
+## continuum, second-quantized, Fock
 ```mermaid
 flowchart LR
     subgraph A["Preamble"]
@@ -380,7 +388,7 @@ flowchart LR
     C==>D
     D==>E
 ```
-## continuum, second-quantized, hartree-fock
+## continuum, second-quantized, Hartree-Fock
 ```mermaid
 flowchart LR
     subgraph A["Preamble"]
@@ -425,8 +433,6 @@ flowchart LR
     B==>C
     C==>E
 ```
-
-
 
 # Preamble
 ## Preamble
@@ -670,13 +676,13 @@ Use the following conventions for the symbols (You should also obey the conventi
 ## Hartree term only
 **Prompt:**  
 You will be instructed to focus on the symmetry breaking associated with the charge density waves and ferromagnetism. You will perform the transformation to {symbol}.  
-Here, hartree term only means that only the expected value in the form of Hartree term (i.e., $\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) should be the preserved. All other expected value terms should be dropped.  
+Here, Hartree term only means that only the expected value in the form of Hartree term (i.e., $\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) should be the preserved. All other expected value terms should be dropped.  
 Return the simplified Hamiltonian with {symbol}.  
 
 ## Fock term only
 **Prompt:**  
 You will be instructed to focus on the symmetry breaking associated with spin density wave. You will perform the transformation to {symbol}.  
-Here, fock term only means that only the expected value in the form of Fock term (i.e., $\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_2,s_2}(k_2) \rangle$), where $\alpha_1\neq \alpha_2$, $s_1\neq s_2$ should be the preserved. All other expected value terms should be dropped.  
+Here, Fock term only means that only the expected value in the form of Fock term (i.e., $\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_2,s_2}(k_2) \rangle$), where $\alpha_1\neq \alpha_2$, $s_1\neq s_2$ should be the preserved. All other expected value terms should be dropped.  
 Return the simplified Hamiltonian with {symbol}.  
 
 
