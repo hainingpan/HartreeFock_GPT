@@ -25,14 +25,8 @@
   - Kinetic term (continuum | lattice)
   - Wick's theorem (Hartree | Fock | Hartree-Fock | superconducting | normal-superconducting)
 
-- [ ] make workflow consistent, especially for 1812.04213
+- [x] make workflow consistent, update 2004.04168 & 1812.04213
 - [ ] 10-20 papers per day, goal: ~ 200 papers
   - Google scholar
   - Scite
   - US top 20 univ faculties
-
-  
-specific concept Bard in falling short
-send email 2 days before
-communicate on small pieces which are unknown to others
-
