@@ -469,7 +469,7 @@ You will be instructed to describe the kinetic term of Hamiltonian in {system} i
 The degrees of freedom of the system are: {dof}     
 The kinetic term is a tight-binding model composed of the following hopping process: 
 1. {site i} and {site j} with the hopping amplitude {hopping}.  
-You should ensure the hermiticity of the Hamiltonian.
+[You should ensure the hermiticity of the Hamiltonian.]
 The summation should be taken over all spin index and all real space positions.  
 Return the Kinetic Hamiltonian {symbol}.
 
@@ -664,7 +664,7 @@ Use the following conventions for the symbols (You should also obey the conventi
 {def of var}
 
 ===
-EXAMPLE1:  
+EXAMPLE 1:  
 For a four-fermion term $a_1^\dagger a_2^\dagger a_3 a_4$, using Wick's theorem and preserving only the normal terms. this is expanded as $a_1^\dagger a_2^\dagger a_3 a_4 = \langle a_1^\dagger a_4 \rangle a_2^\dagger a_3 + \langle a_2^\dagger a_3 \rangle a_1^\dagger a_4 - \langle a_1^\dagger a_4 \rangle \langle a_2^\dagger a_3\rangle - \langle a_1^\dagger a_3 \rangle a_2^\dagger a_4 - \langle a_2^\dagger a_4 \rangle a_1^\dagger a_3 + \langle a_1^\dagger a_3\rangle \langle a_2^\dagger a_4 \rangle$  
 Be cautious about the order of the index and sign before each term here.
 
@@ -700,7 +700,7 @@ Return the simplified Hamiltonian with {symbol}.
 ## Expand interaction
 **Prompt:**  
 You will be instructed to expand interaction term {symbol} in the MF quadratic term {symbol}.
-If you find the interaction form factor in {symbol} does not contain any momentun that is not in the summation sign. The interaction term is already expanded. No action to perform on interaction term.
+If you find the $V(q)$ in {symbol} does not contain any momentum that is not in the summation sign. The interaction term is already expanded. No action to perform on interaction term.
 Otherwise, you will expand {symbol} by replacing {momentum} with the momentum {momentum}.
 Return {symbol} with expanded interaction.
 

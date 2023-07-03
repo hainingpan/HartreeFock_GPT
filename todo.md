@@ -16,12 +16,16 @@
 
 
 # 2023/06/26
-- [ ] table showing the workflow
+- [x] table showing the workflow
   - continuum vs lattice
   - single-particle vs secodn-qunatized
   - order parmaters choice
 
-- [ ] make workflow consistent, especially for 2004.04168, 1812.04213
+- [x] Update tag system:
+  - Kinetic term (continuum | lattice)
+  - Wick's theorem (Hartree | Fock | Hartree-Fock | superconducting | normal-superconducting)
+
+- [ ] make workflow consistent, especially for 1812.04213
 - [ ] 10-20 papers per day, goal: ~ 200 papers
   - Google scholar
   - Scite
@@ -32,4 +36,3 @@ specific concept Bard in falling short
 send email 2 days before
 communicate on small pieces which are unknown to others
 
-![L_2_H](L_2_H.png)  
