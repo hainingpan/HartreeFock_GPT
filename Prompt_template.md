@@ -1,5 +1,5 @@
 # README
-The template closely adheres to the syntax rules of Python f-string formatting.    
+The template loosely adheres to the syntax rules of Python f-string formatting.    
 - The {} placeholders are intended for string substitutions.
 - The [] brackets denote optional strings.
 
@@ -470,7 +470,7 @@ The degrees of freedom of the system are: {dof}
 The kinetic term is a tight-binding model composed of the following hopping process: 
 1. {site i} and {site j} with the hopping amplitude {hopping}.  
 [You should ensure the hermiticity of the Hamiltonian.]
-The summation should be taken over all spin index and all real space positions.  
+The summation should be taken over all {dof} and all real space positions.  
 Return the Kinetic Hamiltonian {symbol}.
 
 Use the following conventions for the symbols:  
@@ -510,7 +510,7 @@ Now you will be instructed to construct the interaction part of the Hamiltonian,
 The interacting Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian {symbol}.  
 The interaction is a density-density interaction composed of the following process:
 1. onsite interaction between {site i} and {site j} with interaction strength {interaction}
-The summation should be taken over all spin index and all real space positions.  
+The summation should be taken over all {dof} and all real space positions.  
 Return the interaction term {symbol} in terms of {symbol}.
 
 Use the following conventions for the symbols (You should also remember the conventions in my previous prompts if there are no conflicts. If you have conflicts in the conventions, you should stop and let me know): 
@@ -581,7 +581,7 @@ $$\hat{H} = \int dr \frac{1}{\sqrt{V}} \sum_{k_1} c^\dagger(k_1) e^{-i k_1 \cdot
 **Prompt:**  
 Now you will be instructed to convert the Kinetic Hamiltonian {symbols} in the second quantized form from the basis in real space to the basis in momentum space. 
 To do that, you should apply the Fourier transformation to {real space creation op} in the real space to the {momentum space creation op} in the momentum space, which is defined as {def of Fourier transformation}, where {real var} is integrated over all sites in the entire real space. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that {hopping} have no position dependence now.]
-Express the Kinetic Hamiltonian {symbols} in terms of {momentum space ops}. Simplify any summation index if possible.
+Express the Kinetic Hamiltonian {symbols} in terms of {momentum space ops}. [Simplify any summation index if possible.]
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):
 {Def of variables}
