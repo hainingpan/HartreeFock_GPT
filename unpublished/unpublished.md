@@ -703,5 +703,341 @@ $$\hat{H}^{int,HF,U_1,2} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} \sum
 
 This $\hat{H}^{int,HF,U_1,2}$ contains only the quadratic terms from the Hartree-Fock approximation of the interaction term $\hat{H}^{int,HF,U_1}$. The terms with only expectations or products of expectations have been excluded.
 
-# Simplify the MF quadratic term
+# Simplify the MF quadratic term 
+## Swap the index only [first Hartree term]
+You will be instructed to simplify the quadratic term $\hat{H}^{int,Hartree,U_0,2}$ through relabeling the index.  
+The logic is that the expected value ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) in the first Hartree term ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)$) has the same momentum dependence as the quadratic operators ($c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$) in the second Hartree term ($\langle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)\rangle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$), and vice versa. Namely, this means a replacement of $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$ applied to ONLY the second Hartree term. You should not swap any index that is not in the summation, which includes $\uparrow$ and $\downarrow$, A and B. 
+This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Hartree term, you can make the second Hartree term look identical to the first Hartree term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
+You should recall that $\hat{H}^{int,Hartree,U_0,2} = U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) + \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2)$  
+Return the simplied $\hat{H}^{int,Hartree,U_0,2}$.
 
+===  
+EXAMPLE:  
+Given a Hamiltonian $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \rangle c_{d,\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) ) \delta_{k_1+k_2,k_3+k_4}$, where $V(q)=V(-q)$.  
+In the second term, we relabel the index to swap the index in expected value and the index in quadratic operators, namely, $\sigma_1 \leftrightarrow \sigma_2$, $\sigma_3 \leftrightarrow \sigma_4$, $k_1 \leftrightarrow k_2$, $k_3 \leftrightarrow k_4$. Important: $d$ and $p$ cannot be swapped because they are not indices in the summation.  
+After the replacement, the second term becomes $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_2-k_3) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.  
+Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_4-k_1) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
+Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.   
+Finally, we have the simplified Hamiltonian as  $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3)) \delta_{k_4+k_3,k_2+k_1}$.
+
+**Completion:**  
+The objective is to simplify $\hat{H}^{int,Hartree,U_0,2}$ by relabeling the indices of the momenta in the second Hartree term, which is $\langle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2)$. Following the direction given, we perform a swapping operation $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$ to this term. Note that we only perform the swap in the second term. The first term remains unchanged.
+
+The relabeled second Hartree term becomes: $\langle c_{A,\downarrow}^\dagger(k_1) c_{A,\downarrow}(k_2) \rangle c_{A,\uparrow}^\dagger(k_3) c_{A,\uparrow}(k_4)$. 
+
+With this modification, the Hamiltonian $\hat{H}^{int,Hartree,U_0,2}$ simplifies to:
+
+$$\hat{H}^{int,Hartree,U_0,2} = U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\langle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) + \langle c_{A,\downarrow}^\dagger(k_1) c_{A,\downarrow}(k_2) \rangle c_{A,\uparrow}^\dagger(k_3) c_{A,\uparrow}(k_4)]$$
+
+This is the simplified quadratic term $\hat{H}^{int,Hartree,U_0,2}$ in the Hartree approximation after index relabeling.
+
+## Swap the index only [first Fock term]
+You will be instructed to simplify the quadratic term $\hat{H}^{int,Fock,U_0,2}$ through relabeling the index.  
+The logic is that the expected value ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) in the first Fock term ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)$) has the same momentum dependence as the quadratic operators ($c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$) in the second Fock term ($\langle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)\rangle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$), and vice versa. Namely, this means a replacement of $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$ applied to ONLY the second Fock term. You should not swap any index that is not in the summation, which includes $\uparrow$ and $\downarrow$, A and B. 
+This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Fock term, you can make the second Fock term look identical to the first Fock term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
+You should recall that $\hat{H}^{int,Fock,U_0,2} = U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) ( -\langle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) - \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4))$  
+Return the simplied $\hat{H}^{int,Fock,U_0,2}$.
+
+===  
+EXAMPLE:  
+Given a Hamiltonian $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \rangle c_{d,\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) ) \delta_{k_1+k_2,k_3+k_4}$, where $V(q)=V(-q)$.  
+In the second term, we relabel the index to swap the index in expected value and the index in quadratic operators, namely, $\sigma_1 \leftrightarrow \sigma_2$, $\sigma_3 \leftrightarrow \sigma_4$, $k_1 \leftrightarrow k_2$, $k_3 \leftrightarrow k_4$. Important: $d$ and $p$ cannot be swapped because they are not indices in the summation.  
+After the replacement, the second term becomes $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_2-k_3) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.  
+Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_4-k_1) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
+Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.   
+Finally, we have the simplified Hamiltonian as  $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3)) \delta_{k_4+k_3,k_2+k_1}$.
+
+**Completion:**  
+Following the instructions, we want to simplify the quadratic term $\hat{H}^{int,Fock,U_0,2}$ by relabeling the indices of the momenta in the second Fock term. We will perform the replacement operation $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$ to the second term only, leaving the first term unchanged. 
+
+In this case, the second Fock term is $-\langle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4)$. After the relabeling, it becomes $-\langle c_{A,\downarrow}^\dagger(k_1) c_{A,\uparrow}(k_4) \rangle c_{A,\uparrow}^\dagger(k_3) c_{A,\downarrow}(k_2)$.
+
+This simplifies $\hat{H}^{int,Fock,U_0,2}$ to:
+
+$$\hat{H}^{int,Fock,U_0,2} = U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) (-\langle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) - \langle c_{A,\downarrow}^\dagger(k_1) c_{A,\uparrow}(k_4) \rangle c_{A,\uparrow}^\dagger(k_3) c_{A,\downarrow}(k_2))$$
+
+This is the simplified quadratic term $\hat{H}^{int,Fock,U_0,2}$ in the Fock approximation after index relabeling.
+
+
+## Swap the index only [second Hartree term]
+You will be instructed to simplify the quadratic term $\hat{H}^{int,Hartree,U_0,2}$ through relabeling the index.  
+The logic is that the expected value ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) in the first Hartree term ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)$) has the same momentum dependence as the quadratic operators ($c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$) in the second Hartree term ($\langle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)\rangle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$), and vice versa. Namely, this means a replacement of $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$ applied to ONLY the second Hartree term. You should not swap any index that is not in the summation, which includes $\uparrow$ and $\downarrow$, A and B. 
+This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Hartree term, you can make the second Hartree term look identical to the first Hartree term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
+You should recall that $\hat{H}^{int,Hartree,U_0,2} = U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\langle c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) \rangle c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) + \langle c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) \rangle c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) ]$  
+Return the simplied $\hat{H}^{int,Hartree,U_0,2}$.
+
+===  
+EXAMPLE:  
+Given a Hamiltonian $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \rangle c_{d,\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) ) \delta_{k_1+k_2,k_3+k_4}$, where $V(q)=V(-q)$.  
+In the second term, we relabel the index to swap the index in expected value and the index in quadratic operators, namely, $\sigma_1 \leftrightarrow \sigma_2$, $\sigma_3 \leftrightarrow \sigma_4$, $k_1 \leftrightarrow k_2$, $k_3 \leftrightarrow k_4$. Important: $d$ and $p$ cannot be swapped because they are not indices in the summation.  
+After the replacement, the second term becomes $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_2-k_3) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.  
+Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_4-k_1) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
+Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.   
+Finally, we have the simplified Hamiltonian as  $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3)) \delta_{k_4+k_3,k_2+k_1}$.
+
+**Completion:**  
+The given Hamiltonian is $\hat{H}^{int,Hartree,U_0,2} = U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\langle c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) \rangle c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) + \langle c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) \rangle c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) ]$. We need to simplify this Hamiltonian by swapping the indices in the second Hartree term. 
+
+The instruction is to make a replacement of $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$, applied only to the second Hartree term.
+
+Doing this, we have for the second term: $\langle c_{B,\downarrow}^\dagger(k_1) c_{B,\downarrow}(k_2) \rangle c_{B,\uparrow}^\dagger(k_3) c_{B,\uparrow}(k_4)$. 
+
+Also note that the Kronecker delta $\delta(k_1-k_2+k_3-k_4,G)$ implies $k_1-k_2+k_3-k_4=G$, which means $k_3-k_4=k_1-k_2$. 
+
+Therefore, after swapping the indices in the second term, the Hamiltonian becomes: 
+
+$\hat{H}^{int,Hartree,U_0,2} = U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\langle c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) \rangle c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) + \langle c_{B,\downarrow}^\dagger(k_1) c_{B,\downarrow}(k_2) \rangle c_{B,\uparrow}^\dagger(k_3) c_{B,\uparrow}(k_4) ]$
+
+which looks much simpler as both Hartree terms now look the same. Please keep in mind that this is based on the assumption that $V(q)=V(-q)$, which is satisfied in the case of Coulomb interaction.
+
+
+## Swap the index only [second Fock term]
+You will be instructed to simplify the quadratic term $\hat{H}^{int,Fock,U_0,2}$ through relabeling the index.  
+The logic is that the expected value ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) in the first Fock term ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)$) has the same momentum dependence as the quadratic operators ($c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$) in the second Fock term ($\langle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)\rangle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$), and vice versa. Namely, this means a replacement of $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$ applied to ONLY the second Fock term. You should not swap any index that is not in the summation, which includes $\uparrow$ and $\downarrow$, A and B. 
+This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Fock term, you can make the second Fock term look identical to the first Fock term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
+You should recall that $\hat{H}^{int,Fock,U_0,2} =U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [- \langle c_{B,\uparrow}^\dagger(k_1) c_{B,\downarrow}(k_4) \rangle c_{B,\downarrow}^\dagger(k_3) c_{B,\uparrow}(k_2) - \langle c_{B,\downarrow}^\dagger(k_3) c_{B,\uparrow}(k_2) \rangle c_{B,\uparrow}^\dagger(k_1) c_{B,\downarrow}(k_4)]$  
+Return the simplied $\hat{H}^{int,Fock,U_0,2}$.
+
+===  
+EXAMPLE:  
+Given a Hamiltonian $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \rangle c_{d,\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) ) \delta_{k_1+k_2,k_3+k_4}$, where $V(q)=V(-q)$.  
+In the second term, we relabel the index to swap the index in expected value and the index in quadratic operators, namely, $\sigma_1 \leftrightarrow \sigma_2$, $\sigma_3 \leftrightarrow \sigma_4$, $k_1 \leftrightarrow k_2$, $k_3 \leftrightarrow k_4$. Important: $d$ and $p$ cannot be swapped because they are not indices in the summation.  
+After the replacement, the second term becomes $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_2-k_3) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.  
+Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_4-k_1) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
+Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.   
+Finally, we have the simplified Hamiltonian as  $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3)) \delta_{k_4+k_3,k_2+k_1}$.
+
+**Completion:**  
+Given the Hamiltonian
+$\hat{H}^{int,Fock,U_0,2} =U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [- \langle c_{B,\uparrow}^\dagger(k_1) c_{B,\downarrow}(k_4) \rangle c_{B,\downarrow}^\dagger(k_3) c_{B,\uparrow}(k_2) - \langle c_{B,\downarrow}^\dagger(k_3) c_{B,\uparrow}(k_2) \rangle c_{B,\uparrow}^\dagger(k_1) c_{B,\downarrow}(k_4)]$
+
+As instructed, in the second Fock term, we will relabel the indices as following: $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$. 
+
+After the replacement, the second term becomes:
+
+$- \langle c_{B,\downarrow}^\dagger(k_1) c_{B,\uparrow}(k_4) \rangle c_{B,\uparrow}^\dagger(k_3) c_{B,\downarrow}(k_2)$
+
+By using the Kronecker delta function $\delta(k_1-k_2+k_3-k_4,G)$ which implies $k_1-k_2=k_3-k_4$, i.e., $k_3-k_2=k_1-k_4$, the second term further simplifies to 
+
+$- \langle c_{B,\downarrow}^\dagger(k_1) c_{B,\uparrow}(k_4) \rangle c_{B,\uparrow}^\dagger(k_3) c_{B,\downarrow}(k_2)$.
+
+As a result, the Hamiltonian is simplified as
+
+$\hat{H}^{int,Fock,U_0,2} =U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [- \langle c_{B,\uparrow}^\dagger(k_1) c_{B,\downarrow}(k_4) \rangle c_{B,\downarrow}^\dagger(k_3) c_{B,\uparrow}(k_2) - \langle c_{B,\downarrow}^\dagger(k_1) c_{B,\uparrow}(k_4) \rangle c_{B,\uparrow}^\dagger(k_3) c_{B,\downarrow}(k_2)]$
+
+which is the desired form where both terms have the same structure.
+
+## Swap the index only [third Hartree term]
+You will be instructed to simplify the quadratic term $\hat{H}^{int,Hartree,U_1,2}$ through relabeling the index.  
+The logic is that the expected value ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) in the first Hartree term ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)$) has the same momentum dependence as the quadratic operators ($c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$) in the second Hartree term ($\langle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)\rangle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$), and vice versa. Namely, this means a replacement of $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$ applied to ONLY the second Hartree term. You should not swap any index that is not in the summation, which includes $\uparrow$ and $\downarrow$, A and B. 
+This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Hartree term, you can make the second Hartree term look identical to the first Hartree term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
+You should recall that $\hat{H}^{int,Hartree,U_1,2} = U_1\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) + \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) ]$  
+Return the simplied $\hat{H}^{int,Hartree,U_1,2}$.
+
+===  
+EXAMPLE:  
+Given a Hamiltonian $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \rangle c_{d,\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) ) \delta_{k_1+k_2,k_3+k_4}$, where $V(q)=V(-q)$.  
+In the second term, we relabel the index to swap the index in expected value and the index in quadratic operators, namely, $\sigma_1 \leftrightarrow \sigma_2$, $\sigma_3 \leftrightarrow \sigma_4$, $k_1 \leftrightarrow k_2$, $k_3 \leftrightarrow k_4$. Important: $d$ and $p$ cannot be swapped because they are not indices in the summation.  
+After the replacement, the second term becomes $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_2-k_3) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.  
+Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_4-k_1) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
+Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.   
+Finally, we have the simplified Hamiltonian as  $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3)) \delta_{k_4+k_3,k_2+k_1}$.
+
+**Completion:**  
+Following the example, we will perform a relabeling in the second Hartree term in $\hat{H}^{int,Hartree,U_1,2}$.
+
+Namely, we will swap:
+- $k_1 \leftrightarrow k_3$
+- $k_2 \leftrightarrow k_4$
+- $s \leftrightarrow s'$
+
+This results in the second term being transformed into:
+
+$\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \langle c_{B,s}^\dagger(k_1) c_{B,s}(k_2) \rangle c_{A,s'}^\dagger(k_3) c_{A,s'}(k_4)$.
+
+Now the Kronecker dirac function $\delta(k_1-k_2+k_3-k_4,G)$ implies $k_3-k_4=k_1-k_2$, and as per the condition $V(q)=V(-q)$, it simplifies to $V(k_1-k_2)$.
+
+The complete simplified Hamiltonian $\hat{H}^{int,Hartree,U_1,2}$ becomes:
+
+$U_1\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) + \langle c_{B,s}^\dagger(k_1) c_{B,s}(k_2) \rangle c_{A,s'}^\dagger(k_3) c_{A,s'}(k_4) ]$.
+
+This simplification is based on the idea of equivalence between the quantum states in terms of their momentum and spin, while ensuring that the order of operators remains unchanged.
+
+## Swap the index only [third Fock term]
+You will be instructed to simplify the quadratic term $\hat{H}^{int,Fock,U_1,2}$ through relabeling the index.  
+The logic is that the expected value ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) in the first Fock term ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)$) has the same momentum dependence as the quadratic operators ($c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$) in the second Fock term ($\langle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)\rangle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$), and vice versa. Namely, this means a replacement of $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$ applied to ONLY the second Fock term. You should not swap any index that is not in the summation, which includes $\uparrow$ and $\downarrow$, A and B. 
+This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Fock term, you can make the second Fock term look identical to the first Fock term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
+You should recall that $\hat{H}^{int,Fock,U_1,2} = U_1\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [ - \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) - \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) ]$  
+Return the simplied $\hat{H}^{int,Fock,U_1,2}$.
+
+===  
+EXAMPLE:  
+Given a Hamiltonian $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \rangle c_{d,\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) ) \delta_{k_1+k_2,k_3+k_4}$, where $V(q)=V(-q)$.  
+In the second term, we relabel the index to swap the index in expected value and the index in quadratic operators, namely, $\sigma_1 \leftrightarrow \sigma_2$, $\sigma_3 \leftrightarrow \sigma_4$, $k_1 \leftrightarrow k_2$, $k_3 \leftrightarrow k_4$. Important: $d$ and $p$ cannot be swapped because they are not indices in the summation.  
+After the replacement, the second term becomes $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_2-k_3) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.  
+Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_4-k_1) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
+Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.   
+Finally, we have the simplified Hamiltonian as  $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3)) \delta_{k_4+k_3,k_2+k_1}$.
+
+**Completion:**  
+Following the given example, we want to simplify the second Fock term of $\hat{H}^{int,Fock,U_1,2}$ by swapping the indices in the expectation value and the quadratic operators. This will involve the replacements: $s \leftrightarrow s'$, $k_1 \leftrightarrow k_3$, $k_2 \leftrightarrow k_4$. This replacement should not be applied to the indices A and B, as those are not in the summation and are not to be swapped. 
+
+We start with the second term of $\hat{H}^{int,Fock,U_1,2}$, which is:
+
+$- \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) $
+
+After relabeling the indices, we have:
+
+$- \langle c_{B,s}^\dagger(k_1) c_{A,s'}(k_4) \rangle c_{A,s'}^\dagger(k_3) c_{B,s}(k_2)$
+
+The δ function $\delta(k_1-k_2+k_3-k_4,G)$ after relabeling becomes $\delta(k_3-k_4+k_1-k_2,G)$, which is equivalent to $\delta(k_1-k_2+k_3-k_4,G)$ because it requires momentum conservation, which remains the same after swapping.
+
+So the simplified Hamiltonian is then given by:
+
+$\hat{H}^{int,Fock,U_1,2} = U_1\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [ - \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) - \langle c_{B,s}^\dagger(k_1) c_{A,s'}(k_4) \rangle c_{A,s'}^\dagger(k_3) c_{B,s}(k_2) ]$
+
+which is a simplified form of the Hamiltonian in which the terms appear more symmetrical.
+
+
+## Swap the index only [fourth Hartree term]
+You will be instructed to simplify the quadratic term $\hat{H}^{int,Hartree,U_1,2}$ through relabeling the index.  
+The logic is that the expected value ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) in the first Hartree term ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)$) has the same momentum dependence as the quadratic operators ($c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$) in the second Hartree term ($\langle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)\rangle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$), and vice versa. Namely, this means a replacement of $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$, $s\leftrightarrow s^\prime$ applied to ONLY the second Hartree term. You should not swap any index that is not in the summation, which includes $\uparrow$ and $\downarrow$, A and B. 
+This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Hartree term, you can make the second Hartree term look identical to the first Hartree term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
+You should recall that $\hat{H}^{int,Hartree,U_1,2} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_1} [\langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) + \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) ]$  
+Return the simplied $\hat{H}^{int,Hartree,U_1,2}$.
+
+===  
+EXAMPLE:  
+Given a Hamiltonian $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \rangle c_{d,\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) ) \delta_{k_1+k_2,k_3+k_4}$, where $V(q)=V(-q)$.  
+In the second term, we relabel the index to swap the index in expected value and the index in quadratic operators, namely, $\sigma_1 \leftrightarrow \sigma_2$, $\sigma_3 \leftrightarrow \sigma_4$, $k_1 \leftrightarrow k_2$, $k_3 \leftrightarrow k_4$. Important: $d$ and $p$ cannot be swapped because they are not indices in the summation.  
+After the replacement, the second term becomes $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_2-k_3) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.  
+Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_4-k_1) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
+Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.   
+Finally, we have the simplified Hamiltonian as  $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3)) \delta_{k_4+k_3,k_2+k_1}$.
+
+**Completion:**  
+To simplify the second term of the $\hat{H}^{int,Hartree,U_1,2}$ Hamiltonian by relabeling the indices as per the instructions, we follow the EXAMPLE's methodology. Specifically, we need to swap $k_1 \leftrightarrow k_3$, $k_2 \leftrightarrow k_4$ and $s \leftrightarrow s'$. 
+
+Doing this, the second term of the original Hamiltonian:
+
+$\langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle c_{A,s}^\dagger(k_1) c_{A,s}(k_2)$
+
+becomes:
+
+$\langle c_{B,s}^\dagger(k_1) c_{B,s}(k_2) \rangle c_{A,s'}^\dagger(k_3) c_{A,s'}(k_4)$
+
+The delta function also transforms as $\delta(k_1 - k_2 + k_3 - k_4, G) \rightarrow \delta(k_3 - k_4 + k_1 - k_2, G)$, but because the delta function is even, it does not affect the final result.
+
+As such, $\hat{H}^{int,Hartree,U_1,2}$ can be simplified to:
+
+$\hat{H}^{int,Hartree,U_1,2} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_1} [\langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) + \langle c_{B,s}^\dagger(k_1) c_{B,s}(k_2) \rangle c_{A,s'}^\dagger(k_3) c_{A,s'}(k_4)]$
+
+In this expression, the two terms are now identical except for the labels A and B, making it clearer to interpret and easier to use in subsequent analysis or computations.
+
+
+## Swap the index only [fourth Fock term]
+You will be instructed to simplify the quadratic term $\hat{H}^{int,Fock,U_1,2}$ through relabeling the index.  
+The logic is that the expected value ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) in the first Fock term ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)$) has the same momentum dependence as the quadratic operators ($c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$) in the second Fock term ($\langle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)\rangle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$), and vice versa. Namely, this means a replacement of $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$, $s\leftrightarrow s^\prime$ applied to ONLY the second Fock term. You should not swap any index that is not in the summation, which includes $\uparrow$ and $\downarrow$, A and B. 
+This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Fock term, you can make the second Fock term look identical to the first Fock term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
+You should recall that $\hat{H}^{int,Fock,U_1,2} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_1}[- \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) - \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4)]$  
+Return the simplied $\hat{H}^{int,Fock,U_1,2}$.
+
+===  
+EXAMPLE:  
+Given a Hamiltonian $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \rangle c_{d,\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) ) \delta_{k_1+k_2,k_3+k_4}$, where $V(q)=V(-q)$.  
+In the second term, we relabel the index to swap the index in expected value and the index in quadratic operators, namely, $\sigma_1 \leftrightarrow \sigma_2$, $\sigma_3 \leftrightarrow \sigma_4$, $k_1 \leftrightarrow k_2$, $k_3 \leftrightarrow k_4$. Important: $d$ and $p$ cannot be swapped because they are not indices in the summation.  
+After the replacement, the second term becomes $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_2-k_3) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.  
+Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_4-k_1) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
+Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.   
+Finally, we have the simplified Hamiltonian as  $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3)) \delta_{k_4+k_3,k_2+k_1}$.
+
+**Completion:**  
+Following the procedure given in the example, let's simplify $\hat{H}^{int,Fock,U_1,2}$. We can apply the relabeling to the second Fock term:
+$\langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4)$
+
+According to the instructions, we swap $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$, $s\leftrightarrow s'$, giving:
+
+$\langle c_{B,s}^\dagger(k_1) c_{A,s'}(k_4) \rangle c_{A,s'}^\dagger(k_3) c_{B,s}(k_2)$
+
+Next, we apply the symmetry of the delta function. Note that $\delta(k_1 - k_2 + k_3 - k_4, G) = \delta(k_3 - k_2 + k_1 - k_4, G)$ by the property of the Dirac delta function, so we will keep it as it is.
+
+Finally, since $V(q)=V(-q)$ for Coulomb interaction, the term $e^{-i (k_3 - k_4) \cdot a_1}$ becomes $e^{-i (k_1 - k_2) \cdot a_1}$
+
+Therefore, the simplified $\hat{H}^{int,Fock,U_1,2}$ is:
+
+$\hat{H}^{int,Fock,U_1,2} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_1 - k_2) \cdot a_1}[- \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) - \langle c_{B,s}^\dagger(k_1) c_{A,s'}(k_4) \rangle c_{A,s'}^\dagger(k_3) c_{B,s}(k_2)]$
+
+## Swap the index only [fifth Hartree term]
+You will be instructed to simplify the quadratic term $\hat{H}^{int,Hartree,U_1,2}$ through relabeling the index.  
+The logic is that the expected value ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) in the first Hartree term ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)$) has the same momentum dependence as the quadratic operators ($c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$) in the second Hartree term ($\langle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)\rangle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$), and vice versa. Namely, this means a replacement of $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$, $s\leftrightarrow s^\prime$ applied to ONLY the second Hartree term. You should not swap any index that is not in the summation, which includes $\uparrow$ and $\downarrow$, A and B. 
+This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Hartree term, you can make the second Hartree term look identical to the first Hartree term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
+You should recall that $\hat{H}^{int,Hartree,U_1,2} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_2} [\langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) + \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle c_{A,s}^\dagger(k_1) c_{A,s}(k_2)]$  
+Return the simplied $\hat{H}^{int,Hartree,U_1,2}$.
+
+===  
+EXAMPLE:  
+Given a Hamiltonian $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \rangle c_{d,\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) ) \delta_{k_1+k_2,k_3+k_4}$, where $V(q)=V(-q)$.  
+In the second term, we relabel the index to swap the index in expected value and the index in quadratic operators, namely, $\sigma_1 \leftrightarrow \sigma_2$, $\sigma_3 \leftrightarrow \sigma_4$, $k_1 \leftrightarrow k_2$, $k_3 \leftrightarrow k_4$. Important: $d$ and $p$ cannot be swapped because they are not indices in the summation.  
+After the replacement, the second term becomes $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_2-k_3) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.  
+Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_4-k_1) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
+Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.   
+Finally, we have the simplified Hamiltonian as  $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3)) \delta_{k_4+k_3,k_2+k_1}$.
+
+**Completion:**  
+To simplify the given Hamiltonian term $\hat{H}^{int,Hartree,U_1,2}$ by relabeling the indices as per the instructions, let's begin by looking at the second Hartree term:
+
+$\langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle c_{A,s}^\dagger(k_1) c_{A,s}(k_2)$
+
+As suggested, we relabel the indices as follows:
+
+$s \leftrightarrow s'$, $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$. After this relabeling, the term becomes:
+
+$\langle c_{B,s}^\dagger(k_1) c_{B,s}(k_2) \rangle c_{A,s'}^\dagger(k_3) c_{A,s'}(k_4)$
+
+Note that $A$ and $B$ are not swapped as they are not part of the indices under the summation.
+
+Next, we have to handle the Kronecker delta function, $\delta(k_1 - k_2 + k_3 - k_4, G)$, which becomes $\delta(k_3 - k_4 + k_1 - k_2, G)$ after the relabeling. 
+
+Since $\delta(x, y) = \delta(y, x)$ for any $x, y$, this is equivalent to $\delta(k_1 - k_2 + k_3 - k_4, G)$. 
+
+Hence, the simplified Hamiltonian term $\hat{H}^{int,Hartree,U_1,2}$, after relabeling the indices becomes:
+
+$\hat{H}^{int,Hartree,U_1,2} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_2} [\langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) + \langle c_{B,s}^\dagger(k_1) c_{B,s}(k_2) \rangle c_{A,s'}^\dagger(k_3) c_{A,s'}(k_4)]$
+
+It can be seen that the two terms now look identical, except for the exchange of $A$ and $B$ labels. Note that the order of momenta $k_1, k_2, k_3, k_4$ remains unchanged due to the momentum conservation. This relabeling makes it easier to compare and combine terms in further analytical treatments.
+
+
+## Swap the index only [fifth Fock term]
+You will be instructed to simplify the quadratic term $\hat{H}^{int,Fock,U_1,2}$ through relabeling the index.  
+The logic is that the expected value ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) in the first Fock term ($\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)$) has the same momentum dependence as the quadratic operators ($c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$) in the second Fock term ($\langle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)\rangle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$), and vice versa. Namely, this means a replacement of $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$, $s\leftrightarrow s^\prime$ applied to ONLY the second Fock term. You should not swap any index that is not in the summation, which includes $\uparrow$ and $\downarrow$, A and B. 
+This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Fock term, you can make the second Fock term look identical to the first Fock term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
+You should recall that $\hat{H}^{int,Fock,U_1,2} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_2}[- \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) - \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4)]$  
+Return the simplied $\hat{H}^{int,Fock,U_1,2}$.
+
+===  
+EXAMPLE:  
+Given a Hamiltonian $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \rangle c_{d,\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) ) \delta_{k_1+k_2,k_3+k_4}$, where $V(q)=V(-q)$.  
+In the second term, we relabel the index to swap the index in expected value and the index in quadratic operators, namely, $\sigma_1 \leftrightarrow \sigma_2$, $\sigma_3 \leftrightarrow \sigma_4$, $k_1 \leftrightarrow k_2$, $k_3 \leftrightarrow k_4$. Important: $d$ and $p$ cannot be swapped because they are not indices in the summation.  
+After the replacement, the second term becomes $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_2-k_3) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.  
+Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_4-k_1) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
+Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.   
+Finally, we have the simplified Hamiltonian as  $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3)) \delta_{k_4+k_3,k_2+k_1}$.
+
+**Completion:**  
+Following the example given, we can relabel the indices of the second Fock term in $\hat{H}^{int,Fock,U_1,2}$. We want to swap $s \leftrightarrow s'$, $k_1 \leftrightarrow k_3$, and $k_2 \leftrightarrow k_4$.
+
+The second term of the Hamiltonian initially reads:
+
+$\langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4)$
+
+After relabeling the indices, it becomes:
+
+$\langle c_{B,s}^\dagger(k_1) c_{A,s'}(k_4) \rangle c_{A,s'}^\dagger(k_3) c_{B,s}(k_2)$
+
+Noting that the Delta function $\delta(k_1 - k_2 + k_3 - k_4, G)$ implies $k_3 - k_2 = k_1 - k_4$, we can replace the argument of the exponential $e^{-i (k_3 - k_4) \cdot a_2}$ with $e^{-i (k_1 - k_2) \cdot a_2}$ since $k_1 - k_2 = k_3 - k_4$ under the constraint of the delta function.
+
+Now, our simplified $\hat{H}^{int,Fock,U_1,2}$ becomes:
+
+$\hat{H}^{int,Fock,U_1,2} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_1 - k_2) \cdot a_2}[- \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) - \langle c_{B,s}^\dagger(k_1) c_{A,s'}(k_4) \rangle c_{A,s'}^\dagger(k_3) c_{B,s}(k_2)]$
+
+In this form, it is clear that the two terms of the Hamiltonian are identical if the conditions for the Coulomb interaction, $V(q)=V(-q)$, are met, as stated in the problem.

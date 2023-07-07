@@ -707,8 +707,8 @@ Return {symbol} with expanded interaction.
 ## Swap the index only
 **Prompt:**  
 You will be instructed to simplify the quadratic term {symbol} through relabeling the index.  
-The logic is that the expected value ({expected}) in the first Hartree term ({firstHartree}) has the same momentum dependence as the quadratic operators ({quadratic}) in the second Hartree term ({secondHartree}), and vice versa. Namely, this means a replacement of {relabelling} applied to ONLY the second Hartree term.  
-This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Hartree term, you can make the second Hartree term look identical to the first Hartree term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
+The logic is that the expected value ({expected}) in the first {Hartree|Fock} term ({firstHartree|firstFock}}) has the same momentum dependence as the quadratic operators ({quadratic}) in the second {Hartree|Fock} term ({secondHartree|secondFock}}), and vice versa. Namely, this means a replacement of {relabelling} applied to ONLY the second {Hartree|Fock} term. You should not swap any index that is not in the summation, which includes {Unsummed_Indices}.  
+This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second {Hartree|Fock} term, you can make the second {Hartree|Fock} term look identical to the first {Hartree|Fock} term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
 Return the simplied {symbol}.
 
 ===  
