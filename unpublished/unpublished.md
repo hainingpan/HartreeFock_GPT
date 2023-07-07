@@ -138,7 +138,7 @@ where $k$ is summed over the first Brillouin zone and $s$ is summed over the spi
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version) [first term] 
 **Prompt:**  
 Now you will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the first term with $U_0$.
-To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within fhe first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. Note that the interaction $U_d$ is onsite.  
+To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. Note that the interaction $U_0$ is onsite.  
 You should recall that the first term in $\hat{H}^{int}$ is
 $U_0\sum_{i} n_{A,\uparrow}(R_i) n_{A,\downarrow}(R_i) $
 Express the first term in interacting Hamiltonian $\hat{H}^{int}$ with $U_0$ in terms of $c_{\alpha,s}(k)$ and $c_{\alpha,s}^\dagger(k)$. Simplify any summation index if possible.  
@@ -161,44 +161,327 @@ $$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4}  U(k_1-k_4) c_s^\da
 
 
 **Completion:**  
-Based on the example provided, the Fourier transformation can be applied to the first term of the interacting Hamiltonian, $\hat{H}^{int}$.
+Following the example, we first need to express the first term of the interacting Hamiltonian $\hat{H}^{int}$ in terms of the Fourier transformed creation and annihilation operators. 
 
-First, let's express the operator $n_{A,\uparrow}(R_i)$ and $n_{A,\downarrow}(R_i)$ in terms of the creation and annihilation operators. We have:
+The term in real space representation is given by
 
-$$n_{A,\uparrow}(R_i)=c_{A,\uparrow}^\dagger(R_i) c_{A,\uparrow}(R_i)$$
-$$n_{A,\downarrow}(R_i)=c_{A,\downarrow}^\dagger(R_i) c_{A,\downarrow}(R_i)$$
+$$U_0\sum_{i} n_{A,\uparrow}(R_i) n_{A,\downarrow}(R_i),$$
 
-So, the first term in the Hamiltonian becomes:
+where $n_{A,\uparrow}(R_i)$ and $n_{A,\downarrow}(R_i)$ are the number operators in the real space, which can be written in terms of the creation and annihilation operators as 
 
-$$U_0\sum_{i} c_{A,\uparrow}^\dagger(R_i) c_{A,\uparrow}(R_i) c_{A,\downarrow}^\dagger(R_i) c_{A,\downarrow}(R_i)$$
+$$n_{A,\uparrow}(R_i) = c_{A,\uparrow}^\dagger(R_i) c_{A,\uparrow}(R_i) \quad \text{and} \quad n_{A,\downarrow}(R_i) = c_{A,\downarrow}^\dagger(R_i) c_{A,\downarrow}(R_i).$$
 
-Now, let's apply the Fourier transformation for each of these operators:
+Now, following the example, we apply the Fourier transform to each operator. First, remember that the inverse Fourier transforms are defined as
 
-$c_{A,\uparrow}^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_{A,\uparrow}^\dagger(k) e^{-i k \cdot R_i}$
+$$c_{\alpha,s}^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_{\alpha,s}^\dagger(k) e^{-i k \cdot R_i} \quad \text{and} \quad c_{\alpha,s}(R_i) = \frac{1}{\sqrt{N}} \sum_k c_{\alpha,s}(k) e^{i k \cdot R_i}.$$
 
-$c_{A,\uparrow}(R_i) = \frac{1}{\sqrt{N}} \sum_k c_{A,\uparrow}(k) e^{i k \cdot R_i}$
+By substituting these into the first term, we get
 
-$c_{A,\downarrow}^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_{A,\downarrow}^\dagger(k) e^{-i k \cdot R_i}$
+$$U_0\sum_{i} n_{A,\uparrow}(R_i) n_{A,\downarrow}(R_i) = U_0\sum_{i} \left(\frac{1}{\sqrt{N}} \sum_{k_1} c_{A,\uparrow}^\dagger(k_1) e^{-i k_1 \cdot R_i}\right) \left(\frac{1}{\sqrt{N}} \sum_{k_2} c_{A,\uparrow}(k_2) e^{i k_2 \cdot R_i}\right) \left(\frac{1}{\sqrt{N}} \sum_{k_3} c_{A,\downarrow}^\dagger(k_3) e^{-i k_3 \cdot R_i}\right) \left(\frac{1}{\sqrt{N}} \sum_{k_4} c_{A,\downarrow}(k_4) e^{i k_4 \cdot R_i}\right).$$
 
-$c_{A,\downarrow}(R_i) = \frac{1}{\sqrt{N}} \sum_k c_{A,\downarrow}(k) e^{i k \cdot R_i}$
+Simplifying, we get
 
-After the substitution, the first term in $\hat{H}^{int}$ becomes:
+$$U_0\sum_{i} \frac{1}{N^2}\sum_{k_1,k_2,k_3,k_4} c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) e^{-i(k_1-k_2)\cdot R_i} e^{-i(k_3-k_4)\cdot R_i}.$$
 
-$$U_0\sum_{i} \frac{1}{N^2}\sum_{k_1,k_2,k_3,k_4}c_{A,\uparrow}^\dagger(k_1)c_{A,\uparrow}(k_2)c_{A,\downarrow}^\dagger(k_3)c_{A,\downarrow}(k_4)e^{-i(k_1-k_2)\cdot R_i} e^{-i(k_3-k_4)\cdot R_i}$$
+This interaction is onsite, which means we have to enforce momentum conservation. As in the example, we can use the identity 
 
-which can be simplified to:
+$$\frac{1}{N}\sum_{i} e^{-i (k_1-k_2+k_3-k_4)\cdot R_i} = \sum\delta(k_1-k_2+k_3-k_4,G),$$
 
-$$\frac{U_0}{N^2} \sum_{i}\sum_{k_1,k_2,k_3,k_4} c_{A,\uparrow}^\dagger(k_1)c_{A,\uparrow}(k_2)c_{A,\downarrow}^\dagger(k_3)c_{A,\downarrow}(k_4)e^{-i(k_1-k_2+k_3-k_4)\cdot R_i}$$
+where $\delta(..,..)$ is the Kronecker delta function and $G$ represents all reciprocal lattice vectors in momentum space. 
 
-The sum over $i$ gives us the Kronecker delta $\sum_{i} e^{-i (k_1-k_2+k_3-k_4)\cdot R_i} = N\delta(k_1-k_2+k_3-k_4, G)$, where $G$ is the reciprocal lattice vector. 
+Applying the identity, we can rewrite the interaction term as
 
-The final expression should be:
+$$U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$$
 
-$$\hat{H}^{int} = U_0 \sum_{k_1,k_2,k_3,k_4} c_{A,\uparrow}^\dagger(k_1)c_{A,\uparrow}(k_2)c_{A,\downarrow}^\dagger(k_3)c_{A,\downarrow}(k_4) \delta(k_1-k_2+k_3-k_4, G)$$
+Here, the delta function enforces the momentum conservation. Therefore, the first term in the interacting Hamiltonian $\hat{H}^{int}$ with $U_0$ in terms of $c_{\alpha,s}(k)$ and $c_{\alpha,s}^\dagger(k)$ is given by the expression above. Please note that the expression simplifies considerably in the case of an infinite system (where $N$ tends to infinity), because in that case, the sum over $G$ reduces to a delta function that enforces momentum conservation.
 
-Here, the term $c_{A,\uparrow}^\dagger(k_1)c_{A,\uparrow}(k_2)c_{A,\downarrow}^\dagger(k_3)c_{A,\downarrow}(k_4)$ represents the creation and annihilation of particles with momentum $k_1, k_2, k_3,$ and $k_4$ respectively.
+## Convert interacting Hamiltonian in real space to momentum space (lattice version) [second term] 
+**Prompt:**  
+Now you will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the second term with $U_0$.
+To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the second Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. Note that the interaction $U_0$ is onsite.  
+You should recall that the second term in $\hat{H}^{int}$ is
+$U_0\sum_{i} n_{B,\uparrow}(R_i) n_{B,\downarrow}(R_i)$
+Express the second term in interacting Hamiltonian $\hat{H}^{int}$ with $U_0$ in terms of $c_{\alpha,s}(k)$ and $c_{\alpha,s}^\dagger(k)$. Simplify any summation index if possible.  
 
-The Kronecker delta function $\delta(k_1-k_2+k_3-k_4, G)$ ensures the conservation of momentum during this process, with $G$ being a reciprocal lattice vector. This interaction term in momentum space describes an interaction process where a spin-up particle with momentum $k_1$ and a spin-down particle with momentum $k_3$ are annihilated and then created again with momenta $k_2$ and $k_4$ respectively.
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form in the real space, $\hat{H}^{int}=\sum_{s,s'}\sum_{i,j} U(R_i-R_j) c_s^\dagger(R_i) c_{s'}^\dagger(R_j) c_{s'}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{H}^{int}$, we get  
+$$\hat{H}^{int} = \sum_{s,s'}\sum_{i,j} U(R_i-R_j) \frac{1}{\sqrt{N}} \sum_{k_1} c_s^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{\sqrt{N}} \sum_{k_2} c_{s'}^\dagger(k_2) e^{-i k_2 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_3} c_{s'}(k_3) e^{i k_3 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_4} c_s(k_4) e^{i k_4 \cdot R_i}=\sum_{s,s'}\sum_{i,j}\frac{1}{N^2}\sum_{k_1,k_2,k_3,k_4}U(R_i-R_j)c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot R_i} e^{-i(k_2-k_3)\cdot R_j}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{H}^{int}=\frac{1}{N^2} \sum_{j,n} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(n) c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot n} e^{-i(k_1-k_4+k_2-k_3)\cdot r_j }$$
+Because $\frac{1}{N}\sum_{i} e^{-i (k_1-k_4+k_2-k_3)\cdot R_i} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{n} U(n) e^{-i (k_1-k_4) \cdot n} c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4) \sum_{G} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{n} U(n) e^{-i k \cdot n}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4}  U(k_1-k_4) c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4) \sum_{G} \delta(k_1-k_4+k_2-k_3,G)$$
 
-Please note, this equation only holds true if the interaction $U_0$ is onsite, which implies the conservation of total momentum of the interacting particles.
 
+**Completion:**  
+The second term in the interacting Hamiltonian $\hat{H}^{int}$ in the real space is given by 
+
+$$U_0\sum_{i} n_{B,\uparrow}(R_i) n_{B,\downarrow}(R_i),$$
+
+where $n_{B,\uparrow}(R_i)$ and $n_{B,\downarrow}(R_i)$ are the number operators in the real space, which can be written in terms of the creation and annihilation operators as 
+
+$$n_{B,\uparrow}(R_i) = c_{B,\uparrow}^\dagger(R_i) c_{B,\uparrow}(R_i) \quad \text{and} \quad n_{B,\downarrow}(R_i) = c_{B,\downarrow}^\dagger(R_i) c_{B,\downarrow}(R_i).$$
+
+Now, following the example, we apply the Fourier transform to each operator. The inverse Fourier transforms are defined as
+
+$$c_{\alpha,s}^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_{\alpha,s}^\dagger(k) e^{-i k \cdot R_i} \quad \text{and} \quad c_{\alpha,s}(R_i) = \frac{1}{\sqrt{N}} \sum_k c_{\alpha,s}(k) e^{i k \cdot R_i}.$$
+
+By substituting these into the second term, we get
+
+$$U_0\sum_{i} n_{B,\uparrow}(R_i) n_{B,\downarrow}(R_i) = U_0\sum_{i} \left(\frac{1}{\sqrt{N}} \sum_{k_1} c_{B,\uparrow}^\dagger(k_1) e^{-i k_1 \cdot R_i}\right) \left(\frac{1}{\sqrt{N}} \sum_{k_2} c_{B,\uparrow}(k_2) e^{i k_2 \cdot R_i}\right) \left(\frac{1}{\sqrt{N}} \sum_{k_3} c_{B,\downarrow}^\dagger(k_3) e^{-i k_3 \cdot R_i}\right) \left(\frac{1}{\sqrt{N}} \sum_{k_4} c_{B,\downarrow}(k_4) e^{i k_4 \cdot R_i}\right).$$
+
+Simplifying, we get
+
+$$U_0\sum_{i} \frac{1}{N^2}\sum_{k_1,k_2,k_3,k_4} c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) e^{-i(k_1-k_2)\cdot R_i} e^{-i(k_3-k_4)\cdot R_i}.$$
+
+This interaction is also onsite, which means we have to enforce momentum conservation. We can use the identity 
+
+$$\frac{1}{N}\sum_{i} e^{-i (k_1-k_2+k_3-k_4)\cdot R_i} = \sum\delta(k_1-k_2+k_3-k_4,G),$$
+
+where $\delta(..,..)$ is the Kronecker delta function and $G$ is all the reciprocal lattice vectors in momentum space. 
+
+Applying the identity, we can rewrite the interaction term as
+
+$$U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$$
+
+Here, the delta function enforces the momentum conservation. Therefore, the second term in the interacting Hamiltonian $\hat{H}^{int}$ with $U_0$ in terms of $c_{\alpha,s}(k)$ and $c_{\alpha,s}^\dagger(k)$ is given by the expression above. Please note that the expression simplifies considerably in the case of an infinite system (where $N$ tends to infinity), because in that case, the sum over $G$ reduces to a delta function that enforces momentum conservation.
+
+## Convert interacting Hamiltonian in real space to momentum space (lattice version) [third term] 
+**Prompt:**  
+Now you will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the third quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the third term with $U_1$.
+To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the third Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. 
+You should recall that the third term in $\hat{H}^{int}$ is
+$U_1\sum_{i,s,s'} n_{A,s}(R_i) n_{B,s'}(R_i)$   
+Express the third term in interacting Hamiltonian $\hat{H}^{int}$ with $U_1$ in terms of $c_{\alpha,s}(k)$ and $c_{\alpha,s}^\dagger(k)$. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form in the real space, $\hat{H}^{int}=\sum_{s,s'}\sum_{i,j} U(R_i-R_j) c_s^\dagger(R_i) c_{s'}^\dagger(R_j) c_{s'}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{H}^{int}$, we get  
+$$\hat{H}^{int} = \sum_{s,s'}\sum_{i,j} U(R_i-R_j) \frac{1}{\sqrt{N}} \sum_{k_1} c_s^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{\sqrt{N}} \sum_{k_2} c_{s'}^\dagger(k_2) e^{-i k_2 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_3} c_{s'}(k_3) e^{i k_3 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_4} c_s(k_4) e^{i k_4 \cdot R_i}=\sum_{s,s'}\sum_{i,j}\frac{1}{N^2}\sum_{k_1,k_2,k_3,k_4}U(R_i-R_j)c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot R_i} e^{-i(k_2-k_3)\cdot R_j}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{H}^{int}=\frac{1}{N^2} \sum_{j,n} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(n) c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot n} e^{-i(k_1-k_4+k_2-k_3)\cdot r_j }$$
+Because $\frac{1}{N}\sum_{i} e^{-i (k_1-k_4+k_2-k_3)\cdot R_i} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{n} U(n) e^{-i (k_1-k_4) \cdot n} c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4) \sum_{G} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{n} U(n) e^{-i k \cdot n}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4}  U(k_1-k_4) c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4) \sum_{G} \delta(k_1-k_4+k_2-k_3,G)$$
+
+**Completion:**  
+The third term in the interacting Hamiltonian $\hat{H}^{int}$ in the real space is given by 
+
+$$U_1\sum_{i,s,s'} n_{A,s}(R_i) n_{B,s'}(R_i),$$
+
+where $n_{A,s}(R_i)$ and $n_{B,s'}(R_i)$ are the number operators in the real space, which can be written in terms of the creation and annihilation operators as 
+
+$$n_{A,s}(R_i) = c_{A,s}^\dagger(R_i) c_{A,s}(R_i) \quad \text{and} \quad n_{B,s'}(R_i) = c_{B,s'}^\dagger(R_i) c_{B,s'}(R_i).$$
+
+Now, following the example, we apply the Fourier transform to each operator. The inverse Fourier transforms are defined as
+
+$$c_{\alpha,s}^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_{\alpha,s}^\dagger(k) e^{-i k \cdot R_i} \quad \text{and} \quad c_{\alpha,s}(R_i) = \frac{1}{\sqrt{N}} \sum_k c_{\alpha,s}(k) e^{i k \cdot R_i}.$$
+
+By substituting these into the third term, we get
+
+$$U_1\sum_{i,s,s'} n_{A,s}(R_i) n_{B,s'}(R_i) = U_1\sum_{i,s,s'} \left(\frac{1}{\sqrt{N}} \sum_{k_1} c_{A,s}^\dagger(k_1) e^{-i k_1 \cdot R_i}\right) \left(\frac{1}{\sqrt{N}} \sum_{k_2} c_{A,s}(k_2) e^{i k_2 \cdot R_i}\right) \left(\frac{1}{\sqrt{N}} \sum_{k_3} c_{B,s'}^\dagger(k_3) e^{-i k_3 \cdot R_i}\right) \left(\frac{1}{\sqrt{N}} \sum_{k_4} c_{B,s'}(k_4) e^{i k_4 \cdot R_i}\right).$$
+
+Simplifying, we get
+
+$$U_1\sum_{i,s,s'} \frac{1}{N^2}\sum_{k_1,k_2,k_3,k_4} c_{A,s}^\dagger(k_1) c_{A,s}(k_2) c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) e^{-i(k_1-k_2)\cdot R_i} e^{-i(k_3-k_4)\cdot R_i}.$$
+
+This interaction is also onsite, which means we have to enforce momentum conservation. We can use the identity 
+
+$$\frac{1}{N}\sum_{i} e^{-i (k_1-k_2+k_3-k_4)\cdot R_i} = \sum\delta(k_1-k_2+k_3-k_4,G),$$
+
+where $\delta(..,..)$ is the Kronecker delta function and $G$ is all the reciprocal lattice vectors in momentum space. 
+
+Applying the identity, we can rewrite the interaction term as
+
+$$U_1\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} c_{A,s}^\dagger(k_1) c_{A,s}(k_2) c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$$
+
+Here, the delta function enforces the momentum conservation. Therefore, the third term in the interacting Hamiltonian $\hat{H}^{int}$ with $U_1$ in terms of $c_{\alpha,s}(k)$ and $c_{\alpha,s}^\dagger(k)$ is given by the expression above. As noted before, the expression simplifies considerably in the case of an infinite system (where $N$ tends to infinity), because in that case, the sum over $G$ reduces to a delta function that enforces momentum conservation.
+
+## Convert interacting Hamiltonian in real space to momentum space (lattice version) [fourth term] 
+**Prompt:**  
+Now you will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the fourth quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the fourth term with $U_1$.
+To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the fourth Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. 
+You should recall that the fourth term in $\hat{H}^{int}$ is
+$U_1\sum_{i,s,s'} n_{A,s}(R_i) n_{B,s'}(R_i + a_1)$   
+Express the fourth term in interacting Hamiltonian $\hat{H}^{int}$ with $U_1$ in terms of $c_{\alpha,s}(k)$ and $c_{\alpha,s}^\dagger(k)$. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form in the real space, $\hat{H}^{int}=\sum_{s,s'}\sum_{i,j} U(R_i-R_j) c_s^\dagger(R_i) c_{s'}^\dagger(R_j) c_{s'}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{H}^{int}$, we get  
+$$\hat{H}^{int} = \sum_{s,s'}\sum_{i,j} U(R_i-R_j) \frac{1}{\sqrt{N}} \sum_{k_1} c_s^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{\sqrt{N}} \sum_{k_2} c_{s'}^\dagger(k_2) e^{-i k_2 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_3} c_{s'}(k_3) e^{i k_3 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_4} c_s(k_4) e^{i k_4 \cdot R_i}=\sum_{s,s'}\sum_{i,j}\frac{1}{N^2}\sum_{k_1,k_2,k_3,k_4}U(R_i-R_j)c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot R_i} e^{-i(k_2-k_3)\cdot R_j}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{H}^{int}=\frac{1}{N^2} \sum_{j,n} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(n) c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot n} e^{-i(k_1-k_4+k_2-k_3)\cdot r_j }$$
+Because $\frac{1}{N}\sum_{i} e^{-i (k_1-k_4+k_2-k_3)\cdot R_i} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{n} U(n) e^{-i (k_1-k_4) \cdot n} c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4) \sum_{G} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{n} U(n) e^{-i k \cdot n}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4}  U(k_1-k_4) c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4) \sum_{G} \delta(k_1-k_4+k_2-k_3,G)$$
+
+**Completion:**  
+The fourth term in the interacting Hamiltonian $\hat{H}^{int}$ in real space is given by 
+
+$$U_1\sum_{i,s,s'} n_{A,s}(R_i) n_{B,s'}(R_i + a_1).$$ 
+
+Here $n_{A,s}(R_i)$ and $n_{B,s'}(R_i + a_1)$ represent the number of electrons at site $R_i$ and $R_i + a_1$, respectively. In terms of the creation and annihilation operators, they are given by $c_{A,s}^\dagger(R_i)c_{A,s}(R_i)$ and $c_{B,s'}^\dagger(R_i+a_1)c_{B,s'}(R_i+a_1)$, respectively. 
+
+Therefore, we can rewrite the fourth term as:
+
+$$U_1\sum_{i,s,s'} c_{A,s}^\dagger(R_i)c_{A,s}(R_i) c_{B,s'}^\dagger(R_i+a_1)c_{B,s'}(R_i+a_1)$$
+
+Now we will apply the Fourier transformation:
+
+$c_{\alpha,s}^\dagger(k) = \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$
+
+and its inverse:
+
+$c_{\alpha,s}^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_{\alpha,s}^\dagger(k) e^{-i k \cdot R_i}$.
+
+After substituting the Fourier transformations for the creation and annihilation operators, we obtain:
+
+$$\hat{H}^{int} = \frac{U_1}{N^2} \sum_{i,s,s'} \sum_{k_1,k_2,k_3,k_4} c_{A,s}^\dagger(k_1)e^{-i k_1 \cdot R_i} c_{A,s}(k_2)e^{i k_2 \cdot R_i} c_{B,s'}^\dagger(k_3)e^{-i k_3 \cdot (R_i + a_1)} c_{B,s'}(k_4)e^{i k_4 \cdot (R_i + a_1)}.$$
+
+Now, we sum over $i$ and employ the orthonormality of the plane wave states:
+
+$$\hat{H}^{int} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} c_{A,s}^\dagger(k_1) c_{A,s}(k_2) c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_1},$$
+
+where $G$ runs over the fourth Brillouin zone. Note that the phase factor $e^{-i (k_3 - k_4) \cdot a_1}$ appears because the operators for $c_{B,s'}^\dagger$ and $c_{B,s'}$ act on different sites ($R_i$ and $R_i + a_1$), and we have taken the translation invariance of the lattice into account. This transformation transforms the interaction from the real space to the momentum space.
+
+
+## Convert interacting Hamiltonian in real space to momentum space (lattice version) [fifth term] 
+**Prompt:**  
+Now you will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the fifth quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the fifth term with $U_1$.
+To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the fifth Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. 
+You should recall that the fifth term in $\hat{H}^{int}$ is
+$U_1\sum_{i,s,s'} n_{A,s}(R_i) n_{B,s'}(R_i + a_2)$   
+Express the fifth term in interacting Hamiltonian $\hat{H}^{int}$ with $U_1$ in terms of $c_{\alpha,s}(k)$ and $c_{\alpha,s}^\dagger(k)$. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form in the real space, $\hat{H}^{int}=\sum_{s,s'}\sum_{i,j} U(R_i-R_j) c_s^\dagger(R_i) c_{s'}^\dagger(R_j) c_{s'}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{H}^{int}$, we get  
+$$\hat{H}^{int} = \sum_{s,s'}\sum_{i,j} U(R_i-R_j) \frac{1}{\sqrt{N}} \sum_{k_1} c_s^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{\sqrt{N}} \sum_{k_2} c_{s'}^\dagger(k_2) e^{-i k_2 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_3} c_{s'}(k_3) e^{i k_3 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_4} c_s(k_4) e^{i k_4 \cdot R_i}=\sum_{s,s'}\sum_{i,j}\frac{1}{N^2}\sum_{k_1,k_2,k_3,k_4}U(R_i-R_j)c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot R_i} e^{-i(k_2-k_3)\cdot R_j}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{H}^{int}=\frac{1}{N^2} \sum_{j,n} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(n) c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot n} e^{-i(k_1-k_4+k_2-k_3)\cdot r_j }$$
+Because $\frac{1}{N}\sum_{i} e^{-i (k_1-k_4+k_2-k_3)\cdot R_i} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{n} U(n) e^{-i (k_1-k_4) \cdot n} c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4) \sum_{G} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{n} U(n) e^{-i k \cdot n}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4}  U(k_1-k_4) c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4) \sum_{G} \delta(k_1-k_4+k_2-k_3,G)$$
+
+**Completion:**  
+Alright, the fifth term of the Hamiltonian $\hat{H}^{int}$ in real space is given by $U_1\sum_{i,s,s'} n_{A,s}(R_i) n_{B,s'}(R_i + a_2)$.
+
+We express $n_{A,s}(R_i)$ and $n_{B,s'}(R_i + a_2)$ in terms of creation and annihilation operators. We have:
+
+$$n_{A,s}(R_i) = c_{A,s}^\dagger(R_i) c_{A,s}(R_i)$$
+
+and
+
+$$n_{B,s'}(R_i + a_2) = c_{B,s'}^\dagger(R_i + a_2) c_{B,s'}(R_i + a_2)$$
+
+Substituting these expressions and using the Fourier transformations for the creation and annihilation operators, we obtain
+
+$$\hat{H}^{int} = U_1\sum_{i,s,s'} \left( \frac{1}{N} \sum_{k_1} c_{A,s}^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{N} \sum_{k_2} c_{A,s}(k_2) e^{i k_2 \cdot R_i} \right) \left( \frac{1}{N} \sum_{k_3} c_{B,s'}^\dagger(k_3) e^{-i k_3 \cdot (R_i + a_2)} \frac{1}{N} \sum_{k_4} c_{B,s'}(k_4) e^{i k_4 \cdot (R_i + a_2)} \right)$$
+
+Now, rearranging the terms:
+
+$$\hat{H}^{int} = \frac{U_1}{N^2} \sum_{i,s,s'}\sum_{k_1,k_2,k_3,k_4} e^{-i (k_1 - k_2 + k_3 - k_4) \cdot R_i} e^{-i (k_3 - k_4) \cdot a_2} c_{A,s}^\dagger(k_1) c_{A,s}(k_2) c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4)$$
+
+We can again use the property of the Fourier transformation for the periodic lattice system:
+
+$$\frac{1}{N}\sum_{i} e^{-i (k_1 - k_2 + k_3 - k_4)\cdot R_i} = \sum_{G}\delta(k_1 - k_2 + k_3 - k_4, G)$$
+
+And get:
+
+$$\hat{H}^{int} = \frac{U_1}{N} \sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_2} c_{A,s}^\dagger(k_1) c_{A,s}(k_2) c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4)$$
+
+With this result, we've converted the fifth term in the interacting Hamiltonian $\hat{H}^{int}$ from the real space basis to the momentum space basis. The Kronecker delta function enforces momentum conservation during the interaction.
+
+# Mean-field theory
+## Wick's theorem [first term]
+Now You will be instructed to perform a Hartree-Fock approximation to expand the interaction term $\hat{H}^{int}$. You will be instructed to perform the transformation to the first term with $U_0$.
+You should use Wick's theorem to expand the four-fermion term in $\hat{H}^{int}$ into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
+You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
+You should recall that the first term is $$U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$$ 
+Return the expanded interaction term after Hartree-Fock approximation $\hat{H}^{int,HF,U_0}$.
+
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+$\langle c_{\alpha,s}^\dagger(k_1) c_{\alpha^{\prime},s^{\prime}}(k_2) \rangle$ : expectation of $c_{\alpha,s}^\dagger(k_1) c_{\alpha^{\prime},s^{\prime}}(k_2)$ over the many-body ground states  
+$\hat{H}^{int,HF,U_0}$ : first term in the interaction term after Hartree-Fock approximation  
+
+===  
+EXAMPLE 1:  
+For a four-fermion term $a_1^\dagger a_2^\dagger a_3 a_4$, using Wick's theorem and preserving only the normal terms. this is expanded as $a_1^\dagger a_2^\dagger a_3 a_4 = \langle a_1^\dagger a_4 \rangle a_2^\dagger a_3 + \langle a_2^\dagger a_3 \rangle a_1^\dagger a_4 - \langle a_1^\dagger a_4 \rangle \langle a_2^\dagger a_3\rangle - \langle a_1^\dagger a_3 \rangle a_2^\dagger a_4 - \langle a_2^\dagger a_4 \rangle a_1^\dagger a_3 + \langle a_1^\dagger a_3\rangle \langle a_2^\dagger a_4 \rangle$  
+Be cautious about the order of the index and sign before each term here.
+
+EXAMPLE 2:  
+For a four-fermion term $a_1^\dagger a_2 a_3^\dagger a_4$, using Wick's theorem and preserving only the normal terms. this is expanded as $a_1^\dagger a_2 a_3^\dagger a_4 = \langle a_1^\dagger a_2 \rangle a_3^\dagger a_4 + \langle a_3^\dagger a_4 \rangle a_1^\dagger a_2 - \langle a_1^\dagger a_2 \rangle \langle a_3^\dagger a_4\rangle - \langle a_1^\dagger a_4 \rangle a_3^\dagger a_2 - \langle a_3^\dagger a_2 \rangle a_1^\dagger a_4 + \langle a_1^\dagger a_4\rangle \langle a_3^\dagger a_2 \rangle$  
+Be cautious about the order of the index and sign before each term here.
+
+**Completion:**  
+Given the first term in the interaction Hamiltonian $$U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G),$$
+
+we are supposed to perform the Hartree-Fock approximation on this four-fermion term. Following the EXAMPLE 2, we can see that this case matches the example structure as we have $a_1^\dagger a_2 a_3^\dagger a_4$. 
+
+Applying the Wick's theorem, we obtain:
+
+$$
+U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4}  c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \\
+=  U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4,G} \left[\langle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \right. \\
++ \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \\
+- \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \rangle \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \rangle \\
+- \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) \\
+- \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4) \\
++ \left. \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4) \rangle \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) \rangle \right] \delta(k_1-k_2+k_3-k_4,G)
+$$
+
+Now we notice that there are terms that involve the creation operator acting after the annihilation operator, which is not normal ordered and can be dropped. Hence, only keeping the normal ordered terms, we obtain the final Hartree-Fock approximation of the interaction term:
+
+$$
+\hat{H}^{int,HF,U_0} = U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4,G} \left[ \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) + \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \right] \delta(k_1-k_2+k_3-k_4,G)
+$$
+
+Please note the order of the operators and the signs before each term as instructed.
+
+
+## Wick's theorem [second term]
+Now You will be instructed to perform a Hartree-Fock approximation to expand the interaction term $\hat{H}^{int}$. You will be instructed to perform the transformation to the second term with $U_0$.
+You should use Wick's theorem to expand the four-fermion term in $\hat{H}^{int}$ into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
+You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
+You should recall that the second term is $$U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$$ 
+Return the expanded interaction term after Hartree-Fock approximation $\hat{H}^{int,HF,U_0}$.
+
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+$\langle c_{\alpha,s}^\dagger(k_1) c_{\alpha^{\prime},s^{\prime}}(k_2) \rangle$ : expectation of $c_{\alpha,s}^\dagger(k_1) c_{\alpha^{\prime},s^{\prime}}(k_2)$ over the many-body ground states  
+$\hat{H}^{int,HF,U_0}$ : second term in the interaction term after Hartree-Fock approximation  
+
+===  
+EXAMPLE 1:  
+For a four-fermion term $a_1^\dagger a_2^\dagger a_3 a_4$, using Wick's theorem and preserving only the normal terms. this is expanded as $a_1^\dagger a_2^\dagger a_3 a_4 = \langle a_1^\dagger a_4 \rangle a_2^\dagger a_3 + \langle a_2^\dagger a_3 \rangle a_1^\dagger a_4 - \langle a_1^\dagger a_4 \rangle \langle a_2^\dagger a_3\rangle - \langle a_1^\dagger a_3 \rangle a_2^\dagger a_4 - \langle a_2^\dagger a_4 \rangle a_1^\dagger a_3 + \langle a_1^\dagger a_3\rangle \langle a_2^\dagger a_4 \rangle$  
+Be cautious about the order of the index and sign before each term here.
+
+EXAMPLE 2:  
+For a four-fermion term $a_1^\dagger a_2 a_3^\dagger a_4$, using Wick's theorem and preserving only the normal terms. this is expanded as $a_1^\dagger a_2 a_3^\dagger a_4 = \langle a_1^\dagger a_2 \rangle a_3^\dagger a_4 + \langle a_3^\dagger a_4 \rangle a_1^\dagger a_2 - \langle a_1^\dagger a_2 \rangle \langle a_3^\dagger a_4\rangle - \langle a_1^\dagger a_4 \rangle a_3^\dagger a_2 - \langle a_3^\dagger a_2 \rangle a_1^\dagger a_4 + \langle a_1^\dagger a_4\rangle \langle a_3^\dagger a_2 \rangle$  
+Be cautious about the order of the index and sign before each term here.
+
+**Completion:**  

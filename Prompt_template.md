@@ -609,7 +609,7 @@ $$\hat{H}=\sum_{k} E(k) c^\dagger(k)  c(k)$$
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version)
 **Prompt:**  
 Now you will be instructed to convert the interacting Hamiltonian {symbol} in the {single particle | second quantized} form the basis in real space to the basis in momentum space. [You will be instructed to perform the transformation to the first term with {symbol}.]
-To do that, you should apply the Fourier transformation to {real space creation op} in the real space to the {momentum space creation op} in the momentum space, which is defined as {def of Fourier transformation}, where {real var} is integrated over all sites in the entire real space, and {momentum var} is defined within fhe first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. Note that the interaction {symbol} is onsite.  
+To do that, you should apply the Fourier transformation to {real space creation op} in the real space to the {momentum space creation op} in the momentum space, which is defined as {def of Fourier transformation}, where {real var} is integrated over all sites in the entire real space, and {momentum var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. Note that the interaction {symbol} is onsite.  
 Express the first term in interacting Hamiltonian {symbol} with {symbol} in terms of {momentum space ops}. Simplify any summation index if possible.  
 
 ===  
