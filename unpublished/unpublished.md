@@ -439,29 +439,21 @@ For a four-fermion term $a_1^\dagger a_2 a_3^\dagger a_4$, using Wick's theorem 
 Be cautious about the order of the index and sign before each term here.
 
 **Completion:**  
-Given the first term in the interaction Hamiltonian $$U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G),$$
+Following the provided examples, we can apply the Wick's theorem to the interaction term, to get normal terms. Given the interaction term:
 
-we are supposed to perform the Hartree-Fock approximation on this four-fermion term. Following the EXAMPLE 2, we can see that this case matches the example structure as we have $a_1^\dagger a_2 a_3^\dagger a_4$. 
+$$U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G)$$
 
-Applying the Wick's theorem, we obtain:
+Let's denote the above operators as: $a = c_{A,\uparrow}^\dagger(k_1)$, $b = c_{A,\uparrow}(k_2)$, $c = c_{A,\downarrow}^\dagger(k_3)$, and $d = c_{A,\downarrow}(k_4)$ for simplicity. 
 
-$$
-U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4}  c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \\
-=  U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4,G} \left[\langle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \right. \\
-+ \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \\
-- \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \rangle \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \rangle \\
-- \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) \\
-- \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4) \\
-+ \left. \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4) \rangle \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) \rangle \right] \delta(k_1-k_2+k_3-k_4,G)
-$$
+We can expand it using Wick's theorem. As the first term has the form $a^\dagger b c^\dagger d$, we should use the expansion provided in EXAMPLE 2:
 
-Now we notice that there are terms that involve the creation operator acting after the annihilation operator, which is not normal ordered and can be dropped. Hence, only keeping the normal ordered terms, we obtain the final Hartree-Fock approximation of the interaction term:
+$$a^\dagger b c^\dagger d = \langle a^\dagger b \rangle c^\dagger d + \langle c^\dagger d \rangle a^\dagger b - \langle a^\dagger b \rangle \langle c^\dagger d\rangle - \langle a^\dagger d \rangle c^\dagger b - \langle c^\dagger b \rangle a^\dagger d + \langle a^\dagger d\rangle \langle c^\dagger b \rangle$$
 
-$$
-\hat{H}^{int,HF,U_0} = U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4,G} \left[ \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) + \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \right] \delta(k_1-k_2+k_3-k_4,G)
-$$
+After substituting back the actual operators we get:
 
-Please note the order of the operators and the signs before each term as instructed.
+$$U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\langle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) + \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) - \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \rangle \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \rangle - \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) - \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4) + \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4) \rangle \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) \rangle]$$
+
+So, we obtain the first term in the interaction term after Hartree-Fock approximation, $\hat{H}^{int,HF,U_0}$.
 
 
 ## Wick's theorem [second term]
@@ -485,3 +477,231 @@ For a four-fermion term $a_1^\dagger a_2 a_3^\dagger a_4$, using Wick's theorem 
 Be cautious about the order of the index and sign before each term here.
 
 **Completion:**  
+The interaction term you specified is:
+
+$$U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G)$$
+
+This term can be rearranged to a form $a^\dagger b c^\dagger d$ as before. Specifically, we have: $a = c_{B,\uparrow}^\dagger(k_1)$, $b = c_{B,\uparrow}(k_2)$, $c = c_{B,\downarrow}^\dagger(k_3)$, and $d = c_{B,\downarrow}(k_4)$.
+
+We can then expand this term using Wick's theorem as given in EXAMPLE 2:
+
+$$a^\dagger b c^\dagger d = \langle a^\dagger b \rangle c^\dagger d + \langle c^\dagger d \rangle a^\dagger b - \langle a^\dagger b \rangle \langle c^\dagger d\rangle - \langle a^\dagger d \rangle c^\dagger b - \langle c^\dagger b \rangle a^\dagger d + \langle a^\dagger d\rangle \langle c^\dagger b \rangle$$
+
+Substituting the original operators back into this expression gives:
+
+$$U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\langle c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) \rangle c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) + \langle c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) \rangle c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) - \langle c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) \rangle \langle c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) \rangle - \langle c_{B,\uparrow}^\dagger(k_1) c_{B,\downarrow}(k_4) \rangle c_{B,\downarrow}^\dagger(k_3) c_{B,\uparrow}(k_2) - \langle c_{B,\downarrow}^\dagger(k_3) c_{B,\uparrow}(k_2) \rangle c_{B,\uparrow}^\dagger(k_1) c_{B,\downarrow}(k_4) + \langle c_{B,\uparrow}^\dagger(k_1) c_{B,\downarrow}(k_4) \rangle \langle c_{B,\downarrow}^\dagger(k_3) c_{B,\uparrow}(k_2) \rangle]$$
+
+This is the second term in the interaction term after the Hartree-Fock approximation, $\hat{H}^{int,HF,U_0}$.   
+
+## Wick's theorem [third term]
+Now You will be instructed to perform a Hartree-Fock approximation to expand the interaction term $\hat{H}^{int}$. You will be instructed to perform the transformation to the third term with $U_1$.
+You should use Wick's theorem to expand the four-fermion term in $\hat{H}^{int}$ into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
+You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
+You should recall that the third term is $$U_1\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} c_{A,s}^\dagger(k_1) c_{A,s}(k_2) c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$$ 
+Return the expanded interaction term after Hartree-Fock approximation $\hat{H}^{int,HF,U_1}$.
+
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+$\langle c_{\alpha,s}^\dagger(k_1) c_{\alpha^{\prime},s^{\prime}}(k_2) \rangle$ : expectation of $c_{\alpha,s}^\dagger(k_1) c_{\alpha^{\prime},s^{\prime}}(k_2)$ over the many-body ground states  
+$\hat{H}^{int,HF,U_1}$ : third term in the interaction term after Hartree-Fock approximation  
+
+===  
+EXAMPLE 1:  
+For a four-fermion term $a_1^\dagger a_2^\dagger a_3 a_4$, using Wick's theorem and preserving only the normal terms. this is expanded as $a_1^\dagger a_2^\dagger a_3 a_4 = \langle a_1^\dagger a_4 \rangle a_2^\dagger a_3 + \langle a_2^\dagger a_3 \rangle a_1^\dagger a_4 - \langle a_1^\dagger a_4 \rangle \langle a_2^\dagger a_3\rangle - \langle a_1^\dagger a_3 \rangle a_2^\dagger a_4 - \langle a_2^\dagger a_4 \rangle a_1^\dagger a_3 + \langle a_1^\dagger a_3\rangle \langle a_2^\dagger a_4 \rangle$  
+Be cautious about the order of the index and sign before each term here.
+
+EXAMPLE 2:  
+For a four-fermion term $a_1^\dagger a_2 a_3^\dagger a_4$, using Wick's theorem and preserving only the normal terms. this is expanded as $a_1^\dagger a_2 a_3^\dagger a_4 = \langle a_1^\dagger a_2 \rangle a_3^\dagger a_4 + \langle a_3^\dagger a_4 \rangle a_1^\dagger a_2 - \langle a_1^\dagger a_2 \rangle \langle a_3^\dagger a_4\rangle - \langle a_1^\dagger a_4 \rangle a_3^\dagger a_2 - \langle a_3^\dagger a_2 \rangle a_1^\dagger a_4 + \langle a_1^\dagger a_4\rangle \langle a_3^\dagger a_2 \rangle$  
+Be cautious about the order of the index and sign before each term here.
+
+**Completion:**  
+The interaction term you specified is:
+
+$$U_1\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} c_{A,s}^\dagger(k_1) c_{A,s}(k_2) c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G)$$
+
+This term can be rearranged to a form $a^\dagger b c^\dagger d$ as before. Specifically, we have: $a = c_{A,s}^\dagger(k_1)$, $b = c_{A,s}(k_2)$, $c = c_{B,s'}^\dagger(k_3)$, and $d = c_{B,s'}(k_4)$.
+
+We can then expand this term using Wick's theorem as given in EXAMPLE 2:
+
+$$a^\dagger b c^\dagger d = \langle a^\dagger b \rangle c^\dagger d + \langle c^\dagger d \rangle a^\dagger b - \langle a^\dagger b \rangle \langle c^\dagger d\rangle - \langle a^\dagger d \rangle c^\dagger b - \langle c^\dagger b \rangle a^\dagger d + \langle a^\dagger d\rangle \langle c^\dagger b \rangle$$
+
+Substituting the original operators back into this expression gives:
+
+$$U_1\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) + \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) - \langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle - \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) - \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) + \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle]$$
+
+This is the third term in the interaction term after the Hartree-Fock approximation, $\hat{H}^{int,HF,U_1}$.
+
+## Wick's theorem [fourth term]
+Now You will be instructed to perform a Hartree-Fock approximation to expand the interaction term $\hat{H}^{int}$. You will be instructed to perform the transformation to the fourth term with $U_1$.
+You should use Wick's theorem to expand the four-fermion term in $\hat{H}^{int}$ into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
+You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
+You should recall that the fourth term is $$\hat{H}^{int} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} c_{A,s}^\dagger(k_1) c_{A,s}(k_2) c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_1}$$ 
+Return the expanded interaction term after Hartree-Fock approximation $\hat{H}^{int,HF,U_1}$.
+
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+$\langle c_{\alpha,s}^\dagger(k_1) c_{\alpha^{\prime},s^{\prime}}(k_2) \rangle$ : expectation of $c_{\alpha,s}^\dagger(k_1) c_{\alpha^{\prime},s^{\prime}}(k_2)$ over the many-body ground states  
+$\hat{H}^{int,HF,U_1}$ : fourth term in the interaction term after Hartree-Fock approximation  
+
+===  
+EXAMPLE 1:  
+For a four-fermion term $a_1^\dagger a_2^\dagger a_3 a_4$, using Wick's theorem and preserving only the normal terms. this is expanded as $a_1^\dagger a_2^\dagger a_3 a_4 = \langle a_1^\dagger a_4 \rangle a_2^\dagger a_3 + \langle a_2^\dagger a_3 \rangle a_1^\dagger a_4 - \langle a_1^\dagger a_4 \rangle \langle a_2^\dagger a_3\rangle - \langle a_1^\dagger a_3 \rangle a_2^\dagger a_4 - \langle a_2^\dagger a_4 \rangle a_1^\dagger a_3 + \langle a_1^\dagger a_3\rangle \langle a_2^\dagger a_4 \rangle$  
+Be cautious about the order of the index and sign before each term here.
+
+EXAMPLE 2:  
+For a four-fermion term $a_1^\dagger a_2 a_3^\dagger a_4$, using Wick's theorem and preserving only the normal terms. this is expanded as $a_1^\dagger a_2 a_3^\dagger a_4 = \langle a_1^\dagger a_2 \rangle a_3^\dagger a_4 + \langle a_3^\dagger a_4 \rangle a_1^\dagger a_2 - \langle a_1^\dagger a_2 \rangle \langle a_3^\dagger a_4\rangle - \langle a_1^\dagger a_4 \rangle a_3^\dagger a_2 - \langle a_3^\dagger a_2 \rangle a_1^\dagger a_4 + \langle a_1^\dagger a_4\rangle \langle a_3^\dagger a_2 \rangle$  
+Be cautious about the order of the index and sign before each term here.
+
+**Completion:**  
+The interaction term you specified is:
+
+$$\frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} c_{A,s}^\dagger(k_1) c_{A,s}(k_2) c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_1}$$
+
+As in the previous example, we can rearrange this term into a form $a^\dagger b c^\dagger d$ as: $a = c_{A,s}^\dagger(k_1)$, $b = c_{A,s}(k_2)$, $c = c_{B,s'}^\dagger(k_3)$, and $d = c_{B,s'}(k_4)$.
+
+We can then apply Wick's theorem as given in EXAMPLE 2 to expand this term. Doing so, we get:
+
+$$\hat{H}^{int,HF,U_1} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_1} [\langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) + \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) - \langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle - \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) - \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) + \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle]$$
+
+This is the fourth term in the interaction term after the Hartree-Fock approximation, $\hat{H}^{int,HF,U_1}$. The expectation values in this expression represent averages over the many-body ground states.
+
+
+## Wick's theorem [fifth term]
+Now You will be instructed to perform a Hartree-Fock approximation to expand the interaction term $\hat{H}^{int}$. You will be instructed to perform the transformation to the fifth term with $U_1$.
+You should use Wick's theorem to expand the four-fermion term in $\hat{H}^{int}$ into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
+You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
+You should recall that the fifth term is $$\hat{H}^{int} = \frac{U_1}{N} \sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_2} c_{A,s}^\dagger(k_1) c_{A,s}(k_2) c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4)$$
+ 
+Return the expanded interaction term after Hartree-Fock approximation $\hat{H}^{int,HF,U_1}$.
+
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+$\langle c_{\alpha,s}^\dagger(k_1) c_{\alpha^{\prime},s^{\prime}}(k_2) \rangle$ : expectation of $c_{\alpha,s}^\dagger(k_1) c_{\alpha^{\prime},s^{\prime}}(k_2)$ over the many-body ground states  
+$\hat{H}^{int,HF,U_1}$ : fifth term in the interaction term after Hartree-Fock approximation  
+
+===  
+EXAMPLE 1:  
+For a four-fermion term $a_1^\dagger a_2^\dagger a_3 a_4$, using Wick's theorem and preserving only the normal terms. this is expanded as $a_1^\dagger a_2^\dagger a_3 a_4 = \langle a_1^\dagger a_4 \rangle a_2^\dagger a_3 + \langle a_2^\dagger a_3 \rangle a_1^\dagger a_4 - \langle a_1^\dagger a_4 \rangle \langle a_2^\dagger a_3\rangle - \langle a_1^\dagger a_3 \rangle a_2^\dagger a_4 - \langle a_2^\dagger a_4 \rangle a_1^\dagger a_3 + \langle a_1^\dagger a_3\rangle \langle a_2^\dagger a_4 \rangle$  
+Be cautious about the order of the index and sign before each term here.
+
+EXAMPLE 2:  
+For a four-fermion term $a_1^\dagger a_2 a_3^\dagger a_4$, using Wick's theorem and preserving only the normal terms. this is expanded as $a_1^\dagger a_2 a_3^\dagger a_4 = \langle a_1^\dagger a_2 \rangle a_3^\dagger a_4 + \langle a_3^\dagger a_4 \rangle a_1^\dagger a_2 - \langle a_1^\dagger a_2 \rangle \langle a_3^\dagger a_4\rangle - \langle a_1^\dagger a_4 \rangle a_3^\dagger a_2 - \langle a_3^\dagger a_2 \rangle a_1^\dagger a_4 + \langle a_1^\dagger a_4\rangle \langle a_3^\dagger a_2 \rangle$  
+Be cautious about the order of the index and sign before each term here.
+
+**Completion:**  
+The interaction term you specified is:
+
+$$\hat{H}^{int} = \frac{U_1}{N} \sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_2} c_{A,s}^\dagger(k_1) c_{A,s}(k_2) c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4)$$
+
+In this term, $a = c_{A,s}^\dagger(k_1)$, $b = c_{A,s}(k_2)$, $c = c_{B,s'}^\dagger(k_3)$, and $d = c_{B,s'}(k_4)$. This is in the form $a^\dagger b c^\dagger d$ as in EXAMPLE 2. We can apply Wick's theorem to this term, getting:
+
+$$\hat{H}^{int,HF,U_1} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_2} [\langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) + \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) - \langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle - \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) - \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) + \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle]$$
+
+This is the fifth term in the interaction term after the Hartree-Fock approximation, $\hat{H}^{int,HF,U_1}$. The expectation values in this expression represent averages over the many-body ground states.
+
+## Extract quadratic term [first term]
+**Prompt:**  
+You will be instructed to extract the quadratic terms in the $\hat{H}^{int,HF,U_0}$.  
+The quadratic terms mean terms that are proportional to $c^\dagger c$, which excludes terms that are solely expectations or products of expectations.  
+You should only preserve the quadratic terms in $\hat{H}^{int,HF,U_0}$, which is called $\hat{H}^{int,HF,U_0,2}$.
+You should recall that 
+$$\hat{H}^{int,HF,U_0}= U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\langle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) + \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) - \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \rangle \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \rangle - \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) - \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4) + \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4) \rangle \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) \rangle]$$
+Return this Hamiltonian $\hat{H}^{int,HF,U_0,2}$.  
+
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+$\hat{H}^{int,HF,U_0,2}$ : the quadratic terms in $\hat{H}^{int,HF,U_0}$
+**Completion:**  
+Looking at the expression for $\hat{H}^{int,HF,U_0}$, the quadratic terms are those which involve operator products of the form $c^\dagger c$. 
+
+This is so because terms involving only expectations and terms that are products of expectations are not quadratic in the fermionic operators. We do not need to include those terms.
+
+So, we keep the terms that are proportional to $c^\dagger c$, which gives us:
+
+$$\hat{H}^{int,HF,U_0,2} = U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\langle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) + \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) - \langle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4) \rangle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) - \langle c_{A,\downarrow}^\dagger(k_3) c_{A,\uparrow}(k_2) \rangle c_{A,\uparrow}^\dagger(k_1) c_{A,\downarrow}(k_4)]$$
+
+This is $\hat{H}^{int,HF,U_0,2}$, which contains only the quadratic terms from the Hartree-Fock approximation of the interaction term $\hat{H}^{int,HF,U_0}$. The terms with only expectations or products of expectations have been excluded.
+
+## Extract quadratic term [second term]
+**Prompt:**  
+You will be instructed to extract the quadratic terms in the $\hat{H}^{int,HF,U_0}$.  
+The quadratic terms mean terms that are proportional to $c^\dagger c$, which excludes terms that are solely expectations or products of expectations.  
+You should only preserve the quadratic terms in $\hat{H}^{int,HF,U_0}$, which is called $\hat{H}^{int,HF,U_0,2}$.
+You should recall that 
+$$\hat{H}^{int,HF,U_0}= U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\langle c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) \rangle c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) + \langle c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) \rangle c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) - \langle c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) \rangle \langle c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) \rangle - \langle c_{B,\uparrow}^\dagger(k_1) c_{B,\downarrow}(k_4) \rangle c_{B,\downarrow}^\dagger(k_3) c_{B,\uparrow}(k_2) - \langle c_{B,\downarrow}^\dagger(k_3) c_{B,\uparrow}(k_2) \rangle c_{B,\uparrow}^\dagger(k_1) c_{B,\downarrow}(k_4) + \langle c_{B,\uparrow}^\dagger(k_1) c_{B,\downarrow}(k_4) \rangle \langle c_{B,\downarrow}^\dagger(k_3) c_{B,\uparrow}(k_2) \rangle]$$
+Return this Hamiltonian $\hat{H}^{int,HF,U_0,2}$.  
+
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+$\hat{H}^{int,HF,U_0,2}$ : the quadratic terms in $\hat{H}^{int,HF,U_0}$
+
+**Completion:**  
+Given the interaction Hamiltonian $\hat{H}^{int,HF,U_0}$, the quadratic terms are those which involve operator products of the form $c^\dagger c$. These terms are not the same as terms involving only expectations or terms that are products of expectations. We exclude those latter terms to get the quadratic term Hamiltonian.
+
+In this case, the quadratic terms from $\hat{H}^{int,HF,U_0}$ are:
+
+$$\hat{H}^{int,HF,U_0,2} = U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\langle c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) \rangle c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) + \langle c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) \rangle c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) - \langle c_{B,\uparrow}^\dagger(k_1) c_{B,\downarrow}(k_4) \rangle c_{B,\downarrow}^\dagger(k_3) c_{B,\uparrow}(k_2) - \langle c_{B,\downarrow}^\dagger(k_3) c_{B,\uparrow}(k_2) \rangle c_{B,\uparrow}^\dagger(k_1) c_{B,\downarrow}(k_4)]$$
+
+This $\hat{H}^{int,HF,U_0,2}$ contains only the quadratic terms from the Hartree-Fock approximation of the interaction term $\hat{H}^{int,HF,U_0}$. The terms with only expectations or products of expectations have been excluded.
+
+## Extract quadratic term [third term]
+**Prompt:**  
+You will be instructed to extract the quadratic terms in the $\hat{H}^{int,HF,U_1}$.  
+The quadratic terms mean terms that are proportional to $c^\dagger c$, which excludes terms that are solely expectations or products of expectations.  
+You should only preserve the quadratic terms in $\hat{H}^{int,HF,U_1}$, which is called $\hat{H}^{int,HF,U_1,2}$.
+You should recall that 
+$$\hat{H}^{int,HF,U_1}= U_1\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) + \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) - \langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle - \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) - \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) + \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle]$$
+Return this Hamiltonian $\hat{H}^{int,HF,U_1,2}$.  
+
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+$\hat{H}^{int,HF,U_1,2}$ : the quadratic terms in $\hat{H}^{int,HF,U_1}$
+
+**Completion:**  
+Given the interaction Hamiltonian $\hat{H}^{int,HF,U_1}$, the quadratic terms are those which involve operator products of the form $c^\dagger c$. We need to extract these terms while excluding those that are solely expectations or products of expectations.
+
+In this case, the quadratic terms from $\hat{H}^{int,HF,U_1}$ are:
+
+$$\hat{H}^{int,HF,U_1,2} = U_1\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) + \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) - \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) - \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4)]$$
+
+This $\hat{H}^{int,HF,U_1,2}$ contains only the quadratic terms from the Hartree-Fock approximation of the interaction term $\hat{H}^{int,HF,U_1}$. The terms with only expectations or products of expectations have been excluded.
+
+
+## Extract quadratic term [fourth term]
+**Prompt:**  
+You will be instructed to extract the quadratic terms in the $\hat{H}^{int,HF,U_1}$.  
+The quadratic terms mean terms that are proportional to $c^\dagger c$, which excludes terms that are solely expectations or products of expectations.  
+You should only preserve the quadratic terms in $\hat{H}^{int,HF,U_1}$, which is called $\hat{H}^{int,HF,U_1,2}$.
+You should recall that 
+$$\hat{H}^{int,HF,U_1}= \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_1} [\langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) + \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) - \langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle - \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) - \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) + \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle]$$
+Return this Hamiltonian $\hat{H}^{int,HF,U_1,2}$.  
+
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+$\hat{H}^{int,HF,U_1,2}$ : the quadratic terms in $\hat{H}^{int,HF,U_1}$
+
+**Completion:**  
+Given the interaction Hamiltonian $\hat{H}^{int,HF,U_1}$, the quadratic terms are those which involve operator products of the form $c^\dagger c$. We need to extract these terms while excluding those that are solely expectations or products of expectations.
+
+In this case, the quadratic terms from $\hat{H}^{int,HF,U_1}$ are:
+
+$$\hat{H}^{int,HF,U_1,2} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_1} [\langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) + \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) - \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) - \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4)]$$
+
+This $\hat{H}^{int,HF,U_1,2}$ contains only the quadratic terms from the Hartree-Fock approximation of the interaction term $\hat{H}^{int,HF,U_1}$. The terms with only expectations or products of expectations have been excluded.
+
+## Extract quadratic term [fifth term]
+**Prompt:**  
+You will be instructed to extract the quadratic terms in the $\hat{H}^{int,HF,U_1}$.  
+The quadratic terms mean terms that are proportional to $c^\dagger c$, which excludes terms that are solely expectations or products of expectations.  
+You should only preserve the quadratic terms in $\hat{H}^{int,HF,U_1}$, which is called $\hat{H}^{int,HF,U_1,2}$.
+You should recall that 
+$$\hat{H}^{int,HF,U_1}= \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_2} [\langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) + \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) - \langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle - \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) - \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) + \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle]$$
+Return this Hamiltonian $\hat{H}^{int,HF,U_1,2}$.  
+
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+$\hat{H}^{int,HF,U_1,2}$ : the quadratic terms in $\hat{H}^{int,HF,U_1}$
+
+**Completion:** 
+Given the interaction Hamiltonian $\hat{H}^{int,HF,U_1}$, the quadratic terms are those which involve operator products of the form $c^\dagger c$. We need to extract these terms while excluding those that are solely expectations or products of expectations.
+
+In this case, the quadratic terms from $\hat{H}^{int,HF,U_1}$ are:
+
+$$\hat{H}^{int,HF,U_1,2} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_2} [\langle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) \rangle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) + \langle c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \rangle c_{A,s}^\dagger(k_1) c_{A,s}(k_2) - \langle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4) \rangle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) - \langle c_{B,s'}^\dagger(k_3) c_{A,s}(k_2) \rangle c_{A,s}^\dagger(k_1) c_{B,s'}(k_4)]$$
+
+This $\hat{H}^{int,HF,U_1,2}$ contains only the quadratic terms from the Hartree-Fock approximation of the interaction term $\hat{H}^{int,HF,U_1}$. The terms with only expectations or products of expectations have been excluded.
+
+# Simplify the MF quadratic term
+
