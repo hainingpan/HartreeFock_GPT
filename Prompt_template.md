@@ -656,8 +656,8 @@ Use the following conventions for the symbols (You should also obey the conventi
 ## Wick's theorem
 **Prompt:**  
 Now You will be instructed to perform a Hartree-Fock approximation to expand the interaction term {symbol}.    
-You should use Wick's theorem to expand the four-fermion term in {symbol} into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, and be extremely cautious about the order of the index and sign before each term.  
-You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
+You should use Wick's theorem to expand the four-fermion term in {symbol} into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${}^dagger$, and be extremely cautious about the order of the index and sign before each term.  
+[You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.]  
 Return the expanded interaction term after Hartree-Fock approximation {symbol}.
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
@@ -710,6 +710,15 @@ You will be instructed to simplify the quadratic term {symbol} through relabelin
 The logic is that the expected value ({expected}) in the first Hartree term ({firstHartree}) has the same momentum dependence as the quadratic operators ({quadratic}) in the second Hartree term ({secondHartree}), and vice versa. Namely, this means a replacement of {relabelling} applied to ONLY the second Hartree term.  
 This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Hartree term, you can make the second Hartree term look identical to the first Hartree term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
 Return the simplied {symbol}.
+
+===  
+EXAMPLE:  
+Given a Hamiltonian $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \rangle c_{d,\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) ) \delta_{k_1+k_2,k_3+k_4}$, where $V(q)=V(-q)$.  
+In the second term, we relabel the index to swap the index in expected value and the index in quadratic operators, namely, $\sigma_1 \leftrightarrow \sigma_2$, $\sigma_3 \leftrightarrow \sigma_4$, $k_1 \leftrightarrow k_2$, $k_3 \leftrightarrow k_4$. Important: $d$ and $p$ cannot be swapped because they are not indices in the summation.  
+After the replacement, the second term becomes $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_2-k_3) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.  
+Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_4-k_1) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
+Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.   
+Finally, we have the simplified Hamiltonian as  $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3)) \delta_{k_4+k_3,k_2+k_1}$.
 
 ## Swap the index to combine Hartree and Fock terms 
 **Prompt:**  
