@@ -1,9 +1,7 @@
-# README
-The template loosely adheres to the syntax rules of Python f-string formatting.    
-- The {} placeholders are intended for string substitutions.
-- The [] brackets denote optional strings.
-
-
+<!-- # README -->
+<!-- The template loosely adheres to the syntax rules of Python f-string formatting.     -->
+<!-- - The {} placeholders are intended for string substitutions. -->
+<!-- - The [] brackets denote optional strings. -->
 
 # Preamble
 ## Preamble
