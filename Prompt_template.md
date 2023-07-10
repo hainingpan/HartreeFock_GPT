@@ -36,28 +36,29 @@ Use the following conventions for the symbols:
 
 ## Define each term in Kinetic Hamiltonian (continuum version)
 **Prompt:**  
-Now you will be instructed to construct each term in the matrix, namely {var}.  
+You will be instructed to construct each term in the matrix, namely {var}.  
 {Description}
 You should recall that {expression_Kinetic}.  
 Return the expression for {var} in the Kinetic Hamiltonian, and substitute it into the Kinetic Hamiltonian {kinetic_symbol}.  
 
-Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+Use the following conventions for the symbols:  
 {def_var}
 
 ## Construct Potential Hamiltonian (continuum version)
 **Prompt:**  
-Now you will be instructed to describe the potential term of Hamiltonian {potential_symbol} in the {real|momentum} space in the {single-particle|second-quantized} form.  
-The potential Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian {kinetic_symbol}.  
-{Description}.  
+You will be instructed to describe the potential term of Hamiltonian in {system} in the {real|momentum} space in the {single-particle|second-quantized} form.   
+The degrees of freedom of the system are: {dof}  
+{Description}  
 Express the potential Hamiltonian {potential_symbol} using {var}.  
 
-Use the following conventions for the symbols (You should also remember the conventions in my previous prompts if there are no conflicts. If you have conflicts in the conventions, you should stop and let me know):  
+Use the following conventions for the symbols:  
 {def_var}
 
 ## Define each term in Potential Hamiltonian (continuum version)
 **Prompt:**  
-Now you will be instructed to construct each term in the matrix {potential_symbol}, namely, {var}.  
+You will be instructed to construct each term in the matrix {potential_symbol}, namely, {var}.  
 {Description}  
+You should recall that {expression_Potential}.  
 Return the expressions for {var}, and substitute it into the potential Hamiltonian {potential_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or have conflicts in the conventions, you should stop and let me know):  
@@ -65,19 +66,19 @@ Use the following conventions for the symbols (You should also obey the conventi
 
 ## Construct interaction Hamiltonian (real space, lattice version)
 **Prompt:**  
-Now you will be instructed to construct the interaction part of the Hamiltonian, {symbol} in the real space in the second-quantized form.   
+You will be instructed to construct the interaction part of the Hamiltonian, {symbol} in the real space in the second-quantized form.   
 The interacting Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian {symbol}.  
 The interaction is a density-density interaction composed of the following process:
 1. onsite interaction between {site i} and {site j} with interaction strength {interaction}
 The summation should be taken over all {dof} and all real space positions.  
 Return the interaction term {symbol} in terms of {symbol}.
 
-Use the following conventions for the symbols (You should also remember the conventions in my previous prompts if there are no conflicts. If you have conflicts in the conventions, you should stop and let me know): 
+Use the following conventions for the symbols: 
 {def_var}
 
 ## Construct interaction Hamiltonian (momentum space)
 **Prompt:**  
-Now you will be instructed to construct the interaction part of the Hamiltonian {symbol} in the momentum space.  
+You will be instructed to construct the interaction part of the Hamiltonian {symbol} in the momentum space.  
 The interaction Hamiltonian is a product of four parts.
 The first part is the product of four operators with two creation and two annihilation operators following the normal order, namely, creation operators are before annihilation operators. The two creation operators carry {index}, and {order of momentum}. The two annihilation operators have the same {index}. You should follow the order of $1,2,2,1$ for the {index}, $1,2,3,4$ for the { momentum}. 
 The second part is the constraint of total momentum conservation, namely the total momentum of all creation operators should be the same as that of all annihilation operators. [For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$.]  
@@ -86,7 +87,7 @@ The fourth part is the normalization factor, you should use {normalization facto
 Finally, the summation should be running over all {index}, and {momentum}
 Return the interaction term {symbol} in terms of {symbol} and $V(q)$ (with $q$ expressed in terms of {momentum}).  
 
-Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+Use the following conventions for the symbols:  
 {def_var}
 
 ===  
@@ -96,22 +97,22 @@ The corresponding second quantized form is $\hat{H}=\vec{\psi}^\dagger H \vec{\p
 
 ## Convert from single-particle to second-quantized form, return in matrix
 **Prompt:**  
-Now you will be instructed to construct the second quantized form of the total noninteracting Hamiltonian in the {real|momentum} space.  
-The noninteracting Hamiltonian in the {real|momentum} space {symbol} is the sum of Kinetic Hamiltonian {symbol} and Potential Hamiltonian {symbol}.  
+You will be instructed to construct the second quantized form of the total noninteracting Hamiltonian in the {real|momentum} space.  
+The noninteracting Hamiltonian in the {real|momentum} space {nonint_symbol} is the sum of Kinetic Hamiltonian {kinetic_symbol} and Potential Hamiltonian {potential_symbol}.  
 To construct the second quantized form of a Hamiltonian. You should construct the creation and annihilation operators from the basis explicitly. You should follow the EXAMPLE below to convert a Hamiltonian from the single-particle form to second-quantized form.  
 Finally by "total", it means you need to take a summation over the {real|momentum} space position {$r$|$k$}.   
-Return the second quantized form of the total noninteracting Hamiltonian {symbol}  
+Return the second quantized form of the total noninteracting Hamiltonian {second_nonint_symbol}  
 
-Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+Use the following conventions for the symbols:  
 {def_var}
 
 ## Convert from single-particle to second-quantized form, return in summation (expand the matrix)
 **Prompt:**  
-Now you will be instructed to expand the second-quantized form Hamiltonian {symbol} using {symbols}. You should follow the EXAMPLE below to expand the Hamiltonian.  
+You will be instructed to expand the second-quantized form Hamiltonian {symbol} using {symbols}. You should follow the EXAMPLE below to expand the Hamiltonian.  
 You should use any previous knowledge to simplify it. For example, if any term of {meatrix element in single-particle form} is zero, you should remove it from the summation.  
 Return the expanded form of {symbol} after simplication.  
 
-Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+Use the following conventions for the symbols:  
 {def_var}
 
 ===  
@@ -120,11 +121,11 @@ For a $\hat{H}=\vec{\psi}^\dagger H \vec{\psi}$, where $\vec{\psi}=\begin{pmatri
 
 ## Convert noninteracting Hamiltonian in real space to momentum space (continuum version)
 **Prompt:**  
-Now you will be instructed to convert the total noninteracting Hamiltonian in the second quantized form from the basis in real space to the basis by momentum space.  
+You will be instructed to convert the total noninteracting Hamiltonian in the second quantized form from the basis in real space to the basis by momentum space.  
 To do that, you should apply the Fourier transformation to {real space creation op} in the real space to the {momentum space creation op} in the momentum space, which is defined as {def of Fourier Transformation}, where $r$ is integrated over the {entire real space|first Briiloun zone}. You should follow the EXAMPLE below to apply the Fourier transformation.  
 Express the total noninteracting Hamiltonian {symbol} in terms of {momentum space ops}. Simplify any summation index if possible.  
 
-Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+Use the following conventions for the symbols:  
 {def_var}
 
 ===  
@@ -138,11 +139,11 @@ $$\hat{H} = \int dr \frac{1}{\sqrt{V}} \sum_{k_1} c^\dagger(k_1) e^{-i k_1 \cdot
 
 ## Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
 **Prompt:**  
-Now you will be instructed to convert the Kinetic Hamiltonian {symbols} in the second quantized form from the basis in real space to the basis in momentum space. 
+You will be instructed to convert the Kinetic Hamiltonian {symbols} in the second quantized form from the basis in real space to the basis in momentum space. 
 To do that, you should apply the Fourier transformation to {real space creation op} in the real space to the {momentum space creation op} in the momentum space, which is defined as {def of Fourier transformation}, where {real var} is integrated over all sites in the entire real space. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that {hopping} have no position dependence now.]
 Express the Kinetic Hamiltonian {symbols} in terms of {momentum space ops}. [Simplify any summation index if possible.]
 
-Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):
+Use the following conventions for the symbols:
 {Def of variables}
 
 ===
@@ -167,7 +168,7 @@ $$\hat{H}=\sum_{k} E(k) c^\dagger(k)  c(k)$$
 
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version)
 **Prompt:**  
-Now you will be instructed to convert the interacting Hamiltonian {symbol} in the {single particle | second quantized} form the basis in real space to the basis in momentum space. [You will be instructed to perform the transformation to the first term with {symbol}.]
+You will be instructed to convert the interacting Hamiltonian {symbol} in the {single particle | second quantized} form the basis in real space to the basis in momentum space. [You will be instructed to perform the transformation to the first term with {symbol}.]
 To do that, you should apply the Fourier transformation to {real space creation op} in the real space to the {momentum space creation op} in the momentum space, which is defined as {def of Fourier transformation}, where {real var} is integrated over all sites in the entire real space, and {momentum var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. Note that the interaction {symbol} is onsite.  
 Express the first term in interacting Hamiltonian {symbol} with {symbol} in terms of {momentum space ops}. Simplify any summation index if possible.  
 
@@ -189,12 +190,12 @@ $$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4}  U(k_1-k_4) c_s^\da
 
 ## Particle-hole transformation
 **Prompt:**  
-Now you will be instructed to perform a particle-hole transformation.  
+You will be instructed to perform a particle-hole transformation.  
 Define a hole operator, {hole op}, which equals {particle op}.  
 You should replace {particle creation op} with {hole creation op}, and {particle annihilation op} with {hole annihilation op}. You should follow the EXAMPLE below to apply the particle-hole transformation.
 Return the {symbol} in the hole operators.
 
-Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+Use the following conventions for the symbols:  
 {def_var}
 
 ===  
@@ -203,12 +204,12 @@ Give a Hamiltonian  $\hat{H}=\sum_{k_1,k_2} c^\dagger(k_1) h(k_1,k_2) c(k_2)$ , 
 
 ## Simplify the Hamiltonian in the particle-hole basis
 **Prompt:**  
-Now you will be instructed to simplify the {symbol} in the hole basis.  
+You will be instructed to simplify the {symbol} in the hole basis.  
 You should use canonical commutator relation for fermions to reorder the hole operator to the normal order. Normal order means that creation operators always appear before the annihilation operators.  You should follow the EXAMPLE below to simplify it to the normal order.  
 Express the {symbol} in the normal order of {hole op} and also make {index} always appear before {index} in the index of {op} and {Ham op}.  
 You should call this final version as {symbol} and remember it.  
 
-Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+Use the following conventions for the symbols:  
 {def_var}
 
 # Mean-field theory
@@ -219,7 +220,7 @@ You should use Wick's theorem to expand the four-fermion term in {symbol} into q
 [You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.]  
 Return the expanded interaction term after Hartree-Fock approximation {symbol}.
 
-Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+Use the following conventions for the symbols:  
 {def_var}
 
 ===
@@ -238,7 +239,7 @@ The quadratic terms mean terms that are proportional to {creation op & annihilat
 You should only preserve the quadratic terms in {symbol}, which is called {symbol}.
 Return this Hamiltonian {symbol}.  
 
-Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+Use the following conventions for the symbols:  
 {def_var}
 
 # Order parameters
@@ -366,12 +367,12 @@ Return the final sum of Hartree and Fock term.
 
 ## Construct full Hamiltonian after HF
 **Prompt:**  
-Now you will be instructed to construct the entire Hamiltonian after the Hartree-Fock approximation {symbol}. 
+You will be instructed to construct the entire Hamiltonian after the Hartree-Fock approximation {symbol}. 
 You should first recall the Kinetic Hamiltonian {symbol}, which is {def}.  
 You should then combine {symbol} with the interacting Hamiltonian {symbol} after the Hartree-Fock approximation, which is the entire Hamiltonian {symbol} after Hartree-Fock.  
 Return the expression for {symbol}.  
 
-Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
+Use the following conventions for the symbols:  
 {def_var}
 
 # Mathematical Simplify
@@ -389,12 +390,12 @@ Return the simplified {equation}.
 
 ## Mathematical simplify: Expand using Associative property
 **Prompt:**  
-Now you will be instructed to expand {equation}.  
+You will be instructed to expand {equation}.  
 Express the {equation} in the expanded form.
 
 ## Mathematical simplify: Combine using Associative property
 **Prompt:**  
-Now you will be instructed to expand the product {equation}.  
+You will be instructed to expand the product {equation}.  
 After expansion, you can introduce a sign variable {symbol} before $\hat{x}/2$, where take values of {values} to combine the {num of terms} term in to one term.
 Express the {equation} in the expanded form.
 

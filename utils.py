@@ -35,7 +35,7 @@ def generate_prompt(kwargs,prompt_dict):
     return message
 
 def assembly_message(sys_msg,user_msg,AI_msg):
-    messages = sys_msg
+    messages = [] + sys_msg
     assert len(user_msg)-len(AI_msg)==1, f'# of user message {len(user_msg)} is not compatible with # of AI_message {len(AI_msg)}'
     messages.append(user_msg[0])
     for user, AI in zip(user_msg[1:],AI_msg):
