@@ -2,7 +2,6 @@
 <!-- The template loosely adheres to the syntax rules of Python f-string formatting.     -->
 <!-- - The {} placeholders are intended for string substitutions. -->
 <!-- - The [] brackets denote optional strings. -->
-
 # Preamble
 ## Preamble
 **Prompt:**  
@@ -17,10 +16,10 @@ Confirm and repeat your duty if you understand it.
 **Prompt:**  
 You will be instructed to describe the kinetic term of Hamiltonian in {system} in the {real|momentum} space in the {single-particle|second-quantized} form.   
 The degrees of freedom of the system are: {dof}  
-Express the Kinetic Hamiltonian {symbol} using {var} which are only on the diagonal terms, and arrange the basis in the order of {order}.
+Express the Kinetic Hamiltonian {kinetic_symbol} using {var} which are only on the diagonal terms, and arrange the basis in the order of {order}.
 
 Use the following conventions for the symbols:  
-{def of var}
+{def_var}
 
 ## Construct Kinetic Hamiltonian (lattice version)
 **Prompt:**  
@@ -33,35 +32,36 @@ The summation should be taken over all {dof} and all real space positions.
 Return the Kinetic Hamiltonian {symbol}.
 
 Use the following conventions for the symbols:  
-{def of var}
+{def_var}
 
 ## Define each term in Kinetic Hamiltonian (continuum version)
 **Prompt:**  
 Now you will be instructed to construct each term in the matrix, namely {var}.  
-{Def of each var}
-Return the expression for {var} in the Kinetic Hamiltonian, and substitute it into the Kinetic Hamiltonian {symbol}.  
+{Description}
+You should recall that {expression_Kinetic}.  
+Return the expression for {var} in the Kinetic Hamiltonian, and substitute it into the Kinetic Hamiltonian {kinetic_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def of var}
+{def_var}
 
 ## Construct Potential Hamiltonian (continuum version)
 **Prompt:**  
-Now you will be instructed to describe the potential term of Hamiltonian {system} in the {real|momentum} space in the {single-particle|second-quantized} form.  
-The potential Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian {symbol}.  
-{def of var}.  
-Express the potential Hamiltonian {symbol} using {var}.  
+Now you will be instructed to describe the potential term of Hamiltonian {potential_symbol} in the {real|momentum} space in the {single-particle|second-quantized} form.  
+The potential Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian {kinetic_symbol}.  
+{Description}.  
+Express the potential Hamiltonian {potential_symbol} using {var}.  
 
 Use the following conventions for the symbols (You should also remember the conventions in my previous prompts if there are no conflicts. If you have conflicts in the conventions, you should stop and let me know):  
-{def of var}
+{def_var}
 
 ## Define each term in Potential Hamiltonian (continuum version)
 **Prompt:**  
-Now you will be instructed to construct each term in the matrix {symbol}, namely, the intralayer potential {terms}.  
-{def of each term}  
-Return the expressions for {symbol}, and substitute it into the potential Hamiltonian {symbol}.  
+Now you will be instructed to construct each term in the matrix {potential_symbol}, namely, {var}.  
+{Description}  
+Return the expressions for {var}, and substitute it into the potential Hamiltonian {potential_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or have conflicts in the conventions, you should stop and let me know):  
-{def of var}
+{def_var}
 
 ## Construct interaction Hamiltonian (real space, lattice version)
 **Prompt:**  
@@ -73,7 +73,7 @@ The summation should be taken over all {dof} and all real space positions.
 Return the interaction term {symbol} in terms of {symbol}.
 
 Use the following conventions for the symbols (You should also remember the conventions in my previous prompts if there are no conflicts. If you have conflicts in the conventions, you should stop and let me know): 
-{def of var}
+{def_var}
 
 ## Construct interaction Hamiltonian (momentum space)
 **Prompt:**  
@@ -87,7 +87,7 @@ Finally, the summation should be running over all {index}, and {momentum}
 Return the interaction term {symbol} in terms of {symbol} and $V(q)$ (with $q$ expressed in terms of {momentum}).  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def of var}
+{def_var}
 
 ===  
 EXAMPLE:  
@@ -103,7 +103,7 @@ Finally by "total", it means you need to take a summation over the {real|momentu
 Return the second quantized form of the total noninteracting Hamiltonian {symbol}  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def of var}
+{def_var}
 
 ## Convert from single-particle to second-quantized form, return in summation (expand the matrix)
 **Prompt:**  
@@ -112,7 +112,7 @@ You should use any previous knowledge to simplify it. For example, if any term o
 Return the expanded form of {symbol} after simplication.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def of var}
+{def_var}
 
 ===  
 EXAMPLE:  
@@ -125,7 +125,7 @@ To do that, you should apply the Fourier transformation to {real space creation 
 Express the total noninteracting Hamiltonian {symbol} in terms of {momentum space ops}. Simplify any summation index if possible.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def of var}
+{def_var}
 
 ===  
 EXAMPLE:  
@@ -195,7 +195,7 @@ You should replace {particle creation op} with {hole creation op}, and {particle
 Return the {symbol} in the hole operators.
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def of var}
+{def_var}
 
 ===  
 EXAMPLE:  
@@ -209,7 +209,7 @@ Express the {symbol} in the normal order of {hole op} and also make {index} alwa
 You should call this final version as {symbol} and remember it.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def of var}
+{def_var}
 
 # Mean-field theory
 ## Wick's theorem
@@ -220,7 +220,7 @@ You should use Wick's theorem to expand the four-fermion term in {symbol} into q
 Return the expanded interaction term after Hartree-Fock approximation {symbol}.
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def of var}
+{def_var}
 
 ===
 EXAMPLE 1:  
@@ -239,7 +239,7 @@ You should only preserve the quadratic terms in {symbol}, which is called {symbo
 Return this Hamiltonian {symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def of var}
+{def_var}
 
 # Order parameters
 ## Hartree term only
@@ -372,7 +372,7 @@ You should then combine {symbol} with the interacting Hamiltonian {symbol} after
 Return the expression for {symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def of var}
+{def_var}
 
 # Mathematical Simplify
 ## Mathematical simplify: Euler's formula
