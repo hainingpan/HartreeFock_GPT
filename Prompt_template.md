@@ -67,7 +67,7 @@ Use the following conventions for the symbols (You should also remember the conv
 ## Define each term in Potential Hamiltonian (continuum version)
 **Prompt:**  
 You will be instructed to construct each term {potential_symbol}, namely, {var}.  
-{Description}
+{Description}.
 You should recall that {expression_Potential}.  
 Return the expressions for {var}, and substitute it into the potential Hamiltonian {potential_symbol}.  
 
