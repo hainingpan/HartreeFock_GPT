@@ -13,11 +13,20 @@ You will be learning background knowledge by examples if necessary.
 Confirm and repeat your duty if you understand it.
 
 # Hamiltonian construction
-## Construct Kinetic Hamiltonian (continuum version)
+## Construct Kinetic Hamiltonian (continuum version, single-particle)
 **Prompt:**  
 You will be instructed to describe the kinetic term of Hamiltonian in {system} in the {real|momentum} space in the {single-particle|second-quantized} form.   
 The degrees of freedom of the system are: {dof}.  
 Express the Kinetic Hamiltonian {kinetic_symbol} using {var} which are only on the diagonal terms, and arrange the basis in the order of {order}.
+
+Use the following conventions for the symbols:  
+{def_var}
+
+## Construct Kinetic Hamiltonian (continuum version, second-quantized)
+**Prompt:**  
+You will be instructed to describe the kinetic term of Hamiltonian in {system} in the {real|momentum} space in the {single-particle|second-quantized} form.   
+The degrees of freedom of the system are: {dof}.  
+Express the Kinetic Hamiltonian {kinetic_symbol} using {dispersion_symbol}, {annihilation_op}, and {creation_op}, where the summation of ${k|r}$ should be running over the {entire_space|first_Brillouin_zone}.
 
 Use the following conventions for the symbols:  
 {def_var}
@@ -37,7 +46,7 @@ Use the following conventions for the symbols:
 
 ## Define each term in Kinetic Hamiltonian (continuum version)
 **Prompt:**  
-You will be instructed to construct each term in the matrix, namely {var}.  
+You will be instructed to construct each term, namely {var}.  
 {Description}
 You should recall that {expression_kinetic}.   
 Return the expression for {var} in the Kinetic Hamiltonian, and substitute it into the Kinetic Hamiltonian {kinetic_symbol}.  
@@ -57,7 +66,7 @@ Use the following conventions for the symbols (You should also remember the conv
 
 ## Define each term in Potential Hamiltonian (continuum version)
 **Prompt:**  
-You will be instructed to construct each term in the matrix {potential_symbol}, namely, {var}.  
+You will be instructed to construct each term {potential_symbol}, namely, {var}.  
 {Description}
 You should recall that {expression_Potential}.  
 Return the expressions for {var}, and substitute it into the potential Hamiltonian {potential_symbol}.  
