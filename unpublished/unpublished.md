@@ -419,7 +419,7 @@ With this result, we've converted the fifth term in the interacting Hamiltonian 
 
 # Mean-field theory
 ## Wick's theorem [first term]
-Now You will be instructed to perform a Hartree-Fock approximation to expand the interaction term $\hat{H}^{int}$. You will be instructed to perform the transformation to the first term with $U_0$.
+You will be instructed to perform a Hartree-Fock approximation to expand the interaction term $\hat{H}^{int}$. You will be instructed to perform the transformation to the first term with $U_0$.
 You should use Wick's theorem to expand the four-fermion term in $\hat{H}^{int}$ into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
 You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
 You should recall that the first term is $$U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} c_{A,\uparrow}^\dagger(k_1) c_{A,\uparrow}(k_2) c_{A,\downarrow}^\dagger(k_3) c_{A,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$$ 
@@ -457,7 +457,7 @@ So, we obtain the first term in the interaction term after Hartree-Fock approxim
 
 
 ## Wick's theorem [second term]
-Now You will be instructed to perform a Hartree-Fock approximation to expand the interaction term $\hat{H}^{int}$. You will be instructed to perform the transformation to the second term with $U_0$.
+You will be instructed to perform a Hartree-Fock approximation to expand the interaction term $\hat{H}^{int}$. You will be instructed to perform the transformation to the second term with $U_0$.
 You should use Wick's theorem to expand the four-fermion term in $\hat{H}^{int}$ into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
 You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
 You should recall that the second term is $$U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} c_{B,\uparrow}^\dagger(k_1) c_{B,\uparrow}(k_2) c_{B,\downarrow}^\dagger(k_3) c_{B,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$$ 
@@ -494,7 +494,7 @@ $$U_0\frac{1}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) [\lang
 This is the second term in the interaction term after the Hartree-Fock approximation, $\hat{H}^{int,HF,U_0}$.   
 
 ## Wick's theorem [third term]
-Now You will be instructed to perform a Hartree-Fock approximation to expand the interaction term $\hat{H}^{int}$. You will be instructed to perform the transformation to the third term with $U_1$.
+You will be instructed to perform a Hartree-Fock approximation to expand the interaction term $\hat{H}^{int}$. You will be instructed to perform the transformation to the third term with $U_1$.
 You should use Wick's theorem to expand the four-fermion term in $\hat{H}^{int}$ into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
 You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
 You should recall that the third term is $$U_1\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} c_{A,s}^\dagger(k_1) c_{A,s}(k_2) c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$$ 
@@ -531,7 +531,7 @@ $$U_1\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_
 This is the third term in the interaction term after the Hartree-Fock approximation, $\hat{H}^{int,HF,U_1}$.
 
 ## Wick's theorem [fourth term]
-Now You will be instructed to perform a Hartree-Fock approximation to expand the interaction term $\hat{H}^{int}$. You will be instructed to perform the transformation to the fourth term with $U_1$.
+You will be instructed to perform a Hartree-Fock approximation to expand the interaction term $\hat{H}^{int}$. You will be instructed to perform the transformation to the fourth term with $U_1$.
 You should use Wick's theorem to expand the four-fermion term in $\hat{H}^{int}$ into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
 You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
 You should recall that the fourth term is $$\hat{H}^{int} = \frac{U_1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} c_{A,s}^\dagger(k_1) c_{A,s}(k_2) c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4) \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_1}$$ 
@@ -565,7 +565,7 @@ This is the fourth term in the interaction term after the Hartree-Fock approxima
 
 
 ## Wick's theorem [fifth term]
-Now You will be instructed to perform a Hartree-Fock approximation to expand the interaction term $\hat{H}^{int}$. You will be instructed to perform the transformation to the fifth term with $U_1$.
+You will be instructed to perform a Hartree-Fock approximation to expand the interaction term $\hat{H}^{int}$. You will be instructed to perform the transformation to the fifth term with $U_1$.
 You should use Wick's theorem to expand the four-fermion term in $\hat{H}^{int}$ into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
 You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
 You should recall that the fifth term is $$\hat{H}^{int} = \frac{U_1}{N} \sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1 - k_2 + k_3 - k_4, G) e^{-i (k_3 - k_4) \cdot a_2} c_{A,s}^\dagger(k_1) c_{A,s}(k_2) c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4)$$

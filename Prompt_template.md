@@ -47,7 +47,7 @@ Use the following conventions for the symbols:
 ## Define each term in Kinetic Hamiltonian (continuum version)
 **Prompt:**  
 You will be instructed to construct each term, namely {var}.  
-{Description}
+{Description}.  
 You should recall that {expression_kinetic}.   
 Return the expression for {var} in the Kinetic Hamiltonian, and substitute it into the Kinetic Hamiltonian {kinetic_symbol}.  
 
@@ -246,7 +246,7 @@ Return the expanded interaction term after Hartree-Fock approximation {HF_symbol
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
 {def_var}
 
-===
+===  
 EXAMPLE 1:  
 For a four-fermion term $a_1^\dagger a_2^\dagger a_3 a_4$, using Wick's theorem and preserving only the normal terms. this is expanded as $a_1^\dagger a_2^\dagger a_3 a_4 = \langle a_1^\dagger a_4 \rangle a_2^\dagger a_3 + \langle a_2^\dagger a_3 \rangle a_1^\dagger a_4 - \langle a_1^\dagger a_4 \rangle \langle a_2^\dagger a_3\rangle - \langle a_1^\dagger a_3 \rangle a_2^\dagger a_4 - \langle a_2^\dagger a_4 \rangle a_1^\dagger a_3 + \langle a_1^\dagger a_3\rangle \langle a_2^\dagger a_4 \rangle$  
 Be cautious about the order of the index and sign before each term here.
