@@ -283,10 +283,11 @@ Return the simplified Hamiltonian with {symbol}.
 # Simplify the MF quadratic term
 ## Expand interaction
 **Prompt:**  
-You will be instructed to expand interaction term {symbol} in the MF quadratic term {symbol}.
-If you find the $V(q)$ in {symbol} does not contain any momentum that is not in the summation sign. The interaction term is already expanded. No action to perform on interaction term.
-Otherwise, you will expand {symbol} by replacing {momentum} with the momentum {momentum}.
-Return {symbol} with expanded interaction.
+You will be instructed to expand interaction term $V(q)$ in the MF quadratic term {HF_2_symbol}.
+If you find the $V(q)$ in {HF_2_symbol} does not contain any momentum that is not in the summation sign. The interaction term is already expanded. No action to perform on interaction term.
+Otherwise, you will expand $V(q)$ by replacing $q$ with the momentum {momentum}.
+You should recall that {expression_HF_2}.
+Return {HF_2_symbol} with expanded interaction.
 
 ## Swap the index only
 **Prompt:**  
@@ -304,7 +305,7 @@ Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k
 Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.   
 Finally, we have the simplified Hamiltonian as  $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3)) \delta_{k_4+k_3,k_2+k_1}$.
 
-## Swap the index to combine Hartree and Fock terms 
+## Swap the index to combine Hartree and Fock terms
 **Prompt:**  
 You will be instructed to simplify the quadratic term {HF_2_symbol} through relabeling the index to combine the two Hartree/Fock term into one Hartree/Fock term.  
 The logic is that the expected value ({expval}) in the first Hartree term ({expression_Hartree_1}) has the same form as the qudratic operators in the second Hartree term ({expression_Hartree_2}), and vice versa. The same applies to the Fock term.  
@@ -323,27 +324,27 @@ Finally, we have the simplified Hamiltonian as  $\hat{{H}}=2\sum_{{k_1,k_2, k_3,
 
 ## Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
 **Prompt:**  
-You will be instructed to simplify the Hartree term in {symbol} by reducing the momentum inside the expected value {expected}.  
-The expected value {symbol} is only nonzero when the two momenta $k_i,k_j$ is the same, namely, {expected value identity}.  
-You should use the property of Kronecker delta function $\delta_{k_i,k_j}$ to reduce one momentum $k_i$ but not $b_i$.
+You will be instructed to simplify the Hartree term in {HF_2_symbol} by reducing the momentum inside the expected value {expval}.  
+The expected value {expval} is only nonzero when the two momenta $k_i,k_j$ are the same, namely, {expval_id}.  
+You should use the property of Kronecker delta function $\delta_{{k_i,k_j}}$ to reduce one momentum $k_i$ but not $b_i$.
 Once you reduce one momentum inside the expected value $\langle\dots\rangle$. You will also notice the total momentum conservation will reduce another momentum in the quadratic term. Therefore, you should end up with only two momenta left in the summation.  
 You should follow the EXAMPLE below to reduce one momentum in the Hartree term, and another momentum in the quadratic term.  
-You should recall that the Hartree term in {Hartree}.  
-Return the final simplified Hartree term {symbol}.
+You should recall that {expression_Hartree}.  
+Return the final simplified Hartree term {Hatree_2_symbol}.
 
 ===  
 EXAMPLE:  
-Given a Hamiltonian where the Hartree term $\hat{H}^{Hartree}=\sum_{k_1,k_2, k_3, k_4,b_1,b_2,b_3,b_4} V(k_1-k_4+b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_4) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_3) \delta_{k_1+k_2+b_1+b_2,k_3+k_4+b_3+b_4}$, where $k_i$ is the momentum inside first Brilloun zone and $b_i$ is the reciprocal lattice.   
-Inside the expected value, we realize $\langle c_{b_1}^\dagger(k_1) c_{b_4}(k_4) \rangle$ is nonzero only when $k_1=k_4$, i.e., $\langle c_{b_1}^\dagger(k_1) c_{b_4}(k_4) \rangle=\langle c_{b_1}^\dagger(k_1) c_{b_4}(k_4) \rangle\delta_{k_1,k_4}$.  
-Thus, the Hartree term becomes $\sum_{k_1,k_2, k_3, k_4,b_1,b_2,b_3,b_4} V(k_1-k_4+b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_4) \rangle \delta_{k_1,k_4} c_{b_2}^\dagger(k_2) c_{b_3}(k_3) \delta_{k_1+k_2+b_1+b_2,k_3+k_4+b_3+b_4}$.  
-Use the property of Kronecker delta function $\delta_{k_1,k_4}$ to sum over $k_4$, we have $\sum_{k_1, k_2, k_3,b_1,b_2,b_3,b_4} V(k_1-k_1+b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_3) \delta_{k_1+k_2+b_1+b_2,k_3+k_1+b_3+b_4}=\sum_{k_1, k_2, k_3,b_1,b_2,b_3,b_4} V(b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_3) \delta_{k_2+b_1+b_2,k_3+b_3+b_4}$.  
-Because $k_i$ is momentum inside first Brilloun zone while $b_i$ is the reciprocal lattice. It is only when $k_2=k_3$ that $\delta_{k_2+b_1+b_2,k_3+b_3+b_4}$ is nonzero, i.e., $\delta_{k_2+b_1+b_2,k_3+b_3+b_4}=\delta_{b_1+b_2,b_3+b_4}\delta_{k_2,k_3}$. Therefore, the Hartree term simplifies to $\sum_{k_1, k_2, k_3,b_1,b_2,b_3,b_4} V(b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_3) \delta_{b_1+b_2,b_3+b_4}\delta_{k_2,k_3}=\sum_{k_1, k_2,b_1,b_2,b_3,b_4} V(b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_2) \delta_{b_1+b_2,b_3+b_4}$.  
-Therefore, the final simplified Hartree term after reducing two momenta is $\hat{H}^{Hartree}=\sum_{k_1, k_2,b_1,b_2,b_3,b_4}  V(b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_4}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_3}(k_2) \delta_{b_1+b_2,b_3+b_4} \delta_{b_1+b_2,b_3+b_4}$ 
+Given a Hamiltonian where the Hartree term $\hat{{H}}^{{Hartree}}=\sum_{{k_1,k_2, k_3, k_4,b_1,b_2,b_3,b_4}} V(k_1-k_4+b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_4) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_3}}(k_3) \delta_{{k_1+k_2+b_1+b_2,k_3+k_4+b_3+b_4}}$, where $k_i$ is the momentum inside first Brilloun zone and $b_i$ is the reciprocal lattice.   
+Inside the expected value, we realize $\langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_4) \rangle$ is nonzero only when $k_1=k_4$, i.e., $\langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_4) \rangle=\langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_4) \rangle\delta_{{k_1,k_4}}$.  
+Thus, the Hartree term becomes $\sum_{{k_1,k_2, k_3, k_4,b_1,b_2,b_3,b_4}} V(k_1-k_4+b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_4) \rangle \delta_{{k_1,k_4}} c_{{b_2}}^\dagger(k_2) c_{{b_3}}(k_3) \delta_{{k_1+k_2+b_1+b_2,k_3+k_4+b_3+b_4}}$.  
+Use the property of Kronecker delta function $\delta_{{k_1,k_4}}$ to sum over $k_4$, we have $\sum_{{k_1, k_2, k_3,b_1,b_2,b_3,b_4}} V(k_1-k_1+b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_3}}(k_3) \delta_{{k_1+k_2+b_1+b_2,k_3+k_1+b_3+b_4}}=\sum_{{k_1, k_2, k_3,b_1,b_2,b_3,b_4}} V(b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_3}}(k_3) \delta_{{k_2+b_1+b_2,k_3+b_3+b_4}}$.  
+Because $k_i$ is momentum inside first Brilloun zone while $b_i$ is the reciprocal lattice. It is only when $k_2=k_3$ that $\delta_{{k_2+b_1+b_2,k_3+b_3+b_4}}$ is nonzero, i.e., $\delta_{{k_2+b_1+b_2,k_3+b_3+b_4}}=\delta_{{b_1+b_2,b_3+b_4}}\delta_{{k_2,k_3}}$. Therefore, the Hartree term simplifies to $\sum_{{k_1, k_2, k_3,b_1,b_2,b_3,b_4}} V(b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_3}}(k_3) \delta_{{b_1+b_2,b_3+b_4}}\delta_{{k_2,k_3}}=\sum_{{k_1, k_2,b_1,b_2,b_3,b_4}} V(b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_3}}(k_2) \delta_{{b_1+b_2,b_3+b_4}}$.  
+Therefore, the final simplified Hartree term after reducing two momenta is $\hat{{H}}^{{Hartree}}=\sum_{{k_1, k_2,b_1,b_2,b_3,b_4}}  V(b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_3}}(k_2) \delta_{{b_1+b_2,b_3+b_4}} \delta_{{b_1+b_2,b_3+b_4}}$ 
 
 ## Reduce momentum in Hartree term (momentum in BZ)
 **Prompt:**  
 You will be instructed to simplify the Hartree term {symbol} by reducing the momentum inside the expected value {expected}.  
-The expected value {symbol} is only nonzero when the two momenta $k_i,k_j$ is the same, namely, {expected value identity}.  
+The expected value {symbol} is only nonzero when the two momenta $k_i,k_j$ are the same, namely, {expected value identity}.  
 You should use the property of Kronecker delta function $\delta_{k_i,k_j}$ to reduce one momentum $k_i$.
 Once you reduce one momentum inside the expected value $\langle\dots\rangle$. You will also notice the total momentum conservation will reduce another momentum in the quadratic term. Therefore, you should end up with only two momenta left in the summation.  
 You should follow the EXAMPLE below to reduce one momentum in the Hartree term, and another momentum in the quadratic term.  
@@ -363,23 +364,23 @@ Therefore, the final simplified Hartree term after reducing one momentum is $\ha
 
 ## Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
 **Prompt:**  
-You will be instructed to simplify the Fock term in {symbols} by reducing the momentum inside the expected value {expected}.  
-The expected value {expected} is only nonzero when the two momenta $k_i,k_j$ is the same, namely, {expected}.  
-You should use the property of Kronecker delta function $\delta_{k_i,k_j}$ to reduce one momentum $k_i$ but not $b_i$.  
+You will be instructed to simplify the Fock term in {HF_2_symbol} by reducing the momentum inside the expected value {expval}.  
+The expected value {expval} is only nonzero when the two momenta $k_i,k_j$ are the same, namely, {expval_id}.  
+You should use the property of Kronecker delta function $\delta_{{k_i,k_j}}$ to reduce one momentum $k_i$ but not $b_i$.  
 Once you reduce one momentum inside the expected value $\langle\dots\rangle$. You will also notice the total momentum conservation will reduce another momentum in the quadratic term. Therefore, you should end up with only two momenta left in the summation.
 You should follow the EXAMPLE below to reduce one momentum in the Fock term, and another momentum in the quadratic term.    
-You should recall that the Fock term in {Fock}.  
-Return the final simplified Fock term {symbol}.
+You should recall that {expression_Fock}.  
+Return the final simplified Fock term {Fock_2_symbol}.
 
 ===  
 EXAMPLE:  
-Given a Hamiltonian where the Fock term $\hat{H}^{Fock}=-\sum_{k_1,k_2, k_3, k_4,b_1,b_2,b_3,b_4} V(k_1-k_4+b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_3}(k_3) \rangle c_{b_2}^\dagger(k_2) c_{b_4}(k_4)  \delta_{k_1+k_2+b_1+b_2,k_3+k_4+b_3+b_4}$, where $k_i$ is the momentum inside first Brilloun zone and $b_i$ is the reciprocal lattice.   
-Inside the expected value, we realize $\langle c_{b_1}^\dagger(k_1) c_{b_3}(k_3) \rangle$ is nonzero only when $k_1=k_3$, i.e., $\langle c_{b_1}^\dagger(k_1) c_{b_3}(k_3) \rangle=\langle c_{b_1}^\dagger(k_1) c_{b_3}(k_3) \rangle\delta_{k_1,k_3}$.    
-Thus, the Fock term becomes $-\sum_{k_1,k_2, k_3, k_4,b_1,b_2,b_3,b_4} V(k_1-k_4+b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_3}(k_3) \rangle \delta_{k_1,k_3} c_{b_2}^\dagger(k_2) c_{b_4}(k_4) \delta_{k_1+k_2+b_1+b_2,k_3+k_4+b_3+b_4}$.  
-Use the property of Kronecker delta function $\delta_{k_1,k_3}$ to sum over $k_3$, we have $-\sum_{k_1,k_2, k_4,b_1,b_2,b_3,b_4} V(k_1-k_4+b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_3}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_4}(k_4) \delta_{k_1+k_2+b_1+b_2,k_1+k_4+b_3+b_4}=-\sum_{k_1,k_2, k_4,b_1,b_2,b_3,b_4} V(k_1-k_4+b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_3}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_4}(k_4) \delta_{k_2+b_1+b_2,k_4+b_3+b_4}$.  
-Because $k_i$ is momentum inside first Brilloun zone while $b_i$ is the reciprocal lattice. It is only when $k_2=k_4$ that $\delta_{k_2+b_1+b_2,k_4+b_3+b_4}$ is nonzero, i.e., $\delta_{k_2+b_1+b_2,k_4+b_3+b_4}=\delta_{b_1+b_2,b_3+b_4}\delta_{k_2,k_4}$.  
-Therefore, the Fock term simplifies to $-\sum_{k_1,k_2, k_4,b_1,b_2,b_3,b_4}  V(k_1-k_4+b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_3}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_4}(k_4) \delta_{b_1+b_2,b_3+b_4}\delta_{k_2,k_4}=-\sum_{k_1,k_2, b_1,b_2,b_3,b_4} V(k_1-k_2+b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_3}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_4}(k_2) \delta_{b_1+b_2,b_3+b_4}$.  
-Therefore, the final simplified Fock term after reducing two momenta is $\hat{H}^{Fock}=-\sum_{k_1, k_2,b_1,b_2,b_3,b_4}  V(k_1-k_2+b_1-b_4) \langle c_{b_1}^\dagger(k_1) c_{b_3}(k_1) \rangle c_{b_2}^\dagger(k_2) c_{b_4}(k_2) \delta_{b_1+b_2,b_3+b_4}$ 
+Given a Hamiltonian where the Fock term $\hat{{H}}^{{Fock}}=-\sum_{{k_1,k_2, k_3, k_4,b_1,b_2,b_3,b_4}} V(k_1-k_4+b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_3}}(k_3) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_4}}(k_4)  \delta_{{k_1+k_2+b_1+b_2,k_3+k_4+b_3+b_4}}$, where $k_i$ is the momentum inside first Brilloun zone and $b_i$ is the reciprocal lattice.   
+Inside the expected value, we realize $\langle c_{{b_1}}^\dagger(k_1) c_{{b_3}}(k_3) \rangle$ is nonzero only when $k_1=k_3$, i.e., $\langle c_{{b_1}}^\dagger(k_1) c_{{b_3}}(k_3) \rangle=\langle c_{{b_1}}^\dagger(k_1) c_{{b_3}}(k_3) \rangle\delta_{{k_1,k_3}}$.    
+Thus, the Fock term becomes $-\sum_{{k_1,k_2, k_3, k_4,b_1,b_2,b_3,b_4}} V(k_1-k_4+b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_3}}(k_3) \rangle \delta_{{k_1,k_3}} c_{{b_2}}^\dagger(k_2) c_{{b_4}}(k_4) \delta_{{k_1+k_2+b_1+b_2,k_3+k_4+b_3+b_4}}$.  
+Use the property of Kronecker delta function $\delta_{{k_1,k_3}}$ to sum over $k_3$, we have $-\sum_{{k_1,k_2, k_4,b_1,b_2,b_3,b_4}} V(k_1-k_4+b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_3}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_4}}(k_4) \delta_{{k_1+k_2+b_1+b_2,k_1+k_4+b_3+b_4}}=-\sum_{{k_1,k_2, k_4,b_1,b_2,b_3,b_4}} V(k_1-k_4+b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_3}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_4}}(k_4) \delta_{{k_2+b_1+b_2,k_4+b_3+b_4}}$.  
+Because $k_i$ is momentum inside first Brilloun zone while $b_i$ is the reciprocal lattice. It is only when $k_2=k_4$ that $\delta_{{k_2+b_1+b_2,k_4+b_3+b_4}}$ is nonzero, i.e., $\delta_{{k_2+b_1+b_2,k_4+b_3+b_4}}=\delta_{{b_1+b_2,b_3+b_4}}\delta_{{k_2,k_4}}$.  
+Therefore, the Fock term simplifies to $-\sum_{{k_1,k_2, k_4,b_1,b_2,b_3,b_4}}  V(k_1-k_4+b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_3}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_4}}(k_4) \delta_{{b_1+b_2,b_3+b_4}}\delta_{{k_2,k_4}}=-\sum_{{k_1,k_2, b_1,b_2,b_3,b_4}} V(k_1-k_2+b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_3}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_4}}(k_2) \delta_{{b_1+b_2,b_3+b_4}}$.  
+Therefore, the final simplified Fock term after reducing two momenta is $\hat{{H}}^{{Fock}}=-\sum_{{k_1, k_2,b_1,b_2,b_3,b_4}}  V(k_1-k_2+b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_3}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_4}}(k_2) \delta_{{b_1+b_2,b_3+b_4}}$ 
 
 ## Combine the Hartree and Fock term
 **Prompt:**  
