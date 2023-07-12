@@ -17,7 +17,7 @@ Confirm and repeat your duty if you understand it.
 **Prompt:**  
 You will be instructed to describe the kinetic term of Hamiltonian in {system} in the {real|momentum} space in the {single-particle|second-quantized} form.   
 The degrees of freedom of the system are: {dof}.  
-Express the Kinetic Hamiltonian {kinetic_symbol} using {var} which are only on the diagonal terms, and arrange the basis in the order of {order}.
+Express the Kinetic Hamiltonian {kinetic_symbol} using {var} which are only on the diagonal terms, and arrange the basis in the order of {order}. {Note that the sublattice degrees of freedom is suppressed for now and will be stated later|None}
 
 Use the following conventions for the symbols:  
 {def_var}

@@ -152,7 +152,7 @@ flowchart LR
     end
     subgraph B["Hamiltonian construction"]
         direction TB
-        b1["Construct Kinetic Hamiltonian (continuum version)"]
+        b1["Construct Kinetic Hamiltonian (continuum version, single-quantized)"]
         b2["Define each term in Kinetic Hamiltonian (continuum version)"]
         b3["Construct Potential Hamiltonian (continuum version)"]
         b4["Define each term in Potential Hamiltonian (continuum version)"]
@@ -204,7 +204,7 @@ flowchart LR
     end
     subgraph B["Hamiltonian construction"]
         direction TB
-        b1["Construct Kinetic Hamiltonian (continuum version)"]
+        b1["Construct Kinetic Hamiltonian (continuum version, single-quantized)"]
         b2["Define each term in Kinetic Hamiltonian (continuum version)"]
         b3["Construct Potential Hamiltonian (continuum version)"]
         b4["Define each term in Potential Hamiltonian (continuum version)"]
@@ -248,7 +248,7 @@ flowchart LR
 
 ## continuum, first-quantized, Hartree-Fock
 ![C_1_HF](C_1_HF.png)
-**Example**: [2111.01152](2111.01152/2111.01152.md), [2108.02159](2108.02159/2108.02159.md), [1812.04213](1812.04213/1812.04213.md)
+**Example**: [2111.01152](2111.01152/2111.01152.md), [1812.04213](1812.04213/1812.04213.md)
 ```mermaid
 flowchart LR
     subgraph A["Preamble"]
@@ -257,7 +257,7 @@ flowchart LR
     end
     subgraph B["Hamiltonian construction"]
         direction TB
-        b1["Construct Kinetic Hamiltonian (continuum version)"]
+        b1["Construct Kinetic Hamiltonian (continuum version, single-quantized)"]
         b2["Define each term in Kinetic Hamiltonian (continuum version)"]
         b3["Construct Potential Hamiltonian (continuum version)"]
         b4["Define each term in Potential Hamiltonian (continuum version)"]
@@ -308,7 +308,7 @@ flowchart LR
     end
     subgraph B["Hamiltonian construction"]
         direction TB
-        b1["Construct Kinetic Hamiltonian (continuum version)"]
+        b1["Construct Kinetic Hamiltonian (continuum version, second-quantized)"]
         b2["Define each term in Kinetic Hamiltonian (continuum version)"]
         b3["Construct Potential Hamiltonian (continuum version)"]
         b4["Define each term in Potential Hamiltonian (continuum version)"]
@@ -355,7 +355,7 @@ flowchart LR
     end
     subgraph B["Hamiltonian construction"]
         direction TB
-        b1["Construct Kinetic Hamiltonian (continuum version)"]
+        b1["Construct Kinetic Hamiltonian (continuum version, second-quantized)"]
         b2["Define each term in Kinetic Hamiltonian (continuum version)"]
         b3["Construct Potential Hamiltonian (continuum version)"]
         b4["Define each term in Potential Hamiltonian (continuum version)"]
@@ -394,6 +394,7 @@ flowchart LR
 ```
 ## continuum, second-quantized, Hartree-Fock
 ![C_2_HF](C_2_HF.png)
+**Example**:  [2108.02159](2108.02159/2108.02159.md)
 ```mermaid
 flowchart LR
     subgraph A["Preamble"]
@@ -402,7 +403,7 @@ flowchart LR
     end
     subgraph B["Hamiltonian construction"]
         direction TB
-        b1["Construct Kinetic Hamiltonian (continuum version)"]
+        b1["Construct Kinetic Hamiltonian (continuum version, second-quantized)"]
         b2["Define each term in Kinetic Hamiltonian (continuum version)"]
         b3["Construct Potential Hamiltonian (continuum version)"]
         b4["Define each term in Potential Hamiltonian (continuum version)"]
