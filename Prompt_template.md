@@ -1,7 +1,8 @@
 <!-- # README -->
 <!-- The template loosely adheres to the syntax rules of Python f-string formatting.     -->
 <!-- - The {} placeholders are intended for string substitutions. -->
-<!-- - The [] brackets denote optional strings. -->
+<!-- - The {A|B} placeholders are intended for string substitutions with either A or B. -->
+<!-- - The {text|None} brackets denote optional strings text. -->
 # Preamble
 ## Preamble
 **Prompt:**  
@@ -57,7 +58,8 @@ Use the following conventions for the symbols (You should also remember the conv
 ## Define each term in Potential Hamiltonian (continuum version)
 **Prompt:**  
 You will be instructed to construct each term in the matrix {potential_symbol}, namely, {var}.  
-{Description}  
+{Description}
+You should recall that {expression_Potential}.  
 Return the expressions for {var}, and substitute it into the potential Hamiltonian {potential_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or have conflicts in the conventions, you should stop and let me know):  
@@ -80,7 +82,7 @@ Use the following conventions for the symbols (You should also remember the conv
 You will be instructed to construct the interaction part of the Hamiltonian {second_int_symbol} in the momentum space.  
 The interaction Hamiltonian is a product of four parts.
 The first part is the product of four operators with two creation and two annihilation operators following the normal order, namely, creation operators are before annihilation operators. You should follow the order of $1,2,2,1$ for the {index}, and $1,2,3,4$ for the {momentum}. 
-The second part is the constraint of total momentum conservation, namely the total momentum of all creation operators should be the same as that of all annihilation operators. For each operator, the momentum is {$k_i$|$k_i$ and $b_i$}.  
+The second part is the constraint of total momentum conservation, namely the total momentum of all creation operators should be the same as that of all annihilation operators. {For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$|None}  
 The third part is the interaction form. You should use {interaction} with $V(q)={int_form}$, where $q$ is the transferred total momentum between a creation operator and an annilation operator with the same {index}, namely $q=k_1-k_4$.  
 The fourth part is the normalization factor, you should use {normalization_factor} here.
 Finally, the summation should be running over all {index}, and {momentum}
@@ -108,7 +110,8 @@ The corresponding second quantized form is $\hat{{H}}=\vec{{\psi}}^\dagger H \ve
 ## Convert from single-particle to second-quantized form, return in summation (expand the matrix)
 **Prompt:**  
 You will be instructed to expand the second-quantized form Hamiltonian {second_nonint_symbol} using {matrix_element_symbol} and {basis_symbol}. You should follow the EXAMPLE below to expand the Hamiltonian.  
-You should use any previous knowledge to simplify it. For example, if any term of {matrix_element_symbol} is zero, you should remove it from the summation.  
+You should use any previous knowledge to simplify it. For example, if any term of {matrix_element_symbol} is zero, you should remove it from the summation.
+You should recall that {expression_second_nonint}.  
 Return the expanded form of {second_nonint_symbol} after simplication.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
@@ -191,7 +194,8 @@ $$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4}  U(k_1-k_4) c_s^\da
 **Prompt:**  
 You will be instructed to perform a particle-hole transformation.  
 Define a hole operator, {hole_op}, which equals {particle_op}.  
-You should replace {particle_creation_op} with {hole_creation_op}, and {particle_annihilation_op} with {hole_annihilation_op}. You should follow the EXAMPLE below to apply the particle-hole transformation.
+You should replace {particle_creation_op} with {hole_creation_op}, and {particle_annihilation_op} with {hole_annihilation_op}. You should follow the EXAMPLE below to apply the particle-hole transformation.  
+You should recall that {expression_particle_Ham}.
 Return the {second_nonint_symbol} in the hole operators.
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
@@ -206,7 +210,7 @@ Give a Hamiltonian  $\hat{{H}}=\sum_{{k_1,k_2}} c^\dagger(k_1) h(k_1,k_2) c(k_2)
 You will be instructed to simplify the {second_nonint_symbol} in the hole basis.  
 You should use canonical commutator relation for fermions to reorder the hole operator to the normal order. Normal order means that creation operators always appear before the annihilation operators.  You should follow the EXAMPLE below to simplify it to the normal order.  
 Express the {second_nonint_symbol} in the normal order of {hole_op} and also make {index_1} always appear before {index_2} in the index of {op} and {Ham_op}.  
-
+You should recall that {expression_hole_Ham}
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
 {def_var}
 
@@ -225,8 +229,9 @@ Thus, we end up in $\hat{{H}}^{{0}}=\sum_{{i,j}} b_i H_{{i,j}} b_j^\dagger=\sum_
 ## Wick's theorem
 **Prompt:**  
 You will be instructed to perform a Hartree-Fock approximation to expand the interaction term {second_int_symbol}.  
-You should use Wick's theorem to expand the four-fermion term in {second_int_symbol} into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${{}}^dagger$, and be extremely cautious about the order of the index and sign before each term.  
+You should use Wick's theorem to expand the four-fermion term in {second_int_symbol} into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${{}}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
 You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
+You should recall that {expression_int}.
 Return the expanded interaction term after Hartree-Fock approximation {HF_symbol}.
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
@@ -245,7 +250,8 @@ Be cautious about the order of the index and sign before each term here.
 **Prompt:**  
 You will be instructed to extract the quadratic terms in the {HF_symbol}.  
 The quadratic terms mean terms that are proportional to {bilinear_op}, which excludes terms that are solely expectations or products of expectations.  
-You should only preserve the quadratic terms in {HF_symbol}, which is called {HF_2_symbol}.
+You should only preserve the quadratic terms in {HF_symbol}, which is called {HF_2_symbol}.  
+You should recall that {expression_HF}.
 Return this Hamiltonian {HF_2_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
@@ -292,18 +298,19 @@ Finally, we have the simplified Hamiltonian as  $\hat{H}=\sum_{k_1,k_2, k_3, k_4
 ## Swap the index to combine Hartree and Fock terms 
 **Prompt:**  
 You will be instructed to simplify the quadratic term {HF_2_symbol} through relabeling the index to combine the two Hartree/Fock term into one Hartree/Fock term.  
-The logic is that the expected value ({expval}) in the first Hartree term ({Hartree}) has the same form as the qudratic operators in the second Hartree term ({expected}), and vice versa.  
+The logic is that the expected value ({expval}) in the first Hartree term ({expression_Hartree_1}) has the same form as the qudratic operators in the second Hartree term ({expression_Hartree_2}), and vice versa. The same applies to the Fock term.  
 This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Hartree term, you can make the second Hartree term look identical to the first Hartree term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
-You should perform this trick of "relabeling the index" for both two Hartree terms and two Fock terms to reduce them to one Hartree term, and one Fock term.   
-Return the simplied {symbol} which reduces from four terms (two Hartree and two Fock terms) to only two terms (one Hartree and one Fock term)
+You should perform this trick of "relabeling the index" for both two Hartree terms and two Fock terms to reduce them to one Hartree term, and one Fock term.  
+You should recall that {expression_HF_2}.  
+Return the simplied {HF_2_symbol} which reduces from four terms (two Hartree and two Fock terms) to only two terms (one Hartree and one Fock term)
 
 ===  
 EXAMPLE:
-Given a Hamiltonian $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) \rangle c_{\sigma_2}^\dagger(k_2) c_{\sigma_3}(k_3) + \langle c_{\sigma_2}^\dagger(k_2) c_{\sigma_3}(k_3) \rangle c_{\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) ) \delta_{k_1+k_2,k_3+k_4}$, where $V(q)=V(-q)$.  
-In the second term, we relabel the index to swap the index in expected value and the index in quadratic operators, namely, $\sigma_1 \leftrightarrow \sigma_2$, $\sigma_3 \leftrightarrow \sigma_4$, $k_1 \leftrightarrow k_2$, $k_3 \leftrightarrow k_4$. After the replacement, the second term becomes $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_2-k_3) \langle c_{\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) \rangle c_{\sigma_2}^\dagger(k_2) c_{\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.  
-Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_4-k_1) \langle c_{\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) \rangle c_{\sigma_2}^\dagger(k_2) c_{\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
-Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) \rangle c_{\sigma_2}^\dagger(k_2) c_{\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$. Note that this form of second term after relabeling is identical to the first term.  
-Finally, we have the simplified Hamiltonian as  $\hat{H}=2\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) \rangle c_{\sigma_2}^\dagger(k_2) c_{\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
+Given a Hamiltonian $\hat{{H}}=\sum_{{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4}} V(k_1-k_4) (\langle c_{{\sigma_1}}^\dagger(k_1) c_{{\sigma_4}}(k_4) \rangle c_{{\sigma_2}}^\dagger(k_2) c_{{\sigma_3}}(k_3) + \langle c_{{\sigma_2}}^\dagger(k_2) c_{{\sigma_3}}(k_3) \rangle c_{{\sigma_1}}^\dagger(k_1) c_{{\sigma_4}}(k_4) ) \delta_{{k_1+k_2,k_3+k_4}}$, where $V(q)=V(-q)$.  
+In the second term, we relabel the index to swap the index in expected value and the index in quadratic operators, namely, $\sigma_1 \leftrightarrow \sigma_2$, $\sigma_3 \leftrightarrow \sigma_4$, $k_1 \leftrightarrow k_2$, $k_3 \leftrightarrow k_4$. After the replacement, the second term becomes $\sum_{{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4}} V(k_2-k_3) \langle c_{{\sigma_1}}^\dagger(k_1) c_{{\sigma_4}}(k_4) \rangle c_{{\sigma_2}}^\dagger(k_2) c_{{\sigma_3}}(k_3) \delta_{{k_4+k_3,k_2+k_1}}$.  
+Note that the Kronecker dirac function $\delta_{{k_4+k_3,k_2+k_1}}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4}} V(k_4-k_1) \langle c_{{\sigma_1}}^\dagger(k_1) c_{{\sigma_4}}(k_4) \rangle c_{{\sigma_2}}^\dagger(k_2) c_{{\sigma_3}}(k_3) \delta_{{k_4+k_3,k_2+k_1}}$.
+Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4}} V(k_1-k_4) \langle c_{{\sigma_1}}^\dagger(k_1) c_{{\sigma_4}}(k_4) \rangle c_{{\sigma_2}}^\dagger(k_2) c_{{\sigma_3}}(k_3) \delta_{{k_4+k_3,k_2+k_1}}$. Note that this form of second term after relabeling is identical to the first term.  
+Finally, we have the simplified Hamiltonian as  $\hat{{H}}=2\sum_{{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4}} V(k_1-k_4) \langle c_{{\sigma_1}}^\dagger(k_1) c_{{\sigma_4}}(k_4) \rangle c_{{\sigma_2}}^\dagger(k_2) c_{{\sigma_3}}(k_3) \delta_{{k_4+k_3,k_2+k_1}}$.
 
 ## Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
 **Prompt:**  
@@ -368,7 +375,7 @@ Therefore, the final simplified Fock term after reducing two momenta is $\hat{H}
 ## Combine the Hartree and Fock term
 **Prompt:**  
 You will now be instructed to combine the Hartree term {symbol} and the Fock term {symbol}.  
-Recall that the Hartree term {Hartree},  
+You should recall that the Hartree term {Hartree},  
 and the Fock term {Fock}.  
 You should perform the same trick of relabeling the index in the Fock term to make the quadratic operators in the Fock term the same as those in the Hartree term. The relabeling should be done with a swap : {swap rule}.
 You should add them, relabel the index in Fock term, and simply their sum. 
