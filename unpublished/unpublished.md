@@ -63,7 +63,7 @@ In the above expression, "h.c." stands for the Hermitian conjugate, which ensure
 
 ## Construct interaction Hamiltonian (real space, lattice version)
 **Prompt:**  
-Now you will be instructed to construct the interaction part of the Hamiltonian, $\hat{H}^{int}$ in the real space in the second-quantized form.   
+You will be instructed to construct the interaction part of the Hamiltonian, $\hat{H}^{int}$ in the real space in the second-quantized form.   
 The interacting Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian $H_0$.  
 The interaction is a density-density interaction composed of the following process:
 1. onsite interaction between $n_{A,\uparrow}^\dagger(R_i)$ and $n_{A,\downarrow}^\dagger(R_i)$ with interaction strength $U_0$
@@ -89,7 +89,7 @@ In the above expression, the sums over $i$ are taken over all positions in real 
 
 ## Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
 **Prompt:**  
-Now you will be instructed to convert the Kinetic Hamiltonian $H_0$ in the second quantized form from the basis in real space to the basis in momentum space.  
+You will be instructed to convert the Kinetic Hamiltonian $H_0$ in the second quantized form from the basis in real space to the basis in momentum space.  
 To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space. You should follow the EXAMPLE below to apply the Fourier transformation. Note that $t_1$ and $t_2$ have no position dependence now.  
 Recall that  
 $$H_0 = -t_1\sum_{i,s} [c_{A,s}^\dagger(R_i) c_{B,s}(R_i) + c_{A,s}^\dagger(R_i) c_{B,s}(R_i + a_1) + c_{A,s}^\dagger(R_i) c_{B,s}(R_i + a_2) + h.c.] -t_2\sum_{i,s} [c_{A,s}^\dagger(R_i) c_{A,s}(R_i + a_1) + c_{A,s}^\dagger(R_i) c_{A,s}(R_i + a_2) + c_{A,s}^\dagger(R_i) c_{A,s}(R_i - a_1) + c_{A,s}^\dagger(R_i) c_{A,s}(R_i - a_2) + c_{A,s}^\dagger(R_i) c_{A,s}(R_i + a_1 - a_2) + c_{A,s}^\dagger(R_i) c_{A,s}(R_i - a_1 + a_2) + h.c.]-t_2\sum_{i,s} [c_{B,s}^\dagger(R_i) c_{B,s}(R_i + a_1) + c_{B,s}^\dagger(R_i) c_{B,s}(R_i + a_2) + c_{B,s}^\dagger(R_i) c_{B,s}(R_i - a_1) + c_{B,s}^\dagger(R_i) c_{B,s}(R_i - a_2) + c_{B,s}^\dagger(R_i) c_{B,s}(R_i + a_1 - a_2) + c_{B,s}^\dagger(R_i) c_{B,s}(R_i - a_1 + a_2) + h.c.]+ h_x\sum_{i} [c_{A,\uparrow}^\dagger(R_i) c_{A,\uparrow}(R_i) - c_{A,\downarrow}^\dagger(R_i) c_{A,\downarrow}(R_i) + c_{B,\uparrow}^\dagger(R_i) c_{B,\uparrow}(R_i) - c_{B,\downarrow}^\dagger(R_i) c_{B,\downarrow}(R_i)]$$
@@ -137,7 +137,7 @@ where $k$ is summed over the first Brillouin zone and $s$ is summed over the spi
 
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version) [first term] 
 **Prompt:**  
-Now you will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the first term with $U_0$.
+You will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the first term with $U_0$.
 To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. Note that the interaction $U_0$ is onsite.  
 You should recall that the first term in $\hat{H}^{int}$ is
 $U_0\sum_{i} n_{A,\uparrow}(R_i) n_{A,\downarrow}(R_i) $
@@ -197,7 +197,7 @@ Here, the delta function enforces the momentum conservation. Therefore, the firs
 
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version) [second term] 
 **Prompt:**  
-Now you will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the second term with $U_0$.
+You will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the second term with $U_0$.
 To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the second Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. Note that the interaction $U_0$ is onsite.  
 You should recall that the second term in $\hat{H}^{int}$ is
 $U_0\sum_{i} n_{B,\uparrow}(R_i) n_{B,\downarrow}(R_i)$
@@ -255,7 +255,7 @@ Here, the delta function enforces the momentum conservation. Therefore, the seco
 
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version) [third term] 
 **Prompt:**  
-Now you will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the third quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the third term with $U_1$.
+You will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the third quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the third term with $U_1$.
 To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the third Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. 
 You should recall that the third term in $\hat{H}^{int}$ is
 $U_1\sum_{i,s,s'} n_{A,s}(R_i) n_{B,s'}(R_i)$   
@@ -312,7 +312,7 @@ Here, the delta function enforces the momentum conservation. Therefore, the thir
 
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version) [fourth term] 
 **Prompt:**  
-Now you will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the fourth quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the fourth term with $U_1$.
+You will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the fourth quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the fourth term with $U_1$.
 To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the fourth Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. 
 You should recall that the fourth term in $\hat{H}^{int}$ is
 $U_1\sum_{i,s,s'} n_{A,s}(R_i) n_{B,s'}(R_i + a_1)$   
@@ -366,7 +366,7 @@ where $G$ runs over the fourth Brillouin zone. Note that the phase factor $e^{-i
 
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version) [fifth term] 
 **Prompt:**  
-Now you will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the fifth quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the fifth term with $U_1$.
+You will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the fifth quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the fifth term with $U_1$.
 To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the fifth Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. 
 You should recall that the fifth term in $\hat{H}^{int}$ is
 $U_1\sum_{i,s,s'} n_{A,s}(R_i) n_{B,s'}(R_i + a_2)$   

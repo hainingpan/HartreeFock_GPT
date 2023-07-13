@@ -36,10 +36,10 @@ Use the following conventions for the symbols:
 You will be instructed to describe the kinetic term of Hamiltonian in {system} in the {real|momentum} space in the {single-particle|second-quantized} form.   
 The degrees of freedom of the system are: {dof}     
 The kinetic term is a tight-binding model composed of the following hopping process: 
-1. {site i} and {site j} with the hopping amplitude {hopping}.  
-[You should ensure the hermiticity of the Hamiltonian.]
-The summation should be taken over all {dof} and all real space positions.  
-Return the Kinetic Hamiltonian {symbol}.
+{site i and site j with the amplitude hopping}
+{You should ensure the hermiticity of the Hamiltonian|None}
+The summation should be taken over all {dof} and all {real|momentum} space positions.  
+Return the Kinetic Hamiltonian {kinetic_symbol}.
 
 Use the following conventions for the symbols:  
 {def_var}
@@ -76,12 +76,12 @@ Use the following conventions for the symbols (You should also obey the conventi
 
 ## Construct interaction Hamiltonian (real space, lattice version)
 **Prompt:**  
-You will be instructed to construct the interaction part of the Hamiltonian, {symbol} in the real space in the second-quantized form.   
-The interacting Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian {symbol}.  
+You will be instructed to construct the interaction part of the Hamiltonian, {second_int_symbol} in the real space in the second-quantized form.   
+The interacting Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian {kinetic_symbol}.  
 The interaction is a density-density interaction composed of the following process:
-1. onsite interaction between {site i} and {site j} with interaction strength {interaction}
+{site i and site j with the interaction strength}
 The summation should be taken over all {dof} and all real space positions.  
-Return the interaction term {symbol} in terms of {symbol}.
+Return the interaction term {second_int_symbol} in terms of {density_symbol}.
 
 Use the following conventions for the symbols (You should also remember the conventions in my previous prompts if there are no conflicts. If you have conflicts in the conventions, you should stop and let me know): 
 {def_var}
@@ -150,32 +150,33 @@ $$\hat{{H}} = \int dr \frac{{1}}{{\sqrt{{V}}}} \sum_{{k_1}} c^\dagger(k_1) e^{{-
 
 ## Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
 **Prompt:**  
-You will be instructed to convert the Kinetic Hamiltonian {symbols} in the second quantized form from the basis in real space to the basis in momentum space. 
-To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {def_FT}, where {real_var} is integrated over all sites in the entire real space. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that {hopping} have no position dependence now.]
-Express the total noninteracting Hamiltonian {second_nonint_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.
+You will be instructed to convert the noninteracting Hamiltonian {nonint_symbol} in the second quantized form from the basis in real space to the basis in momentum space. 
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {def_FT}, where {real_var} is integrated over all sites in the entire real space. You should follow the EXAMPLE below to apply the Fourier transformation. {Note that hopping have no position dependence now|None}
+You should recall that {expression_nonint}
+Express the total noninteracting Hamiltonian {nonint_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):
 {def_var}
 
 ===
 EXAMPLE:  
-Write a Kinetic Hamiltonian $\hat{H}$ in the second quantized form in the real space, $\hat{H}=\sum_{i,j} t(R_i-R_j) c^\dagger(R_i) c(R_j)$, where $i,j$ are summed over the entire real space.  
-Define the Fourier transformation $c^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
-This leads to the inverse Fourier transformation $c^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is first Brillouin zone.  
-Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{H}$, we get  
-$$\hat{H} = \sum_{i,j} t(R_i-R_j) \frac{1}{\sqrt{N}} \sum_{k_1} c^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{\sqrt{N}} \sum_{k_2} c(k_2) e^{i k_2 \cdot R_j} =\frac{1}{N} \sum_{i,j}\sum_{k_1,k_2} c^\dagger(k_1)  c(k_2)  e^{-i k_1\cdot R_i} e^{i k_2 \cdot R_j} t(R_i-R_j) $$
+Write a Kinetic Hamiltonian $\hat{{H}}$ in the second quantized form in the real space, $\hat{{H}}=\sum_{{i,j}} t(R_i-R_j) c^\dagger(R_i) c(R_j)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}$, we get  
+$$\hat{{H}} = \sum_{{i,j}} t(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c(k_2) e^{{i k_2 \cdot R_j}} =\frac{{1}}{{N}} \sum_{{i,j}}\sum_{{k_1,k_2}} c^\dagger(k_1)  c(k_2)  e^{{-i k_1\cdot R_i}} e^{{i k_2 \cdot R_j}} t(R_i-R_j) $$
 Now make a replacement by defining $n= R_i-R_j$  
 The Hamiltonian become  
-$$\hat{H}=\frac{1}{N} \sum_{i,n} \sum_{k_1,k_2} c^\dagger(k_1)  c(k_2) t(n) e^{-i (k_1-k_2)\cdot R_i} e^{-i k_2 \cdot n}$$
-Because $\frac{1}{N}\sum_{i} e^{-i (k_1-k_2)\cdot R_i} = \delta(k_1,k_2)$, where $\delta(k_1,k_2)$ is the Kronecker delta function.  
+$$\hat{{H}}=\frac{{1}}{{N}} \sum_{{i,n}} \sum_{{k_1,k_2}} c^\dagger(k_1)  c(k_2) t(n) e^{{-i (k_1-k_2)\cdot R_i}} e^{{-i k_2 \cdot n}}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_2)\cdot R_i}} = \delta(k_1,k_2)$, where $\delta(k_1,k_2)$ is the Kronecker delta function.  
 therefore   
-$$\hat{H}=\sum_{k_1,k_2} \sum_{n} t(n) e^{-i k_2 \cdot n} c^\dagger(k_1)  c(k_2) \delta(k_1,k_2)$$
+$$\hat{{H}}=\sum_{{k_1,k_2}} \sum_{{n}} t(n) e^{{-i k_2 \cdot n}} c^\dagger(k_1)  c(k_2) \delta(k_1,k_2)$$
 Using the property of Kronecker delta function and sum over $k_2$, we obtain  
-$$\hat{H}=\sum_{k_1} \sum_{n} t(n) e^{-i k_1 \cdot n} c^\dagger(k_1)  c(k_1) $$
+$$\hat{{H}}=\sum_{{k_1}} \sum_{{n}} t(n) e^{{-i k_1 \cdot n}} c^\dagger(k_1)  c(k_1) $$
 For simplicity, we replace $k_1$ with $k$, we obtain  
-$$\hat{H}=\sum_{k} \sum_{n} t(n) e^{-i k \cdot n} c^\dagger(k)  c(k)$$
-If we define energy dispersion $E(k)=\sum_{n} t(n) e^{-i k \cdot n}$, where $n$ is the summation of all hopping pairs, the Hamiltonian in the momentum space is 
-$$\hat{H}=\sum_{k} E(k) c^\dagger(k)  c(k)$$
+$$\hat{{H}}=\sum_{{k}} \sum_{{n}} t(n) e^{{-i k \cdot n}} c^\dagger(k)  c(k)$$
+If we define energy dispersion $E(k)=\sum_{{n}} t(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the Hamiltonian in the momentum space is 
+$$\hat{{H}}=\sum_{{k}} E(k) c^\dagger(k)  c(k)$$
 
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version)
 **Prompt:**  
@@ -330,7 +331,7 @@ You should use the property of Kronecker delta function $\delta_{{k_i,k_j}}$ to 
 Once you reduce one momentum inside the expected value $\langle\dots\rangle$. You will also notice the total momentum conservation will reduce another momentum in the quadratic term. Therefore, you should end up with only two momenta left in the summation.  
 You should follow the EXAMPLE below to reduce one momentum in the Hartree term, and another momentum in the quadratic term.  
 You should recall that {expression_Hartree}.  
-Return the final simplified Hartree term {Hatree_2_symbol}.
+Return the final simplified Hartree term {Hartree_2_symbol}.
 
 ===  
 EXAMPLE:  
