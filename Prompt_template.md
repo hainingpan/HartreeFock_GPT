@@ -180,25 +180,26 @@ $$\hat{{H}}=\sum_{{k}} E(k) c^\dagger(k)  c(k)$$
 
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version)
 **Prompt:**  
-You will be instructed to convert the interacting Hamiltonian {symbol} in the {single particle | second quantized} form the basis in real space to the basis in momentum space. [You will be instructed to perform the transformation to the first term with {symbol}.]
-To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {def_FT}, where {real_var} is integrated over all sites in the entire real space, and {momentum var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. Note that the interaction {symbol} is onsite.  
-Express the first term in interacting Hamiltonian {symbol} with {symbol} in terms of {momentum space ops}. Simplify any summation index if possible.  
+You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the {single-particle|second-quantized} form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {def_FT}, where {real_var} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. {Note that interaction have no position dependence now|None}
+You should recall that {second_int_symbol} is {expression_int}.
+Express {second_int_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
 
 ===  
 EXAMPLE:  
-Write an interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form in the real space, $\hat{H}^{int}=\sum_{s,s'}\sum_{i,j} U(R_i-R_j) c_s^\dagger(R_i) c_{s'}^\dagger(R_j) c_{s'}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
-Define the Fourier transformation $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
-This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
-Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{H}^{int}$, we get  
-$$\hat{H}^{int} = \sum_{s,s'}\sum_{i,j} U(R_i-R_j) \frac{1}{\sqrt{N}} \sum_{k_1} c_s^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{\sqrt{N}} \sum_{k_2} c_{s'}^\dagger(k_2) e^{-i k_2 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_3} c_{s'}(k_3) e^{i k_3 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_4} c_s(k_4) e^{i k_4 \cdot R_i}=\sum_{s,s'}\sum_{i,j}\frac{1}{N^2}\sum_{k_1,k_2,k_3,k_4}U(R_i-R_j)c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot R_i} e^{-i(k_2-k_3)\cdot R_j}$$
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
 Now make a replacement by defining $n= R_i-R_j$  
 The Hamiltonian become  
-$$\hat{H}^{int}=\frac{1}{N^2} \sum_{j,n} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(n) c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot n} e^{-i(k_1-k_4+k_2-k_3)\cdot r_j }$$
-Because $\frac{1}{N}\sum_{i} e^{-i (k_1-k_4+k_2-k_3)\cdot R_i} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
 Therefore,  
-$$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4} \sum_{n} U(n) e^{-i (k_1-k_4) \cdot n} c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4) \sum_{G} \delta(k_1-k_4+k_2-k_3,G)$$
-If we define interaction in the momentum space $U(k)=\sum_{n} U(n) e^{-i k \cdot n}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
-$$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4}  U(k_1-k_4) c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4) \sum_{G} \delta(k_1-k_4+k_2-k_3,G)$$
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
 
 ## Particle-hole transformation
 **Prompt:**  
@@ -238,11 +239,11 @@ Thus, we end up in $\hat{{H}}^{{0}}=\sum_{{i,j}} b_i H_{{i,j}} b_j^\dagger=\sum_
 # Mean-field theory
 ## Wick's theorem
 **Prompt:**  
-You will be instructed to perform a Hartree-Fock approximation to expand the interaction term {second_int_symbol}.  
+You will be instructed to perform a Hartree-Fock approximation to expand the interaction term, {second_int_symbol}.  
 You should use Wick's theorem to expand the four-fermion term in {second_int_symbol} into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${{}}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
 You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
 You should recall that {expression_int}.
-Return the expanded interaction term after Hartree-Fock approximation {HF_symbol}.
+Return the expanded interaction term after Hartree-Fock approximation as {HF_symbol}.
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
 {def_var}
@@ -260,9 +261,9 @@ Be cautious about the order of the index and sign before each term here.
 **Prompt:**  
 You will be instructed to extract the quadratic terms in the {HF_symbol}.  
 The quadratic terms mean terms that are proportional to {bilinear_op}, which excludes terms that are solely expectations or products of expectations.  
-You should only preserve the quadratic terms in {HF_symbol}, which is called {HF_2_symbol}.  
-You should recall that {expression_HF}.
-Return this Hamiltonian {HF_2_symbol}.  
+You should only preserve the quadratic terms in {HF_symbol}, denoted as {HF_2_symbol}.  
+You should recall that {expression_HF}.  
+Return {HF_2_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
 {def_var}
@@ -270,16 +271,17 @@ Use the following conventions for the symbols (You should also obey the conventi
 # Order parameters
 ## Hartree term only
 **Prompt:**  
-You will be instructed to focus on the symmetry breaking associated with the charge density waves and ferromagnetism. You will perform the transformation to {symbol}.  
-Here, Hartree term only means that only the expected value in the form of Hartree term (i.e., $\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$) should be the preserved. All other expected value terms should be dropped.  
-Return the simplified Hamiltonian with {symbol}.  
+You will be instructed to keep only the Hartree term in {HF_2_symbol}.  
+Here, Hartree term only means that only the expected value in the form {expval_Hartree} (Note that the two indices are the same) should be the preserved. All other expected value terms should be dropped.
+You should recall that {expression_HF}  
+Return the simplified Hamiltonian with {Hartree_2_symbol}.  
 
 ## Fock term only
 **Prompt:**  
-You will be instructed to focus on the symmetry breaking associated with spin density wave. You will perform the transformation to {symbol}.  
-Here, Fock term only means that only the expected value in the form of Fock term (i.e., $\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_2,s_2}(k_2) \rangle$), where $\alpha_1\neq \alpha_2$, $s_1\neq s_2$ should be the preserved. All other expected value terms should be dropped.  
-Return the simplified Hamiltonian with {symbol}.  
-
+You will be instructed to keep only the Fock term in {HF_2_symbol}.  
+Here, Fock term only means that only the expected value in the form {expval_Fock:$\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_2,s_2}(k_2) \rangle$} (Note that the two indices are the different) should be the preserved. All other expected value terms should be dropped.
+You should recall that {expression_HF}  
+Return the simplified Hamiltonian with {Fock_2_symbol}.
 
 # Simplify the MF quadratic term
 ## Expand interaction
@@ -292,24 +294,26 @@ Return {HF_2_symbol} with expanded interaction.
 
 ## Swap the index only
 **Prompt:**  
-You will be instructed to simplify the quadratic term {symbol} through relabeling the index.  
-The logic is that the expected value ({expected}) in the first {Hartree|Fock} term ({firstHartree|firstFock}}) has the same momentum dependence as the quadratic operators ({quadratic}) in the second {Hartree|Fock} term ({secondHartree|secondFock}}), and vice versa. Namely, this means a replacement of {relabelling} applied to ONLY the second {Hartree|Fock} term. You should not swap any index that is not in the summation, which includes {Unsummed_Indices}.  
-This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second {Hartree|Fock} term, you can make the second {Hartree|Fock} term look identical to the first {Hartree|Fock} term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
-Return the simplied {symbol}.
+You will be instructed to simplify the quadratic term {HF_2_symbol} through relabeling the index.  
+The logic is that the expected value ({expval}) in the first Hartree term ({expression_Hartree_1}) has the same form as the quadratic operators in the second Hartree term ({expression_Hartree_2}), and vice versa. The same applies to the Fock term.  
+Namely, a replacement of {relabel} is applied to ONLY the second Hartree or Fock term. You should not swap any index that is not in the summation, which includes {Unsummed_Indices}.  
+This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Hartree or Fock term, you can make the second Hartree or Fock term look identical to the first Hartree or Fock term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
+You should recall that {expression_HF_2}
+Return the simplied {HF_2_symbol}.
 
 ===  
 EXAMPLE:  
-Given a Hamiltonian $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \rangle c_{d,\sigma_1}^\dagger(k_1) c_{\sigma_4}(k_4) ) \delta_{k_1+k_2,k_3+k_4}$, where $V(q)=V(-q)$.  
+Given a Hamiltonian $\hat{{H}}=\sum_{{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4}} V(k_1-k_4) (\langle c_{{d,\sigma_1}}^\dagger(k_1) c_{{d,\sigma_4}}(k_4) \rangle c_{{p,\sigma_2}}^\dagger(k_2) c_{{p,\sigma_3}}(k_3) + \langle c_{{p,\sigma_2}}^\dagger(k_2) c_{{d,\sigma_3}}(k_3) \rangle c_{{d,\sigma_1}}^\dagger(k_1) c_{{\sigma_4}}(k_4) ) \delta_{{k_1+k_2,k_3+k_4}}$, where $V(q)=V(-q)$.  
 In the second term, we relabel the index to swap the index in expected value and the index in quadratic operators, namely, $\sigma_1 \leftrightarrow \sigma_2$, $\sigma_3 \leftrightarrow \sigma_4$, $k_1 \leftrightarrow k_2$, $k_3 \leftrightarrow k_4$. Important: $d$ and $p$ cannot be swapped because they are not indices in the summation.  
-After the replacement, the second term becomes $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_2-k_3) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.  
-Note that the Kronecker dirac function $\delta_{k_4+k_3,k_2+k_1}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_4-k_1) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.
-Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3) \delta_{k_4+k_3,k_2+k_1}$.   
-Finally, we have the simplified Hamiltonian as  $\hat{H}=\sum_{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4} V(k_1-k_4) (\langle c_{d,\sigma_1}^\dagger(k_1) c_{d,\sigma_4}(k_4) \rangle c_{p,\sigma_2}^\dagger(k_2) c_{p,\sigma_3}(k_3) + \langle c_{p,\sigma_1}^\dagger(k_1) c_{p,\sigma_4}(k_4) \rangle c_{d,\sigma_2}^\dagger(k_2) c_{d,\sigma_3}(k_3)) \delta_{k_4+k_3,k_2+k_1}$.
+After the replacement, the second term becomes $\sum_{{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4}} V(k_2-k_3) \langle c_{{p,\sigma_1}}^\dagger(k_1) c_{{p,\sigma_4}}(k_4) \rangle c_{{d,\sigma_2}}^\dagger(k_2) c_{{d,\sigma_3}}(k_3) \delta_{{k_4+k_3,k_2+k_1}}$.  
+Note that the Kronecker dirac function $\delta_{{k_4+k_3,k_2+k_1}}$ implies $k_1+k_2=k_3+k_4$, i.e., $k_2-k_3=k_4-k_1$. Thus, the second term simplifies to $\sum_{{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4}} V(k_4-k_1) \langle c_{{p,\sigma_1}}^\dagger(k_1) c_{{p,\sigma_4}}(k_4) \rangle c_{{d,\sigma_2}}^\dagger(k_2) c_{{d,\sigma_3}}(k_3) \delta_{{k_4+k_3,k_2+k_1}}$.
+Because $V(q)=V(-q)$, meaning $V(k_4-k_1)=V(k_1-k_4)$, the second term further simplifies to $\sum_{{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4}} V(k_1-k_4) \langle c_{{p,\sigma_1}}^\dagger(k_1) c_{{p,\sigma_4}}(k_4) \rangle c_{{d,\sigma_2}}^\dagger(k_2) c_{{d,\sigma_3}}(k_3) \delta_{{k_4+k_3,k_2+k_1}}$.   
+Finally, we have the simplified Hamiltonian as  $\hat{{H}}=\sum_{{k_1,k_2, k_3, k_4,\sigma_1,\sigma_2,\sigma_3,\sigma_4}} V(k_1-k_4) (\langle c_{{d,\sigma_1}}^\dagger(k_1) c_{{d,\sigma_4}}(k_4) \rangle c_{{p,\sigma_2}}^\dagger(k_2) c_{{p,\sigma_3}}(k_3) + \langle c_{{p,\sigma_1}}^\dagger(k_1) c_{{p,\sigma_4}}(k_4) \rangle c_{{d,\sigma_2}}^\dagger(k_2) c_{{d,\sigma_3}}(k_3)) \delta_{{k_4+k_3,k_2+k_1}}$.
 
 ## Swap the index to combine Hartree and Fock terms
 **Prompt:**  
 You will be instructed to simplify the quadratic term {HF_2_symbol} through relabeling the index to combine the two Hartree/Fock term into one Hartree/Fock term.  
-The logic is that the expected value ({expval}) in the first Hartree term ({expression_Hartree_1}) has the same form as the qudratic operators in the second Hartree term ({expression_Hartree_2}), and vice versa. The same applies to the Fock term.  
+The logic is that the expected value ({expval}) in the first Hartree term ({expression_Hartree_1}) has the same form as the quadratic operators in the second Hartree term ({expression_Hartree_2}), and vice versa. The same applies to the Fock term.  
 This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Hartree term, you can make the second Hartree term look identical to the first Hartree term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
 You should perform this trick of "relabeling the index" for both two Hartree terms and two Fock terms to reduce them to one Hartree term, and one Fock term.  
 You should recall that {expression_HF_2}.  
@@ -325,7 +329,7 @@ Finally, we have the simplified Hamiltonian as  $\hat{{H}}=2\sum_{{k_1,k_2, k_3,
 
 ## Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
 **Prompt:**  
-You will be instructed to simplify the Hartree term in {HF_2_symbol} by reducing the momentum inside the expected value {expval}.  
+You will be instructed to simplify the Hartree term in {Hartree_2_symbol} by reducing the momentum inside the expected value {expval}.  
 The expected value {expval} is only nonzero when the two momenta $k_i,k_j$ are the same, namely, {expval_id}.  
 You should use the property of Kronecker delta function $\delta_{{k_i,k_j}}$ to reduce one momentum $k_i$ but not $b_i$.
 Once you reduce one momentum inside the expected value $\langle\dots\rangle$. You will also notice the total momentum conservation will reduce another momentum in the quadratic term. Therefore, you should end up with only two momenta left in the summation.  
@@ -344,28 +348,28 @@ Therefore, the final simplified Hartree term after reducing two momenta is $\hat
 
 ## Reduce momentum in Hartree term (momentum in BZ)
 **Prompt:**  
-You will be instructed to simplify the Hartree term {symbol} by reducing the momentum inside the expected value {expected}.  
-The expected value {symbol} is only nonzero when the two momenta $k_i,k_j$ are the same, namely, {expected value identity}.  
-You should use the property of Kronecker delta function $\delta_{k_i,k_j}$ to reduce one momentum $k_i$.
+You will be instructed to simplify the Hartree term, {Hartree_2_symbol}, by reducing the momentum inside the expected value {expval}.  
+The expected value {expval} is only nonzero when the two momenta $k_i,k_j$ are the same, namely, {expval_id}.  
+You should use the property of Kronecker delta function $\delta_{{k_i,k_j}}$ to reduce one momentum $k_i$.
 Once you reduce one momentum inside the expected value $\langle\dots\rangle$. You will also notice the total momentum conservation will reduce another momentum in the quadratic term. Therefore, you should end up with only two momenta left in the summation.  
 You should follow the EXAMPLE below to reduce one momentum in the Hartree term, and another momentum in the quadratic term.  
-You should recall that the Hartree term in {Hartree}.  
-Return the final simplified Hartree term {Hartree}.
+You should recall that {expression_Hartree}.  
+Return the final simplified Hartree term {Hartree_2_symbol}.
 
 ===  
 EXAMPLE:  
-Given a Hamiltonian where the Hartree term $\hat{H}^{Hartree}=\sum_{k_1,k_2, k_3, k_4,s_1,s_2} V(k_1-k_4) \langle c_{s_1}^\dagger(k_1) c_{s_1}(k_4) \rangle c_{s_2}^\dagger(k_2) c_{s_2}(k_3) \sum_{G}\delta_{k_1+k_2-k_3-k_4,G}$, where $k_i$ is the momentum inside first Brilloun zone, $G$ is the reciprocal lattice vectors, and $s_i$ is a certain index for the degree of freedom other than momentum.   
-Inside the expected value, we realize $\langle c_{s_1}^\dagger(k_1) c_{s_1}(k_4) \rangle$ is nonzero only when $k_1=k_4$, i.e., $\langle c_{s_1}^\dagger(k_1) c_{s_1}(k_4) \rangle=\langle c_{s_1}^\dagger(k_1) c_{s_1}(k_4) \rangle\delta_{k_1,k_4}$.  
-Thus, the Hartree term becomes $\sum_{k_1,k_2, k_3, k_4,s_1,s_2} V(k_1-k_4) \langle c_{s_1}^\dagger(k_1) c_{s_1}(k_4) \rangle \delta_{k_1,k_4} c_{s_2}^\dagger(k_2) c_{s_2}(k_3) \sum_{G}\delta_{k_1+k_2-k_3-k_4,G}$.  
-Use the property of Kronecker delta function $\delta_{k_1,k_4}$ to sum over $k_4$, we have $\sum_{k_1, k_2, k_3,s_1,s_2} V(k_1-k_1) \langle c_{s_1}^\dagger(k_1) c_{s_1}(k_1) \rangle c_{s_2}^\dagger(k_2) c_{s_2}(k_3) \sum_{G}\delta_{k_1+k_2-k_3-k_1,G}=\sum_{k_1, k_2, k_3,s_1,s_2} V(0) \langle c_{s_1}^\dagger(k_1) c_{s_1}(k_1) \rangle c_{s_2}^\dagger(k_2) c_{s_2}(k_3) \sum_{G}\delta_{k_2-k_3,G}$.  
-We can further simplify $\sum_{G}\delta_{k_2-k_3,G}$. Because $k_i$ is momentum inside first Brilloun zone, and the difference between $k_2$ and $k_3$ cannot exceed the first shell of reciprocal lattice vector, which means $G$ can only take the value of the origin point in the reciprocal lattice, therefore, $\sum_{G}\delta_{k_2-k_3,G}=\delta_{k_2-k_3,0}$.   
-Thus, the Hartree term simplifies to $\sum_{k_1, k_2, k_3,s_1,s_2} V(0) \langle c_{s_1}^\dagger(k_1) c_{s_1}(k_1) \rangle c_{s_2}^\dagger(k_2) c_{s_2}(k_3) \delta_{k_2-k_3,0}=\sum_{k_1, k_2,s_1,s_2} V(0) \langle c_{s_1}^\dagger(k_1) c_{s_1}(k_1) \rangle c_{s_2}^\dagger(k_2) c_{s_2}(k_2)$.  
-Therefore, the final simplified Hartree term after reducing one momentum is $\hat{H}^{Hartree}=\sum_{k_1, k_2,s_1,s_2} V(0) \langle c_{s_1}^\dagger(k_1) c_{s_1}(k_1) \rangle c_{s_2}^\dagger(k_2) c_{s_2}(k_2)$ 
+Given a Hamiltonian where the Hartree term $\hat{{H}}^{{Hartree}}=\sum_{{k_1,k_2, k_3, k_4,s_1,s_2}} V(k_1-k_4) \langle c_{{s_1}}^\dagger(k_1) c_{{s_1}}(k_4) \rangle c_{{s_2}}^\dagger(k_2) c_{{s_2}}(k_3) \sum_{{G}}\delta_{{k_1+k_2-k_3-k_4,G}}$, where $k_i$ is the momentum inside first Brilloun zone, $G$ is the reciprocal lattice vectors, and $s_i$ is a certain index for the degree of freedom other than momentum.   
+Inside the expected value, we realize $\langle c_{{s_1}}^\dagger(k_1) c_{{s_1}}(k_4) \rangle$ is nonzero only when $k_1=k_4$, i.e., $\langle c_{{s_1}}^\dagger(k_1) c_{{s_1}}(k_4) \rangle=\langle c_{{s_1}}^\dagger(k_1) c_{{s_1}}(k_4) \rangle\delta_{{k_1,k_4}}$.  
+Thus, the Hartree term becomes $\sum_{{k_1,k_2, k_3, k_4,s_1,s_2}} V(k_1-k_4) \langle c_{{s_1}}^\dagger(k_1) c_{{s_1}}(k_4) \rangle \delta_{{k_1,k_4}} c_{{s_2}}^\dagger(k_2) c_{{s_2}}(k_3) \sum_{{G}}\delta_{{k_1+k_2-k_3-k_4,G}}$.  
+Use the property of Kronecker delta function $\delta_{{k_1,k_4}}$ to sum over $k_4$, we have $\sum_{{k_1, k_2, k_3,s_1,s_2}} V(k_1-k_1) \langle c_{{s_1}}^\dagger(k_1) c_{{s_1}}(k_1) \rangle c_{{s_2}}^\dagger(k_2) c_{{s_2}}(k_3) \sum_{{G}}\delta_{{k_1+k_2-k_3-k_1,G}}=\sum_{{k_1, k_2, k_3,s_1,s_2}} V(0) \langle c_{{s_1}}^\dagger(k_1) c_{{s_1}}(k_1) \rangle c_{{s_2}}^\dagger(k_2) c_{{s_2}}(k_3) \sum_{{G}}\delta_{{k_2-k_3,G}}$.  
+We can further simplify $\sum_{{G}}\delta_{{k_2-k_3,G}}$. Because $k_i$ is momentum inside first Brilloun zone, and the difference between $k_2$ and $k_3$ cannot exceed the first shell of reciprocal lattice vector, which means $G$ can only take the value of the origin point in the reciprocal lattice, therefore, $\sum_{{G}}\delta_{{k_2-k_3,G}}=\delta_{{k_2-k_3,0}}$.   
+Thus, the Hartree term simplifies to $\sum_{{k_1, k_2, k_3,s_1,s_2}} V(0) \langle c_{{s_1}}^\dagger(k_1) c_{{s_1}}(k_1) \rangle c_{{s_2}}^\dagger(k_2) c_{{s_2}}(k_3) \delta_{{k_2-k_3,0}}=\sum_{{k_1, k_2,s_1,s_2}} V(0) \langle c_{{s_1}}^\dagger(k_1) c_{{s_1}}(k_1) \rangle c_{{s_2}}^\dagger(k_2) c_{{s_2}}(k_2)$.  
+Therefore, the final simplified Hartree term after reducing one momentum is $\hat{{H}}^{{Hartree}}=\sum_{{k_1, k_2,s_1,s_2}} V(0) \langle c_{{s_1}}^\dagger(k_1) c_{{s_1}}(k_1) \rangle c_{{s_2}}^\dagger(k_2) c_{{s_2}}(k_2)$ 
 
 
 ## Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
 **Prompt:**  
-You will be instructed to simplify the Fock term in {HF_2_symbol} by reducing the momentum inside the expected value {expval}.  
+You will be instructed to simplify the Fock term in {Fock_2_symbol} by reducing the momentum inside the expected value {expval}.  
 The expected value {expval} is only nonzero when the two momenta $k_i,k_j$ are the same, namely, {expval_id}.  
 You should use the property of Kronecker delta function $\delta_{{k_i,k_j}}$ to reduce one momentum $k_i$ but not $b_i$.  
 Once you reduce one momentum inside the expected value $\langle\dots\rangle$. You will also notice the total momentum conservation will reduce another momentum in the quadratic term. Therefore, you should end up with only two momenta left in the summation.
@@ -394,41 +398,50 @@ Return the final sum of Hartree and Fock term.
 
 ## Construct full Hamiltonian after HF
 **Prompt:**  
-You will be instructed to construct the entire Hamiltonian after the Hartree-Fock approximation {symbol}. 
-You should first recall the Kinetic Hamiltonian {symbol}, which is {def}.  
-You should then combine {symbol} with the interacting Hamiltonian {symbol} after the Hartree-Fock approximation, which is the entire Hamiltonian {symbol} after Hartree-Fock.  
-Return the expression for {symbol}.  
+You will be instructed to construct the entire Hamiltonian after the Hartree-Fock approximation {HF_symbol}. 
+You should first recall the Kinetic Hamiltonian {kinetic_symbol} is {expression_kinetic}.  
+You should then recall the interacting Hamiltonian {int_symbol} is {expression_int}.  
+You should then combine {kinetic_symbol} with the interacting Hamiltonian {int_symbol} after the Hartree-Fock approximation, which is the entire Hamiltonian {Ham_symbol} after Hartree-Fock.  
+Return the expression for {Ham_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
 {def_var}
 
 # Mathematical Simplify
+## Mathematical simplify: inner product expansion
+**Prompt:**  
+You will be instructed to simplify {symbol} by using $k\cdot \hat{{x}}=k_x$ and $k\cdot \hat{{y}}=k_y$ only.  
+You should recall that {expression_symbol}.  
+Return the simplified {symbol}. 
+
 ## Mathematical simplify: Euler's formula
 **Prompt:**  
-You will be instructed to simplify {equation}.  
-You should convert the exponential to the trigonometrical functions using Euler's formula.  
-Return the simplified {equation}.  
+You will be instructed to simplify {symbol} by converting the exponential to the trigonometrical functions using Euler's formula only. You should also apply basic trigonometrical function simplification afterwards if possible. 
+You should recall that {expression_symbol}.  
+Return the simplified {symbol}.  
 
 ## Mathematical simplify: prosthaphaeresis
 **Prompt:**  
-You will be instructed to simplify {equation}.  
-You should simplify the trigonometrical functions using prosthaphaeresis.  
-Return the simplified {equation}. 
+You will be instructed to simplify {symbol} by reducing trigonometrical functions using prosthaphaeresis.  
+You should recall that {expression_symbol}.  
+Return the simplified {symbol}. 
 
-## Mathematical simplify: Expand using Associative property
+## Mathematical simplify: Expand the product using Associative property
 **Prompt:**  
-You will be instructed to expand {equation}.  
-Express the {equation} in the expanded form.
+You will be instructed to expand the product in {symbol}.  
+You should recall that {expression_symbol}.   
+Express {symbol} in the expanded form.
 
 ## Mathematical simplify: Combine using Associative property
 **Prompt:**  
-You will be instructed to expand the product {equation}.  
-After expansion, you can introduce a sign variable {symbol} before $\hat{x}/2$, where take values of {values} to combine the {num of terms} term in to one term.
-Express the {equation} in the expanded form.
+You will be instructed to expand the product in {symbol}.  
+After expansion, you can introduce a sign variable {var}, which take values of {values} to combine the {num_of_terms} term in to one term.
+You should recall that {expressoin_symbol}.
+Express the {symbol} in the expanded form.
 
 
 ## Mathematical simplify: reduce index
 **Prompt:**  
-You will be instructed to simplify the {equation}.  
-You should perform constant term summation by reducing the unnecessary indices {index}.
-Return the simplified Kinetic Hamiltonian {equation}.
+You will be instructed to simplify the {symbol} by performing constant term summation by reducing the unnecessary indices {index}.
+You should recall that {expressoin_symbol}.  
+Return the simplified Kinetic Hamiltonian {symbol}.
