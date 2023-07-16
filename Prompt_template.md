@@ -268,7 +268,7 @@ Thus, we end up in $\hat{{H}}^{{0}}=\sum_{{i,j}} b_i H_{{i,j}} b_j^\dagger=\sum_
 You will be instructed to perform a Hartree-Fock approximation to expand the interaction term, {second_int_symbol}.  
 You should use Wick's theorem to expand the four-fermion term in {second_int_symbol} into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${{}}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
 You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
-You should recall that {expression_int}.
+You should recall that {expression_int}.  
 Return the expanded interaction term after Hartree-Fock approximation as {HF_symbol}.
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
