@@ -136,10 +136,9 @@ def run(prompt_template, arxiv_number):
     for kwarg,prompt_i,answer in zip(kwargs,prompts,answers):
         task=kwarg['task']
         prompt=prompt_i['content']
-        added=f'## {task}  \n**prompt**  \n{prompt}\n\n**completion**  \n{answer}'
-        string+=added
+        added=f'## {task}  \n**Prompt:**  \n{prompt}\n\n**Completion:**  \n{answer}\n\n'
 
-    with open('{arxiv_number}_auto.md','w') as f:
+    with open(f'{arxiv_number}_auto.md','w') as f:
         f.write(string)
 
 def main():
