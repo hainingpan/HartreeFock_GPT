@@ -106,10 +106,11 @@ Use the following conventions for the symbols (You should also obey the conventi
 
 ## Define each term in Potential Hamiltonian (continuum version)
 **Prompt:**  
-You will be instructed to construct each term {potential_symbol}, namely, {var}.  
-{Description}.
+You will be instructed to construct each term {potential_symbol}, namely, {Pot_var}.  
+The diagonal terms are: {expression_diag}
+The off-diagonal terms are: {expression_offdiag}
 You should recall that {expression_Potential}.  
-Return the expressions for {var}, and substitute it into the potential Hamiltonian {potential_symbol}.  
+Return the expressions for {Pot_var}, and substitute it into the potential Hamiltonian {potential_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or have conflicts in the conventions, you should stop and let me know):  
 {def_var}
