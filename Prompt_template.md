@@ -72,13 +72,27 @@ Use the following conventions for the symbols:
 
 ## Define each term in Kinetic Hamiltonian (continuum version)
 **Prompt:**  
-You will be instructed to construct each term, namely {var}.  
-{Description}.  
+You will be instructed to construct each term, namely {Ek}.  
+For all energy dispersions, {Ek}, it characterizes the {parabolic|Dirac|cos} dispersion for {electrons|holes}. 
+[In addition, an shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.] 
+You should follow the EXAMPLE below to obtain correct energy dispersion, select the correct EXAMPLE by noticing the type of dispersion.
+Finally, in the real space, the momentum ${k_symbol}=-i \partial_{r_symbol}$. You should keep the form of ${k_symbol}$ in the Hamiltonian for short notations but should remember ${k_symbol}$ is an operator.  
 You should recall that {expression_kinetic}.   
-Return the expression for {var} in the Kinetic Hamiltonian, and substitute it into the Kinetic Hamiltonian {kinetic_symbol}.  
+Return the expression for {Ek} in the Kinetic Hamiltonian, and substitute it into the Kinetic Hamiltonian {kinetic_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
 {def_var}
+
+===  
+EXAMPLE 1:  
+A parabolic dispersion for electron is $E_{\alpha}=\frac{\hbar^2 k^2}{2m_{\alpha}}$, where $\alpha$ indicates the type of electron.  If there is a further shift of $q$ in the momentum $k$, the dispersion will become $E_{\alpha}=\frac{\hbar^2 (k-q)^2}{2m_{\alpha}}$.
+
+EXAMPLE 2:
+A parabolic dispersion for hole is $E_{\alpha}=-\frac{\hbar^2 k^2}{2m_{\alpha}}$, where $\alpha$ indicates the type of hole.  If there is a further shift of $q$ in the momentum $k$, the dispersion will become $E_{\alpha}=-\frac{\hbar^2 (k-q)^2}{2m_{\alpha}}$.
+
+EXAMPLE 3:  
+A dirac dispersion for electron/hole is a 2 by 2 matrix, i.e., $h_{\theta}(k)=-\hbar v_D |k| \begin{pmatrix}  0 & e^{i(\theta_{k}-\theta)}\\ e^{-i(\theta_{\bar{k}}-\theta)} & 0 \end{pmatrix}$, where $v_D$ is the Fermi velocity, $\theta$ is the twist angle, and $\theta_k$ indicates the azumith angle of $k$. If there is a further shift of $K_{\theta}$ in the momentum $k$, the dispersion will become $h_{\theta}(k)=-\hbar v_D |k-K_{\theta}| \begin{pmatrix}  0 & e^{i(\theta_{k-K_{\theta}}-\theta)}\\ e^{-i(\theta_{k-K_{\theta}}-\theta)} & 0 \end{pmatrix}$.
+
 
 ## Construct Potential Hamiltonian (continuum version)
 **Prompt:**  
