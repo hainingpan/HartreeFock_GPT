@@ -97,11 +97,11 @@ A dirac dispersion for electron/hole is a 2 by 2 matrix, i.e., $h_{\theta}(k)=-\
 ## Construct Potential Hamiltonian (continuum version)
 **Prompt:**  
 You will be instructed to describe the potential term of Hamiltonian {potential_symbol} in the {real|momentum} space in the {single-particle|second-quantized} form.  
-The potential Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian {kinetic_symbol}.  
-{Description}.  
-Express the potential Hamiltonian {potential_symbol} using {var}.  
+The potential Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian The diagonal terms are {diag_pot}.
+The off-dagonal terms are the coupling between {interacting_dof}, {offdiag_pot}, which should be kept hermitian.  
+Express the potential Hamiltonian {potential_symbol} using {diag_pot} and {offdiag_pot}.  
 
-Use the following conventions for the symbols (You should also remember the conventions in my previous prompts if there are no conflicts. If you have conflicts in the conventions, you should stop and let me know):  
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
 {def_var}
 
 ## Define each term in Potential Hamiltonian (continuum version)
@@ -123,7 +123,7 @@ The interaction is a density-density interaction composed of the following proce
 The summation should be taken over all {dof} and all real space positions.  
 Return the interaction term {second_int_symbol} in terms of {density_symbol}.
 
-Use the following conventions for the symbols (You should also remember the conventions in my previous prompts if there are no conflicts. If you have conflicts in the conventions, you should stop and let me know): 
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know): 
 {def_var}
 
 ## Construct interaction Hamiltonian (momentum space)
