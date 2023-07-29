@@ -73,11 +73,11 @@ Use the following conventions for the symbols:
 ## Define each term in Kinetic Hamiltonian (continuum version)
 **Prompt:**  
 You will be instructed to construct each term, namely {Ek}.  
-For all energy dispersions, {Ek}, it characterizes the {parabolic|Dirac|cos} dispersion for {electrons|holes}. 
-[In addition, an shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.] 
-You should follow the EXAMPLE below to obtain correct energy dispersion, select the correct EXAMPLE by noticing the type of dispersion.
+For all energy dispersions, {Ek}, it characterizes the {parabolic|Dirac|cos} dispersion for {electrons|holes}.   
+[In addition, an shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.]  
+You should follow the EXAMPLE below to obtain correct energy dispersion, select the correct EXAMPLE by noticing the type of dispersion.  
 Finally, in the real space, the momentum ${k_symbol}=-i \partial_{r_symbol}$. You should keep the form of ${k_symbol}$ in the Hamiltonian for short notations but should remember ${k_symbol}$ is an operator.  
-You should recall that {expression_kinetic}.   
+You should recall that {expression_kinetic}.    
 Return the expression for {Ek} in the Kinetic Hamiltonian, and substitute it into the Kinetic Hamiltonian {kinetic_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
@@ -97,7 +97,7 @@ A dirac dispersion for electron/hole is a 2 by 2 matrix, i.e., $h_{\theta}(k)=-\
 ## Construct Potential Hamiltonian (continuum version)
 **Prompt:**  
 You will be instructed to describe the potential term of Hamiltonian {potential_symbol} in the {real|momentum} space in the {single-particle|second-quantized} form.  
-The potential Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian The diagonal terms are {diag_pot}.
+The potential Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian The diagonal terms are {diag_pot}.  
 The off-dagonal terms are the coupling between {interacting_dof}, {offdiag_pot}, which should be kept hermitian.  
 Express the potential Hamiltonian {potential_symbol} using {diag_pot} and {offdiag_pot}.  
 
@@ -107,8 +107,8 @@ Use the following conventions for the symbols (You should also obey the conventi
 ## Define each term in Potential Hamiltonian (continuum version)
 **Prompt:**  
 You will be instructed to construct each term {potential_symbol}, namely, {Pot_var}.  
-The diagonal terms are: {expression_diag}
-The off-diagonal terms are: {expression_offdiag}
+The diagonal terms are: {expression_diag}.  
+The off-diagonal terms are: {expression_offdiag}.  
 You should recall that {expression_Potential}.  
 Return the expressions for {Pot_var}, and substitute it into the potential Hamiltonian {potential_symbol}.  
 
