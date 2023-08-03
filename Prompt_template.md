@@ -42,78 +42,79 @@ Return the summarized text.
 ## Construct Kinetic Hamiltonian (continuum version, single-particle)
 **Prompt:**  
 You will be instructed to describe the kinetic term of Hamiltonian in {system} in the {real|momentum} space in the {single-particle|second-quantized} form.   
-The degrees of freedom of the system are: {dof}.  
-Express the Kinetic Hamiltonian {kinetic_symbol} using {var} which are only on the diagonal terms, and arrange the basis in the order of {order}. {Note that the sublattice degrees of freedom is suppressed for now and will be stated later|None}
+The degrees of freedom of the system are: {degrees_of_freedom}.  
+Express the Kinetic Hamiltonian {kinetic_symbol} using {variable} which are only on the diagonal terms, and arrange the basis in the order of {order}. [Note that the sublattice degrees of freedom is suppressed for now and will be stated later]
 
 Use the following conventions for the symbols:  
-{def_var}
+{definition_of_variables}
 
 ## Construct Kinetic Hamiltonian (continuum version, second-quantized)
 **Prompt:**  
 You will be instructed to describe the kinetic term of Hamiltonian in {system} in the {real|momentum} space in the {single-particle|second-quantized} form.   
-The degrees of freedom of the system are: {dof}.  
+The degrees of freedom of the system are: {degrees_of_freedom}.  
 Express the Kinetic Hamiltonian {kinetic_symbol} using {dispersion_symbol}, {annihilation_op}, and {creation_op}, where the summation of ${k|r}$ should be running over the {entire_space|first_Brillouin_zone}.
 
 Use the following conventions for the symbols:  
-{def_var}
+{definition_of_variables}
 
 ## Construct Kinetic Hamiltonian (lattice version)
 **Prompt:**  
 You will be instructed to describe the kinetic term of Hamiltonian in {system} in the {real|momentum} space in the {single-particle|second-quantized} form.   
-The degrees of freedom of the system are: {dof}     
+The degrees of freedom of the system are: {degrees_of_freedom}     
 The kinetic term is a tight-binding model composed of the following hopping process: 
 {site i and site j with the amplitude hopping}
-{You should ensure the hermiticity of the Hamiltonian|None}
-The summation should be taken over all {dof} and all {real|momentum} space positions.  
+[You should ensure the hermiticity of the Hamiltonian]
+The summation should be taken over all {degrees_of_freedom} and all {real|momentum} space positions.  
 Return the Kinetic Hamiltonian {kinetic_symbol}.
 
 Use the following conventions for the symbols:  
-{def_var}
+{definition_of_variables}
 
 ## Define each term in Kinetic Hamiltonian (continuum version)
 **Prompt:**  
-You will be instructed to construct each term, namely {Ek}.  
-For all energy dispersions, {Ek}, it characterizes the {parabolic|Dirac|cos} dispersion for {electrons|holes}.   
-[In addition, an shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.]  
+You will be instructed to construct each term, namely {Energy_dispersion}.  
+For all energy dispersions, {Energy_dispersion}, it characterizes the {parabolic|Dirac|cos} dispersion for {electrons|holes}.   
+[In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.]  
 You should follow the EXAMPLE below to obtain correct energy dispersion, select the correct EXAMPLE by noticing the type of dispersion.  
 Finally, in the real space, the momentum ${k_symbol}=-i \partial_{r_symbol}$. You should keep the form of ${k_symbol}$ in the Hamiltonian for short notations but should remember ${k_symbol}$ is an operator.  
 You should recall that {expression_kinetic}.    
-Return the expression for {Ek} in the Kinetic Hamiltonian, and substitute it into the Kinetic Hamiltonian {kinetic_symbol}.  
+Return the expression for {Energy_dispersion} in the Kinetic Hamiltonian, and substitute it into the Kinetic Hamiltonian {kinetic_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def_var}
+{definition_of_variables}
 
 ===  
 EXAMPLE 1:  
-A parabolic dispersion for electron is $E_{\alpha}=\frac{\hbar^2 k^2}{2m_{\alpha}}$, where $\alpha$ indicates the type of electron.  If there is a further shift of $q$ in the momentum $k$, the dispersion will become $E_{\alpha}=\frac{\hbar^2 (k-q)^2}{2m_{\alpha}}$.
+A parabolic dispersion for electron is $E_{{\alpha}}=\frac{{\hbar^2 k^2}}{{2m_{{\alpha}}}}$, where $\alpha$ indicates the type of electron.  If there is a further shift of $q$ in the momentum $k$, the dispersion will become $E_{{\alpha}}=\frac{{\hbar^2 (k-q)^2}}{{2m_{{\alpha}}}}$.
 
 EXAMPLE 2:
-A parabolic dispersion for hole is $E_{\alpha}=-\frac{\hbar^2 k^2}{2m_{\alpha}}$, where $\alpha$ indicates the type of hole.  If there is a further shift of $q$ in the momentum $k$, the dispersion will become $E_{\alpha}=-\frac{\hbar^2 (k-q)^2}{2m_{\alpha}}$.
+A parabolic dispersion for hole is $E_{{\alpha}}=-\frac{{\hbar^2 k^2}}{{2m_{{\alpha}}}}$, where $\alpha$ indicates the type of hole.  If there is a further shift of $q$ in the momentum $k$, the dispersion will become $E_{{\alpha}}=-\frac{{\hbar^2 (k-q)^2}}{{2m_{{\alpha}}}}$.
 
 EXAMPLE 3:  
-A dirac dispersion for electron/hole is a 2 by 2 matrix, i.e., $h_{\theta}(k)=-\hbar v_D |k| \begin{pmatrix}  0 & e^{i(\theta_{k}-\theta)}\\ e^{-i(\theta_{\bar{k}}-\theta)} & 0 \end{pmatrix}$, where $v_D$ is the Fermi velocity, $\theta$ is the twist angle, and $\theta_k$ indicates the azumith angle of $k$. If there is a further shift of $K_{\theta}$ in the momentum $k$, the dispersion will become $h_{\theta}(k)=-\hbar v_D |k-K_{\theta}| \begin{pmatrix}  0 & e^{i(\theta_{k-K_{\theta}}-\theta)}\\ e^{-i(\theta_{k-K_{\theta}}-\theta)} & 0 \end{pmatrix}$.
+A dirac dispersion for electron/hole is a 2 by 2 matrix, i.e., $h_{{\theta}}(k)=-\hbar v_D |k| \begin{{pmatrix}}  0 & e^{{i(\theta_{{k}}-\theta)}}\\ e^{{-i(\theta_{{\bar{{k}}}}-\theta)}} & 0 \end{{pmatrix}}$, where $v_D$ is the Fermi velocity, $\theta$ is the twist angle, and $\theta_k$ indicates the azumith angle of $k$. If there is a further shift of $K_{{\theta}}$ in the momentum $k$, the dispersion will become $h_{{\theta}}(k)=-\hbar v_D |k-K_{{\theta}}| \begin{{pmatrix}}  0 & e^{{i(\theta_{{k-K_{{\theta}}}}-\theta)}}\\ e^{{-i(\theta_{{k-K_{{\theta}}}}-\theta)}} & 0 \end{{pmatrix}}$.
 
 
 ## Construct Potential Hamiltonian (continuum version)
 **Prompt:**  
 You will be instructed to describe the potential term of Hamiltonian {potential_symbol} in the {real|momentum} space in the {single-particle|second-quantized} form.  
-The potential Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian The diagonal terms are {diag_pot}.  
-The off-dagonal terms are the coupling between {interacting_dof}, {offdiag_pot}, which should be kept hermitian.  
-Express the potential Hamiltonian {potential_symbol} using {diag_pot} and {offdiag_pot}.  
+The potential Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian The diagonal terms are {diagonal_potential}.  
+The off-diagonal terms are the coupling between {interaction_degrees_of_freedom}, {offdiagonal_potential}, which should be kept hermitian.  
+All others terms are zero.
+Express the potential Hamiltonian {potential_symbol} using {diagonal_potential} and {offdiagonal_potential}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def_var}
+{definition_of_variables}
 
 ## Define each term in Potential Hamiltonian (continuum version)
 **Prompt:**  
-You will be instructed to construct each term {potential_symbol}, namely, {Pot_var}.  
-The diagonal terms are: {expression_diag}.  
-The off-diagonal terms are: {expression_offdiag}.  
+You will be instructed to construct each term {potential_symbol}, namely, {Potential_variables}.  
+The expression for diagonal terms are: {expression_diag}.  
+The expression for off-diagonal terms are: {expression_offdiag}.  
 You should recall that {expression_Potential}.  
-Return the expressions for {Pot_var}, and substitute it into the potential Hamiltonian {potential_symbol}.  
+Return the expressions for {Potential_variables}, and substitute it into the potential Hamiltonian {potential_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or have conflicts in the conventions, you should stop and let me know):  
-{def_var}
+{definition_of_variables}
 
 ## Construct interaction Hamiltonian (real space, lattice version)
 **Prompt:**  
@@ -121,25 +122,25 @@ You will be instructed to construct the interaction part of the Hamiltonian, {se
 The interacting Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian {kinetic_symbol}.  
 The interaction is a density-density interaction composed of the following process:
 {site i and site j with the interaction strength}
-The summation should be taken over all {dof} and all real space positions.  
+The summation should be taken over all {degrees_of_freedom} and all real space positions.  
 Return the interaction term {second_int_symbol} in terms of {density_symbol}.
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know): 
-{def_var}
+{definition_of_variables}
 
 ## Construct interaction Hamiltonian (momentum space)
 **Prompt:**  
 You will be instructed to construct the interaction part of the Hamiltonian {second_int_symbol} in the momentum space.  
 The interaction Hamiltonian is a product of four parts.
-The first part is the product of four operators with two creation and two annihilation operators following the normal order, namely, creation operators are before annihilation operators. You should follow the order of $1,2,2,1$ for the {index}, and $1,2,3,4$ for the {momentum}. 
-The second part is the constraint of total momentum conservation, namely the total momentum of all creation operators should be the same as that of all annihilation operators. {For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$|None}  
-The third part is the interaction form. You should use {interaction} with $V(q)={int_form}$, where $q$ is the transferred total momentum between a creation operator and an annilation operator with the same {index}, namely $q=k_1-k_4$.  
+The first part is the product of four operators with two creation and two annihilation operators following the normal order, namely, creation operators are before annihilation operators. You should follow the order of $1,2,2,1$ for the {index_of_operator}, and $1,2,3,4$ for the {momentum}. 
+The second part is the constraint of total momentum conservation, namely the total momentum of all creation operators should be the same as that of all annihilation operators. [For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$]  
+The third part is the interaction form. You should use {interaction} with $V(q)={int_form}$, where $q$ is the transferred total momentum between a creation operator and an annihilation operator with the same {index_of_operator}, namely $q=k_1-k_4$.  
 The fourth part is the normalization factor, you should use {normalization_factor} here.
-Finally, the summation should be running over all {index}, and {momentum}
+Finally, the summation should be running over all {index_of_operator}, and {momentum}
 Return the interaction term {second_int_symbol} in terms of {op} and $V(q)$ (with $q$ expressed in terms of {momentum}).  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def_var}
+{definition_of_variables}
 
 ## Convert from single-particle to second-quantized form, return in matrix
 **Prompt:**  
@@ -150,7 +151,7 @@ Finally by "total", it means you need to take a summation over the {real|momentu
 Return the second quantized form of the total noninteracting Hamiltonian {second_nonint_symbol}  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def_var}
+{definition_of_variables}
 
 ===  
 EXAMPLE:  
@@ -162,10 +163,10 @@ The corresponding second quantized form is $\hat{{H}}=\vec{{\psi}}^\dagger H \ve
 You will be instructed to expand the second-quantized form Hamiltonian {second_nonint_symbol} using {matrix_element_symbol} and {basis_symbol}. You should follow the EXAMPLE below to expand the Hamiltonian.  
 You should use any previous knowledge to simplify it. For example, if any term of {matrix_element_symbol} is zero, you should remove it from the summation.
 You should recall that {expression_second_nonint}.  
-Return the expanded form of {second_nonint_symbol} after simplication.  
+Return the expanded form of {second_nonint_symbol} after simplification.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def_var}
+{definition_of_variables}
 
 ===  
 EXAMPLE:  
@@ -174,11 +175,11 @@ For a $\hat{{H}}=\vec{{\psi}}^\dagger H \vec{{\psi}}$, where $\vec{{\psi}}=\begi
 ## Convert noninteracting Hamiltonian in real space to momentum space (continuum version)
 **Prompt:**  
 You will be instructed to convert the total noninteracting Hamiltonian in the second quantized form from the basis in real space to the basis by momentum space.  
-To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {def_FT}, where {real_var} is integrated over the {entire_real|fBZ}. You should follow the EXAMPLE below to apply the Fourier transformation.  
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over the {entire_real|first_Brillouin_Zone}. You should follow the EXAMPLE below to apply the Fourier transformation.  
 Express the total noninteracting Hamiltonian {second_nonint_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def_var}
+{definition_of_variables}
 
 ===  
 EXAMPLE:  
@@ -192,12 +193,12 @@ $$\hat{{H}} = \int dr \frac{{1}}{{\sqrt{{V}}}} \sum_{{k_1}} c^\dagger(k_1) e^{{-
 ## Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
 **Prompt:**  
 You will be instructed to convert the noninteracting Hamiltonian {nonint_symbol} in the second quantized form from the basis in real space to the basis in momentum space. 
-To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {def_FT}, where {real_var} is integrated over all sites in the entire real space. You should follow the EXAMPLE below to apply the Fourier transformation. {Note that hopping have no position dependence now|None}
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that hopping have no position dependence now.]
 You should recall that {expression_nonint}
 Express the total noninteracting Hamiltonian {nonint_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):
-{def_var}
+{definition_of_variables}
 
 ===
 EXAMPLE:  
@@ -222,7 +223,7 @@ $$\hat{{H}}=\sum_{{k}} E(k) c^\dagger(k)  c(k)$$
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version)
 **Prompt:**  
 You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the {single-particle|second-quantized} form the basis in real space to the basis in momentum space.
-To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {def_FT}, where {real_var} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. {Note that interaction have no position dependence now|None}
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
 You should recall that {second_int_symbol} is {expression_int}.
 Express {second_int_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
 
@@ -251,7 +252,7 @@ You should recall that {expression_particle_Ham}.
 Return the {second_nonint_symbol} in the hole operators.
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def_var}
+{definition_of_variables}
 
 ===  
 EXAMPLE:  
@@ -264,7 +265,7 @@ You should use canonical commutator relation for fermions to reorder the hole op
 Express the {second_nonint_symbol} in the normal order of {hole_op} and also make {index_1} always appear before {index_2} in the index of {op} and {Ham_op}.  
 You should recall that {expression_hole_Ham}
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def_var}
+{definition_of_variables}
 
 ===
 EXAMPLE:  
@@ -287,7 +288,7 @@ You should recall that {expression_int}.
 Return the expanded interaction term after Hartree-Fock approximation as {HF_symbol}.
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def_var}
+{definition_of_variables}
 
 ===  
 EXAMPLE 1:  
@@ -307,7 +308,7 @@ You should recall that {expression_HF}.
 Return {HF_2_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def_var}
+{definition_of_variables}
 
 # Order parameters
 ## Hartree term only
@@ -340,7 +341,7 @@ The logic is that the expected value ({expval}) in the first Hartree term ({expr
 Namely, a replacement of {relabel} is applied to ONLY the second Hartree or Fock term. You should not swap any index that is not in the summation, which includes {Unsummed_Indices}.  
 This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Hartree or Fock term, you can make the second Hartree or Fock term look identical to the first Hartree or Fock term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
 You should recall that {expression_HF_2}
-Return the simplied {HF_2_symbol}.
+Return the simplified {HF_2_symbol}.
 
 ===  
 EXAMPLE:  
@@ -358,7 +359,7 @@ The logic is that the expected value ({expval}) in the first Hartree term ({expr
 This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Hartree term, you can make the second Hartree term look identical to the first Hartree term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
 You should perform this trick of "relabeling the index" for both two Hartree terms and two Fock terms to reduce them to one Hartree term, and one Fock term.  
 You should recall that {expression_HF_2}.  
-Return the simplied {HF_2_symbol} which reduces from four terms (two Hartree and two Fock terms) to only two terms (one Hartree and one Fock term)
+Return the simplified {HF_2_symbol} which reduces from four terms (two Hartree and two Fock terms) to only two terms (one Hartree and one Fock term)
 
 ===  
 EXAMPLE:
@@ -446,7 +447,7 @@ You should then combine {kinetic_symbol} with the interacting Hamiltonian {int_s
 Return the expression for {Ham_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{def_var}
+{definition_of_variables}
 
 # Mathematical Simplify
 ## Mathematical simplify: inner product expansion
@@ -476,7 +477,7 @@ Express {symbol} in the expanded form.
 ## Mathematical simplify: Combine using Associative property
 **Prompt:**  
 You will be instructed to expand the product in {symbol}.  
-After expansion, you can introduce a sign variable {var}, which take values of {values} to combine the {num_of_terms} term in to one term.
+After expansion, you can introduce a sign variable {variable}, which take values of {values} to combine the {num_of_terms} term in to one term.
 You should recall that {expressoin_symbol}.
 Express the {symbol} in the expanded form.
 
