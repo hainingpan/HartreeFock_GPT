@@ -1,0 +1,256 @@
+\documentclass[%
+ reprint,
+%superscriptaddress,
+groupedaddress,
+%unsortedaddress,
+%runinaddress,
+%frontmatterverbose,
+%preprint,
+%preprintnumbers,
+%nofootinbib,
+%nobibnotes,
+%bibnotes,
+ amsmath,amssymb,
+ aps,
+%pra,
+prb,
+%rmp,
+%prstab,
+%prstper,
+%floatfix,
+]{revtex4-1}
+%\UseRawInputEncoding
+%\usepackage[utf8x]{inputenc}
+\usepackage[cp1251]{inputenc}
+\bibliographystyle{apsrev4-1}
+
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+
+\begin{document}
+
+\title{Lattice source for charge and spin inhomogeneity in 2D perovskite cuprates}
+\author{Vladimir A. Gavrichkov}
+\email[]{gav@iph.krasn.ru}
+%\homepage[]{Your web page}
+%\thanks{}
+%\altaffiliation{}
+\affiliation{Kirensky Institute of Physics, Akademgorodok 50, bld.38, Krasnoyarsk, 660036 Russia}
+%\affiliation{Siberian Federal University, 660041, Krasnoyarsk, Russia}
+
+\author{Semyon I. Polukeev}
+%\email[]{Your e-mail address}
+%\homepage[]{Your web page}
+%\thanks{}
+%\altaffiliation{}
+\affiliation{Kirensky Institute of Physics, Akademgorodok 50, bld.38, Krasnoyarsk, 660036 Russia}
+%\affiliation{Siberian Federal University, 660041, Krasnoyarsk, Russia}
+
+%\author{Sergey G. Ovchinnikov}
+%\email[]{Your e-mail address}
+%\homepage[]{Your web page}
+%\thanks{}
+%\altaffiliation{}
+%\affiliation{Kirensky Institute of Physics, Akademgorodok 50, bld.38, Krasnoyarsk, 660036 Russia}
+%\affiliation{Siberian Federal University, 660041, Krasnoyarsk, Russia}
+\date{\today}
+
+\begin{abstract}
+
+This work is an attempt to show structural sources for the charge and spin inhomogeneity in 2D perovskite HTSC cuprates. In addition to an  interest in the nature of the inhomogeneous stripe state with a large isotope effect, we highlight the structural features of cuprates (tilted CuO$_6$ octahedra with different orientation with respect to rock salt LaO layers), where sources of charge and spin inhomogeneity can be hidden. We used the Anderson model with the Jahn-Teller(JT) local cells, where it was shown in the Hartree Fock approximation the charge inhomogeneity arises at any low doping concentration $x$ and disappears when the doping level exceeds threshold concentration $x_c$, at which a nonzero JT displacement (tilting) separate CuO$_6$ octahedron  becomes possible.
+
+\end{abstract}
+
+\pacs{75.30.Et  75.30.Wx 75.47.Lx 74.62.Fj 74.72.Cj}
+\keywords{charge and spin inhomogeneity, Jahn-Teller interaction, 2D perovskite doped cuprates}
+
+\maketitle
+
+\section{\label{sec:intr}Introduction\\}
+%\subsection{\label{sec:intr}Introduction\\}
+
+In addition to the large isotope effect (see discussion in work~\cite{Bussmann2021}), the observed giant thermal Hall effect~\cite{Grissonnanche2019}and its phonon origin \cite{Grissonnanche2020} certainly raises a number of questions about the electronic nature of the charge and spin inhomogeneity of 2D perovskite doped cuprates (see for example the work ~\cite{Robinson2019}and references there). In recent studies, the quasi-degenerate ground states of a material have different physical properties: one of them (A) exhibits long-range order entanglement and translational symmetry breaking, while the other (B) exhibits homogeneous d-wave superconductivity. The A and B separation is well confirmed by NMR/NQR experiments (see discussion in work~\cite{Robinson2019}, where the competition between the kinetic energy and Coulomb repulsion could cause holes to segregate into inhomogeneity structures), and the studies of the magnetic properties of cuprates  ~\cite{Mahony2022} in contacts with manganites (nicylates) also clearly show the electronic magnetic excitations in them ~\cite{Deluca2014}. There are no phonons in this electronic scenario. On the other hand, according to the work ~\cite{Bianconi1996}, charge inhomogeneity regions can be fixed on structurally nonequivalent regions of the CuO$_2$ layer, which differ in the tilt of perovskite CuO$_6$ octahedra. This observation can also be analyzed from the symmetry point of view, where four subgroups (four colors) can be distinguished in the so called stripe symmetry group, and the spatial structure of the doped CuO$_2$ layer can be constructed in accordance with the well-known four-color theorem ~\cite{Gavrichkov2019}, where the chromatic number $\chi  = 2$   corresponds to regular structures.  It is interesting that further studies of magnetic interactions in such a regular four-fold degenerate structure show the restoration of a spatially homogeneous antiferromagnetic interaction at the transition of a hole-doped (but not electron doped) CuO$_2$ layer from the static to dynamic stripe state ~\cite{Gavrichkov2022}. The key idea here is the JT activity of two of the four tilts of CuO$_6$ octahedra into the nonlocal JT effect under an electrostatic field of charged rock salt layers ~\cite{Gavrichkov2019, Gavrichkov2022}, where the dynamic state corresponds to fast rotation (tunneling) of the tilted CuO$_6$ octahedra through configurations with different orientation $\theta$  of the tilting angle  $\varphi$  shown in Fig.\ref{fig:1}. In this case, during the creation and annihilation of electron-hole pairs ~\cite{Gavrichkov2017, Gavrichkov2020, Mikhaylovskiy2020} in the magnetic interaction, the orientation of the tilted CuO$_6$ octahedra is not saved ~\cite{Gavrichkov2022}. However, the JT medium itself in 2D Mott-Hubbard materials has specific features in the chemical molecular approach, where the rotational and shift modes are excluded from consideration \cite{Bersuker1989}, and the charge of the JT cell as a whole is fixed. For anisotropic 2D perovskite materials, these factors are important and have physical significance. It is well known that the JT pseudo effect has a threshold character with respect to the lattice parameters characterizing its presence and magnitude ~\cite{Bersuker1996}. Nevertheless, the threshold nature of the JT pseudo effect is retained even at constant parameters, but with a varying carrier concentration, for example under doping.\\
+
+\begin{figure*}
+\includegraphics{fig_1}
+\caption{Graphic scheme: (a) b$_{1g}$ tilting modes active in the non-local CuO$_6$ octahedron JT effect, as well as (b) a$_{1g}$ relaxation modes in the D and U stripes. The arrows in (a,b) show the relationship between the tilting and conventional local modes. (c) Non-local JT effect in the CuO$_2$ layer surrounded by the symmetrical LaO rock salt layers.}
+\label{fig:1}
+\end{figure*}
+
+Can the JT effect survive in a doped semiconductors with a metal conductivity? To answer this question, we investigated here a model with JT cells in a doped material, where the problem of nonzero JT displacement $Q$ and its solution resemble the well-known Anderson problem on the possibility of a nonzero localized moment in a metal ~\cite{Anderson1961}. In the Hartree-Fock approximation, we constructed a diagram in the space of lattice and Coulomb parameters for the nonzero $Q$ and showed how it changes at the transition from the JT effect to the pseudo effect with the threshold   doping concentration $x_c$. Using the example of noninteracting JT cells and doped semiconductor with carrier concentration $x$, we see that a nonzero JT displacement can still be observed in the 2D perovskite  materials, due to the charge equivalence breaking of JT cells. In addition to discussion in the work~\cite{Robinson2019}, our results show the natural lattice component accompanying the charge inhomogeneous state, where the number of JT cells $N_{JT}$  does not exceed the doping concentration $N_{JT}\leq x$.  We believe that any phonons in the dynamic JT state of the CuO$_2$ layer with the fast rotation (tunneling along tilt angles) of the tilted perovskite CuO$_6$ octahedra could show the chirality property observed in the work.~\cite{Grissonnanche2020}
+
+
+\section{\label{sec:II} Nonzero JT displacement in doped semiconductor. JT effect  \\}
+
+Let us consider the simple case of immersion of a localized degenerate level into a conductivity band for one JT cell in a doped semiconductor material, where the atoms of the immersed JT cell can lose their non-zero JT displacement $Q$  due to their mixing with the conduction band states. How does the value $Q$ depend on the properties of the JT cell and solvent material? The Anderson Hamiltonian describing the JT cell+semiconductor system can be represented as $\hat H = \hat H_{corr}  + \hat H_Q  + \hat H_{mix} $, where:
+\begin{widetext}
+\begin{eqnarray}
+%\begin{array}{l}
+&&H_{corr}  = {\textstyle{1 \over 2}}U\left\{ {n_a \sum\limits_\sigma  {\hat n_{a\sigma } }  + n_b \sum\limits_\sigma  {\hat n_{b\sigma } }  + \frac{{2m_a }}{{g\mu _B }}\sum\limits_\sigma  {\eta \left( \sigma  \right)\hat n_{a\sigma } }  + \frac{{2m_c }}{{g\mu _B }}\sum\limits_\sigma  {\eta \left( \sigma  \right)\hat n_{b\sigma } } } \right\} +  \\
+\nonumber
+&&+ {\textstyle{1 \over 2}}\left( {2U' - J_H } \right)\left\{ {n_b \sum\limits_\sigma  {\hat n_{a\sigma } }  + n_a \sum\limits_\sigma  {\hat n_{b\sigma } } } \right\} + {\textstyle{1 \over 2}}J_H \left\{ {\frac{{2m_b }}{{g\mu _B }}\sum\limits_\sigma  {\eta \left( \sigma  \right)\hat n_{a\sigma } }  + \frac{{2m_a }}{{g\mu _B }}\sum\limits_\sigma  {\eta \left( \sigma  \right)\hat n_{b\sigma } } } \right\}
+%\end{array}
+\\ \label{eq:1}
+&&\hat H_Q  = \sum\limits_\sigma  {\left( {\omega _a a_\sigma ^ +  a_\sigma ^{}  + \omega _b b_\sigma ^ +  b_\sigma ^{} } \right)}  - IQ\sum\limits_\sigma  {\left( {b_\sigma ^ +  b_\sigma ^{}  - a_\sigma ^ +  a_\sigma ^{} } \right)}  + \frac{{kQ^2 }}{2} \nonumber \\
+&&\hat H_{mix}  = \sum\limits_{k\sigma } {\omega _k c_{k\sigma }^ +  c_{k\sigma } }  + \sum\limits_{k\sigma } {\left\{ {V_k c_{k\sigma }^ +  \left( {a_{k\sigma }  + b_{k\sigma } } \right) + V_k^* \left( {a_{k\sigma }^ +   + b_{k\sigma }^ +  } \right)c_{k\sigma } } \right\}}
+\nonumber
+\end{eqnarray}
+\end{widetext}
+
+\begin{figure*}
+\includegraphics{fig_2}
+\caption{(a) Unperturbed energy $\omega_a$ and $\omega_b$ levels at the zero($V_k=0$) of c-(a,b) state hybridization ($n_{\uparrow}=2$, $n_{\downarrow}=0$ and $E_{JT}=0$), the density of states of a localized levels  is $\delta$ function. The energy levels perturbed by c-(a,b) hybridization ($n_{\uparrow}<2$ and $n_{\downarrow}>0$), (b): $U>E_{JT}$ and (c): $U<E_{JT}$}
+\label{fig:2}
+\end{figure*}
+
+We consider the JT (pseudo) effect at the local JT cell with two-fold  degenerate resonant energy level $\omega _{a,b}$ (see Fig.\ref{fig:2}), where there is a nonzero mixing $V_k$ of band states $c_{k\sigma }$ with  energy $\varepsilon _{k\sigma }$  and localized $a_\sigma$ and $b_\sigma$  cell states.
+Here $H_{corr}$ and $\hat H_{mix}$ the contribution of electron correlations at the JT cell in the Hartree-Fock approximation and hybridization of cell states with states of the doped parent material. Accordingly,  $n_\lambda   = \sum\limits_\sigma  {\left\langle {n_{\lambda \sigma } } \right\rangle }$ and $m_\lambda   = \frac{{g\mu _{B} }}{2}\sum\limits_\sigma  {\eta \left( \sigma  \right)\left\langle {n_{\lambda \sigma } } \right\rangle }$, $(\lambda  = a,b)$ are  the mean-number of electrons and the magnetic moment on the cell states $\left| a \right\rangle$ and $\left| b \right\rangle$. The parameters  $U$, $U'$, $J_H$, $V_k$ are  the Coulomb interaction at one of the cell states and at different states, the exchange interaction and also hybridization parameter respectively. At the minimum of adiabatic potential ${{\partial \hat H_Q } \mathord{\left/
+ {\vphantom {{\partial \hat H_Q } {\partial Q}}} \right.
+ \kern-\nulldelimiterspace} {\partial Q}} = 0$, and $\hat H_Q  =  - IQ\sum\limits_\sigma  {\left( {b_\sigma ^ +  b_\sigma ^{}  - a_\sigma ^ +  a_\sigma  } \right)}  =  \pm E_{JT} R\sum\limits_\sigma  {\left( {b_\sigma ^ +  b_\sigma ^{}  - a_\sigma ^ +  a_\sigma  } \right)}$, where JT energy $E_{JT}  = {{I^2 } \mathord{\left/
+ {\vphantom {{I^2 } k}} \right.
+ \kern-\nulldelimiterspace} k}$. JT displacement $Q_ \pm   =  \pm \frac{IR}{k}$, $R = n_b  - n_a$ and magnetic moment $m_+ = \sum\limits_\lambda  {m_\lambda  }$ is determined by the electron number per JT cell with spin $\sigma$: $\left\langle {n_{\lambda \sigma } } \right\rangle  = \int\limits_{ - \infty }^\mu  {\left( { - \frac{1}{\pi }} \right){\mathop{\rm Im}\nolimits} \left\langle {\left\langle {{\lambda _\sigma  }}
+ \mathrel{\left | {\vphantom {{\lambda _\sigma  } {\lambda _\sigma ^ +  }}}
+ \right. \kern-\nulldelimiterspace}
+ {{\lambda _\sigma ^ +  }} \right\rangle } \right\rangle } _{E + i0} dE$, where to calculate the values $R$ and $m_\pm$ we introduce into consideration the anticommutator Green's function $\left\langle {\left\langle {{\lambda _\sigma  }}
+ \mathrel{\left | {\vphantom {{\lambda _\sigma  } {\lambda _\sigma ^ +  }}}
+ \right. \kern-\nulldelimiterspace}
+ {{\lambda _\sigma ^ +  }} \right\rangle } \right\rangle$, the equation of motion for which has the form:
+\begin{widetext}
+\begin{equation}
+\left\{ {E - \omega '_a  - \frac{1}{N}\sum\limits_k {\frac{{V_k^2 }}{{\left( {E - \omega _k } \right)}}} } \right\}\left\langle {\left\langle {{a_\sigma  }}
+\mathrel{\left | {\vphantom {{a_\sigma  } {a_\sigma ^ +  }}}
+\right. \kern-\nulldelimiterspace}
+{{a_\sigma ^ +  }} \right\rangle } \right\rangle  = 1 + \frac{1}{N}\sum\limits_k {\frac{{V_k^2 }}{{\left( {E - \omega _k } \right)}}} \left\langle {\left\langle {{b_\sigma  }}
+\mathrel{\left | {\vphantom {{b_\sigma  } {a_\sigma ^ +  }}}
+\right. \kern-\nulldelimiterspace}
+{{a_\sigma ^ +  }} \right\rangle } \right\rangle,
+\label{eq:2}
+\end{equation}
+\end{widetext}
+where
+\begin{widetext}
+\begin{equation}
+\left\{ {E - \omega '_b  - \frac{1}{N}\sum\limits_k {\frac{{V_k^2 }}{{\left( {E - \omega _k } \right)}}} } \right\}\left\langle {\left\langle {{b_\sigma  }}
+\mathrel{\left | {\vphantom {{b_\sigma  } {a_\sigma ^ +  }}}
+\right. \kern-\nulldelimiterspace}
+{{a_\sigma ^ +  }} \right\rangle } \right\rangle  = \frac{1}{N}\sum\limits_k {\frac{{V_k^2 }}{{\left( {E - \omega _k } \right)}}} \left\langle {\left\langle {{a_\sigma  }}
+\mathrel{\left | {\vphantom {{a_\sigma  } {a_\sigma ^ +  }}}
+\right. \kern-\nulldelimiterspace}
+{{a_\sigma ^ +  }} \right\rangle } \right\rangle
+\label{eq:3}
+\end{equation}
+%\end{widetext}
+%\begin{widetext}
+\begin{equation}
+\omega '_\lambda   = \omega _\lambda   - E_{JT} R^2  + \frac{1}{2}U\left\{ {n_\lambda   + \eta \left( \sigma  \right)\frac{{2m_\lambda  }}{{g\mu _B }}} \right\} + \frac{1}{2}\left\{ {\left( {2U' - J_H } \right)n_{\bar \lambda }  + J_H \eta \left( \sigma  \right)\frac{{2m_{\bar \lambda } }}{{g\mu _B }}} \right\}, \lambda  \ne \bar \lambda
+\nonumber
+\end{equation}
+\end{widetext}
+Taking into account Eq.(\ref{eq:3}) we have the closed system of equations from which we obtain:
+\begin{eqnarray}
+&&{\mathop{\rm Im}\nolimits} \left\langle {\left\langle {{a_\sigma  }}
+\mathrel{\left | {\vphantom {{a_\sigma  } {a_\sigma ^ +  }}}
+\right. \kern-\nulldelimiterspace}
+{{a_\sigma ^ +  }} \right\rangle } \right\rangle  = \Gamma \left\{ {\frac{{\alpha _\sigma ^2 }}{{\left( {E - \varepsilon _\sigma ^ +  } \right)^2  + \Gamma ^2 }} + \frac{{\beta _\sigma ^2 }}{{\left( {E - \varepsilon _\sigma ^ -  } \right)^2  + \Gamma ^2 }}} \right\} \nonumber \\
+&&{\mathop{\rm Im}\nolimits} \left\langle {\left\langle {{b_\sigma  }}
+\mathrel{\left | {\vphantom {{b_\sigma  } {b_\sigma ^ +  }}}
+\right. \kern-\nulldelimiterspace}
+{{b_\sigma ^ +  }} \right\rangle } \right\rangle  = \Gamma \left\{ {\frac{{\beta _\sigma ^2 }}{{\left( {E - \varepsilon _\sigma ^ +  } \right)^2  + \Gamma ^2 }} + \frac{{\alpha _\sigma ^2 }}{{\left( {E - \varepsilon _\sigma ^ -  } \right)^2  + \Gamma ^2 }}} \right\}, \nonumber \\
+\label{eq:4}
+\end{eqnarray}
+where $\alpha _\sigma ^2  = \frac{1}{2}\left\{ {1 + \frac{{\omega '_a  - \omega '_b }}{{\nu _\sigma  }}} \right\}$, $\beta _\sigma ^2  = \frac{1}{2}\left\{ {1 - \frac{{\omega '_a  - \omega '_b }}{{\nu _\sigma  }}} \right\}$ are the probabilities for the $|\lambda\rangle$ states  after mixing with the conduction band states. According to the Eq.(\ref{eq:4}), we obtain an equation for the nonzero magnetic moment $m_{+}$ at the JT cell:
+\begin{widetext}
+\begin{equation}
+m_ +   =  - \frac{{g\mu _B }}{2}\sum\limits_\sigma  {\frac{{\eta \left( \sigma  \right)}}{\pi }\int\limits_{ - \infty }^\mu  {dE\left\{ {\frac{\Gamma }{{\left( {E - \varepsilon _\sigma ^ +  } \right)^2  + \Gamma ^2 }} + \frac{\Gamma }{{\left( {E - \varepsilon _\sigma ^ -  } \right) + \Gamma ^2 }}} \right\}} },
+\label{eq:5}
+\end{equation}
+\end{widetext}
+where $\varepsilon _\sigma ^ +$ and $\varepsilon _\sigma ^ -$ are the energy levels of the electron in one of the final mixed states, $\Gamma  \sim \pi \left\langle {V^2 } \right\rangle \rho _c \left( \mu  \right)$ and $\rho _c \left( \mu  \right)$ is the density of states in the conduction band. The Eq.(\ref{eq:5}) has a solution $m_{+} \ne 0$  at
+\begin{equation}
+\left( {U + J_H } \right)\left. \rho  \right|_{m_+ = 0} \left( {\mu ,R} \right) > 1
+\label{eq:6}
+\end{equation}
+where  $\rho \left( {\mu ,R} \right) = \rho _a \left( {\mu ,R} \right) + \rho _b \left( {\mu ,R} \right)$  the density of JT cell states at the Fermi level $\mu$. This result is similar to the well-known condition for a nonzero localized magnetic moment in a metal~\cite{Anderson1961}. However, requirements on the value $\left( {U + J_H } \right)$ become more stringent due to nonzero JT displacement $Q_ \pm$ with decreasing cell density of states $\left. \rho  \right|_{m = 0} \left( {\mu ,R\neq 0} \right)$ at the Fermi level $\mu$ . To make sure that the JT displacement $Q_ \pm$  has a non-zero magnitude, we can obtain a condition on the magnitude of interactions. Indeed the equation:
+\begin{widetext}
+\begin{equation}
+Q_ \pm   =  \pm \frac{I}{k}\sum\limits_\sigma  {\left( {\alpha _a^2  - \beta _b^2 } \right)\int\limits_{ - \infty }^\mu  {dE\left\{ {\frac{\Gamma }{{\left( {E - \varepsilon _\sigma ^ +  } \right)^2  + \Gamma ^2 }} - \frac{\Gamma }{{\left( {E - \varepsilon _\sigma ^ -  } \right) + \Gamma ^2 }}} \right\}} }
+\label{eq:7}
+\end{equation}
+\end{widetext}
+has a solution $Q_ \pm   \ne 0$ in a region $m_ +   \ne 0$ only under the condition
+\begin{equation}
+\left( {2E_{JT}  - U_{eff} } \right)\left. {\sum\limits_\sigma  {\left( {\alpha _\sigma ^2  - \beta _\sigma ^2 } \right)^2 \rho _\sigma ^{} \left( {\mu ,m_ +  } \right)} } \right|_{R = 0}  > 1
+\label{eq:8}
+\end{equation}
+where $\frac{{\partial \varepsilon _\sigma ^ \pm  }}{{\partial R}} =  \pm \left( {\alpha _\sigma ^2  - \beta _\sigma ^2 } \right)\left( {2E_{JT}  - U_{eff} } \right)$ and $U_{eff}  = \frac{1}{2}\left( {2U' - U - J_H } \right) \approx \frac{1}{2}U' - J_H$ and $\rho _\sigma  \left( {\mu ,m_ +  } \right) = \rho _a^\sigma   + \rho _b^\sigma$. Inequality (\ref{eq:8}) is not correct without JT effect at $E_{JT}  = 0$ and at $\left. {\left( {\alpha _\sigma ^2  - \beta _\sigma ^2 } \right)} \right|_{R = 0}  = 0$ for $m_ -= m_a  - m_b  = 0$. Indeed, the condition for a nonzero magnitude $m_ -   \ne 0$   has the form:
+\begin{equation} 
+\left( {U + J_H } \right)\left. {\sum\limits_\sigma  {\left( {\alpha _\sigma ^2  - \beta _\sigma ^2 } \right)^2 \rho _\sigma ^{} \left( {\mu ,m_ +  } \right)} } \right|_{m_ -   = 0}  > 1,
+\label{eq:9}
+\end{equation}
+ where $\left. {\left( {\alpha _\sigma ^2  - \beta _\sigma ^2 } \right)} \right|_{m_ -   = 0}  \ne 0$,  at $R \ne 0$. Thus, a finite magnituide  $m_ -   \ne 0$ can only be observed together with    $Q_ \pm   \ne 0$ in the Fig.\ref{fig:3}, and there is zero threshold concentration $x_c  = 0$
+ 
+ \begin{figure}
+\includegraphics{fig_3}
+\caption{Schematic diagram of the regions of  nonzero magnitudes of the local magnetic moment and JT displacement $Q_ \pm$ at some mixing value $V_k$  in the coordinates of the Coulomb and JT interactions}
+\label{fig:3}
+\end{figure}
+ 
+ 
+ To clarify we have shown in Fig.(\ref{fig:2}) the region of solutions for nonzero magnetic moment $m_{\pm} \ne 0$, where overlapping regions $m_{\pm} \ne 0$ and $R \ne 0$  are observed. 
+
+
+Note the set of inequalities (6) and (8)  does not detect  a nonzero   JT displacement in the region   $Q_ \pm   \ne 0$, where the criterion differs from Eq.(\ref{eq:8}) by nonzero contributions at $m_ +   = m_ -   = 0$ and can be obtained by complete differentiation of Eq.(\ref{eq:7}).  However, here we are interested in how the criterion (8) changes in the JT pseudo effect.
+
+\section{\label{sec:III} JT pseudo effect \\}
+
+
+In the JT pseudo effect, the dependence of JT displacement on concentration $Q_ \pm  \left( R \right) =  \pm \sqrt {\left( {\frac{I}{k}R} \right)^2  - \left( {\frac{\Delta }{I}} \right)^2 }$, where $Q_ \pm   = 0$ at doping concentration $x_c \left( {R_c } \right)$, and $R_c  = {{k\Delta } \mathord{\left/
+ {\vphantom {{k\Delta } {I^2 }}} \right.
+ \kern-\nulldelimiterspace} {I^2 }}$ has a threshold nature ~\cite{Gavrichkov2022}, and the condition for their nonzero magnitudes in  the equation $Q_ \pm   = Q_ \pm  \left( R \right)$  becomes
+\begin{equation}
+\left. {\frac{{dQ\left( R \right)}}{{dQ}}} \right|_{Q \to 0}  = \left. {\frac{{\partial Q\left( R \right)}}{{\partial R}}} \right|_{R \to R_c }  \times \left. {\frac{{\partial R}}{{\partial Q}}} \right|_{Q \to 0}  > 1
+\label{eq:10}
+\end{equation}
+In the last inequality  $\left. {\frac{{\partial Q\left( R \right)}}{{\partial Q}}} \right|_{Q \to 0}  \approx \left. {\left( {\frac{I}{k}} \right)^2 \frac{{R_c }}{Q}} \right|_{Q \to 0}$,  and the derivative  $\left. {\frac{{\partial R}}{{\partial Q}}} \right|_{Q \to 0}$ is calculated similarly to Eq.(\ref{eq:8}), taking into account the fact that here:
+\begin{widetext}
+\begin{eqnarray}
+\omega '_\lambda   = \omega _\lambda(Q) + \frac{1}{2}U\left\{ {n_\lambda   + \eta \left( \sigma  \right)\frac{{2m_\lambda  }}{{g\mu _B }}} \right\} + \frac{1}{2}\left\{ {\left( {2U' - J_H } \right)n_{\bar \lambda }  + J_H \eta \left( \sigma  \right)\frac{{2m_{\bar \lambda } }}{{g\mu _B }}} \right\}, \lambda  \ne \bar \lambda
+%&&\omega '_a  = \omega _a \left( Q \right) + \frac{1}{2}U\left\{ {n_a  + \eta \left( \sigma  \right)\frac{{2m_a }}{{g\mu _B }}} \right\} + \frac{1}{2}\left\{ {\left( {2U' - J_H } \right)n_b  + J_H \eta \left( \sigma  \right)\frac{{2m_b }}{{g\mu _B }}} \right\} \\ \nonumber
+%&&\omega '_b  = \omega _b \left( Q \right) + \frac{1}{2}U\left\{ {n_b  + \eta \left( \sigma  \right)\frac{{2m_b }}{{g\mu _B }}} \right\} + \frac{1}{2}\left\{ {\left( {2U' - J_H } \right)n_a  + J_H \eta \left( \sigma  \right)\frac{{2m_a }}{{g\mu _B }}} \right\},
+\label{eq:11}
+\end{eqnarray}
+\end{widetext}
+where $\omega _{a\left( b \right)} \left( Q \right) = \frac{1}{2}\left\{ {\omega _a  + \omega _b  \pm \sqrt {\left( {\omega _a  - \omega _b } \right)^2  + 4\left( {IQ} \right)^2 } } \right\}$. As a consequence the corresponding derivative takes the form:
+\begin{widetext}
+\begin{equation}
+\left. {\frac{{\partial R}}{{\partial Q}}} \right|_{Q \to 0}  \approx \frac{{kQ}}{\Delta }\left( {2E_{JT}  - U_{eff} } \right)\left. {\sum\limits_\sigma  {\left( {\alpha _\sigma ^2  - \beta _\sigma ^2 } \right)^2 \rho _\sigma ^{} \left( {\mu ,m_ +  } \right)} } \right|_{Q \to 0}^{\Delta  \ne 0}
+\label{eq:12}
+\end{equation}
+\end{widetext}
+and, therefore, in the same way as in the usual JT effect, but at $R \to R_c$ the criterion for a nonzero displacement $Q_ \pm   \ne 0$ has the form:
+\begin{equation}
+\left( {2E_{JT}  - U_{eff} } \right)\left. {\sum\limits_\sigma  {\left( {\alpha _\sigma ^2  - \beta _\sigma ^2 } \right)^2 \rho _\sigma ^{} \left( {\mu ,m_ +  } \right)} } \right|_{R \to R_c }^{\Delta  \ne 0}  > 1
+\label{eq:13}
+\end{equation}
+However, the result, in contrast to Eq.(\ref{eq:8}) has a threshold character at the doping concentration $x > x\left( {R_c } \right)$, where  $R_c  = {{k\Delta } \mathord{\left/
+ {\vphantom {{k\Delta } {I^2 }}} \right.
+ \kern-\nulldelimiterspace} {I^2 }} \to 0$ at $\Delta  \to 0$. Thus, the diagram in Fig.\ref{fig:2} for JT pseudo effect does not change. The result is not obvious, since, unlike the previous consideration for JT effect, the derivative $\left. {\frac{{\partial Q\left( R \right)}}{{\partial Q}}} \right|_{Q \to 0}\rightarrow \infty$. We find here a some similarity between the Anderson criterion for a nonzero magnetic moment in metals ~\cite{Anderson1961} and the criterion for a nonzero JT displacement (\ref{eq:8}) and (\ref{eq:13}), as well as the doping-concentration threshold nature of the latter in 2D materials with structural cells that become active in the JT pseudo effect upon doping, for example CuO$_4$ squares or CuO$_6$ octahedra.
+
+
+\section{\label{sec:IV} Discussion and conclusions  \\}
+
+Despite the some similarity of the conditions for the nonzero localized magnetic moment ~\cite{Anderson1961} and active JT displacements (8), these are physically different results.
+We have just neglected the influence of the JT cell states on the semiconductor spectrum with density of state $g_c(\mu)$. Indeed, if the number of magnetic impurities in the metal is small compared to the concentration of carriers, then in a doped semiconductor the number of JT cells $N_{JT}$ may be less or comparable to doping holes concentration $x/x(R_c)\leq x$.  As a result of the JT pseudo effect, the lattice JT regions are formed with carrier concentration $\sim x\left({R_c} \right)$ at any low initial concentration $x < x\left({R_c}\right)$, and the total square of which grows linearly with the carrier concentration $x$.  The charge inhomogeneity is accompanied by insignificant JT displacements. In 2D perovskite cuprates, the last ones are CuO$_6$(CuO$_4$)  octahedra with tilting angles $\sim 14^\circ  \div 18^\circ$.~\cite{Bianconi1996} There is no reason for that in 3D perovskites  with regular octahedra and the conventional JT effect, where $x_c=x\left({R_c} \right)=0$.  Note, the observed regular line and checkerboard stripe structures \cite{Okamoto2012, Seibold2007} are invariant with respect to simultaneous rotation all tilted $CuO_6$ octahedra by the angle $\theta_n = n \cdot 45^\circ$, where $n=1\div 4$, around the $c$ axis (see Fig.\ref{fig:1})  in the lattice scenario.~\cite{Gavrichkov2019, Gavrichkov2022} There is also no reason to discuss the charge inhomogeneity in NCCO 2D n-type cuprates, since the doped electrons are in the completely occupied 3d shell state and no (pseudo) JT effect is possible there. On the whole, we just confirm A. Muller's original point of view on 2D perovskite HTSC cuprates ~\cite{Bussmann2021} with charge and spin inhomogeneity as potentially JT active materials.
+
+\begin{acknowledgments}
+% put your acknowledgments here.
+We acknowledge the support of the Russian Science Foundation through grant RSF No.22-22-00298.
+\end{acknowledgments}
+
+% Create the reference section using BibTeX:
+%\bibliography{PRB_2019}
+\bibliography{paper_gavrichkov}
+\end{document}
+%
+% ****** End of file prb2012.tex ******

@@ -1,0 +1,665 @@
+\documentclass[twocolumn, prl, aps, floatfix, superscriptaddress, longbibliography]{revtex4-1}
+
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{placeins}
+\usepackage{booktabs}
+\usepackage{dsfont}
+\usepackage{yfonts}
+\usepackage{hyperref}
+\usepackage{bbold}
+\usepackage{upgreek}
+\usepackage{hhline}
+\usepackage{listings}
+\usepackage{siunitx}
+
+\usepackage[dvipsnames]{xcolor}
+\newcommand{\br}[1]{\textcolor{blue}{\textit{#1}}}
+\newcommand{\nj}[1]{\textcolor{red}{\textit{#1}}}
+
+
+%\lstset
+%{
+%	language=[LaTeX]TeX,
+%	breaklines=true,
+%	basicstyle=\tt\scriptsize,
+%	keywordstyle=\color[HTML]{0080ff},
+%	identifierstyle=\color[HTML]{87a96b},
+%	commentstyle=\color{gray}, 
+%	stringstyle=\ttfamily\color{red},
+%	numbers=left,
+%	numbersep=1.0ex,
+%	numberstyle=\tiny\color{gray},
+%}
+%
+%\usepackage{pdfpages} % include pdfs
+%\usepackage{pgffor} % for loops
+%\usepackage{xr} % referencing the supplement
+%
+%% Fix for a pdfpages rotation bug with revtex
+%\makeatletter
+%\AtBeginDocument{\let\LS@rot\@undefined}
+%\makeatother
+%
+%% the name of the supplement PDF file
+%\def\supplementfilename{supp}
+%
+%% define external document for referencing
+%% supp: prefix for equations and figures when referencing
+%\externaldocument[supp:]{\supplementfilename}
+%
+%% Determine the number of pages 
+%% in the supplement file and store
+%\pdfximage{\supplementfilename.pdf}
+%\def\numbersupplementpages{\the\pdflastximagepages}
+%
+%% Are we submitting to the arXiv? 
+%% Un-comment the appropriate line
+%\newif\ifarXiv
+% \arXivtrue 
+%%  \arXivfalse
+%
+%\renewcommand{\vec}[1]{\boldsymbol{#1}}
+%\newcommand{\ren}{R\'{e}nyi~}
+%\newcommand{\Eqref}[1]{Eq.~\eqref{#1}}
+%\renewcommand{\arraystretch}{1.2}
+%
+%
+%
+%%%% this improves readability of todnotes
+%\setlength{\marginparwidth}{1.60cm}
+%\usepackage[color=green!60]{todonotes}
+%\newcommand{\br}[1]{\textcolor{red}{\textit{#1}}}
+% this improves table legibility
+\AtBeginDocument{%
+	\heavyrulewidth=.08em
+	\lightrulewidth=.05em
+	\cmidrulewidth=.03em
+	\belowrulesep=.65ex
+	\belowbottomsep=0pt
+	\aboverulesep=.4ex
+	\abovetopsep=0pt
+	\cmidrulesep=\doublerulesep
+	\cmidrulekern=.5em
+	\defaultaddspace=.5em
+}
+
+% Are we submitting to the arXiv? 
+% Un-comment the appropriate line
+\newif\ifarXiv
+\arXivtrue 
+% \arXivfalse
+
+% begin ifarXiv
+\ifarXiv
+
+% For including supplemental material
+\usepackage{pdfpages} % include pdfs
+\usepackage{pgffor} % for loops
+\usepackage{xr} % referencing between files
+
+% Fix for a pdfpages rotation bug with revtex
+\makeatletter
+\AtBeginDocument{\let\LS@rot\@undefined}
+\makeatother
+
+% the name of the supplement PDF file
+\def\supplementfilename{MIT_supplement}
+
+
+
+% define as external document for referencing
+\externaldocument[supp:]{\supplementfilename}
+
+% Determine the number of pages 
+% in the supplement file and store
+\pdfximage{\supplementfilename.pdf}
+\def\numbersupplementpages{\the\pdflastximagepages}
+
+\fi % end ifarXiv
+
+
+
+\begin{document}
+	
+\title{Metal-insulator transition in a boundary three chain model}
+	
+\author{Niels John} 
+\affiliation{Institut f\"ur Theoretische Physik, Universit\"at Leipzig, D-04103, Leipzig, Germany} 
+	
+\author{Yuval Gefen}
+\affiliation{Department of Condensed Matter Physics, Weizmann Institute, 7610001 Rehovot, Israel}
+
+\author{Bernd Rosenow}
+\affiliation{Institut f\"ur Theoretische Physik, Universit\"at Leipzig, D-04103, Leipzig, Germany} 
+	
+\begin{abstract}
+	
+	
+We study the boundary physics of bulk insulators by considering three coupled Hubbard chains in a linear confining potential. In the Hartree-Fock approximation, the ground state at and slightly off the particle-hole symmetric point 
+ remains insulating even at large slopes of the confining potential.  By contrast, accounting for quantum fluctuations and correlations through  a combination of bosonization and RG methods, we find that there is always a gapless dipole mode, but it does not contribute to a finite compressibility. Moreover, when increasing the slope of the confining potential at half filling, we find a quantum phase transition between an insulating and a metallic state, indicating the formation of a soft edge state of non-topological origin. Away from half filling, a similar transition takes place. 	
+	
+\end{abstract}
+	
+\maketitle
+	
+	
+% ---------------------------------------------------------------------------------
+% Introduction
+
+\noindent \textit{Introduction:} The boundaries of two-dimensional (2D) phases of matter may play a pivotal role when the bulk spectrum is gapped \cite{Halperin1982, Laughlin1981, Kane2015, Bernevig2006, Hasan2010, Qi2011, Koenig2007}. Having a gapless spectrum at the edge may render the system conducting underpinned by bulk topological invariants \cite{Altland1997, Wen2007}. Examples range from quantum Hall phases (integer, fractional, non-Abelian) featuring chiral modes \cite{Halperin1982, Laughlin1981}, helical modes \cite{Kane2005, Bernevig2006}, and other 2D topological phases \cite{Kosterlitz1972, Kosterlitz1973, Haldane1988}. On the other hand, interaction driven Mott insulators  \cite{Mott1949, Schulz} are usually not characterized by conducting edge modes.  
+
+A possible path towards obtaining a clearer insight into 2D boundary physics would be to study interacting models comprising few-chains positioned in a potential that mimicks the confinement at the edge. 
+%First steps into this direction have been taken by studying a single chain or multiple chains. 
+Within the HF approximation, for a system of several coupled chains an alternation of compressible and incompressible regions has been found \cite{Khanna.2021}. In the absence of a confining potential, bosonization was employed for both single and multiple chains \cite{Schulz, Balents1996, Hur2001, GiamarchiBook, FinkelStein1993, Miao2016,Tsuchiizu2001}.
+For a single Hubbard chain there exists an insulating phase without magnetic order. Considering several coupled Hubbard chains one finds a variety of instabilities as a function of interchain hopping, as well as Hubbard and next-nearest-neighbor interaction strength \cite{Schulz, Balents1996, Hur2001, GiamarchiBook, FinkelStein1993, Miao2016}. For two coupled chains the metal-insulator transition was observed as functions the chemical potential \cite{Tsuchiizu2001}, the filling \cite{Balents1996}, the interchain hopping \cite{Balents1996, Hur2001, Tsuchiizu2001}, or the strength of on-site and nearest neighbor interactions \cite{Tsuchiizu2001, Hur2001}. Superconducting $d$-wave or $s$-wave states or charge modulated states have been observed within the framework of two coupled chains as well \cite{GiamarchiBook}.
+
+Here we take up the challenge of modelling the boundary of interacting or strongly correlated two-dimensional materials. Specifically, we consider a model of three coupled Hubbard chains under the influence of an external confining potential, mimicking the edge of a 2D Mott insulator with smooth confinement. In addition to a standard nearest-neighbor Hamiltonian with Hubbard interactions, we assume a chain dependent potential which mimics a confining potential in the perpendicular $y$-direction. The system is depicted in \autoref{fig:Fig1}. Employing bosonization technique tools, we study the collective phases of this many fermion system. Accounting for the interplay of the interaction strength and the confining potential, we find a novel mechanism of a metal-insulator transition. This transition occurs as function of the confining potential, not withstanding the fact that the excitation spectrum remains gapless. Our results are depicted in \autoref{fig:Fig2}. Note that despite the presence of a gapless mode, the system can be an insulator since that mode is an interchain plasmon not contributing to the compressibility and conductance.
+%
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=0.45\textwidth]{Fig1.pdf}
+	\caption{Geometry of three coupled Hubbard chains subject to a confining potential. In the left panel, the lattice structure with the single-electron hoppings $t$ across and along the chains is depicted. The right panel shows the confining potential as a function of the chain index $p$.}
+	\label{fig:Fig1}
+\end{figure}
+%
+%
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.45\textwidth]{Fig2.pdf}
+	\caption{Gaps of the two   modes contributing to charge density and current as a function of the the confining potential strength $V$ at half filling. $\Delta_{+}$ and $\Delta_{0}$ are the charge gaps of the fields $\phi_{\rho,+}$ and $\phi_{\rho,0}$. The latter remains finite up until $V/t=\sqrt{2}$, whereas the former drops to zero at $V/t \simeq 0.7$. This marks the transition from an incompressible state into a compressible state which is expected to have a finite conductance. The transition happens at the particle-hole symmetric point and persists for a finite range of values of the chemical potential.}
+	\label{fig:Fig2}
+\end{figure}
+%
+The overall filling of the system is determined by the chemical potential $\mu$. As a first step towards a realistic model for the edge region of a two-dimensional Mott insulator, we allow for a confining potential $V_C(p)$. The confining potential is different for chains with different index $p$ and is constant along each individual chain. In the following, we will be mostly concerned with the case that the confining potential is split symmetrically around the chemical potential, meaning that $V_{\text{C}}(1)=-V_{\text{C}}(3) \equiv V$ and $V_{\text{C}}(2) = 0$. The full Hamiltonian of the system is 
+%
+\begin{align} \label{eq:CoupledChainsHamiltonian}
+	\begin{split}
+		H &= -t\sum_{j,\sigma,p} \left(c^{\dagger}_{j,p,\sigma}c^{\phantom{\dagger}}_{j+1,p,\sigma} + \text{h.c.}\right) - \mu \sum_{j,\sigma,p} n_{j,\sigma,p}\\
+		&\ \ \ - t \sum_{j,\sigma} \sum_{p=1,2} \left(c^{\dagger}_{j,p,\sigma}c^{\phantom{\dagger}}_{j,p+1,\sigma} + \text{h.c.}\right) \\
+		&\ \ \ + V\sum_{j,\sigma} \left(c^{\dagger}_{j,1,\sigma} c^{\phantom{\dagger}}_{j,1,\sigma} - c^{\dagger}_{j,3,\sigma} c^{\phantom{\dagger}}_{j,3,\sigma}\right) \\
+		&\ \ \ + U\sum_{j,p} n_{j,p,\uparrow}n_{j,p,\downarrow} \ ,
+	\end{split}
+\end{align}
+% 
+where $t$ is the nearest-neighbor hopping strength. Due to the tunneling between the chains, the chain index $p$ is not  a good quantum number.
+
+For the non-interacting system with $U=0$, diagonalization of $H$ yields a Hamiltonian with three bands and pseudospin indices $\tau = -1,0,+1$. The dispersions are $E_{k,\tau} = -2t\cos(ak) + \tau\sqrt{2t^2 + V^2}$, such that  at half-filling and weak confining potential $V/t\ll 1$, the Fermi momenta of these bands are $k_{F,\tau} = \pi/2 -\tau(\pi/4+V^2/t^2)$. Interestingly, one band remains at exactly half-filling, independent of the actual value of $V$. Once the slope of the confining potential reached the critical value $V/t=\sqrt{2}$, the lower band with $\tau = -1$ is completely filled and the upper band with $\tau=+1$ is empty. Thus, for values $V/t>\sqrt{2}$ and without interaction, the system is trivial in the sense that only the middle chain remains at half-filling, whereas the one with $p=3$ is completely filled and thus similar to a bulk state, and the outermost chain with $p=1$ is empty.
+
+\noindent \textit{Hartree-Fock analysis:} In order to gain some intuition into the interacting theory, we use Hartree-Fock (HF) analysis to determine the band structure self-consistently. We reexpress the interaction term $n_{j,p,\uparrow} n_{j,p,\downarrow}$ as $ \langle  n_{j,p,\uparrow} \rangle_0  n_{j,p,\downarrow} +   n_{j,p,\uparrow}  \langle n_{j,p,\downarrow}\rangle_0 -  \langle n_{j,p,\uparrow}\rangle_0  \langle n_{j,p,\downarrow}\rangle_0$, where $\langle\dots \rangle_0$ denotes the expectation value with respect to the HF ground state. We perform a restricted HF analysis with
+%
+\begin{align}
+	\langle n_{j,p,\sigma} \rangle_0  = \frac{n_p}{2} + \sigma S_p(-1)^j \ ,
+\end{align}
+%
+where $n_p$ is the average density in chain $p$ and the order parameter $S_p$ is the staggered magnetization of chain $p$. The effective single-particle Hamiltonian in terms of the order parameter is discussed in the supplement \cite{supp}. The densities and staggered magnetizations are determined selfconsistently. 
+
+For a single half-filled Hubbard chain, the antiferromagnetic order parameter $S$ is finite for any $U>0$ and the system develops a finite band gap. As the chain is doped away from half filling, the order parameter drops to zero rendering the system compressible. Then, the band gap closes and the system has two Fermi points at $k = \pm k_F$. We can use a similar picture for the analysis of the three coupled chains: each pair of Fermi points corresponds to one gapless charge mode. Within HF theory and near half filling, the gapping of Fermi points is only possible due to a finite antiferromagnetic magnetization.
+
+In \autoref{fig:Fig3}, the number of Fermi points as a function of the chemical potential and the confining potential is shown. Interestingly, the half-filled system remains gapped and has no Fermi points, independent of the  value of $V$. This constitutes an adiabatic connection from the Mott insulating state at $V=0$ to an asymptotic state $V/t \gg 1$ where one chain is completely empty, one chain is completely filled and the middle chain is still a gapped Mott insulator.
+
+We observe transitions into states with a finite number of Fermi points as a function of $\mu$ and $V$. At a finite $\mu/t \simeq -0.2$, increasing $V$ eventually leads to a transition into a state with two Fermi points, which is the equivalent of one gapless charge mode. At the transition point, the band gap closes and the system becomes compressible. If we increase $V$ even further, the system transitions from a state with two Fermi points into one with six Fermi points. In the latter state, not only the band gap vanishes, but the antiferrogmagnetic magnetization vanishes as well. The regime with six Fermi points, or three ungapped charge modes, is thus equivalent to a system of non-interacting electrons.
+
+Depending on the actual value of $V$, we observe similar transitions as $\mu$ varies. At  $V=0$, lowering $\mu$ leads to a transition into a gapless state with three Fermi points around $\mu/t \simeq -0.55$. As before, in this gapless regime  the antiferrogmagnetic order parameter vanishes. If, however $1<V/t<2$, a variation of $\mu$ leads to similar transitions as described in the paragraph above: first, the system transites into a state with two Fermi points which is accompanied by a band gap closing. For even lower $\mu$, we observe the same transition into a compressible, non-interacting state with six Fermi points and vanishing antiferromagnetic order parameter. 
+
+We emphasize that the absence of a gap closing at half filling is an important difference between three coupled and three uncoupled chains placed in a linear confinging potential. In the former case, all three chains always have a finite band gap. In the latter case and for sufficiently large $V$, the chemical potential with respect to the bottom of the band for a given chain will exceed the band gap and the respective order parameters drop to zero. This will render the aforementioned chains compressible and, hence, make the whole system compressible despite the fact that it remains at exactly half filling.
+%
+\begin{figure}[t!]
+	\centering
+	\includegraphics[width=\linewidth]{Fig3.pdf}
+	\caption{Mean field phase diagram for $U/t=5$. The plot shows the number of Fermi points of the self-consistently determined band structure as a function of the chemical potential $\mu/t$ and the confining strength $V/t$. The red line indicates the transition between anti-ferromagnetic order and a paragmagnet. As an interpretation, we can identify a pair of Fermi points with an ungapped (charge) mode.}
+	\label{fig:Fig3}
+\end{figure}
+%
+
+\noindent \textit{Bosonization:} We use the bosonization technique and a first-order renormalization group analysis to investigate the interacting system with $U>0$. For $V/t<\sqrt{2}$, the three bands are bosonized individually, such that the kinetic energy is diagonal in the $\tau$-basis. For each band, there are four bosons fields $\phi_{\nu,\tau}$ and $\theta_{\nu,\tau}$ with commutation relations  $[\phi_{\nu,\tau}(x),\partial_{x'}\theta_{\nu',\tau'}(x')] = i \,\hbar \, \pi\, \delta_{\nu,\nu'}\delta_{\tau,\tau'}\delta(x-x')$, where $\nu = \rho, \sigma$ labels the charge or spin channel. As usual, the density of band $\tau$ is related to the fields as $\rho_{\tau}(x) = \rho_{\tau,0} + (\sqrt{2}/\pi) \cdot \partial_x\phi_{\rho,\tau}(x)$, where $\rho_{0,\tau}$ is the average density of the band. The relation between the densities of the bands and the densities of the chains is shown in the supplement \cite{supp}.
+Keeping only the most relevant contributions of the interaction terms, we can write it as $H_{\text{int}} = H_{\text{int}}^0 + H_{\text{int}}^{2k_F}$, where the first term is a density-density interaction in the new basis and the second term describes Umklapp scattering.  We note that in  $H_{\text{int}}^0$ all three fields are coupled among each other. 
+
+To partially decouple $H_{\text{int}}^0$ we introduce the symmetric and antisymmetric combination of the fields $\phi_{\nu, \tau=+1}$ and $\phi_{\nu, \tau=-1}$. The fields are transformed as
+%
+\begin{align} \label{eq:TrafoO2}
+	\left(\begin{array}{c}
+		\phi_{\nu,\alpha=+} \\
+		\phi_{\nu,\alpha=0}  \\
+		\phi_{\nu,\alpha=-} 
+	\end{array}\right)
+	= \left(
+		\begin{array}{ccc}
+			\frac{1}{\sqrt{2}} & 0 & \frac{1}{\sqrt{2}} \\
+			0 & 1 & 0 \\
+			\frac{1}{\sqrt{2}} & 0 & -\frac{1}{\sqrt{2}}
+		\end{array}
+		\right)
+	\left(\begin{array}{c}
+		\phi_{\nu,\tau =+1} \\
+		\phi_{\nu,\tau =0} \\
+		\phi_{\nu,\tau =-1}
+	\end{array}\right) \ .
+\end{align}
+%
+The $\theta$ fields are transformed accordingly. The new field index takes values $\alpha=+,0,-$. In the $\alpha$ basis, the Hamiltonian $\mathcal{H}_0 = H_0 + H^0_{\text{int}}$ is given by
+%
+\begin{align} \label{eq:BosonizedHamiltonianI}
+	\begin{split}
+		\mathcal{H}_0 &=  \frac{1}{2\pi}\sum_{\alpha} \sum_{\nu = \rho,\sigma}  \left[ u_{\nu,\alpha}K_{\nu,\alpha}\left(\partial_x \theta_{\nu, \alpha}\right)^2 + \frac{u_{\nu,\alpha}}{K_{\nu,\alpha}} \left(\partial_x \phi_{\nu, \alpha}\right)^2\right] \\
+		&+ \frac{\gamma}{\pi} \sum_{\nu = \rho,\sigma}   \left(\partial_x \phi_{\nu,+} \right)  \left(\partial_x \phi_{\nu,0} \right)   \ .
+	\end{split}
+\end{align}
+%
+with $\gamma = \left( U /(t) \cdot \sqrt{2}\left(2 (V/t)^2+1\right)\right)/\left((V/t)^2+2\right)^2$ and 
+%
+\begin{align}
+	u_{\nu}K_{\nu}\ \hat{=}  \left(
+		\begin{array}{ccc}
+			\sqrt{2-(V/t)^2} & 0 & 0 \\
+			0 & 2 & 0 \\
+			0 & 0 & \sqrt{2-(V/t)^2}
+		\end{array}
+		\right) \ .
+\end{align}
+%
+We can see from Eq. \eqref{eq:BosonizedHamiltonianI} that the transformation from Eq.~{\eqref{eq:TrafoO2}} only decouples the field $\phi_{\nu,-}$ from the other two in the kinetic Hamiltonian. In the new basis, the two  most relevant Umklapp terms are
+%
+\begin{align} \label{eq:UmklappTerms}
+	\begin{split}
+		H^{2k_F}_{\text{int}} &=  -\frac{g_3^{(0,0;0,0)}}{2\pi^2a^2} \cos(2\sqrt{2}\phi_{\rho,0} - \delta_0\cdot  x)   \\ 
+		&\ \ \ -  \frac{g_3^{(1,-1;-1,1)}}{2\pi^2a^2}  \cos(2\theta_{\sigma,-}) \cos(2 \phi_{\rho,+} -\delta_+\cdot x) \ ,
+	\end{split}
+\end{align}
+%
+where $\delta_+ = \delta_0 \equiv 0$ at half filling. The remaining relevant Umklapp terms contain linear combinations of $\phi_{\rho,0}$ and $\phi_{\rho,+}$ as arguments and do not contribute additional physics for the charge modes. The bare values of the coupling constants can be found in the supplemental material \cite{supp}. 
+
+In order to derive the Umklapp terms above, we use refermionization \cite{GiamarchiBook, vonDelft1998}, the fermionic field operators can be expressed  as exponentials of the boson fields in the $\tau$-basis, multiplied by a  plane wave with Fermi momentum $k_{F,\tau}$:
+%
+\begin{align}\label{eq:FieldOperator}
+	\psi_{r,\tau,s}(x) \propto e^{irk_{F,\tau}x}e^{-i/\sqrt{2}(r\phi_{\rho,\tau} - \theta_{\rho,\tau}+s(r\phi_{\sigma,\tau}-\theta_{\sigma,\tau}))} \ ,
+\end{align}
+%
+where $r=\pm1$ for right- and left-movers and $s = \pm1$ for spin up and spin down. To obtain the  Umklapp terms given in Eq.~\eqref{eq:UmklappTerms}, we rewrite the interaction term in Eq.~\eqref{eq:CoupledChainsHamiltonian} in terms of  bosonic exponentials, leaving us with terms of the type $\cos(c_{\beta}\cdot \phi_{\rho,\beta} + \delta_{\beta} \cdot x)$, where $c_{\beta}$ is a real number and the displacement $\delta_{\beta}$ is the sum or the difference of all the plane wave momenta. For the Umklapp terms from Eq.~\eqref{eq:UmklappTerms}, the displacement is $\delta_{\beta} = \pm 2\pi$ at half filling. By construction, the boson fields vary slowly on the scale of inverse Fermi momentum. Indeed, if $\delta_{\beta} \neq 0$ modulo $2\pi$ the cosine operators oscillate on length scales much shorter than $1/k_{F,\tau}$ and thus vanish upon integration over $x$. This restricts the processes that we should include into the bosonization framework, and, in particular, leaves us with only a few Umklapp terms we need to take into consideration. 
+
+Remarkably, the charge field $\phi_{\rho,-}$ does not appear in the Umklapp terms. This is a direct consequence of the fact that  only cosines with vanishing displacements should be kept in the Hamiltonian. Utilizing Eq.~$\eqref{eq:FieldOperator}$, we note that cosines with arguments proportional to $\phi_{\rho,-} $ \textit{always} come with a displacement $\delta_{-} = \pm2k_{F,+1} \mp 2k_{F,-1} \equiv \pm \pi$. Keeping in mind that the position variable is understood as $x = j\cdot a$ with $j\in \mathbb{N}$, these cosines change sign on adjacent lattice sites and vanish upon integration over $x$. 
+
+Bosonic fields appearing as the argument of an RG relevant cosine term are locked in one of the extrema of the cosine, giving the respective boson field a finite expectation value. Expanding the cosine about this minimum, a mass term quadratic in the boson field is obtained, implying that the boson field develops a gap. According to the discussion above, $\phi_{\rho,-}$ remains gapless such that one might conclude that the coupled chains remain compressible. However, $\phi_{\rho,-}$ does not appear in the charge density
+%
+\begin{align} \label{eq:ChargeDensity}
+	\rho(x) = \rho_0 +\frac{\sqrt{2}}{\pi} \left(\partial_x\phi_{\rho,0} \right) + \frac{2}{\pi} \left(\partial_x\phi_{\rho,+} \right)  \ ,
+\end{align}
+%
+where $\rho_0 = 1$ at half filling. The absence of $\phi_{\rho,-}$ in the charge density implies that the conjugate field will not show up in the associated current density. Invoking this argument, the system can still be an insulator as long as the fields $\phi_{\rho,+}$ and $\phi_{\rho,0}$ are gapped. 
+
+To decouple the remaining two fields, we first rescale the fields $\phi_{\nu,0}\mapsto \left(2/\sqrt{2-V^2}\right)^{-1/2} \phi_{\nu,0}$ and $\theta_{\nu,0}\mapsto \left(2/\sqrt{2-V^2}\right)^{1/2} \theta_{\nu,0}$ and diagonalize the remaining Hamiltonian. The rescaling is necessary in order to obey the bosonic commutation relations for the new linear combinations $\tilde{\phi}_{\nu,\alpha}$ of the fields. In matrix notation, we express the transformation as
+%
+\begin{align} \label{eq:FieldTrafoO3}
+	\left(\begin{array}{c}
+		\phi_{\nu,+} \\
+		\phi_{\nu,0}  \\
+		\phi_{\nu,-} 
+	\end{array}\right)
+	= \left(
+		\begin{array}{ccc}
+			\eta_{\nu;++} & \eta_{\nu;0+} & 0 \\
+			\eta_{\nu;+0} & \eta_{\nu;00} & 0 \\
+			0 & 0 & 1
+		\end{array}
+		\right)
+	\left(\begin{array}{c}
+		\tilde{\phi}_{\nu,+} \\
+		\tilde{\phi}_{\nu,0} \\
+		\tilde{\phi}_{\nu,-}
+	\end{array}\right) \ .
+\end{align}
+%
+After diagonalization, the full Hamiltonian including the relevant sine-Gordon terms is $H  = \tilde{\mathcal{H}}_0 + \tilde{\mathcal{H}}_{\text{int}}^{2k_F}$ with
+%
+\begin{align} \label{eq:FinalDiagonalHamiltonian}
+	\tilde{\mathcal{H}}_0 = \frac{1}{2\pi}\sum_{\alpha,\nu = \rho,\sigma}  \left[ \tilde{u}_{\nu,\alpha}\tilde{K}_{\nu,\alpha}\left(\partial_x \tilde{\theta}_{\nu, \alpha}\right)^2 + \frac{\tilde{u}_{\nu,\alpha}}{\tilde{K}_{\nu,\alpha}} \left(\partial_x \tilde{\phi}_{\nu, \alpha}\right)^2\right] \ ,
+\end{align}
+%
+and $\tilde{\mathcal{H}}^{2k_F}_{\text{int}}$ is the same as Eq.~\eqref{eq:UmklappTerms} except the fields are transformed according to Eq.~\eqref{eq:FieldTrafoO3}. Further, $\tilde{u}_{\nu,\alpha}\tilde{K}_{\nu,\alpha} = \sqrt{2-(V/t)^2}$. For $\tilde{u}_{\nu,\alpha}/\tilde{K}_{\nu,\alpha}$ see the supplemental material \cite{supp}. 
+
+Without confining potential $V/t=0$, both of the sine-Gordon terms in Eq.~\eqref{eq:UmklappTerms} are relevant, meaning that the fields $\phi_{\rho,+}$ and $\phi_{\rho,0}$, and $\theta_{\sigma,-}$ are gapped. In the following, we study the charge gaps for the fields $\phi_{\rho,+}$,  $\phi_{\rho,0}$ as a function of the confining potential strength $V/t$. 
+We calculate the gaps gaps utlizing a variational approach outlined in \cite{GiamarchiBook}. The gap for each charge mode is given by
+% 
+\begin{align} \label{eq:Gap}
+	\Delta^{(\gamma)} =  u^{(\gamma)}_{\rho}\Lambda \left(\frac{4K^{(\gamma)}_{\rho} y^{(\gamma)}}{(\alpha\Lambda)^2}\right)^{1/(2-2K^{(\gamma)}_{\rho})} \ , 
+\end{align}
+%
+where $K^{(\gamma)}_{\rho}$ is obtained from the scaling dimension of the respective sine-Gordon term, $u^{(\gamma)}_{\rho}$ is the excitation velocity, and $\gamma$ is a multi-index that takes values $\gamma = 0,0;0,0$ and $\gamma = 1,-1;-1,1$. In the following discussion, we use the abbreviations $\Delta_0 \equiv \Delta^{(0,0;0,0)}$ and $\Delta_+ \equiv \Delta^{(1,-1;-1,1)}$, such that $\Delta_0$ is the charge gap for the field $\phi_{\rho,0}$, and $\Delta_+$ for 
+the field $\phi_{\rho,+}$ .  $\Lambda=\pi/(2a)$ is a cutoff in momentum space,  and $y^{(\gamma)} = g_3^{(\gamma)}/(\pi\hbar v_F)$ is the dimensionless coupling constant. We note that the renormalization of the bare gaps  inside the brackets in Eq.~\eqref{eq:Gap} happens due to the exponent $1/(2-2K^{(\gamma)}_{\rho})$, which is the inverse of the scaling dimension of the corresponding term. Since both $u_{\rho}$ and $K_{\rho}$ depend on $V/t$, we 
+
+The magnitudes of the gaps as a function of $V/t$ are shown in \autoref{fig:Fig2}. One sees that both charge gaps are finite but different in magnitude at $V/t=0$. Further, we find that  the magnitudes of the gaps calculated in Hartree-Fock theory agree quite well with the result from bosonization. As $V/t$ increases, both gaps decrease in magnitude. Again, this is in agreement with the results obtained from HF. At $V/t \simeq 0.7$, the charge gap $\Delta_+$ drops to zero. The closing of this gap is accompanied by the corresponding sine-Gordon term from Eq.~\eqref{eq:UmklappTerms} becoming an irrelevant operator. More importantly, we observe a metal-insulator transition as a function of the confining potential strength. This is an important difference compared to HF. For the latter, at the symmetry point $\mu = 0$ the system remains gapped independent of the actual value of $V/t$. The charge gap $\Delta_0$ remains finite all the way up to $V/t\simeq \sqrt{2}$.
+
+
+\noindent \textit{Discussion:} 
+We have considered a simplified picture of an edge of a strongly correlated 2D electron gas, modelled by three coupled chains subject to a “confining potential”. Our bosonization approach is compared with a HF analysis. For the latter, only when being away from the particle-hole symmetry point, we find that as we increase the steepness of the confining potential, we transition from a gapped phase to an ungapped one, from a vanishing to a finite conductance phase, and from a finite to a  zero magnetization phase. The magnetization transition does not coincide with the other two. By contrast, our bosonization analysis, both at and away from the symmetry point, reveals distinctly different features.  As we increase the steepness of the confining potential, we observe a transition from a non-conducting to a conducting phase (the spectrum remains  gapless throughout, and on both sides of the transition the phases are non-magnetic.)
+
+This more reliable bosonization analysis combined with renormalization group insights, which accounts for quantum fluctuations, reveals that the phase transition reported here takes place notwithstanding the fact that the spectrum is always gapless. The insulating-to-conducting phase transition is accompanied by a gap closing of a collective charge mode as the confinement strength increases.
+We thus find that as a function of the confining potential strength, there can be a quantum phase transition at the boundary of interaction driven Mott insulators, with experimentally observable consequences. 
+
+Our prediction of a gap closing in an interacting system as a function of the slope of a confining potential can  be tested with present day experimental techniques.  In bilayer graphene, applying a perpendicular electric field can open up a bulk gap at the neutrality point  \cite{Li.2018}.  A combination of 
+ top gates and a back gate allows to independently tune the gap and the position of the Fermi level in the regions underneath the gates 
+ \cite{Overweg.2018}, such that a confining potential near the sample boundary with electrostatic control over its  slope is experimentally feasible. 
+ 
+ 
+ 
+\acknowledgements
+Y.G. and B.R. acknowledge support by DFG RO 2247/11-1.   Y.G. was supported by CRC 183 (project C01), the Minerva Foun-
+dation, MI 658/10-2, the
+German Israeli Foundation (Grant No. I-118-303.1-2018),
+the Helmholtz International Fellow Award, and by the
+Italia-Israel QUANTRA grant.
+% ---------------------------------------------------------------------------------
+% References
+% ---------------------------------------------------------------------------------
+
+\FloatBarrier
+%\bibliography{refs.bib}
+\bibliographystyle{apsrev4-2}
+
+\begin{thebibliography}{26}%
+	\makeatletter
+	\providecommand \@ifxundefined [1]{%
+		\@ifx{#1\undefined}
+	}%
+	\providecommand \@ifnum [1]{%
+		\ifnum #1\expandafter \@firstoftwo
+		\else \expandafter \@secondoftwo
+		\fi
+	}%
+	\providecommand \@ifx [1]{%
+		\ifx #1\expandafter \@firstoftwo
+		\else \expandafter \@secondoftwo
+		\fi
+	}%
+	\providecommand \natexlab [1]{#1}%
+	\providecommand \enquote  [1]{``#1''}%
+	\providecommand \bibnamefont  [1]{#1}%
+	\providecommand \bibfnamefont [1]{#1}%
+	\providecommand \citenamefont [1]{#1}%
+	\providecommand \href@noop [0]{\@secondoftwo}%
+	\providecommand \href [0]{\begingroup \@sanitize@url \@href}%
+	\providecommand \@href[1]{\@@startlink{#1}\@@href}%
+	\providecommand \@@href[1]{\endgroup#1\@@endlink}%
+	\providecommand \@sanitize@url [0]{\catcode `\\12\catcode `\$12\catcode
+		`\&12\catcode `\#12\catcode `\^12\catcode `\_12\catcode `\%12\relax}%
+	\providecommand \@@startlink[1]{}%
+	\providecommand \@@endlink[0]{}%
+	\providecommand \url  [0]{\begingroup\@sanitize@url \@url }%
+	\providecommand \@url [1]{\endgroup\@href {#1}{\urlprefix }}%
+	\providecommand \urlprefix  [0]{URL }%
+	\providecommand \Eprint [0]{\href }%
+	\providecommand \doibase [0]{https://doi.org/}%
+	\providecommand \selectlanguage [0]{\@gobble}%
+	\providecommand \bibinfo  [0]{\@secondoftwo}%
+	\providecommand \bibfield  [0]{\@secondoftwo}%
+	\providecommand \translation [1]{[#1]}%
+	\providecommand \BibitemOpen [0]{}%
+	\providecommand \bibitemStop [0]{}%
+	\providecommand \bibitemNoStop [0]{.\EOS\space}%
+	\providecommand \EOS [0]{\spacefactor3000\relax}%
+	\providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
+	\let\auto@bib@innerbib\@empty
+	%</preamble>
+	\bibitem [{\citenamefont {Halperin}(1982)}]{Halperin1982}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {B.~I.}\ \bibnamefont
+			{Halperin}},\ }\href {https://doi.org/10.1103/PhysRevB.25.2185} {\bibfield
+		{journal} {\bibinfo  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume}
+			{25}},\ \bibinfo {pages} {2185} (\bibinfo {year} {1982})}\BibitemShut
+	{NoStop}%
+	\bibitem [{\citenamefont {Laughlin}(1981)}]{Laughlin1981}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.~B.}\ \bibnamefont
+			{Laughlin}},\ }\href {https://doi.org/10.1103/PhysRevB.23.5632} {\bibfield
+		{journal} {\bibinfo  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume}
+			{23}},\ \bibinfo {pages} {5632} (\bibinfo {year} {1981})}\BibitemShut
+	{NoStop}%
+	\bibitem [{\citenamefont {Kane}\ and\ \citenamefont
+		{Mele}(2005{\natexlab{a}})}]{Kane2015}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.~L.}\ \bibnamefont
+			{Kane}}\ and\ \bibinfo {author} {\bibfnamefont {E.~J.}\ \bibnamefont
+			{Mele}},\ }\href {https://doi.org/10.1103/PhysRevLett.95.146802} {\bibfield
+		{journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo
+			{volume} {95}},\ \bibinfo {pages} {146802} (\bibinfo {year}
+		{2005}{\natexlab{a}})}\BibitemShut {NoStop}%
+	\bibitem [{\citenamefont {Bernevig}\ \emph {et~al.}(2006)\citenamefont
+		{Bernevig}, \citenamefont {Hughes},\ and\ \citenamefont
+		{Zhang}}]{Bernevig2006}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {B.~A.}\ \bibnamefont
+			{Bernevig}}, \bibinfo {author} {\bibfnamefont {T.~L.}\ \bibnamefont
+			{Hughes}},\ and\ \bibinfo {author} {\bibfnamefont {S.-C.}\ \bibnamefont
+			{Zhang}},\ }\href {https://doi.org/10.1126/science.1133734} {\bibfield
+		{journal} {\bibinfo  {journal} {Science}\ }\textbf {\bibinfo {volume}
+			{314}},\ \bibinfo {pages} {1757} (\bibinfo {year} {2006})}\BibitemShut
+	{NoStop}%
+	\bibitem [{\citenamefont {Hasan}\ and\ \citenamefont {Kane}(2010)}]{Hasan2010}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~Z.}\ \bibnamefont
+			{Hasan}}\ and\ \bibinfo {author} {\bibfnamefont {C.~L.}\ \bibnamefont
+			{Kane}},\ }\href {https://doi.org/10.1103/RevModPhys.82.3045} {\bibfield
+		{journal} {\bibinfo  {journal} {Rev. Mod. Phys.}\ }\textbf {\bibinfo {volume}
+			{82}},\ \bibinfo {pages} {3045} (\bibinfo {year} {2010})}\BibitemShut
+	{NoStop}%
+	\bibitem [{\citenamefont {Qi}\ and\ \citenamefont {Zhang}(2011)}]{Qi2011}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {X.-L.}\ \bibnamefont
+			{Qi}}\ and\ \bibinfo {author} {\bibfnamefont {S.-C.}\ \bibnamefont {Zhang}},\
+	}\href {https://doi.org/10.1103/RevModPhys.83.1057} {\bibfield  {journal}
+		{\bibinfo  {journal} {Rev. Mod. Phys.}\ }\textbf {\bibinfo {volume} {83}},\
+		\bibinfo {pages} {1057} (\bibinfo {year} {2011})}\BibitemShut {NoStop}%
+	\bibitem [{\citenamefont {K{\"o}nig}\ \emph {et~al.}(2007)\citenamefont
+		{K{\"o}nig}, \citenamefont {Wiedmann}, \citenamefont {Br{\"u}ne},
+		\citenamefont {Roth}, \citenamefont {Buhmann}, \citenamefont {Molenkamp},
+		\citenamefont {Qi},\ and\ \citenamefont {Zhang}}]{Koenig2007}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+			{K{\"o}nig}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Wiedmann}},
+		\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {Br{\"u}ne}}, \bibinfo
+		{author} {\bibfnamefont {A.}~\bibnamefont {Roth}}, \bibinfo {author}
+		{\bibfnamefont {H.}~\bibnamefont {Buhmann}}, \bibinfo {author} {\bibfnamefont
+			{L.~W.}\ \bibnamefont {Molenkamp}}, \bibinfo {author} {\bibfnamefont {X.-L.}\
+			\bibnamefont {Qi}},\ and\ \bibinfo {author} {\bibfnamefont {S.-C.}\
+			\bibnamefont {Zhang}},\ }\href {https://doi.org/10.1126/science.1148047}
+	{\bibfield  {journal} {\bibinfo  {journal} {Science}\ }\textbf {\bibinfo
+			{volume} {318}},\ \bibinfo {pages} {766} (\bibinfo {year}
+		{2007})}\BibitemShut {NoStop}%
+	\bibitem [{\citenamefont {Altland}\ and\ \citenamefont
+		{Zirnbauer}(1997)}]{Altland1997}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+			{Altland}}\ and\ \bibinfo {author} {\bibfnamefont {M.~R.}\ \bibnamefont
+			{Zirnbauer}},\ }\href {https://doi.org/10.1103/PhysRevB.55.1142} {\bibfield
+		{journal} {\bibinfo  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume}
+			{55}},\ \bibinfo {pages} {1142} (\bibinfo {year} {1997})}\BibitemShut
+	{NoStop}%
+	\bibitem [{\citenamefont {Wen}(2007)}]{Wen2007}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {X.-G.}\ \bibnamefont
+			{Wen}},\ }\href {https://doi.org/10.1093/acprof:oso/9780199227259.001.0001}
+	{\emph {\bibinfo {title} {Quantum Field Theory of Many-Body Systems}}}\
+	(\bibinfo  {publisher} {Oxford University Press},\ \bibinfo {year}
+	{2007})\BibitemShut {NoStop}%
+	\bibitem [{\citenamefont {Kane}\ and\ \citenamefont
+		{Mele}(2005{\natexlab{b}})}]{Kane2005}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.~L.}\ \bibnamefont
+			{Kane}}\ and\ \bibinfo {author} {\bibfnamefont {E.~J.}\ \bibnamefont
+			{Mele}},\ }\href {https://doi.org/10.1103/PhysRevLett.95.226801} {\bibfield
+		{journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo
+			{volume} {95}},\ \bibinfo {pages} {226801} (\bibinfo {year}
+		{2005}{\natexlab{b}})}\BibitemShut {NoStop}%
+	\bibitem [{\citenamefont {Kosterlitz}\ and\ \citenamefont
+		{Thouless}(1972)}]{Kosterlitz1972}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~M.}\ \bibnamefont
+			{Kosterlitz}}\ and\ \bibinfo {author} {\bibfnamefont {D.~J.}\ \bibnamefont
+			{Thouless}},\ }\href {https://doi.org/10.1088/0022-3719/5/11/002} {\bibfield
+		{journal} {\bibinfo  {journal} {Journal of Physics C: Solid State Physics}\
+		}\textbf {\bibinfo {volume} {5}},\ \bibinfo {pages} {L124} (\bibinfo {year}
+		{1972})}\BibitemShut {NoStop}%
+	\bibitem [{\citenamefont {Kosterlitz}\ and\ \citenamefont
+		{Thouless}(1973)}]{Kosterlitz1973}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~M.}\ \bibnamefont
+			{Kosterlitz}}\ and\ \bibinfo {author} {\bibfnamefont {D.~J.}\ \bibnamefont
+			{Thouless}},\ }\href {https://doi.org/10.1088/0022-3719/6/7/010} {\bibfield
+		{journal} {\bibinfo  {journal} {Journal of Physics C: Solid State Physics}\
+		}\textbf {\bibinfo {volume} {6}},\ \bibinfo {pages} {1181} (\bibinfo {year}
+		{1973})}\BibitemShut {NoStop}%
+	\bibitem [{\citenamefont {Haldane}(1988)}]{Haldane1988}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {F.~D.~M.}\
+			\bibnamefont {Haldane}},\ }\href
+	{https://doi.org/10.1103/PhysRevLett.61.2015} {\bibfield  {journal} {\bibinfo
+			{journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {61}},\ \bibinfo
+		{pages} {2015} (\bibinfo {year} {1988})}\BibitemShut {NoStop}%
+	\bibitem [{\citenamefont {Mott}(1949)}]{Mott1949}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {N.~F.}\ \bibnamefont
+			{Mott}},\ }\href {https://doi.org/10.1088/0370-1298/62/7/303} {\bibfield
+		{journal} {\bibinfo  {journal} {Proceedings of the Physical Society. Section
+				A}\ }\textbf {\bibinfo {volume} {62}},\ \bibinfo {pages} {416} (\bibinfo
+		{year} {1949})}\BibitemShut {NoStop}%
+	\bibitem [{\citenamefont {Schulz}()}]{Schulz}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.~J.}\ \bibnamefont
+			{Schulz}},\ }in\ \href {https://doi.org/10.1007/bfb0104636} {\emph {\bibinfo
+			{booktitle} {Strongly Correlated Magnetic and Superconducting Systems}}}\
+	(\bibinfo  {publisher} {Springer Berlin Heidelberg})\ pp.\ \bibinfo {pages}
+	{136--136}\BibitemShut {NoStop}%
+	\bibitem [{\citenamefont {Khanna}\ \emph {et~al.}(2021)\citenamefont {Khanna},
+		\citenamefont {Gefen}, \citenamefont {Entin-Wohlman},\ and\ \citenamefont
+		{Aharony}}]{Khanna.2021}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {U.}~\bibnamefont
+			{Khanna}}, \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Gefen}},
+		\bibinfo {author} {\bibfnamefont {O.}~\bibnamefont {Entin-Wohlman}},\ and\
+		\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Aharony}},\ }\href@noop
+	{} {} (\bibinfo {year} {2021}),\ \Eprint {https://arxiv.org/abs/2108.02186}
+	{arXiv:2108.02186 [cond-mat.mes-hall]} \BibitemShut {NoStop}%
+	\bibitem [{\citenamefont {Balents}\ and\ \citenamefont
+		{Fisher}(1996)}]{Balents1996}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+			{Balents}}\ and\ \bibinfo {author} {\bibfnamefont {M.~P.~A.}\ \bibnamefont
+			{Fisher}},\ }\href {https://doi.org/10.1103/PhysRevB.53.12133} {\bibfield
+		{journal} {\bibinfo  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume}
+			{53}},\ \bibinfo {pages} {12133} (\bibinfo {year} {1996})}\BibitemShut
+	{NoStop}%
+	\bibitem [{\citenamefont {Hur}(2001)}]{Hur2001}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {K.~L.}\ \bibnamefont
+			{Hur}},\ }\href {https://doi.org/10.1103/PhysRevB.63.165110} {\bibfield
+		{journal} {\bibinfo  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume}
+			{63}},\ \bibinfo {pages} {165110} (\bibinfo {year} {2001})}\BibitemShut
+	{NoStop}%
+	\bibitem [{\citenamefont {Giamarchi}\ and\ \citenamefont
+		{Press}(2004)}]{GiamarchiBook}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont
+			{Giamarchi}}\ and\ \bibinfo {author} {\bibfnamefont {O.~U.}\ \bibnamefont
+			{Press}},\ }\href {https://books.google.de/books?id=1MwTDAAAQBAJ} {\emph
+		{\bibinfo {title} {Quantum Physics in One Dimension}}},\ International Series
+	of Monographs\ (\bibinfo  {publisher} {Clarendon Press},\ \bibinfo {year}
+	{2004})\BibitemShut {NoStop}%
+	\bibitem [{\citenamefont {Finkel'stein}\ and\ \citenamefont
+		{Larkin}(1993)}]{FinkelStein1993}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.~M.}\ \bibnamefont
+			{Finkel'stein}}\ and\ \bibinfo {author} {\bibfnamefont {A.~I.}\ \bibnamefont
+			{Larkin}},\ }\href {https://doi.org/10.1103/PhysRevB.47.10461} {\bibfield
+		{journal} {\bibinfo  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume}
+			{47}},\ \bibinfo {pages} {10461} (\bibinfo {year} {1993})}\BibitemShut
+	{NoStop}%
+	\bibitem [{\citenamefont {Miao}\ \emph {et~al.}(2016)\citenamefont {Miao},
+		\citenamefont {Zhang},\ and\ \citenamefont {Zhou}}]{Miao2016}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~J.}\ \bibnamefont
+			{Miao}}, \bibinfo {author} {\bibfnamefont {F.~C.}\ \bibnamefont {Zhang}},\
+		and\ \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Zhou}},\ }\bibfield
+	{journal} {\bibinfo  {journal} {Physical Review B}\ }\textbf {\bibinfo
+		{volume} {94}},\ \href {https://doi.org/10.1103/PhysRevB.94.205129}
+	{10.1103/PhysRevB.94.205129} (\bibinfo {year} {2016})\BibitemShut {NoStop}%
+	\bibitem [{\citenamefont {Tsuchiizu}\ \emph {et~al.}(2001)\citenamefont
+		{Tsuchiizu}, \citenamefont {Donohue}, \citenamefont {Suzumura},\ and\
+		\citenamefont {Giamarchi}}]{Tsuchiizu2001}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+			{Tsuchiizu}}, \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Donohue}},
+		\bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Suzumura}},\ and\
+		\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Giamarchi}},\ }\href
+	{https://doi.org/10.1007/s100510170327} {\bibfield  {journal} {\bibinfo
+			{journal} {The European Physical Journal B}\ }\textbf {\bibinfo {volume}
+			{19}},\ \bibinfo {pages} {185} (\bibinfo {year} {2001})}\BibitemShut
+	{NoStop}%
+	\bibitem [{sup(2021)}]{supp}%
+	\BibitemOpen
+	\href@noop {} {} (\bibinfo {year} {2021}),\ \bibinfo {note} {{See
+			Supplemental Material for more details.}}\BibitemShut {Stop}%
+	\bibitem [{\citenamefont {von Delft}\ and\ \citenamefont
+		{Schoeller}(1998)}]{vonDelft1998}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {von
+				Delft}}\ and\ \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+			{Schoeller}},\ }\href
+	{https://doi.org/10.1002/(sici)1521-3889(199811)7:4<225::aid-andp225>3.0.co;2-l}
+	{\bibfield  {journal} {\bibinfo  {journal} {Annalen der Physik}\ }\textbf
+		{\bibinfo {volume} {7}},\ \bibinfo {pages} {225} (\bibinfo {year}
+		{1998})}\BibitemShut {NoStop}%
+	\bibitem [{\citenamefont {Li}\ \emph {et~al.}(2018)\citenamefont {Li},
+		\citenamefont {Zhang}, \citenamefont {Yin}, \citenamefont {Zhang},
+		\citenamefont {Watanabe}, \citenamefont {Taniguchi}, \citenamefont {Liu},\
+		and\ \citenamefont {Zhu}}]{Li.2018}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+			{Li}}, \bibinfo {author} {\bibfnamefont {R.-X.}\ \bibnamefont {Zhang}},
+		\bibinfo {author} {\bibfnamefont {Z.}~\bibnamefont {Yin}}, \bibinfo {author}
+		{\bibfnamefont {J.}~\bibnamefont {Zhang}}, \bibinfo {author} {\bibfnamefont
+			{K.}~\bibnamefont {Watanabe}}, \bibinfo {author} {\bibfnamefont
+			{T.}~\bibnamefont {Taniguchi}}, \bibinfo {author} {\bibfnamefont
+			{C.}~\bibnamefont {Liu}},\ and\ \bibinfo {author} {\bibfnamefont
+			{J.}~\bibnamefont {Zhu}},\ }\href {https://doi.org/10.1126/science.aao5989}
+	{\bibfield  {journal} {\bibinfo  {journal} {Science}\ }\textbf {\bibinfo
+			{volume} {362}},\ \bibinfo {pages} {1149} (\bibinfo {year}
+		{2018})}\BibitemShut {NoStop}%
+	\bibitem [{\citenamefont {Overweg}\ \emph {et~al.}(2018)\citenamefont
+		{Overweg}, \citenamefont {Eggimann}, \citenamefont {Chen}, \citenamefont
+		{Slizovskiy}, \citenamefont {Eich}, \citenamefont {Pisoni}, \citenamefont
+		{Lee}, \citenamefont {Rickhaus}, \citenamefont {Watanabe}, \citenamefont
+		{Taniguchi}, \citenamefont {Fal’ko}, \citenamefont {Ihn},\ and\
+		\citenamefont {Ensslin}}]{Overweg.2018}%
+	\BibitemOpen
+	\bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+			{Overweg}}, \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Eggimann}},
+		\bibinfo {author} {\bibfnamefont {X.}~\bibnamefont {Chen}}, \bibinfo {author}
+		{\bibfnamefont {S.}~\bibnamefont {Slizovskiy}}, \bibinfo {author}
+		{\bibfnamefont {M.}~\bibnamefont {Eich}}, \bibinfo {author} {\bibfnamefont
+			{R.}~\bibnamefont {Pisoni}}, \bibinfo {author} {\bibfnamefont
+			{Y.}~\bibnamefont {Lee}}, \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont
+			{Rickhaus}}, \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Watanabe}},
+		\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Taniguchi}}, \bibinfo
+		{author} {\bibfnamefont {V.}~\bibnamefont {Fal’ko}}, \bibinfo {author}
+		{\bibfnamefont {T.}~\bibnamefont {Ihn}},\ and\ \bibinfo {author}
+		{\bibfnamefont {K.}~\bibnamefont {Ensslin}},\ }\href
+	{https://doi.org/10.1021/acs.nanolett.7b04666} {\bibfield  {journal}
+		{\bibinfo  {journal} {Nano Letters}\ }\textbf {\bibinfo {volume} {18}},\
+		\bibinfo {pages} {553} (\bibinfo {year} {2018})}\BibitemShut {NoStop}%
+\end{thebibliography}%
+
+\ifarXiv
+    \foreach \x in {1,...,\numbersupplementpages}
+    {%
+        \clearpage
+        \includepdf[pages={\x,{}}]{\supplementfilename.pdf}
+    }
+\fi
+
+
+\end{document}
