@@ -1,4 +1,56 @@
-- task: 
+# multiple interaction in Eq. (2) and Eq. (4)
+- task: Construct Kinetic Hamiltonian (continuum version, second-quantized)
   source:
-    arxiv.tex:
-      - [start,end]
+    1211.4885.tex:
+      - [101,115]
+
+- task: Define each term in Kinetic Hamiltonian (continuum version)
+  source:
+    1211.4885.tex:
+      - [101,115]
+
+- task: Convert noninteracting Hamiltonian in real space to momentum space (continuum version)
+  source:
+    1211.4885.tex:
+      - [101,115]
+
+- task: Construct interaction Hamiltonian (momentum space)
+  source:
+    1211.4885.tex:
+      - [117,121]
+
+- task: Wick's theorem
+  source:
+    1211.4885.tex:
+      - [121,127]
+
+- task: Extract quadratic term
+  source:
+    1211.4885.tex:
+      - [121,127]
+
+- task: Hartree term only
+  source:
+    1211.4885.tex:
+      - [121,127]
+
+- task: Expand interaction
+  source:
+    1211.4885.tex:
+      - [121,127]
+
+- task: Swap the index to combine Hartree and Fock terms
+  source:
+    1211.4885.tex:
+      - [121,127]
+
+- task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
+  source:
+    1211.4885.tex:
+      - [121,127]
+
+- task: Construct full Hamiltonian after HF
+  source:
+    1211.4885.tex:
+      - [121,127]
+
