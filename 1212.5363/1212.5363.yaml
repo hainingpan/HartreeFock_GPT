@@ -1,0 +1,65 @@
+- task: Construct Kinetic Hamiltonian (continuum version, second-quantized)
+  source:
+    1212.5363.tex:
+      - [213,236]
+
+- task: Define each term in Kinetic Hamiltonian (continuum version)
+  source:
+    1212.5363.tex:
+      - [213,236]
+
+- task: Define each term in Kinetic Hamiltonian (continuum version)
+  source:
+    1212.5363.tex:
+      - [213,236]
+
+- task: Construct interaction Hamiltonian (momentum space)
+  source:
+    1212.5363.tex:
+      - [252,264]
+
+- task: Construct interaction Hamiltonian (momentum space)
+  source:
+    1212.5363.tex:
+      - [252,264]
+
+- task: Wick's theorem
+  source:
+    1212.5363.tex:
+      - [337,389]
+
+- task: Extract quadratic term
+  source:
+    1212.5363.tex:
+      - [337,389]
+
+- task: Expand interaction
+  source:
+    1212.5363.tex:
+      - [337,389]
+
+- task: Swap the index to combine Hartree and Fock terms
+  source:
+    1212.5363.tex:
+      - [337,389]
+
+- task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
+  source:
+    1212.5363.tex:
+      - [337,389]
+
+- task: Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
+  source:
+    1212.5363.tex:
+      - [337,389]
+
+- task: Combine the Hartree and Fock term
+  source:
+    1212.5363.tex:
+      - [337,389]
+
+- task: Construct full Hamiltonian after HF
+  source:
+    1212.5363.tex:
+      - [337,389]
+  
