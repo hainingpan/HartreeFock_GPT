@@ -1,4 +1,3 @@
-# Hamiltonian not well documented
 - task: 
   source:
     arxiv.tex:

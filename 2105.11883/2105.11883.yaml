@@ -1,4 +1,4 @@
-# [Needs to skip for now because Real space HF]
+#  Wick expansion in the real space
 - task: 
   source:
     2105.11883.tex:
