@@ -1,0 +1,683 @@
+[33mcommit bc1171d777ecabff865f93af73b229df0d3b8283[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Haining Pan <hnpan@terpmail.umd.edu>
+Date:   Sun Aug 20 02:47:29 2023 +0000
+
+    add annotation for 0812.2894. PDF and ipynb still missing, partially done
+
+[33mcommit 16e776c841c6a3cbb6c4682063d2b698c577f278[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Aug 17 23:11:49 2023 -0400
+
+    add summary to utils.ipynb; change format
+
+[33mcommit 518879698f262a5fdc7d1a0269b96df77ad29ec5[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Aug 17 22:54:27 2023 -0400
+
+    add 1310.2674
+
+[33mcommit ae7ec303671731ccbc35a53e56f4f4857007bc92[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Aug 17 09:42:16 2023 -0400
+
+    add 2110.11330
+
+[33mcommit 255fe1b8dd8e6769fee71c71ba9b242f69b0b58d[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Aug 17 09:22:54 2023 -0400
+
+    skip 1109.0307  it does not fit in the template because the paper contains three types of Hamiltonian, which are compared in the paper
+
+[33mcommit e7baa5e110e8e3f212a665fce25a45d1237854f4[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Aug 17 09:17:20 2023 -0400
+
+    skip 1206.0608 due to SC pairing
+
+[33mcommit c671f6455649aeaf3266b30b819a13878d6ad9be[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Aug 17 09:16:58 2023 -0400
+
+    add 1211.4885
+
+[33mcommit 58c1e83986fb68e52053c042891f98ae159a8417[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Aug 17 08:57:34 2023 -0400
+
+    add 1212.5363
+
+[33mcommit 31acf8c720e8bfe043bc3ae3c8922e9f40a9daca[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Aug 17 08:43:56 2023 -0400
+
+    add 2306.02818, 2207.11823, 2202.04374, skip due to Ham not well documented,  SOC not fitted into template, wick expansion in the real space.
+
+[33mcommit 08ed6e3680e2d63dc54df5195a58a41f475237e8[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Aug 17 08:11:10 2023 -0400
+
+    add 1010.1819
+
+[33mcommit 35fa3792c100484b6ef71a7e7fdc37efbda023be[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Tue Aug 15 09:04:32 2023 -0400
+
+    add tex files of papers imported from zotero
+
+[33mcommit e897e97b639dfd7945c386b26afdbacb682323c0[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Aug 14 20:11:38 2023 -0400
+
+    add 0902.1336.pdf
+
+[33mcommit 478e49eb766bf7c7b643ec8369c9856dc1080c34[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Aug 14 12:26:18 2023 -0400
+
+    add 0902.1336
+
+[33mcommit 6d688223a89529b1b09cb53c0e0ff39edf9601bb[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Aug 14 11:55:52 2023 -0400
+
+    add 1208.0116
+
+[33mcommit 24fb5096a507ad3381c1f22e326ffdf27d0b704b[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Aug 14 11:27:55 2023 -0400
+
+    add 2008.08998
+
+[33mcommit 762608914c7c8643cda43b4fbd5fdf5f2046be7d[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Aug 14 10:21:56 2023 -0400
+
+    add extractor_template.ipynb
+
+[33mcommit ea9b7ea713e7a5522705279a03adbfeb9e1e13db[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Aug 14 10:21:32 2023 -0400
+
+    add 2012.04554, add Reduce momentum in Fock term (momentum in BZ +reciprocal lattice) to the prompt_template.md
+
+[33mcommit 8827b7fdc389508716e19969bb203b35588f90f7[m
+Merge: c3f5615 6d0614c
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Aug 14 09:40:21 2023 -0400
+
+    Merge branch 'master' of https://github.com/hainingpan/HartreeFock_GPT
+
+[33mcommit c3f5615b11ee401be800f3a7e17da7dc93dd16c0[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Aug 14 09:11:46 2023 -0400
+
+    skip 2105.11883 for now due to real space HF
+
+[33mcommit 6d0614c037bd40f18057f3056fb8752f128e27af[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Aug 14 09:11:46 2023 -0400
+
+    skip 2015.11883 for now due to real space HF
+
+[33mcommit f3a38dc6fbd6597bfa916e1d11070a43c4ad6fce[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Aug 14 08:10:32 2023 -0400
+
+    add 2112.07523
+
+[33mcommit 92ffd1a5db2d156dfcb5081b95d14b9dc9300ad7[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Fri Aug 11 00:45:50 2023 -0400
+
+    add annotation from auto-gen, to be fixed
+
+[33mcommit 74c7f3aeebf3f7a0a8a08101528266228db0929a[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Aug 10 23:56:29 2023 -0400
+
+    add papers
+
+[33mcommit d978499ee6dd4516dee7d2bff7806f4478581f0a[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Aug 10 23:53:28 2023 -0400
+
+    add 2108.02159, to be fixed
+
+[33mcommit abbfbd5ea720e16f79e9d5aa6401a7fa257169de[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Aug 6 22:51:42 2023 -0400
+
+    upate .gitignore
+
+[33mcommit ff5a3bfcbc877f378df237e32756644d72c13060[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Aug 6 22:51:23 2023 -0400
+
+    add palm and figs
+
+[33mcommit 3c88e60d2bab5d03d2d6576ab6b1a2fcc2db4c25[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Aug 3 15:39:32 2023 -0400
+
+    update Prompt Template (reflect removing description in jsonl), add function of automating template filling in 2111.01152.ipynb
+
+[33mcommit 0b1cd83a977806a0de873f27bc282f7028374838[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sat Jul 29 13:21:29 2023 -0400
+
+    fix typos in prompt_template.md
+
+[33mcommit bdc7035934d5df8d81d8f4d87b4f31205cca80c2[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Fri Jul 28 14:48:56 2023 -0400
+
+    Update "Define each term in Potential Hamiltonian (continuum version)", removing the description part, jsonl and ipynb are to be updated
+
+[33mcommit 2b643737890687756693f7c93aa5ccb03b87313e[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Fri Jul 28 14:31:20 2023 -0400
+
+    Update "## Construct Potential Hamiltonian (continuum version)",
+    removing the description part, jsonl and ipynb are to be updated
+
+[33mcommit 9d289ae5d8c9bfb097225a3383157d28e60818a5[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Fri Jul 28 13:56:43 2023 -0400
+
+    Update "Define each term in Kinetic Hamiltonian (continuum version)", removing the description part, jsonl and ipynb are to be updated
+
+[33mcommit bd4895cca5b6384a47ab35f1ad4bb5ea7e050bb1[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Jul 16 17:41:11 2023 -0400
+
+    add source
+
+[33mcommit c61992c17044f39e5f25704622651e7ccc6cd64d[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Jul 16 15:43:52 2023 -0400
+
+    add a function in utils.ipynb to direct download and save tex , from arxiv
+
+[33mcommit e64cfe50194a5f388a34a15edfdf3759b92bb720[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Jul 16 15:42:59 2023 -0400
+
+    add tex files
+
+[33mcommit 70b7c2fe5ac15bf6379b2a90ce32f8306afc727f[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Jul 16 14:58:05 2023 -0400
+
+    add 1106.6060_auto.md
+
+[33mcommit 75f0b93f6dffb1acd717d48c2bd586aa09afdb27[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Jul 16 12:42:27 2023 -0400
+
+    fix bug in utils.py  and remove redundant keys in *.jsonl
+
+[33mcommit 821152b1c0eb20209e3e66f6d7285b7c12f574f9[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Jul 16 00:49:10 2023 -0400
+
+    Add an automatic run for prompt template and descriptor file
+
+[33mcommit 96f463f37b47d9970b9dd2def81cad6e9bf6ec02[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sat Jul 15 23:12:48 2023 -0400
+
+    fix issue of "`" in "def_var"
+
+[33mcommit f840d5999ef81bafc4504bffca92e9ed425144bc[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Jul 13 22:11:21 2023 -0400
+
+    Fix Prompt Template by going through 2004.04168
+
+[33mcommit 4e2aa40ce92fd17d0231b5a9672b5e7a3108db23[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Jul 13 22:09:54 2023 -0400
+
+    fix minor mistakes in 2004.04168.jsonl
+
+[33mcommit 770da762415baee3573be461fff39bc09b309a77[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Jul 13 21:39:53 2023 -0400
+
+    fix minor mistakes in 1812.04213.jsonl  2108.02159.jsonl
+
+[33mcommit 05c38770f02e8f54c2598dd5b6e1159c54f4973c[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Jul 13 18:30:56 2023 -0400
+
+    Fix Prompt Template by going through 1106.6060, fix other minors
+
+[33mcommit 4ed982122e691cafbb7bee65331519537e6c91c9[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Jul 13 00:20:42 2023 -0400
+
+    fix other minors
+
+[33mcommit 071fcdd54b37c842d64b976aef6d3314055732f6[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Wed Jul 12 22:37:20 2023 -0400
+
+    Fix Prompt Template by going through 1812.04213, fix other minors
+
+[33mcommit b3b8e2d8527eb0de4f68eee1d449067f83085201[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Wed Jul 12 16:57:10 2023 -0400
+
+    fix minor mistakes in prompt_template
+
+[33mcommit e8549ba040176c287dc426aa4fed44ff942c3470[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Wed Jul 12 16:19:07 2023 -0400
+
+    fix continue, 1|2-quant,
+
+[33mcommit f357d74ac944ca5c1bf2f80369f45ac46b81837f[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Wed Jul 12 15:20:02 2023 -0400
+
+    Fix Prompt Template by going through 2108.02159, fix other minors
+
+[33mcommit 5688c4a1567e89f56d17e8dff05c40bf30c4e48f[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Wed Jul 12 10:34:03 2023 -0400
+
+    fix typos in Prompt_template.md and 210802159.md
+
+[33mcommit bb691e6ce4408d7e2b768580bf9d32cb4a09d0b2[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Wed Jul 12 01:10:40 2023 -0400
+
+    Prompt_template: separate Kinetic , 1/2-quant
+
+[33mcommit 42ecd2e82525db461582d0de695f88207ff7f011[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Tue Jul 11 23:26:01 2023 -0400
+
+    Add Descriptor File, 2111.01152.jsonl
+
+[33mcommit 708a8c2c785688afe0f5cca43268770a416c5cd2[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Tue Jul 11 19:04:29 2023 -0400
+
+    Fix Prompt Template by going through 2111.01152
+
+[33mcommit 02184918e99c2b9722b96155d94d48fbacfdde77[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Tue Jul 11 15:31:51 2023 -0400
+
+    Change 'now you' to 'you' in prompt_template.md
+
+[33mcommit cf9aded41e343dbac8f631e5800cbb3b3da45296[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Jul 10 01:15:36 2023 -0400
+
+    streamline template evaluation. Update tempalte:\n Construct Kinetic Hamiltonian (continuum version)\n Define each term in Kinetic Hamiltonian (continuum version)\n Construct Potential Hamiltonian (continuum version)\n Define each term in Potential Hamiltonian (continuum version)
+
+[33mcommit fb9b393c39eb3c28dbd23f772ac78d0d2414ce2b[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Jul 9 16:03:01 2023 -0400
+
+    update prompt_template.md
+
+[33mcommit 9b9d713ce987e46d1bca5834aac14051359187f5[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Jul 9 15:05:01 2023 -0400
+
+    Separate `workflow` from `prompt_template.md`
+
+[33mcommit 48d50eba84d3c8e9a34f3b16f66d2c5eb49d7383[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Fri Jul 7 15:09:15 2023 -0400
+
+    Update prompt_template & add unpublished.md
+
+[33mcommit 0bcad352ded2d8a49b6ac790f9d16c6af3d93fec[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Fri Jul 7 00:09:12 2023 -0400
+
+    update unpublished.md
+
+[33mcommit 0f161361321fb510b0257a794704caa256e70ea4[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Fri Jul 7 00:06:46 2023 -0400
+
+    Fix "swap index only"
+
+[33mcommit fbfa82249c2b934e356c59e57fb3cf7cb0271c34[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Jul 6 23:36:06 2023 -0400
+
+    update Wick's theorem
+
+[33mcommit 5779d369a957f33e83d8dcd55d2609865359077f[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Jul 6 23:33:07 2023 -0400
+
+    fix typo
+
+[33mcommit 856e8d62123601be1630cbbcb1ca11cba75429e4[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Jul 6 15:57:34 2023 -0400
+
+    fix prompt_template and work on unpub paper
+
+[33mcommit cf7b971835596ae04e2802467d710092aee782d7[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Jul 3 11:03:30 2023 -0400
+
+    update todo.md
+
+[33mcommit 634f036c575f141b368cc27e3ca8c4614a4ba692[m
+Merge: 0009843 3f28c0d
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Jul 3 11:00:45 2023 -0400
+
+    Merge branch 'master' of https://github.com/hainingpan/HartreeFock_GPT
+
+[33mcommit 0009843f075f609005de94e8e751f92419ca4773[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Jul 3 11:00:34 2023 -0400
+
+    Update 2004.04168 & 1812.04213
+
+[33mcommit 3f28c0d43c23e209db9004f1fb07331c11cd0d4f[m
+Author: Haining Pan <hnpan@terpmail.umd.edu>
+Date:   Sat Jul 1 14:36:56 2023 -0400
+
+    Create LICENSE
+
+[33mcommit caef0a09fdde45cee4c613c68e7e2eab29aa3153[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Wed Jun 28 15:11:52 2023 -0400
+
+    update Prompt_tempalte.md
+
+[33mcommit eeb6095b772ce9201d0e6e346f3e4dd0803efa5b[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Wed Jun 28 14:51:07 2023 -0400
+
+    Update workflow
+
+[33mcommit 927d3adcd739a0846ba620c841da97eeca21e429[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Wed Jun 28 14:37:13 2023 -0400
+
+    update Prompt_template.md for visulization
+
+[33mcommit 1a0ce630834c86433d8038c2b0033ccad111eba3[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Tue Jun 27 17:20:47 2023 -0400
+
+    update prompt_template.md and todo.md
+
+[33mcommit 77df11e42274c0022030638cf66e439de7580932[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Tue Jun 27 14:28:10 2023 -0400
+
+    update mermaid syntax
+
+[33mcommit f5c3c83884cdf51a2f44b6309e5b1b306d738a55[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Tue Jun 27 14:26:18 2023 -0400
+
+    add workflow in prompt template.md
+
+[33mcommit 82fe415c6c19148187a50acf269b60660abdbdba[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Tue Jun 27 14:25:02 2023 -0400
+
+    add workflow in todo.md
+
+[33mcommit 2d13f23577defa51f225aa43d7ed8428774095ea[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Jun 26 13:38:20 2023 -0400
+
+    add Hartree-Fock.csv
+
+[33mcommit e9584c3918413296692e068a6b9eeaa3be6a1b16[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Jun 26 13:08:42 2023 -0400
+
+    update todo.md
+
+[33mcommit 412e1dfc8642d8af941528fd851c2717961abf19[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Jun 25 22:37:25 2023 -0400
+
+    update section title for consistency
+
+[33mcommit 6481308a99655b621e9091c8cadc1d77ab340230[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Jun 25 17:19:31 2023 -0400
+
+    add .gitignore
+
+[33mcommit 9f7885f8dfc810f1309bf81ddbe3f6a05f4c80a1[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Jun 25 17:19:11 2023 -0400
+
+    update prompt based on 1106.6060
+
+[33mcommit 852904010fb390d7fc64cb2f8fadd99ccacf0d87[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Jun 25 15:49:37 2023 -0400
+
+    update todo.md
+
+[33mcommit 5ef3b782d5d2f81be2df5fea0414b0e62429d099[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Jun 25 15:19:04 2023 -0400
+
+    update 1106.6060, finish HF
+
+[33mcommit 0bdbe0cf9552b2e074cdc23c0aa4ac69952a19c0[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Sun Jun 25 11:21:15 2023 -0400
+
+    update 1106.6060
+
+[33mcommit f57c016ac13d1f6f74e470c04389a064661ad5c9[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Fri Jun 23 22:23:26 2023 -0400
+
+    update prompt_template.md
+
+[33mcommit 40f78907f850fd59dcd5b0fc981c4b7ffbe18574[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Fri Jun 23 22:23:11 2023 -0400
+
+    add  1106.6060 partially
+
+[33mcommit 06b361d2248facc421c91eea4465738c04d68ccc[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Fri Jun 23 15:26:51 2023 -0400
+
+    update Prompt_template.md
+
+[33mcommit 2f9aeb0ac2c4e747ecce758ac456752780108225[m
+Merge: fc27c93 5e30402
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Fri Jun 23 15:21:51 2023 -0400
+
+    merge
+
+[33mcommit fc27c9364d63a655f42e9400f5726bb53f07ffc5[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Fri Jun 23 15:18:36 2023 -0400
+
+    add 1106.6060
+
+[33mcommit 5e3040246ec1b811d048e179f154fc61ac372045[m
+Merge: 1f76d6a 4882a13
+Author: Haining Pan <hnpan@terpmail.umd.edu>
+Date:   Fri Jun 23 15:13:20 2023 -0400
+
+    Merge pull request #2 from wtaranto/master
+    
+    finished patching all latex
+
+[33mcommit 4882a13e8edef3577c2089ca42491aaebf7bf1bf[m
+Merge: c013644 1f76d6a
+Author: Haining Pan <hnpan@terpmail.umd.edu>
+Date:   Fri Jun 23 15:11:50 2023 -0400
+
+    Merge branch 'master' into master
+
+[33mcommit 1f76d6a5ab9525ad951b80a450c45b9ea2762ce6[m
+Author: Haining Pan <hnpan@terpmail.umd.edu>
+Date:   Thu Jun 22 00:09:51 2023 -0400
+
+    Update 2111.01152_Bard.md, fix latex eq
+
+[33mcommit a6a8238d3ab4af15cf878622db67ff2d4decdab5[m
+Author: Haining Pan <hnpan@terpmail.umd.edu>
+Date:   Thu Jun 22 00:04:54 2023 -0400
+
+    Update 2111.01152_Bard.md, fix latex eq
+
+[33mcommit c01364462b24e79e6b1838a69af53560262d6d8b[m
+Author: William Taranto <william.taranto@mailbox.org>
+Date:   Wed Jun 21 19:46:56 2023 -0400
+
+    finished patching all latex
+
+[33mcommit 5ce2aae05db05993609cce1634603e7b9cc41c3a[m
+Merge: e7b7d85 9e2d77f
+Author: Haining Pan <hnpan@terpmail.umd.edu>
+Date:   Wed Jun 21 17:55:58 2023 -0400
+
+    Merge pull request #1 from wtaranto/master
+    
+    latex fix in 1812.04213.md, long eq not supported
+
+[33mcommit 9e2d77f9a5ffa515c254600cc92a9695cf11c062[m
+Author: William Taranto <william.taranto@mailbox.org>
+Date:   Wed Jun 21 17:46:01 2023 -0400
+
+    patched the latex in 1812.04213 and began 2004.04168
+
+[33mcommit e7b7d856cb30a4c1d6f8d51b62b344828f7adfcd[m
+Author: Haining Pan <hnpan@terpmail.umd.edu>
+Date:   Wed Jun 21 01:43:26 2023 -0400
+
+    Update 2111.01152_Bard.md
+
+[33mcommit dd58018c502d10763191398f8d9dbf9a23d06032[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Wed Jun 21 01:12:02 2023 -0400
+
+    add Bard Benchmark.md
+
+[33mcommit c1738f55772f3040d498817dca68b0696c83de5e[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Wed Jun 21 00:46:38 2023 -0400
+
+    fix normalization factor in 2111.01152
+
+[33mcommit 572cdbe3f105460ecff239b9ad8475856361245d[m
+Merge: 38c8bf0 a1972e2
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Wed Jun 21 00:22:30 2023 -0400
+
+    Merge branch 'master' of https://github.com/hainingpan/HatreeFock_GPT
+
+[33mcommit 38c8bf020eb8ceac0a8e785e3027a2820f9e01b3[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Wed Jun 21 00:22:17 2023 -0400
+
+    Fix FT for continuum version
+
+[33mcommit a1972e2ee25ac5455e1c9537b136cf0a9107bcfa[m
+Author: Haining Pan <hnpan@terpmail.umd.edu>
+Date:   Tue Jun 20 17:06:43 2023 -0400
+
+    Update 2111.01152.md formatting latex
+
+[33mcommit 53b3ae96b9a99925618eedf193232294f1ce7e14[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Tue Jun 20 16:51:36 2023 -0400
+
+    fix typos in 2111.01152.md
+
+[33mcommit 9de09a219dce2d6a9e77756356dd8458133faa81[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Tue Jun 20 16:27:53 2023 -0400
+
+    fix mistakes in Prompt_template.md
+
+[33mcommit 4935b0297ef20d2ace0cd1669a8b6e15edfc3864[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Tue Jun 20 12:39:13 2023 -0400
+
+    update bard
+
+[33mcommit fc86213cfe74bc25bfa3679d8fbeb47dedeaff11[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Jun 19 15:57:02 2023 -0400
+
+    fix typo in todo.md
+
+[33mcommit f1a0b8ac95bdd00a5a093839d9334a8333e4d78f[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Jun 19 15:55:25 2023 -0400
+
+    add todo.md
+
+[33mcommit 9df6c2df777b89df8aaa23670e34018c25f1a052[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Jun 19 13:46:53 2023 -0400
+
+    clean repo
+
+[33mcommit 6e70f8b891f7633b3a4e50a43fd71b58ea11ff00[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Jun 19 13:45:41 2023 -0400
+
+    reduce output token
+
+[33mcommit 430857286dad534b0074f60668010b3a7b43db85[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Jun 19 13:43:38 2023 -0400
+
+    fix typos
+
+[33mcommit 4c30c5fc6d208bec856c85d9a9ec0a71c2f169e7[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Jun 19 13:40:45 2023 -0400
+
+    add 1812.04213
+
+[33mcommit 02ff9f61f7d24af0bbc93c5dee1c4b03cb7fd133[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Jun 19 12:33:17 2023 -0400
+
+     update prompt_template.md
+
+[33mcommit 1b6f533dbd7d984c48b611b31e815a3ecaa599c0[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Jun 19 11:21:20 2023 -0400
+
+    update 2111.01152
+
+[33mcommit 08998b3f0557f555fde74933db4c1a9c1e481c00[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Mon Jun 19 11:09:42 2023 -0400
+
+    add prompt template
+
+[33mcommit 9204366ac62240dee80172fdc3c3ca94ed50482c[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Jun 15 12:12:22 2023 -0400
+
+    update 2111.01152
+
+[33mcommit c92c6c49993a8576f126b2986615456d1fa7efab[m
+Author: Haining Pan <jack_pan1994@126.com>
+Date:   Thu Jun 15 00:52:33 2023 -0400
+
+    Initial push
