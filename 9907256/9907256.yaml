@@ -1,3 +1,4 @@
+# Hamiltonian formulated in bosonic spin variables
 - task: 
   source:
     arxiv.tex:

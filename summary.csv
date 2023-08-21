@@ -1,0 +1,25 @@
+,arxiv number,Annotated,Issue if Skipped
+0,'0812.2894,Annotated,
+1,'0902.1336,Annotated,
+2,'0910.0841,Skipped,Hamiltonian not well documented
+3,'1010.1819,Annotated,
+4,'1106.6060,Annotated,
+5,'1109.0307,Skipped,"Does not fit in the template because the paper contains three types of Hamiltonian, which are compared in the paper"
+6,'1206.0608,Skipped,Superconducting pairing
+7,'1208.0116,Annotated,
+8,'1211.4885,Skipped,multiple interaction in Eq. (2) and Eq. (4)
+9,'1212.5363,Annotated,
+10,'1310.2674,Annotated,
+11,'1812.04213,Annotated,
+12,'2004.04168,Annotated,
+13,'2008.08998,Annotated,
+14,'2012.04554,Annotated,
+15,'2105.11883,Skipped, Wick expansion in the real space
+16,'2108.02159,Annotated,
+17,'2110.11330,Annotated,
+18,'2111.01152,Annotated,
+19,'2112.07523,Annotated,
+20,'2202.04374,Skipped,Wick expansion in the real space
+21,'2208.11823,Skipped,Spin-orbit coupling not fitted into the template
+22,'2306.02818,Skipped,Hamiltonian not well documented
+23,'9907256,Skipped,Hamiltonian formulated in bosonic spin variables
