@@ -1,79 +1,60 @@
-- task: Construct Kinetic Hamiltonian (continuum version, single-particle)
+- task: Construct Kinetic Hamiltonian (lattice version)
   source:
-    arxiv.tex:
-      - [start,end]
-      
-- task: Define each term in Kinetic Hamiltonian (continuum version)
-  source:
-    arxiv.tex:
-      - [start,end]
-      
-- task: Construct Potential Hamiltonian (continuum version)
-  source:
-    arxiv.tex:
-      - [start,end]
-      
-- task: Define each term in Potential Hamiltonian (continuum version)
-  source:
-    arxiv.tex:
-      - [start,end]
-      
-- task: Convert from single-particle to second-quantized form, return in matrix
-  source:
-    arxiv.tex:
-      - [start,end]
-      
-- task: Convert from single-particle to second-quantized form, return in summation (expand the matrix)
-  source:
-    arxiv.tex:
-      - [start,end]
+    2308.03843.tex:
+      - [311,321]
 
-- task: Convert noninteracting Hamiltonian in real space to momentum space (continuum version)
+- task: Construct interaction Hamiltonian (real space, lattice version)
   source:
-    arxiv.tex:
-      - [start,end]
+    2308.03843.tex:
+      - [321,344]
 
-- task: Construct interaction Hamiltonian (momentum space)
+- task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
   source:
-    arxiv.tex:
-      - [start,end]
+    2308.03843.tex:
+      - [349,354]
+
+- task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
+  source:
+    2308.03843.tex:
+      - [355,360]
 
 - task: Wick's theorem
   source:
-    arxiv.tex:
-      - [start,end]
+    2308.03843.tex:
+      - [401,423]
 
 - task: Extract quadratic term
   source:
-    arxiv.tex:
-      - [start,end]
+    2308.03843.tex:
+      - [401,423]
 
 - task: Expand interaction
   source:
-    arxiv.tex:
-      - [start,end]
+    2308.03843.tex:
+      - [401,423]
 
-- task: Swap the index to combine Hartree and Fock terms
+- task: Swap the index only
   source:
-    arxiv.tex:
-      - [start,end]
+    2308.03843.tex:
+      - [401,423]
 
-- task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
+- task: Reduce momentum in Hartree term (momentum in BZ)
   source:
-    arxiv.tex:
-      - [start,end]
+    2308.03843.tex:
+      - [401,423]
 
-- task: Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
+- task: Reduce momentum in Fock term (momentum in BZ)
   source:
-    arxiv.tex:
-      - [start,end]
+    2308.03843.tex:
+      - [401,423]
 
 - task: Combine the Hartree and Fock term
-    arxiv.tex:
-      - [start,end]
+  source:
+    2308.03843.tex:
+      - [401,423]
 
 - task: Construct full Hamiltonian after HF
   source:
-    arxiv.tex:
-      - [start,end]
+    2308.03843.tex:
+      - [401,423]
 
