@@ -1,0 +1,44 @@
+- task: Construct Kinetic Hamiltonian (lattice version)
+  source:
+    1106.6060.tex:
+      - [126, 145]
+
+- task: Construct interaction Hamiltonian (real space, lattice version)
+  source:
+    1106.6060.tex:
+      - [147, 156]
+
+- task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
+  source:
+    1106.6060.tex:
+      - [221, 267]
+
+- task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
+  source:
+    1106.6060.tex:
+      - [221, 267]
+
+- task: Wick's theorem
+  source:
+    1106.6060.tex:
+      - [221, 267]
+
+- task: Extract quadratic term
+  source:
+    1106.6060.tex:
+      - [221, 267]
+
+- task: Hartree term only
+  source:
+    1106.6060.tex:
+      - [177, 267]
+
+- task: Swap the index only
+  source:
+    1106.6060.tex:
+      - [177, 267]
+
+- task: Reduce momentum in Hartree term (momentum in BZ)
+  source:
+    1106.6060.tex:
+      - [177, 267]
