@@ -1,0 +1,73 @@
+- task: Construct Kinetic Hamiltonian (continuum version, single-particle)
+  source:
+    2111.01152.tex:
+      - [55, 62]
+
+- task: Define each term in Kinetic Hamiltonian (continuum version)
+  source:
+    2111.01152.tex:
+      - [55, 62]
+    2111.01152_SM.tex:
+      - [46, 62]
+      
+- task: Construct Potential Hamiltonian (continuum version)
+  source:
+    2111.01152.tex:
+      - [55, 62]
+    2111.01152_SM.tex:
+      - [46, 62]
+      
+- task: Define each term in Potential Hamiltonian (continuum version)
+  source:
+    2111.01152.tex:
+      - [55, 62]
+      - [71, 80]
+    2111.01152_SM.tex:
+      - [46, 62]
+      
+- task: Convert from single-particle to second-quantized form, return in matrix
+  source:
+    2111.01152_SM.tex:
+      - [46, 62]
+      
+- task: Convert from single-particle to second-quantized form, return in summation (expand the matrix)
+  source:
+    2111.01152_SM.tex:
+      - [46, 62]
+      
+- task: Convert noninteracting Hamiltonian in real space to momentum space (continuum version)
+  source:
+    2111.01152_SM.tex:
+      - [46, 62]
+      - [89, 93]
+      
+- task: Particle-hole transformation
+  source:
+    2111.01152_SM.tex:
+      - [95, 99]
+      
+- task: Simplify the Hamiltonian in the particle-hole basis
+  source:
+    2111.01152_SM.tex:
+      - [95, 99]
+      
+- task: Construct interaction Hamiltonian (momentum space)
+  source:
+    2111.01152_SM.tex:
+      - [100, 108]
+      
+- task: Wick's theorem
+  source:
+    2111.01152_SM.tex:
+      - [110, 117]
+      
+- task: Extract quadratic term
+  source:
+    2111.01152_SM.tex:
+      - [110, 117]
+      
+- task: Swap the index to combine Hartree and Fock terms
+  source:
+    2111.01152_SM.tex:
+      - [110, 117]
+
