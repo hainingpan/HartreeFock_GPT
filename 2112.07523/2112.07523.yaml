@@ -2,56 +2,424 @@
   source:
     2112.07523.tex:
       - [63,92]
+  placeholder:
+    system:
+      LLM: under an in-plane magnetic field
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    real|momentum:
+      LLM: momentum
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    single-particle|second-quantized:
+      LLM: single-particle
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    degrees_of_freedom:
+      LLM: four-component spinors $\psi_{\bm k}=(a_{c\uparrow\bm k},a_{v\uparrow\bm k},a_{c\downarrow\bm k},a_{v\downarrow\bm k})^T$, where $c$ and $v$ denote the conduction and valence bands, and $\uparrow$ and $\downarrow$ denote two opposite spins.
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    kinetic_symbol:
+      LLM: $H_{\rm{BHZ}}$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    dispersion_symbol:
+      LLM: $h_{\uparrow}$, $h_{\downarrow}$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    annihilation_op:
+      LLM: $\psi_{\bm k}^{\dagger}$
+      human: $\psi_{\bm k}$
+      score: 
+        Haining: 0
+        Will: 
+        Subha: 
+    creation_op:
+      LLM: $\psi_{\bm k}$
+      human: $\psi_{\bm k}^{\dagger}$
+      score: 
+        Haining: 0
+        Will: 
+        Subha: 
+    k|r:
+      LLM: k
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    entire_space|first_Brillouin_zone:
+      LLM: entire_space
+      human: first_Brillouin_zone
+      score: 
+        Haining: 0
+        Will: 
+        Subha: 
+    definition_of_variables:
+      LLM: $h_{\uparrow}$ and $h_{\downarrow}$ are the two $2\times 2$ matrices that can be explicitly expressed as given in the excerpt. $m_e$ and $m_h$ are the effective masses of electrons and holes, $E_g$ is the band gap, $A$ is the strength of hybridization between the conduction and valence bands, and $\bm Q$ is the momentum shift due to the in-plane magnetic field. Without the magnetic field, $\bm Q=0$ and $h_{\uparrow},h_{downarrow}$ are time-reversal partners.
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
 
 - task: Define each term in Kinetic Hamiltonian (continuum version)
   source:
     2112.07523.tex:
       - [63,92]
+  placeholder:
+    Energy_dispersion:
+      LLM: $h_{\uparrow}(\bm k)$ and $h_{\downarrow}(\bm k)$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    parabolic|Dirac|cos:
+      LLM: parabolic
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    electrons|holes:
+      LLM: electrons and holes
+      human: holes
+      score: 
+        Haining: 1
+        Will: 
+        Subha: 
+    momentum_shift:
+      LLM: $\bm Q$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    k_symbol:
+      LLM: $\bm k$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    shifted_Ek:
+      LLM: $h_{\uparrow}(\bm k)$ and $h_{\downarrow}(\bm k)$
+      human: diagonal elements of $h_{\uparrow}(\bm k)$ and $h_{\downarrow}(\bm k)$
+      score: 
+        Haining: 1
+        Will: 
+        Subha: 
+    r_symbol:
+      LLM: \bm r
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    kinetic_symbol:
+      LLM: $H_{\rm{BHZ}}$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    definition_of_variables:
+      LLM: |
+        $\psi_{\bm k}$: field operators, $c$ and $v$: conduction and valence bands, $\uparrow$ and $\downarrow$: two opposite spins, $h_{\uparrow}$ and $h_{\downarrow}$: two $2\times 2$ matrices, $m_e$ and $m_h$: effective masses of electrons and holes, $E_g$: band gap, $A$: strength of hybridization between the conduction and valence bands, $\bm Q$: momentum shift due to the in-plane magnetic field.
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.:
+      LLM: True
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
 
 - task: Construct interaction Hamiltonian (momentum space)
   source:
     2112.07523.tex:
       - [92, 96]
+  placeholder:
+    second_int_symbol:
+      LLM: $H_I$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    index_of_operator:
+      LLM: band and spin indices
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    momentum:
+      LLM: momentum
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    interaction:
+      LLM: Coulomb interaction
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    int_form:
+      LLM: $V(q)=2\pi e^2/\epsilon q$ and $U(q)=V(q)\exp(-qd)$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    normalization_factor:
+      LLM: $1/2S$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    op:
+      LLM: $a_{bs\bm k+\bm q}^{\dagger}$, $a_{b's'\bm k'-\bm q}^{\dagger}$, $a_{b's'\bm k'}$, $a_{bs\bm k}$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    definition_of_variables:
+      LLM: $S$ is the area of the two-dimensional system, $b,b'$ and $s,s'$ are band and spin indices respectively, $V_{cc}(q)=V_{vv}(q)=V(q)=2\pi e^2/\epsilon q$ is the intralayer Coulomb interaction, $V_{cv}(q)=V_{vc}(q)=U(q)=V(q)\exp(-qd)$ is the interlayer Coulomb interaction at interlayer distance $d$, and $\epsilon$ is the dielectric constant of the surrounding three-dimensional material.
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$:
+      LLM: False
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
 
 - task: Wick's theorem
   source:
     2112.07523.tex:
       - [103,128]
+  placeholder:
+    second_int_symbol:
+      LLM: $\Sigma_H$ and $\Sigma_F$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    Hartree_Fock_symbol:
+      LLM: $H_{\rm{MF}}$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    definition_of_variables:
+      LLM: $\Sigma_H$ and $\Sigma_F$ are the Hartree and Fock terms respectively, $V_{bb'}$ is the interaction potential, $\rho_{b's'\,n''}^{b's'\,n''+n'-n}$ is the density matrix, $a_{bsn'\bm k}^{\dagger}$ and $a_{bsn\bm k}$ are the creation and annihilation operators, $H_{\rm{BHZ}}$ is the base Hamiltonian, and $H_{\rm{MF}}$ is the mean-field Hamiltonian.
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
 
 - task: Extract quadratic term
   source:
     2112.07523.tex:
       - [103,128]
+  placeholder:
+    Hartree_Fock_term_symbol:
+      LLM: Hartree and Fock terms
+      human: $H_{\rm{MF}}$
+      score: 
+        Haining: 0
+        Will: 
+        Subha: 
+    bilinear_op:
+      LLM: $a_{bsn'\bm k}^{\dagger} a_{bsn\bm k}$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    Hartree_Fock_second_quantized_symbol:
+      LLM: $\Sigma_H$ and $\Sigma_F$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    definition_of_variables:
+      LLM: $\Sigma_H$ and $\Sigma_F$ are the Hartree and Fock terms respectively. $a_{bsn'\bm k}^{\dagger}$ and $a_{bsn\bm k}$ are creation and annihilation operators. $\rho_{b's'\,n''}^{b's'\,n''+n'-n}(\bm k')$ is the density matrix. $V_{bb'}((n'-n)\bm Q)$ and $V_{bb'}((n''-n)\bm Q+\bm k'-\bm k)$ are the interaction potentials. $H_{\rm{BHZ}}$ is the BHZ Hamiltonian. $H_{\rm{MF}}$ is the mean-field Hamiltonian.
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
 
 - task: Expand interaction
   source:
     2112.07523.tex:
       - [103,128]
+  placeholder:
+    Hartree_Fock_second_quantized_symbol:
+      LLM: $V_{bb'}((n'-n)\bm Q)$ and $V_{bb'}((n''-n)\bm Q+\bm k'-\bm k)$
+      human: $H_{\rm{MF}}$
+      score: 
+        Haining: 0
+        Will: 
+        Subha: 
+    momentum:
+      LLM: $(n'-n)\bm Q$ and $(n''-n)\bm Q+\bm k'-\bm k$.
+      human: q
+      score: 
+        Haining: 0
+        Will: 
+        Subha: 
 
 - task: Swap the index to combine Hartree and Fock terms
   source:
     2112.07523.tex:
       - [103,128]
+  placeholder:
+    Hartree_Fock_second_quantized_symbol:
+      LLM: $H_{\rm{MF}}$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    expected_value:
+      LLM: $\rho_{b's'\,n''}^{b's'\,n''+n'-n}(\bm k')$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    expression_Hartree_1:
+      LLM: $\Sigma_H$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    expression_Hartree_2:
+      LLM: $\Sigma_F$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
 
 - task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
   source:
     2112.07523.tex:
       - [103,128]
+  placeholder:
+    Hartree_second_quantized_symbol:
+      LLM: $\Sigma_H$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    expected_value:
+      LLM: $\rho_{b's'\,n''}^{b's'\,n''+n'-n}(\bm k')$
+      human: 
+      score: 
+        Haining: 2(?)
+        Will: 
+        Subha: 
+    expected_value_nonzero:
+      LLM: $\rho_{b's'n'}^{bsn}(\bm k) = \langle a_{b's'n'\bm k}^{\dagger} a_{bsn\bm k} \rangle - \delta_{bb'}\delta_{bv}\delta_{ss'}\delta_{nn'}$
+      human: 
+      score: 
+        Haining: 2(?)
+        Will: 
+        Subha: 
 
 - task: Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
   source:
     2112.07523.tex:
       - [103,128]
+  placeholder:
+    Fock_second_quantized_symbol:
+      LLM: $\Sigma_F$
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Subha: 
+    expected_value:
+      LLM: $\rho_{bs\,n''}^{b's'\,n''+n'-n}(\bm k')$
+      human: 
+      score: 
+        Haining: 2(?)
+        Will: 
+        Subha: 
+    expected_value_nonzero:
+      LLM: $\delta_{bb'}\delta_{bv}\delta_{ss'}\delta_{nn'}$
+      human: 
+      score: 
+        Haining: 2(?)
+        Will: 
+        Subha: 
 
 - task: Combine the Hartree and Fock term
   source:
     2112.07523.tex:
       - [103,128]
-
-- task: Construct full Hamiltonian after HF
-  source:
-    2112.07523.tex:
-      - [103,128]
-
-  
+  placeholder:
+    symbol:
+      LLM: \Sigma_H
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    Fock:
+      LLM: \Sigma_F
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    swap rule:
+      LLM: 
+      human: TBD
+      score: 
+        Haining: 0(?)
+        Will: 
+        Subha: 
 
