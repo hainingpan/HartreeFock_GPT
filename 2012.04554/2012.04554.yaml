@@ -353,6 +353,141 @@
         Haining: 0
         Will: 
         Subha: 
- 
+    
+- task: Reduce momentum in Hartree term (momentum in BZ)
+  source: 
+    2012.04554.tex:
+      - [39,44]
+  placeholder:
+    Hartree_second_quantized_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 1
+        Will: 
+        Subha: 
+    expected_value:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    expected_value_nonzero:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    
+- task: Reduce momentum in Fock term (momentum in BZ)
+  source: 
+    2012.04554.tex:
+      - [39,44]
+  placeholder:
+    Fock_second_quantized_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    expected_value:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    expected_value_nonzero:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    
+- task: Combine the Hartree and Fock term
+  source: 
+    2012.04554.tex:
+      - [39,44]
+  placeholder:
+    symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    Fock:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    swap rule:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    
+- task: Construct full Hamiltonian after HF
+  source: 
+    2012.04554.tex:
+      - [39,44]
+  placeholder:
+    Hartree_Fock_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    kinetic_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    expression_kinetic:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    int_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    expression_int:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    Ham_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
+    definition_of_variables:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Subha: 
 
 

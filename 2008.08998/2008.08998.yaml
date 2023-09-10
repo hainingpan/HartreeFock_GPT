@@ -159,7 +159,7 @@
         Subha: 
     Note that hopping have no position dependence now.:
       LLM: True
-      human: 
+      human: False
       score: 
         Haining: 0
         Will: 
@@ -260,7 +260,7 @@
       - [239,245]
   placeholder:
     Hartree_Fock_term_symbol:
-      LLM: $H_{\text{int}}$
+      LLM: $H_{\text{int,MF}}$
       human: 
       score: 
         Haining: 2
