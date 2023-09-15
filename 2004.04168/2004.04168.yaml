@@ -6,37 +6,64 @@
   placeholder:
     system:
       LLM: a system with a triangular lattice
-      human: 
-      score: 2
+      human:
+      score:
+        Haining: 2
+        Will:
+        Subha:
     real|momentum:
       LLM: real
-      human: 
-      score: 2
+      human:
+      score:
+        Haining: 2
+        Will:
+        Subha:
     single-particle|second-quantized:
       LLM: second-quantized
-      human: 
-      score: 2
+      human:
+      score:
+        Haining: 2
+        Will:
+        Subha:
     degrees_of_freedom:
       LLM: spin states associated with $ +K $ and $-K$ valleys
-      human: 
-      score: 2
+      human:
+      score:
+        Haining: 2
+        Will:
+        Subha:
     site i and site j with the amplitude hopping:
       LLM: between site i and site j with the amplitude $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$
-      human: 
-      score: 2
+      human:
+      score:
+        Haining: 2
+        Will:
+        Subha:
     kinetic_symbol:
       LLM: $H_{\text{TB}}$
-      human: 
-      score: 2
+      human:
+      score:
+        Haining: 2
+        Will:
+        Subha:
     definition_of_variables:
-      LLM: $s= \uparrow,\downarrow\ $ represents spin $\uparrow$ and $\downarrow$ states associated respectively with $ +K $ and $-K$ valleys, $ \bm{R}_i $ represents a site in the triangular lattice, and $ c_{j,s} $ ($ c_{j,s}^\dagger $) is  electron annihilation (creation) operator. $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$ is the hopping parameter.
-      human: 
-      score: 2
+      LLM: $s= \uparrow,\downarrow\ $ represents spin $\uparrow$ and $\downarrow$
+        states associated respectively with $ +K $ and $-K$ valleys, $ \bm{R}_i $
+        represents a site in the triangular lattice, and $ c_{j,s} $ ($ c_{j,s}^\dagger
+        $) is  electron annihilation (creation) operator. $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$
+        is the hopping parameter.
+      human:
+      score:
+        Haining: 2
+        Will:
+        Subha:
     You should ensure the hermiticity of the Hamiltonian:
-      LLM: True
-      human: False
-      score: 0
-
+      LLM: true
+      human: false
+      score:
+        Haining: 0
+        Will:
+        Subha:
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source:
     2004.04168.tex:
@@ -45,179 +72,287 @@
     second_int_symbol:
       LLM: $U(\bm{R}_i-\bm{R}_j) c_{i,s}^\dagger c_{j,s'}^\dagger c_{j,s'} c_{i,s}$
       human: $\hat{H}^{int}$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     kinetic_symbol:
-      LLM: $\sum_{s}\sum_{i,j}^{} t_{s}\left(\bm{R}_i-\bm{R}_j\right) c_{i,s}^\dagger c_{j,s}$
+      LLM: $\sum_{s}\sum_{i,j}^{} t_{s}\left(\bm{R}_i-\bm{R}_j\right) c_{i,s}^\dagger
+        c_{j,s}$
       human: $\hat{H}_{Kinetic}$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     site i and site j with the interaction strength:
       LLM: between sites $i$ and $j$ with the interaction strength $U(\bm{R}_i-\bm{R}_j)$
-      human: 
-      score: 2
+      human:
+      score:
+        Haining: 2
+        Will:
+        Subha:
     degrees_of_freedom:
       LLM: $s,s'$
-      human: 
-      score: 2
+      human:
+      score:
+        Haining: 2
+        Will:
+        Subha:
     density_symbol:
       LLM: $c_{i,s}^\dagger c_{j,s'}^\dagger c_{j,s'} c_{i,s}$
       human: $n_s^\dagger(R_i)$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     definition_of_variables:
-      LLM: $t_{s}$ is the hopping parameter, $c_{i,s}^\dagger$ and $c_{j,s}$ are the creation and annihilation operators, respectively, $U(\bm{R}_i-\bm{R}_j)$ is the repulsion between sites $i$ and $j$, and $\epsilon$ is the effective background dielectric constant.
-      human: 
-      score: 2
-
-- task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
+      LLM: $t_{s}$ is the hopping parameter, $c_{i,s}^\dagger$ and $c_{j,s}$ are the
+        creation and annihilation operators, respectively, $U(\bm{R}_i-\bm{R}_j)$
+        is the repulsion between sites $i$ and $j$, and $\epsilon$ is the effective
+        background dielectric constant.
+      human:
+      score:
+        Haining: 2
+        Will:
+        Subha:
+- task: Convert noninteracting Hamiltonian in real space to momentum space (lattice
+    version)
   source:
     2004.04168.tex:
-      - []
+    - []
   placeholder:
     nonint_symbol:
-      LLM: 
+      LLM:
       human: $\hat{H}_{Kinetic}$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     real_creation_op:
-      LLM: 
+      LLM:
       human: $c_s^\dagger(R_i)$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     momentum_creation_op:
-      LLM: 
+      LLM:
       human: $c_s^\dagger(k)$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     definition_of_Fourier_Transformation:
-      LLM: 
-      human: $c_s^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_s^\dagger(R_i) e^{i k \cdot R_i}$
-      score: 0
+      LLM:
+      human: $c_s^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_s^\dagger(R_i) e^{i k \cdot
+        R_i}$
+      score:
+        Haining: 0
+        Will:
+        Subha:
     real_variable:
-      LLM: 
+      LLM:
       human: $i$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     definition_of_variables:
-      LLM: 
+      LLM:
       human: |
         $c_s(k)$ : electron annihilation operator at momentum $k$, spin $s$  
         $c_s^\dagger(k)$ : electron creation operator at momentum $k$, spin $s$  
         $N$ : number of the unit cells in the real space  
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     Note that hopping have no position dependence now.:
-      LLM: 
-      human: False
-      score: 0
-
+      LLM:
+      human: false
+      score:
+        Haining: 0
+        Will:
+        Subha:
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source:
     2004.04168.tex:
-      - []
+    - []
   placeholder:
     second_int_symbol:
       LLM: $\hat{H}^{int}$
-      human: 
-      score: 0
+      human:
+      score:
+        Haining: 0
+        Will:
+        Subha:
     single-particle|second-quantized:
-      LLM: 
+      LLM:
       human: second quantized
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     real_creation_op:
-      LLM: 
+      LLM:
       human: $c_s^\dagger(R_i)$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     momentum_creation_op:
-      LLM: 
+      LLM:
       human: $c_s^\dagger(k)$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     definition_of_Fourier_Transformation:
-      LLM: 
-      human: c_s^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_s^\dagger(R_i) e^{i k \cdot R_i}
-      score: 0
+      LLM:
+      human: c_s^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_s^\dagger(R_i) e^{i k \cdot
+        R_i}
+      score:
+        Haining: 0
+        Will:
+        Subha:
     real_variable:
-      LLM: 
+      LLM:
       human: $i$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     momentum_var:
-      LLM: 
+      LLM:
       human: $k$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     Note that interaction have no position dependence now:
-      LLM: 
-      human: False
-      score: 0
-
+      LLM:
+      human: false
+      score:
+        Haining: 0
+        Will:
+        Subha:
 - task: Wick's theorem
   source:
     2004.04168.tex:
-      - []
+    - []
   placeholder:
     second_int_symbol:
-      LLM: 
+      LLM:
       human: $\hat{H}^{int}$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     Hartree_Fock_symbol:
-      LLM: 
+      LLM:
       human: $\hat{H}^{int,HF}$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     definition_of_variables:
-      LLM: 
+      LLM:
       human: |
         $\langle c_{s}^\dagger(k_1) c_{s'}(k_2) \rangle$ : expectation of $c_{s}^\dagger(k_1) c_{s'}(k_2)$ over the many-body ground states.  
         $\hat{H}^{int,HF}$ : Interaction term after Hartree-Fock approximation  
-      score: 0
-
+      score:
+        Haining: 0
+        Will:
+        Subha:
 - task: Extract quadratic term
   source:
     2004.04168.tex:
-      - []
+    - []
   placeholder:
     Hartree_Fock_term_symbol:
       LLM: H
       human: $\hat{H}^{HF}$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     bilinear_op:
       LLM: B
       human: $c^\dagger c$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     Hartree_Fock_second_quantized_symbol:
       LLM: H'
       human: $\hat{H}^{HF,2}$
-      score: 0
+      score:
+        Haining: 0
+        Will:
+        Subha:
     definition_of_variables:
-      LLM: H represents the Hartree-Fock term, B represents the bilinear operator, and H' represents the Hartree-Fock term with only the quadratic terms preserved.
+      LLM: H represents the Hartree-Fock term, B represents the bilinear operator,
+        and H' represents the Hartree-Fock term with only the quadratic terms preserved.
       human: |
         $\hat{H}^{HF,2}$ : the quadratic terms in $\hat{H}^{HF}$.
-      score: 0
-
+      score:
+        Haining: 0
+        Will:
+        Subha:
 - task: Construct full Hamiltonian after HF
   source:
     2004.04168.tex:
-      - []
+    - []
   placeholder:
     Hartree_Fock_symbol:
-      LLM: 
-      human: 
-      score: 
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
     kinetic_symbol:
-      LLM: 
-      human: 
-      score: 
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
     expression_kinetic:
-      LLM: 
-      human: 
-      score: 
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
     int_symbol:
-      LLM: 
-      human: 
-      score: 
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
     expression_int:
-      LLM: 
-      human: 
-      score: 
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
     Ham_symbol:
-      LLM: 
-      human: 
-      score: 
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
     definition_of_variables:
-      LLM: 
-      human: 
-      score: 
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
 
 
 
