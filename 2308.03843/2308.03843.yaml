@@ -1,7 +1,7 @@
 - task: Construct Kinetic Hamiltonian (lattice version)
   source:
     2308.03843.tex:
-    - [311, 321]
+      - [311, 321]
   placeholder:
     system:
       LLM:
@@ -63,7 +63,7 @@
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source:
     2308.03843.tex:
-    - [321, 344]
+      - [321, 344]
   placeholder:
     second_int_symbol:
       LLM:
@@ -112,7 +112,7 @@
     version)
   source:
     2308.03843.tex:
-    - [349, 354]
+      - [349, 354]
   placeholder:
     nonint_symbol:
       LLM:
@@ -167,7 +167,7 @@
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source:
     2308.03843.tex:
-    - [355, 360]
+      - [355, 360]
   placeholder:
     second_int_symbol:
       LLM:
@@ -229,7 +229,7 @@
 - task: Wick's theorem
   source:
     2308.03843.tex:
-    - [401, 423]
+      - [401, 423]
   placeholder:
     second_int_symbol:
       LLM:
@@ -256,7 +256,7 @@
 - task: Extract quadratic term
   source:
     2308.03843.tex:
-    - [401, 423]
+      - [401, 423]
   placeholder:
     Hartree_Fock_term_symbol:
       LLM:
@@ -290,7 +290,7 @@
 - task: Expand interaction
   source:
     2308.03843.tex:
-    - [401, 423]
+      - [401, 423]
   placeholder:
     Hartree_Fock_second_quantized_symbol:
       LLM:
@@ -310,7 +310,7 @@
 - task: Swap the index only
   source:
     2308.03843.tex:
-    - [401, 423]
+      - [401, 423]
   placeholder:
     Hartree_Fock_second_quantized_symbol:
       LLM:
@@ -358,7 +358,7 @@
 - task: Reduce momentum in Hartree term (momentum in BZ)
   source:
     2308.03843.tex:
-    - [401, 423]
+      - [401, 423]
   placeholder:
     Hartree_second_quantized_symbol:
       LLM:
@@ -385,7 +385,7 @@
 - task: Reduce momentum in Fock term (momentum in BZ)
   source:
     2308.03843.tex:
-    - [401, 423]
+      - [401, 423]
   placeholder:
     Fock_second_quantized_symbol:
       LLM:
@@ -412,7 +412,7 @@
 - task: Combine the Hartree and Fock term
   source:
     2308.03843.tex:
-    - [401, 423]
+      - [401, 423]
   placeholder:
     symbol:
       LLM:
@@ -439,7 +439,7 @@
 - task: Construct full Hamiltonian after HF
   source:
     2308.03843.tex:
-    - [401, 423]
+      - [401, 423]
   placeholder:
     Hartree_Fock_symbol:
       LLM:

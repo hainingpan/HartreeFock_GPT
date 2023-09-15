@@ -1,7 +1,7 @@
 - task: Construct Kinetic Hamiltonian (lattice version)
   source:
     1310.2674.tex:
-    - [211, 224]
+      - [211, 224]
   placeholder:
     system:
       LLM:
@@ -63,7 +63,7 @@
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source:
     1310.2674.tex:
-    - [225, 252]
+      - [225, 252]
   placeholder:
     second_int_symbol:
       LLM:
@@ -111,7 +111,7 @@
 - task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
   source:
     1310.2674_SM.tex:
-    - [67, 80]
+      - [67, 80]
   placeholder:
     nonint_symbol:
       LLM:
@@ -166,7 +166,7 @@
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source:
     1310.2674_SM.tex:
-    - [67, 89]
+      - [67, 89]
   placeholder:
     second_int_symbol:
       LLM:
@@ -228,7 +228,7 @@
 - task: Wick's theorem
   source:
     1310.2674_SM.tex:
-    - [116, 131]
+      - [116, 131]
   placeholder:
     second_int_symbol:
       LLM:
@@ -255,7 +255,7 @@
 - task: Extract quadratic term
   source:
     1310.2674_SM.tex:
-    - [116, 131]
+      - [116, 131]
   placeholder:
     Hartree_Fock_term_symbol:
       LLM:
@@ -289,7 +289,7 @@
 - task: Expand interaction
   source:
     1310.2674_SM.tex:
-    - [116, 131]
+      - [116, 131]
   placeholder:
     Hartree_Fock_second_quantized_symbol:
       LLM:
@@ -309,7 +309,7 @@
 - task: Swap the index only
   source:
     1310.2674_SM.tex:
-    - [116, 131]
+      - [116, 131]
   placeholder:
     Hartree_Fock_second_quantized_symbol:
       LLM:
@@ -357,7 +357,7 @@
 - task: Reduce momentum in Hartree term (momentum in BZ)
   source:
     1310.2674_SM.tex:
-    - [116, 131]
+      - [116, 131]
   placeholder:
     Hartree_second_quantized_symbol:
       LLM:
@@ -384,7 +384,7 @@
 - task: Reduce momentum in Fock term (momentum in BZ)
   source:
     1310.2674_SM.tex:
-    - [116, 131]
+      - [116, 131]
   placeholder:
     Fock_second_quantized_symbol:
       LLM:
@@ -411,7 +411,7 @@
 - task: Combine the Hartree and Fock term
   source:
     1310.2674_SM.tex:
-    - [116, 131]
+      - [116, 131]
   placeholder:
     symbol:
       LLM:
@@ -438,7 +438,7 @@
 - task: Construct full Hamiltonian after HF
   source:
     1310.2674_SM.tex:
-    - [116, 131]
+      - [116, 131]
   placeholder:
     Hartree_Fock_symbol:
       LLM:
