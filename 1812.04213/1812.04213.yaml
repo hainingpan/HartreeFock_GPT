@@ -27,8 +27,7 @@
         Subha:
     degrees_of_freedom:
       LLM: spin and valley
-      human: spin index ($\uparrow$ and $\downarrow$), valley index (+K and -K valley),
-        layer index (top and bottom layer), and sublattice index (A and B)
+      human: spin index ($\uparrow$ and $\downarrow$), valley index (+K and -K valley), layer index (top and bottom layer), and sublattice index (A and B)
       score:
         Haining: 1
         Will:
@@ -55,16 +54,7 @@
         Will:
         Subha:
     definition_of_variables:
-      LLM: $\alpha=\{A1, \ B1,\ A2,\ B2\}$ where $A(B)$ in the first index specifies
-        sublattice and $1(2)$ in the second index specifies layer. $\hat{h}_{\pm \theta/2}$
-        are the Dirac Hamiltonians for isolated rotated graphene layers. $\theta_{\bar{\bm{k}}}$
-        is the orientation angle of momentum measured from the Dirac point $\bar{\bm{k}}=\bm{k}-\bm{K}_{\theta}$.
-        $\bm{K}_{\pm\theta/2}$ is the Dirac momentum of top(bottom) layer. $\bm{b}_{1,2}=(\pm
-        1/2,\sqrt{3}/2)4\pi/(\sqrt{3}a_M)$ are the basis vectors of moir\'{e} reciprocal
-        lattice, where $a_M=a/(2\sin(\theta/2))$ is the lattice constant of moire
-        pattern and $a$ the lattice constant of monolayer graphene. $h_T(\bm{r}) =
-        \sum_{j=0}^3 T_j e^{-i\bm{q}_j\cdot \bm{r}}$ where $T_j = \omega_0\sigma_0
-        + \omega_1\cos(j\phi)\sigma_x + \omega_1\sin(j\phi)\sigma_y$.
+      LLM: $\alpha=\{A1, \ B1,\ A2,\ B2\}$ where $A(B)$ in the first index specifies sublattice and $1(2)$ in the second index specifies layer. $\hat{h}_{\pm \theta/2}$ are the Dirac Hamiltonians for isolated rotated graphene layers. $\theta_{\bar{\bm{k}}}$ is the orientation angle of momentum measured from the Dirac point $\bar{\bm{k}}=\bm{k}-\bm{K}_{\theta}$. $\bm{K}_{\pm\theta/2}$ is the Dirac momentum of top(bottom) layer. $\bm{b}_{1,2}=(\pm 1/2,\sqrt{3}/2)4\pi/(\sqrt{3}a_M)$ are the basis vectors of moir\'{e} reciprocal lattice, where $a_M=a/(2\sin(\theta/2))$ is the lattice constant of moire pattern and $a$ the lattice constant of monolayer graphene. $h_T(\bm{r}) = \sum_{j=0}^3 T_j e^{-i\bm{q}_j\cdot \bm{r}}$ where $T_j = \omega_0\sigma_0 + \omega_1\cos(j\phi)\sigma_x + \omega_1\sin(j\phi)\sigma_y$.
       human:
       score:
         Haining: 2
@@ -139,13 +129,7 @@
         Will:
         Subha:
     definition_of_variables:
-      LLM: $\alpha=\{A1, \ B1,\ A2,\ B2\}$, where $A(B)$ in the first index specifies
-        sublattice and $1(2)$ in the second index specifies layer. $\theta_{\bar{\bm{k}}}$
-        is the orientation angle of momentum measured from the Dirac point $\bar{\bm{k}}=\bm{k}-\bm{K}_{\theta}$.  ($\bm{K}_{\pm\theta/2}$
-        is the Dirac momentum of top(bottom) layer.) $\bm{b}_{1,2}=(\pm 1/2,\sqrt{3}/2)4\pi/(\sqrt{3}a_M)$
-        are the basis vectors of moir\'{e} reciprocal lattice, where $a_M=a/(2\sin(\theta/2))$
-        is the lattice constant of moire pattern and $a$ the lattice constant of monolayer
-        graphene.
+      LLM: $\alpha=\{A1, \ B1,\ A2,\ B2\}$, where $A(B)$ in the first index specifies sublattice and $1(2)$ in the second index specifies layer. $\theta_{\bar{\bm{k}}}$ is the orientation angle of momentum measured from the Dirac point $\bar{\bm{k}}=\bm{k}-\bm{K}_{\theta}$.  ($\bm{K}_{\pm\theta/2}$ is the Dirac momentum of top(bottom) layer.) $\bm{b}_{1,2}=(\pm 1/2,\sqrt{3}/2)4\pi/(\sqrt{3}a_M)$ are the basis vectors of moir\'{e} reciprocal lattice, where $a_M=a/(2\sin(\theta/2))$ is the lattice constant of moire pattern and $a$ the lattice constant of monolayer graphene.
       human:
       score:
         Haining: 2
@@ -206,13 +190,7 @@
         Will:
         Subha:
     definition_of_variables:
-      LLM: $\alpha=\{A1, \ B1,\ A2,\ B2\}$, where $A(B)$ in the first index specifies
-        sublattice and $1(2)$ in the second index specifies layer. $\theta_{\bar{\bm{k}}}$
-        is the orientation angle of momentum measured from the Dirac point $\bar{\bm{k}}=\bm{k}-\bm{K}_{\theta}$.
-        $\bm{b}_{1,2}=(\pm 1/2,\sqrt{3}/2)4\pi/(\sqrt{3}a_M)$ are the basis vectors
-        of moir\'{e} reciprocal lattice, where $a_M=a/(2\sin(\theta/2))$ is the lattice
-        constant of moire pattern and $a$ the lattice constant of monolayer graphene.
-        $T_j = \omega_0\sigma_0 + \omega_1\cos(j\phi)\sigma_x + \omega_1\sin(j\phi)\sigma_y$.
+      LLM: $\alpha=\{A1, \ B1,\ A2,\ B2\}$, where $A(B)$ in the first index specifies sublattice and $1(2)$ in the second index specifies layer. $\theta_{\bar{\bm{k}}}$ is the orientation angle of momentum measured from the Dirac point $\bar{\bm{k}}=\bm{k}-\bm{K}_{\theta}$. $\bm{b}_{1,2}=(\pm 1/2,\sqrt{3}/2)4\pi/(\sqrt{3}a_M)$ are the basis vectors of moir\'{e} reciprocal lattice, where $a_M=a/(2\sin(\theta/2))$ is the lattice constant of moire pattern and $a$ the lattice constant of monolayer graphene. $T_j = \omega_0\sigma_0 + \omega_1\cos(j\phi)\sigma_x + \omega_1\sin(j\phi)\sigma_y$.
       human:
       score:
         Haining: 2
@@ -285,8 +263,7 @@
         Subha:
     index_of_operator:
       LLM:
-      human: spin index, valley index and layer index, $1,2,3,4$ for the moire reciprocal
-        lattice vectors
+      human: spin index, valley index and layer index, $1,2,3,4$ for the moire reciprocal lattice vectors
       score:
         Haining: 0
         Will:
@@ -364,19 +341,7 @@
         Will:
         Subha:
     definition_of_variables:
-      LLM: $\omega_1\equiv T_{AB}=110meV$ and $\omega_0\equiv T_{AA}=0.8\omega_1$
-        are the magnitudes of interlayer tunneling. $\bm{k}$ is restricted to the
-        first moir\'{e} Brillouin zone (mBZ) ($\bm{k} \in$ mBZ). The plane-wave expansion
-        basis is $|\psi_{\alpha, \bm{G},\bm{k}}\rangle$ where $\bm{G}=m\bm{b}_1+n\bm{b}_2$
-        and $m,n$ are integers. The single-particle Hamiltonian $\mathcal{\hat{H}}^{\rm{K}}_{0}$
-        has both terms that are diagonal in reciprocal lattice vector and terms that
-        are off-diagonal in reciprocal lattice vector. The Hartree and Fock self-energies
-        are $\Sigma^{H}_{\alpha, \bm{G}; \beta, \bm{G}'}(\bm{k})$ and $\Sigma^{F}_{\alpha,
-        \bm{G}; \beta, \bm{G}'}(\bm{k})$ respectively. The density-matrix $\rho$ is
-        defined in a plane wave basis as $\rho_{\alpha,\bm{G};\beta,\bm{G}'}(\bm{k})
-        = \sum_{n} \; z^{n*}_{\beta,\bm{G}',\bm{k}}z^n_{\alpha,\bm{G},\bm{k}}$ where
-        the summation is over filled bands. $z_{\alpha, \bm{G},\bm{k}}^n$ is a numerical
-        eigenvector in the plane-wave expansion.
+      LLM: $\omega_1\equiv T_{AB}=110meV$ and $\omega_0\equiv T_{AA}=0.8\omega_1$ are the magnitudes of interlayer tunneling. $\bm{k}$ is restricted to the first moir\'{e} Brillouin zone (mBZ) ($\bm{k} \in$ mBZ). The plane-wave expansion basis is $|\psi_{\alpha, \bm{G},\bm{k}}\rangle$ where $\bm{G}=m\bm{b}_1+n\bm{b}_2$ and $m,n$ are integers. The single-particle Hamiltonian $\mathcal{\hat{H}}^{\rm{K}}_{0}$ has both terms that are diagonal in reciprocal lattice vector and terms that are off-diagonal in reciprocal lattice vector. The Hartree and Fock self-energies are $\Sigma^{H}_{\alpha, \bm{G}; \beta, \bm{G}'}(\bm{k})$ and $\Sigma^{F}_{\alpha, \bm{G}; \beta, \bm{G}'}(\bm{k})$ respectively. The density-matrix $\rho$ is defined in a plane wave basis as $\rho_{\alpha,\bm{G};\beta,\bm{G}'}(\bm{k}) = \sum_{n} \; z^{n*}_{\beta,\bm{G}',\bm{k}}z^n_{\alpha,\bm{G},\bm{k}}$ where the summation is over filled bands. $z_{\alpha, \bm{G},\bm{k}}^n$ is a numerical eigenvector in the plane-wave expansion.
       human:
       score:
         Haining: 2
@@ -410,11 +375,7 @@
         Will:
         Subha:
     definition_of_variables:
-      LLM: $\mathcal{H}^{\rm{K}}_0$ is the single-particle Hamiltonian, $\Sigma^{\rm{H}}$
-        and $\Sigma^{\rm{F}}$ are the Hartree and Fock self-energies respectively,
-        $\rho_{\alpha,\bm{G};\beta,\bm{G}'}(\bm{k})$ is the density-matrix defined
-        in a plane wave basis, and $z_{\alpha, \bm{G},\bm{k}}^n$ is a numerical eigenvector
-        in the plane-wave expansion.
+      LLM: $\mathcal{H}^{\rm{K}}_0$ is the single-particle Hamiltonian, $\Sigma^{\rm{H}}$ and $\Sigma^{\rm{F}}$ are the Hartree and Fock self-energies respectively, $\rho_{\alpha,\bm{G};\beta,\bm{G}'}(\bm{k})$ is the density-matrix defined in a plane wave basis, and $z_{\alpha, \bm{G},\bm{k}}^n$ is a numerical eigenvector in the plane-wave expansion.
       human:
       score:
         Haining: 2
@@ -427,8 +388,7 @@
       - [696, 744]
   placeholder:
     Hartree_Fock_second_quantized_symbol:
-      LLM: $\Sigma^{H}_{\alpha, \bm{G}; \beta, \bm{G}'}(\bm{k})$ and $\Sigma^{F}_{\alpha,
-        \bm{G}; \beta, \bm{G}'}(\bm{k})$
+      LLM: $\Sigma^{H}_{\alpha, \bm{G}; \beta, \bm{G}'}(\bm{k})$ and $\Sigma^{F}_{\alpha, \bm{G}; \beta, \bm{G}'}(\bm{k})$
       human:
       score:
         Haining: 2
@@ -455,10 +415,8 @@
         Will:
         Subha:
     expected_value:
-      LLM: $\delta \rho_{\alpha\beta}(\bm{G})\equiv\sum_{\bm{k},\bm{G}_1}\delta \rho_{\alpha,\bm{G}_1+\bm{G};
-        \beta, \bm{G}_1}(\bm{k})$
-      human: $\langle c_{s_1,\tau_1,l_1,\alpha_1,b_1}^\dagger(k_1) c_{s_1,\tau_1,l_1,\alpha_1,b_4}(k_4)
-        \rangle$
+      LLM: $\delta \rho_{\alpha\beta}(\bm{G})\equiv\sum_{\bm{k},\bm{G}_1}\delta \rho_{\alpha,\bm{G}_1+\bm{G}; \beta, \bm{G}_1}(\bm{k})$
+      human: $\langle c_{s_1,\tau_1,l_1,\alpha_1,b_1}^\dagger(k_1) c_{s_1,\tau_1,l_1,\alpha_1,b_4}(k_4) \rangle$
       score:
         Haining: 0
         Will:
@@ -469,16 +427,14 @@
         = \frac{1}{A} \sum_{\alpha'}
         V_{\alpha'\alpha}(\bm{G}'-\bm{G}) 
         \delta \rho_{\alpha'\alpha'}(\bm{G}-\bm{G}')  \delta_{\alpha\beta}$
-      human: $\langle c_{s_1,\tau_1,l_1,\alpha_1,b_1}^\dagger(k_1) c_{s_1,\tau_1,l_1,\alpha_1,b_4}(k_4)
-        \rangle c_{s_2,\tau_2,l_2,\alpha_2,b_2}^\dagger(k_2) c_{s_2,\tau_2,l_2,\alpha_2,b_3}(k_3)$
+      human: $\langle c_{s_1,\tau_1,l_1,\alpha_1,b_1}^\dagger(k_1) c_{s_1,\tau_1,l_1,\alpha_1,b_4}(k_4) \rangle c_{s_2,\tau_2,l_2,\alpha_2,b_2}^\dagger(k_2) c_{s_2,\tau_2,l_2,\alpha_2,b_3}(k_3)$
       score:
         Haining: 0
         Will:
         Subha:
     expression_Hartree_2:
       LLM:
-      human: $\langle c_{s_2,\tau_2,l_2,\alpha_2,b_2}^\dagger(k_2) c_{s_2,\tau_2,l_2,\alpha_2,b_3}(k_3)
-        \rangle c_{s_1,\tau_1,l_1,\alpha_1,b_1}^\dagger(k_1) c_{s_1,\tau_1,l_1,\alpha_1,b_4}(k_4)$
+      human: $\langle c_{s_2,\tau_2,l_2,\alpha_2,b_2}^\dagger(k_2) c_{s_2,\tau_2,l_2,\alpha_2,b_3}(k_3) \rangle c_{s_1,\tau_1,l_1,\alpha_1,b_1}^\dagger(k_1) c_{s_1,\tau_1,l_1,\alpha_1,b_4}(k_4)$
       score:
         Haining: 0
         Will:
@@ -498,17 +454,14 @@
         Subha:
     expected_value:
       LLM: $\delta \rho_{\alpha'\alpha'}(\bm{G}-\bm{G}')$
-      human: $\langle c_{s_i,\tau_i,l_i,\alpha_i,b_i}^\dagger(k_i) c_{s_j,\tau_j,l_j,\alpha_j,b_j}(k_j)
-        \rangle$
+      human: $\langle c_{s_i,\tau_i,l_i,\alpha_i,b_i}^\dagger(k_i) c_{s_j,\tau_j,l_j,\alpha_j,b_j}(k_j) \rangle$
       score:
         Haining: 0
         Will:
         Subha:
     expected_value_nonzero:
       LLM: $\delta_{\bm{G}\bm{G}'}$
-      human: $\langle c_{s_i,\tau_i,l_i,\alpha_i,b_i}^\dagger(k_i) c_{s_j,\tau_j,l_j,\alpha_j,b_j}(k_j)
-        \rangle=\langle c_{s_i,\tau_i,l_i,\alpha_i,b_i}^\dagger(k_i) c_{s_j,\tau_j,l_j,\alpha_j,b_j}(k_j)
-        \rangle \delta_{k_i,k_j}$
+      human: $\langle c_{s_i,\tau_i,l_i,\alpha_i,b_i}^\dagger(k_i) c_{s_j,\tau_j,l_j,\alpha_j,b_j}(k_j) \rangle=\langle c_{s_i,\tau_i,l_i,\alpha_i,b_i}^\dagger(k_i) c_{s_j,\tau_j,l_j,\alpha_j,b_j}(k_j) \rangle \delta_{k_i,k_j}$
       score:
         Haining: 0
         Will:
@@ -528,17 +481,14 @@
         Subha:
     expected_value:
       LLM: $\rho_{\alpha,\bm{G};\beta,\bm{G}'}(\bm{k})$
-      human: $\langle c_{s_i,\tau_i,l_i,\alpha_i,b_i}^\dagger(k_i) c_{s_j,\tau_j,l_j,\alpha_j,b_j}(k_j)
-        \rangle$
+      human: $\langle c_{s_i,\tau_i,l_i,\alpha_i,b_i}^\dagger(k_i) c_{s_j,\tau_j,l_j,\alpha_j,b_j}(k_j) \rangle$
       score:
         Haining: 0
         Will:
         Subha:
     expected_value_nonzero:
       LLM: $\rho_{\alpha,\bm{G};\beta,\bm{G}}(\bm{k})$
-      human: $\langle c_{s_i,\tau_i,l_i,\alpha_i,b_i}^\dagger(k_i) c_{s_j,\tau_j,l_j,\alpha_j,b_j}(k_j)
-        \rangle=\langle c_{s_i,\tau_i,l_i,\alpha_i,b_i}^\dagger(k_i) c_{s_j,\tau_j,l_j,\alpha_j,b_j}(k_j)
-        \rangle \delta_{k_i,k_j}$
+      human: $\langle c_{s_i,\tau_i,l_i,\alpha_i,b_i}^\dagger(k_i) c_{s_j,\tau_j,l_j,\alpha_j,b_j}(k_j) \rangle=\langle c_{s_i,\tau_i,l_i,\alpha_i,b_i}^\dagger(k_i) c_{s_j,\tau_j,l_j,\alpha_j,b_j}(k_j) \rangle \delta_{k_i,k_j}$
       score:
         Haining: 0
         Will:

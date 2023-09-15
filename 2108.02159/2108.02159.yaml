@@ -26,8 +26,7 @@
         Subha:
     degrees_of_freedom:
       LLM: spin/valley
-      human: moire reciprocal lattice vectors $b$ (infinite set), spin index (spin
-        up and spin down)
+      human: moire reciprocal lattice vectors $b$ (infinite set), spin index (spin up and spin down)
       score:
         Haining: 1
         Will:
@@ -75,9 +74,7 @@
         Will:
         Subha:
     definition_of_variables:
-      LLM: $\hbar$ is the reduced Planck constant, $m^*$ is the effective mass of
-        the electrons, $\b{k}$ is the momentum in the first moiré Brillouin zone,
-        $\b{b}$'s are moiré reciprocal lattice vectors.
+      LLM: $\hbar$ is the reduced Planck constant, $m^*$ is the effective mass of the electrons, $\b{k}$ is the momentum in the first moiré Brillouin zone, $\b{b}$'s are moiré reciprocal lattice vectors.
       human:
       score:
         Haining: 2
@@ -208,12 +205,7 @@
         Will:
         Subha:
     definition_of_variables:
-      LLM: H_{0} is the single-particle Hamiltonian of the moir\'e continuum model,
-        T is the single-particle kinetic energy operator for electrons with effective
-        mass m^*, \Delta(\mathbf{r}) is the moir\'e potential, V_j = V_M\exp\[(-1)^{j-1}i\phi\]
-        where V_M characterizes the moir\'e modulation strength and \phi its shape,
-        \b{k} is in the first moir\'e Brillouin zone and the \b{b}'s are moir\'e reciprocal
-        lattice vectors.
+      LLM: H_{0} is the single-particle Hamiltonian of the moir\'e continuum model, T is the single-particle kinetic energy operator for electrons with effective mass m^*, \Delta(\mathbf{r}) is the moir\'e potential, V_j = V_M\exp\[(-1)^{j-1}i\phi\] where V_M characterizes the moir\'e modulation strength and \phi its shape, \b{k} is in the first moir\'e Brillouin zone and the \b{b}'s are moir\'e reciprocal lattice vectors.
       human:
       score:
         Haining: 2
@@ -253,12 +245,7 @@
         Will:
         Subha:
     definition_of_variables:
-      LLM: $V_j = V_M\exp\[(-1)^{j-1}i\phi\]$ where $V_M$ characterizes the moir\'e
-        modulation strength and $\phi$ its shape. The fermion field operators $\psi^{(\dag)}_{\alpha}(\b
-        r)$ in this model carry only one label, representing locked spin/valley. The
-        single-particle Hamiltonian of the moir\'e continuum model $H_{0} = T + \Delta(\mathbf{r})$,
-        where $T$ is the single-particle kinetic energy operator for electrons with
-        effective mass $m^*$.
+      LLM: $V_j = V_M\exp\[(-1)^{j-1}i\phi\]$ where $V_M$ characterizes the moir\'e modulation strength and $\phi$ its shape. The fermion field operators $\psi^{(\dag)}_{\alpha}(\b r)$ in this model carry only one label, representing locked spin/valley. The single-particle Hamiltonian of the moir\'e continuum model $H_{0} = T + \Delta(\mathbf{r})$, where $T$ is the single-particle kinetic energy operator for electrons with effective mass $m^*$.
       human:
       score:
         Haining: 2
@@ -354,11 +341,7 @@
         Will:
         Subha:
     definition_of_variables:
-      LLM: $\Sigma^{HF}$ is the Hartree-Fock self-energy, $\rho$ is the single-particle
-        density matrix, $\b{k}$ is the Brillouin-zone, $\b{b}$ is the reciprocal lattice
-        vectors, $\alpha$ and $\beta$ label spin, $A$ is the finite sample area corresponding
-        to a discrete Brillouin-zone mesh, and $\rho_{\alpha,\b{b};\beta,\b{b}'}$
-        is the self-consistently determined momentum-space density matrix.
+      LLM: $\Sigma^{HF}$ is the Hartree-Fock self-energy, $\rho$ is the single-particle density matrix, $\b{k}$ is the Brillouin-zone, $\b{b}$ is the reciprocal lattice vectors, $\alpha$ and $\beta$ label spin, $A$ is the finite sample area corresponding to a discrete Brillouin-zone mesh, and $\rho_{\alpha,\b{b};\beta,\b{b}'}$ is the self-consistently determined momentum-space density matrix.
       human:
       score:
         Haining: 2
@@ -391,10 +374,7 @@
         Will:
         Subha:
     definition_of_variables:
-      LLM: In $\Sigma^{HF}_{\alpha,\b{b};\beta,\b{b}'}$, Greek letters label spin,
-        $A$ is the finite sample area corresponding to a discrete Brillouin-zone mesh,
-        and $\rho_{\alpha,\b{b};\beta,\b{b}'}$ is the self-consistently determined
-        momentum-space density matrix.
+      LLM: In $\Sigma^{HF}_{\alpha,\b{b};\beta,\b{b}'}$, Greek letters label spin, $A$ is the finite sample area corresponding to a discrete Brillouin-zone mesh, and $\rho_{\alpha,\b{b};\beta,\b{b}'}$ is the self-consistently determined momentum-space density matrix.
       human:
       score:
         Haining: 2
@@ -439,18 +419,15 @@
         Will:
         Subha:
     expression_Hartree_1:
-      LLM: 
-        $\frac{\delta_{\alpha,\beta}}{A}\sum_{\alpha'}V_{\alpha'\alpha}(\b{b}'-\b{b})\sum_{\b{k}',\b{b}''}$
-      human: $\langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) \rangle
-        c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3)$
+      LLM: $\frac{\delta_{\alpha,\beta}}{A}\sum_{\alpha'}V_{\alpha'\alpha}(\b{b}'-\b{b})\sum_{\b{k}',\b{b}''}$
+      human: $\langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3)$
       score:
         Haining: 1
         Will:
         Subha:
     expression_Hartree_2:
       LLM: $-\frac{1}{A}\sum_{\b{b}'',k'}V_{\alpha\beta}(\b{b}''+\b{k}'-\b{k})$
-      human: $\langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) \rangle
-        c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4)$
+      human: $\langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4)$
       score:
         Haining: 1
         Will:
@@ -476,8 +453,7 @@
         Subha:
     expected_value_nonzero:
       LLM: $\delta_{\alpha,\beta}$
-      human: $\langle c_{\sigma_i,b_i}^\dagger(k_i) c_{\sigma_j,b_j}(k_j) \rangle=\langle
-        c_{\sigma_i,b_i}^\dagger(k_i) c_{\sigma_j,b_j}(k_j) \rangle \delta_{k_i,k_j}$
+      human: $\langle c_{\sigma_i,b_i}^\dagger(k_i) c_{\sigma_j,b_j}(k_j) \rangle=\langle c_{\sigma_i,b_i}^\dagger(k_i) c_{\sigma_j,b_j}(k_j) \rangle \delta_{k_i,k_j}$
       score:
         Haining: 0
         Will:
@@ -503,8 +479,7 @@
         Subha:
     expected_value_nonzero:
       LLM: $\rho_{\alpha,\b{b};\beta,\b{b}'}$
-      human: $\langle c_{\sigma_i,b_i}^\dagger(k_i) c_{\sigma_j,b_j}(k_j) \rangle=\langle
-        c_{\sigma_i,b_i}^\dagger(k_i) c_{\sigma_j,b_j}(k_j) \rangle \delta_{k_i,k_j}$
+      human: $\langle c_{\sigma_i,b_i}^\dagger(k_i) c_{\sigma_j,b_j}(k_j) \rangle=\langle c_{\sigma_i,b_i}^\dagger(k_i) c_{\sigma_j,b_j}(k_j) \rangle \delta_{k_i,k_j}$
       score:
         Haining: 0
         Will:

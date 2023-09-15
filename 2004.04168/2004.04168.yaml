@@ -47,11 +47,7 @@
         Will:
         Subha:
     definition_of_variables:
-      LLM: $s= \uparrow,\downarrow\ $ represents spin $\uparrow$ and $\downarrow$
-        states associated respectively with $ +K $ and $-K$ valleys, $ \bm{R}_i $
-        represents a site in the triangular lattice, and $ c_{j,s} $ ($ c_{j,s}^\dagger
-        $) is  electron annihilation (creation) operator. $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$
-        is the hopping parameter.
+      LLM: $s= \uparrow,\downarrow\ $ represents spin $\uparrow$ and $\downarrow$ states associated respectively with $ +K $ and $-K$ valleys, $ \bm{R}_i $ represents a site in the triangular lattice, and $ c_{j,s} $ ($ c_{j,s}^\dagger $) is  electron annihilation (creation) operator. $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$ is the hopping parameter.
       human:
       score:
         Haining: 2
@@ -77,8 +73,7 @@
         Will:
         Subha:
     kinetic_symbol:
-      LLM: $\sum_{s}\sum_{i,j}^{} t_{s}\left(\bm{R}_i-\bm{R}_j\right) c_{i,s}^\dagger
-        c_{j,s}$
+      LLM: $\sum_{s}\sum_{i,j}^{} t_{s}\left(\bm{R}_i-\bm{R}_j\right) c_{i,s}^\dagger c_{j,s}$
       human: $\hat{H}_{Kinetic}$
       score:
         Haining: 0
@@ -106,20 +101,16 @@
         Will:
         Subha:
     definition_of_variables:
-      LLM: $t_{s}$ is the hopping parameter, $c_{i,s}^\dagger$ and $c_{j,s}$ are the
-        creation and annihilation operators, respectively, $U(\bm{R}_i-\bm{R}_j)$
-        is the repulsion between sites $i$ and $j$, and $\epsilon$ is the effective
-        background dielectric constant.
+      LLM: $t_{s}$ is the hopping parameter, $c_{i,s}^\dagger$ and $c_{j,s}$ are the creation and annihilation operators, respectively, $U(\bm{R}_i-\bm{R}_j)$ is the repulsion between sites $i$ and $j$, and $\epsilon$ is the effective background dielectric constant.
       human:
       score:
         Haining: 2
         Will:
         Subha:
-- task: Convert noninteracting Hamiltonian in real space to momentum space (lattice
-    version)
+- task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
   source:
     2004.04168.tex:
-    - []
+      - []
   placeholder:
     nonint_symbol:
       LLM:
@@ -144,8 +135,7 @@
         Subha:
     definition_of_Fourier_Transformation:
       LLM:
-      human: $c_s^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_s^\dagger(R_i) e^{i k \cdot
-        R_i}$
+      human: $c_s^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_s^\dagger(R_i) e^{i k \cdot R_i}$
       score:
         Haining: 0
         Will:
@@ -177,7 +167,7 @@
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source:
     2004.04168.tex:
-    - []
+      - []
   placeholder:
     second_int_symbol:
       LLM: $\hat{H}^{int}$
@@ -209,8 +199,7 @@
         Subha:
     definition_of_Fourier_Transformation:
       LLM:
-      human: c_s^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_s^\dagger(R_i) e^{i k \cdot
-        R_i}
+      human: c_s^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_s^\dagger(R_i) e^{i k \cdot R_i}
       score:
         Haining: 0
         Will:
@@ -239,7 +228,7 @@
 - task: Wick's theorem
   source:
     2004.04168.tex:
-    - []
+      - []
   placeholder:
     second_int_symbol:
       LLM:
@@ -267,7 +256,7 @@
 - task: Extract quadratic term
   source:
     2004.04168.tex:
-    - []
+      - []
   placeholder:
     Hartree_Fock_term_symbol:
       LLM: H
@@ -291,8 +280,7 @@
         Will:
         Subha:
     definition_of_variables:
-      LLM: H represents the Hartree-Fock term, B represents the bilinear operator,
-        and H' represents the Hartree-Fock term with only the quadratic terms preserved.
+      LLM: H represents the Hartree-Fock term, B represents the bilinear operator, and H' represents the Hartree-Fock term with only the quadratic terms preserved.
       human: |
         $\hat{H}^{HF,2}$ : the quadratic terms in $\hat{H}^{HF}$.
       score:
@@ -302,7 +290,7 @@
 - task: Construct full Hamiltonian after HF
   source:
     2004.04168.tex:
-    - []
+      - []
   placeholder:
     Hartree_Fock_symbol:
       LLM:
