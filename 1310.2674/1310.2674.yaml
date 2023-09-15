@@ -1,59 +1,491 @@
 - task: Construct Kinetic Hamiltonian (lattice version)
-  source: 
+  source:
     1310.2674.tex:
-      - [211,224]
+    - [211, 224]
+  placeholder:
+    system:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    real|momentum:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    single-particle|second-quantized:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    degrees_of_freedom:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    site i and site j with the amplitude hopping:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    kinetic_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    definition_of_variables:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    You should ensure the hermiticity of the Hamiltonian:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
 
 - task: Construct interaction Hamiltonian (real space, lattice version)
-  source: 
+  source:
     1310.2674.tex:
-      - [225,252]
+    - [225, 252]
+  placeholder:
+    second_int_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    kinetic_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    site i and site j with the interaction strength:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    degrees_of_freedom:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    density_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    definition_of_variables:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
 
 - task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
-  source: 
+  source:
     1310.2674_SM.tex:
-      - [67,80]
+    - [67, 80]
+  placeholder:
+    nonint_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    real_creation_op:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    momentum_creation_op:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    definition_of_Fourier_Transformation:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    real_variable:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    definition_of_variables:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    Note that hopping have no position dependence now.:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
 
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
-  source: 
+  source:
     1310.2674_SM.tex:
-      - [67,89]
+    - [67, 89]
+  placeholder:
+    second_int_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    single-particle|second-quantized:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    real_creation_op:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    momentum_creation_op:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    definition_of_Fourier_Transformation:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    real_variable:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    momentum_var:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    Note that interaction have no position dependence now:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
 
 - task: Wick's theorem
-  source: 
+  source:
     1310.2674_SM.tex:
-      - [116,131]
+    - [116, 131]
+  placeholder:
+    second_int_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    Hartree_Fock_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    definition_of_variables:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
 
 - task: Extract quadratic term
-  source: 
+  source:
     1310.2674_SM.tex:
-      - [116,131]
+    - [116, 131]
+  placeholder:
+    Hartree_Fock_term_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    bilinear_op:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    Hartree_Fock_second_quantized_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    definition_of_variables:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
 
 - task: Expand interaction
-  source: 
+  source:
     1310.2674_SM.tex:
-      - [116,131]
+    - [116, 131]
+  placeholder:
+    Hartree_Fock_second_quantized_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    momentum:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
 
 - task: Swap the index only
-  source: 
+  source:
     1310.2674_SM.tex:
-      - [116,131]
+    - [116, 131]
+  placeholder:
+    Hartree_Fock_second_quantized_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    expected_value:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    expression_Hartree_1:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    expression_Hartree_2:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    relabel:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    Unsummed_Indices:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
 
 - task: Reduce momentum in Hartree term (momentum in BZ)
-  source: 
+  source:
     1310.2674_SM.tex:
-      - [116,131]
-      
+    - [116, 131]
+  placeholder:
+    Hartree_second_quantized_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    expected_value:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    expected_value_nonzero:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+
 - task: Reduce momentum in Fock term (momentum in BZ)
-  source: 
+  source:
     1310.2674_SM.tex:
-      - [116,131]
+    - [116, 131]
+  placeholder:
+    Fock_second_quantized_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    expected_value:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    expected_value_nonzero:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
 
 - task: Combine the Hartree and Fock term
-  source: 
+  source:
     1310.2674_SM.tex:
-      - [116,131]
+    - [116, 131]
+  placeholder:
+    symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    Fock:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    swap rule:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
 
 - task: Construct full Hamiltonian after HF
-  source: 
+  source:
     1310.2674_SM.tex:
-      - [116,131]
+    - [116, 131]
+  placeholder:
+    Hartree_Fock_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    kinetic_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    expression_kinetic:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    int_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    expression_int:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    Ham_symbol:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
+    definition_of_variables:
+      LLM:
+      human:
+      score:
+        Haining:
+        Will:
+        Subha:
