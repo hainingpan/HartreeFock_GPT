@@ -4,56 +4,56 @@
       - [311, 321]
   placeholder:
     system:
-      LLM:
+      LLM: TBG
       human:
       score:
         Haining:
         Will:
         Subha:
     real|momentum:
-      LLM:
+      LLM: real
       human:
       score:
         Haining:
         Will:
         Subha:
     single-particle|second-quantized:
-      LLM:
+      LLM: second-quantized
       human:
       score:
         Haining:
         Will:
         Subha:
     degrees_of_freedom:
-      LLM:
+      LLM: spin and sublattice
       human:
       score:
         Haining:
         Will:
         Subha:
     site i and site j with the amplitude hopping:
-      LLM:
+      LLM: site i and site j with the amplitude h_{\alpha\beta}(R_{i}-R_{j})
       human:
       score:
         Haining:
         Will:
         Subha:
     kinetic_symbol:
-      LLM:
+      LLM: H_{0}
       human:
       score:
         Haining:
         Will:
         Subha:
     definition_of_variables:
-      LLM:
+      LLM: d_{\alpha,i,\sigma} is the annihilation operator of an electron with spin σ=↑,↓ on sublattice α of unit cell i, and h_{\alpha\beta}(R_{i}-R_{j}) is the corresponding tight-binding matrix element between sublattices α and β located in unit cells centered at R_{i} and R_{j} respectively.
       human:
       score:
         Haining:
         Will:
         Subha:
     You should ensure the hermiticity of the Hamiltonian:
-      LLM:
+      LLM: false
       human:
       score:
         Haining:
@@ -66,7 +66,7 @@
       - [321, 344]
   placeholder:
     second_int_symbol:
-      LLM:
+      LLM: $\mathcal{H}_{\text{C}}$
       human:
       score:
         Haining:
@@ -80,28 +80,28 @@
         Will:
         Subha:
     site i and site j with the interaction strength:
-      LLM:
+      LLM: site i and site j with the interaction strength $V_{\alpha\beta}(\mathbf{R}_{i}-\mathbf{R}_{j})$
       human:
       score:
         Haining:
         Will:
         Subha:
     degrees_of_freedom:
-      LLM:
+      LLM: $\alpha\beta$
       human:
       score:
         Haining:
         Will:
         Subha:
     density_symbol:
-      LLM:
+      LLM: $\hat{n}_{\alpha,i}$
       human:
       score:
         Haining:
         Will:
         Subha:
     definition_of_variables:
-      LLM:
+      LLM: $\hat{n}_{\alpha,i}=\sum_{\sigma}d_{\alpha,i,\sigma}^{\dagger}d_{\alpha,i,\sigma}$ is the local density operator and $V_{\alpha\beta}(\mathbf{R})=e^{2}/(\varepsilon\xi)\sum_{m=-\infty}^{\infty}(-1)^{m}[(|\boldsymbol{\tau}_{\alpha}-\boldsymbol{\mathbf{\tau}}_{\beta}+\mathbf{R}|/\xi)^{2}+m^{2}]^{-\frac{1}{2}}$ is the screened form of the interaction in the presence of symmetric gates located at the top and bottom of the TBG heterostructure.
       human:
       score:
         Haining:
@@ -115,21 +115,21 @@
       - [349, 354]
   placeholder:
     nonint_symbol:
-      LLM:
+      LLM: \mathcal{H}
       human:
       score:
         Haining:
         Will:
         Subha:
     real_creation_op:
-      LLM:
+      LLM: d_{\alpha,\mathbf{k},\sigma}^{\dagger}
       human:
       score:
         Haining:
         Will:
         Subha:
     momentum_creation_op:
-      LLM:
+      LLM: d_{\alpha,\mathbf{k},\sigma}^{\dagger}
       human:
       score:
         Haining:
@@ -157,7 +157,7 @@
         Will:
         Subha:
     Note that hopping have no position dependence now.:
-      LLM:
+      LLM: true
       human:
       score:
         Haining:
@@ -170,56 +170,56 @@
       - [355, 360]
   placeholder:
     second_int_symbol:
-      LLM:
+      LLM: $\mathcal{H}_{\text{C}}$
       human:
       score:
         Haining:
         Will:
         Subha:
     single-particle|second-quantized:
-      LLM:
+      LLM: second-quantized
       human:
       score:
         Haining:
         Will:
         Subha:
     real_creation_op:
-      LLM:
+      LLM: $\hat{n}_{\alpha}$
       human:
       score:
         Haining:
         Will:
         Subha:
     momentum_creation_op:
-      LLM:
+      LLM: $\hat{n}_{\alpha}(\mathbf{q})$
       human:
       score:
         Haining:
         Will:
         Subha:
     definition_of_Fourier_Transformation:
-      LLM:
+      LLM: $V_{\alpha\beta}(\mathbf{q})$
       human:
       score:
         Haining:
         Will:
         Subha:
     real_variable:
-      LLM:
+      LLM: $\alpha$
       human:
       score:
         Haining:
         Will:
         Subha:
     momentum_var:
-      LLM:
+      LLM: $\mathbf{q}$
       human:
       score:
         Haining:
         Will:
         Subha:
     Note that interaction have no position dependence now:
-      LLM:
+      LLM: true
       human:
       score:
         Haining:
@@ -232,21 +232,21 @@
       - [401, 423]
   placeholder:
     second_int_symbol:
-      LLM:
+      LLM: $\mathcal{H}_{\text{HF}}$
       human:
       score:
         Haining:
         Will:
         Subha:
     Hartree_Fock_symbol:
-      LLM:
+      LLM: $\bar{h}_{\alpha\beta}(\mathbf{k},\sigma)$
       human:
       score:
         Haining:
         Will:
         Subha:
     definition_of_variables:
-      LLM:
+      LLM: $\mathcal{H}_{\text{HF}}$ is the Hartree-Fock Hamiltonian, $\bar{h}_{\alpha\beta}(\mathbf{k},\sigma)$ is the renormalized matrix elements due to both Hartree and Fock contributions, $h_{\alpha\beta}^{\text{H}}(\mathbf{k},\sigma)$ and $h_{\alpha\beta}^{\text{F}}(\mathbf{k},\sigma)$ are the Hartree and Fock contributions respectively, $\rho_{\alpha\beta}(\mathbf{k},\sigma)$ is the zero-temperature density matrix for a given momentum and spin, and $\phi_{\alpha,\mathbf{k}}^{(n)}(\sigma)$ are the exact eigenvectors of $\mathcal{H}_{\text{HF}}$.
       human:
       score:
         Haining:
@@ -259,28 +259,28 @@
       - [401, 423]
   placeholder:
     Hartree_Fock_term_symbol:
-      LLM:
+      LLM: Hartree-Fock term
       human:
       score:
         Haining:
         Will:
         Subha:
     bilinear_op:
-      LLM:
+      LLM: $d_{\alpha,\mathbf{k},\sigma}^{\dagger}d_{\beta,\mathbf{k},\sigma}$
       human:
       score:
         Haining:
         Will:
         Subha:
     Hartree_Fock_second_quantized_symbol:
-      LLM:
+      LLM: $\mathcal{H}_{\text{HF}}$
       human:
       score:
         Haining:
         Will:
         Subha:
     definition_of_variables:
-      LLM:
+      LLM: $\mathcal{H}_{\text{HF}}$ is the Hartree-Fock term, $\bar{h}_{\alpha\beta}(\mathbf{k},\sigma)$ is the renormalized matrix elements due to both Hartree and Fock contributions, $d_{\alpha,\mathbf{k},\sigma}^{\dagger}$ and $d_{\beta,\mathbf{k},\sigma}$ are creation and annihilation operators respectively, and $\rho_{\alpha\beta}(\mathbf{k},\sigma)$ is the zero-temperature density matrix for a given momentum and spin
       human:
       score:
         Haining:
@@ -293,14 +293,14 @@
       - [401, 423]
   placeholder:
     Hartree_Fock_second_quantized_symbol:
-      LLM:
+      LLM: $\mathcal{H}_{\text{HF}}$
       human:
       score:
         Haining:
         Will:
         Subha:
     momentum:
-      LLM:
+      LLM: $\mathbf{k}$
       human:
       score:
         Haining:
@@ -313,42 +313,42 @@
       - [401, 423]
   placeholder:
     Hartree_Fock_second_quantized_symbol:
-      LLM:
+      LLM: $\mathcal{H}_{\text{HF}}$
       human:
       score:
         Haining:
         Will:
         Subha:
     expected_value:
-      LLM:
+      LLM: $\rho_{\alpha\beta}(\mathbf{k},\sigma)$
       human:
       score:
         Haining:
         Will:
         Subha:
     expression_Hartree_1:
-      LLM:
+      LLM: $h_{\alpha\beta}^{\text{H}}(\mathbf{k},\sigma)$
       human:
       score:
         Haining:
         Will:
         Subha:
     expression_Hartree_2:
-      LLM:
+      LLM: $h_{\alpha\beta}^{\text{H}}(\mathbf{k},\sigma)$
       human:
       score:
         Haining:
         Will:
         Subha:
     relabel:
-      LLM:
+      LLM: $\alpha$ and $\beta$
       human:
       score:
         Haining:
         Will:
         Subha:
     Unsummed_Indices:
-      LLM:
+      LLM: $\mathbf{k},\sigma$
       human:
       score:
         Haining:
@@ -361,21 +361,21 @@
       - [401, 423]
   placeholder:
     Hartree_second_quantized_symbol:
-      LLM:
+      LLM: $h_{\alpha\beta}^{\text{H}}(\mathbf{k},\sigma)$
       human:
       score:
         Haining:
         Will:
         Subha:
     expected_value:
-      LLM:
+      LLM: $\rho_{\alpha\beta}(\mathbf{k},\sigma)$
       human:
       score:
         Haining:
         Will:
         Subha:
     expected_value_nonzero:
-      LLM:
+      LLM: $\rho_{\alpha\beta}(\mathbf{k},\sigma)=\delta_{\alpha\beta}\sum_{\gamma,\mathbf{k}^{\prime},\sigma^{\prime}}V_{\beta\gamma}(0)\rho_{\gamma\gamma}(\mathbf{k}^{\prime},\sigma^{\prime})$
       human:
       score:
         Haining:
@@ -388,21 +388,21 @@
       - [401, 423]
   placeholder:
     Fock_second_quantized_symbol:
-      LLM:
+      LLM: $h_{\alpha\beta}^{\text{F}}(\mathbf{k},\sigma)$
       human:
       score:
         Haining:
         Will:
         Subha:
     expected_value:
-      LLM:
+      LLM: $\rho_{\alpha\beta}(\mathbf{k},\sigma)$
       human:
       score:
         Haining:
         Will:
         Subha:
     expected_value_nonzero:
-      LLM:
+      LLM: $\rho_{\alpha\beta}(\mathbf{k},\sigma)=\sum_{n}^{\text{occupied}}\phi_{\alpha,\mathbf{k}}^{(n)}(\sigma)\phi_{\beta,\mathbf{k}}^{(n)*}(\sigma)$
       human:
       score:
         Haining:
@@ -415,14 +415,14 @@
       - [401, 423]
   placeholder:
     symbol:
-      LLM:
+      LLM: $h_{\alpha\beta}^{\text{H}}(\mathbf{k},\sigma)$
       human:
       score:
         Haining:
         Will:
         Subha:
     Fock:
-      LLM:
+      LLM: $h_{\alpha\beta}^{\text{F}}(\mathbf{k},\sigma)$
       human:
       score:
         Haining:
@@ -442,49 +442,49 @@
       - [401, 423]
   placeholder:
     Hartree_Fock_symbol:
-      LLM:
+      LLM: $\mathcal{H}_{\text{HF}}$
       human:
       score:
         Haining:
         Will:
         Subha:
     kinetic_symbol:
-      LLM:
+      LLM: $h_{\alpha\beta}(\mathbf{k})$
       human:
       score:
         Haining:
         Will:
         Subha:
     expression_kinetic:
-      LLM:
+      LLM: not explicitly given in the excerpt
       human:
       score:
         Haining:
         Will:
         Subha:
     int_symbol:
-      LLM:
+      LLM: \bar{h}_{\alpha\beta}(\mathbf{k},\sigma)$
       human:
       score:
         Haining:
         Will:
         Subha:
     expression_int:
-      LLM:
+      LLM: $h_{\alpha\beta}(\mathbf{k})+h_{\alpha\beta}^{\text{H}}(\mathbf{k},\sigma)+h_{\alpha\beta}^{\text{F}}(\mathbf{k},\sigma)$, where $h_{\alpha\beta}^{\text{H}}(\mathbf{k},\sigma)$ and $h_{\alpha\beta}^{\text{F}}(\mathbf{k},\sigma)$ are the Hartree and Fock contributions respectively
       human:
       score:
         Haining:
         Will:
         Subha:
     Ham_symbol:
-      LLM:
+      LLM: $\mathcal{H}_{\text{HF}}$
       human:
       score:
         Haining:
         Will:
         Subha:
     definition_of_variables:
-      LLM:
+      LLM: $\mathcal{H}_{\text{HF}}$ is the entire Hamiltonian after the Hartree-Fock approximation, $h_{\alpha\beta}(\mathbf{k})$ is the kinetic Hamiltonian, $\bar{h}_{\alpha\beta}(\mathbf{k},\sigma)$ is the interacting Hamiltonian, $h_{\alpha\beta}^{\text{H}}(\mathbf{k},\sigma)$ and $h_{\alpha\beta}^{\text{F}}(\mathbf{k},\sigma)$ are the Hartree and Fock contributions respectively.
       human:
       score:
         Haining:
