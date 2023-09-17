@@ -1,5 +1,6 @@
 # Interaction is not density-density interaction, contains Hund coupling, which is outside the template
 # "Combine the Hartree and Fock term" is skipped because the information is not in the paper, need to go back to this once the previous prompts are answered
+# Macro of \bq,\bk are not standard latex, which may cause troubles
 - task: Construct Kinetic Hamiltonian (lattice version)
   source: 
     1310.2674.tex:
@@ -322,44 +323,44 @@
   placeholder:
     Hartree_Fock_second_quantized_symbol:
       LLM: $M_{\alpha\beta}(\bk)$
-      human: 
+      human:  $\hat{H}_{\rm {int}}^{HF,2}$
       score: 
-        Haining: 1
+        Haining: 2
         Will: 
         Subha: 
     expected_value:
       LLM: $\langle d^\dagger_{\bq,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma^\prime} \rangle$
       human: 
       score: 
-        Haining: 
+        Haining: 2
         Will: 
         Subha: 
     expression_Hartree_1:
       LLM: $U^{\sigma\sigma^\prime}_{\beta,\alpha^\prime,\alpha,\beta^\prime} + U^{\sigma^\prime\sigma}_{\alpha^\prime,\beta,\beta^\prime,\alpha}$
-      human: 
+      human: $\langle d^{\dagger}_{\bk,\alpha,\sigma} d_{\bk+\bq,\beta,\sigma} \rangle d^{\dagger}_{\bk^\prime,\alpha^\prime,\sigma^\prime}d_{\bk^\prime-\bq,\beta^\prime,\sigma^\prime}$ 
       score: 
-        Haining: 
+        Haining: 0
         Will: 
         Subha: 
     expression_Hartree_2:
       LLM: $U^{\sigma\sigma}_{\alpha^\prime,\beta,\alpha,\beta^\prime} + U^{\sigma\sigma}_{\beta,\alpha^\prime,\beta^\prime,\alpha}$
-      human: 
+      human:  $d^{\dagger}_{\bk,\alpha,\sigma} d_{\bk+\bq,\beta,\sigma} \langle d^{\dagger}_{\bk^\prime,\alpha^\prime,\sigma^\prime}d_{\bk^\prime-\bq,\beta^\prime,\sigma^\prime} \rangle$
       score: 
-        Haining: 
+        Haining: 0
         Will: 
         Subha: 
     relabel:
       LLM: $\alpha^\prime,\beta,\beta^\prime,\alpha$
-      human: 
+      human: $\alpha$ and $\alpha^\prime$, $\beta$ and $\beta^\prime$, $k$ and $k'$
       score: 
-        Haining: 
+        Haining: 1
         Will: 
         Subha: 
     Unsummed_Indices:
       LLM: $\bq,\sigma,\sigma^\prime$
-      human: 
+      human: None
       score: 
-        Haining: 
+        Haining: 0 (?) 
         Will: 
         Subha: 
 
@@ -370,23 +371,23 @@
   placeholder:
     Hartree_second_quantized_symbol:
       LLM: $M_{\alpha\beta}(\bk)$
-      human: 
+      human: $\hat{H}_{\rm {int}}^{HF,2}$
       score: 
-        Haining: 
+        Haining: 2
         Will: 
         Subha: 
     expected_value:
       LLM: $\langle d^\dagger_{\bq,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma^\prime} \rangle$ and $\langle d^\dagger_{\bq,\alpha^\prime,\sigma}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma} \rangle$
-      human: 
+      human: $\langle d^{\dagger}_{\bk,\alpha,\sigma} d_{\bk+\bq,\beta,\sigma} \rangle$
       score: 
-        Haining: 
+        Haining: 1
         Will: 
         Subha: 
     expected_value_nonzero:
       LLM: $\bq = \bq$ 
-      human: 
+      human: $\langle d^{\dagger}_{\bk,\alpha,\sigma} d_{\bk+\bq,\beta,\sigma} \rangle=\langle d^{\dagger}_{\bk,\alpha,\sigma} d_{\bk+\bq,\beta,\sigma} \rangle \delta_{q,0} $
       score: 
-        Haining: 
+        Haining: 1
         Will: 
         Subha: 
     
@@ -399,21 +400,21 @@
       LLM: $M_{\alpha\beta}(\bk)$
       human: 
       score: 
-        Haining: 
+        Haining: 2
         Will: 
         Subha: 
     expected_value:
       LLM: $\langle d^\dagger_{\bq,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma^\prime} \rangle$ and $\langle d^\dagger_{\bq,\alpha^\prime,\sigma}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma} \rangle$
-      human: 
+      human: $\langle d^{\dagger}_{k,\alpha,\sigma} d_{k^\prime-q,\beta^\prime,\sigma^\prime} \rangle$
       score: 
-        Haining: 
+        Haining: 1
         Will: 
         Subha: 
     expected_value_nonzero:
       LLM: $\langle d^\dagger_{\bq,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma^\prime} \rangle$ and $\langle d^\dagger_{\bq,\alpha^\prime,\sigma}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma} \rangle$
-      human: 
+      human: \langle d^{\dagger}_{k,\alpha,\sigma} d_{k^\prime-q,\beta^\prime,\sigma^\prime} \rangle= \langle d^{\dagger}_{k,\alpha,\sigma} d_{k^\prime-q,\beta^\prime,\sigma^\prime} \rangle \delta_{k,k'-q}
       score: 
-        Haining: 
+        Haining: 1
         Will: 
         Subha: 
 
