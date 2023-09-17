@@ -1,3 +1,4 @@
+# There seems to be an issue with the brach (which has a duplicated task) could be a mistake during human excerpting stage. Will fix later by rerun the extractor LLM.
 - task: Construct Kinetic Hamiltonian (continuum version, second-quantized)
   source:
     1212.5363.tex:
