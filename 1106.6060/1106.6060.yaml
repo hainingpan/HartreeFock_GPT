@@ -10,28 +10,28 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     real|momentum:
       LLM: real
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     single-particle|second-quantized:
       LLM: second-quantized
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     degrees_of_freedom:
       LLM: spin $s$ and site $i$
       human: spin index (spin up and spin down), orbital index ($d$ orbital in Cu atom, $p_x$ orbital in O atom, and $p_y$ orbital in O atom)
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
     site i and site j with the amplitude hopping:
       LLM: between copper $d_{x^2-y^2}$ orbital at site $i$ and oxygen $p_\nu$ orbital at site $i+\hat{\nu}/2$ with the amplitude $t_{pd}$, and between neighboring oxygen sites with the amplitude $t_{pp}$.
       human: |
@@ -46,14 +46,14 @@
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     kinetic_symbol:
       LLM: $\HH_{0}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: |
         $\hat{d}^{\dag}_{i,s}$ creates a hole in the copper $d_{x^2-y^2}$ orbital at site $i$ with spin $s$,
@@ -63,7 +63,7 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source:
@@ -76,14 +76,14 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     kinetic_symbol:
       LLM: 
       human: $H_0$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     site i and site j with the interaction strength:
       LLM: |
         - Interaction between site i and itself with the interaction strength U_{d}
@@ -106,21 +106,21 @@
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
     degrees_of_freedom:
       LLM: spin states (s, s')
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     density_symbol:
       LLM: \hat{n}
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: |
         - \HH' is the interaction part of the Hamiltonian
@@ -141,7 +141,7 @@
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
   source:
@@ -154,35 +154,35 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     real_creation_op:
       LLM: $\hat{C}^{\dag}_{\kk s}$
       human: $c_{\alpha,s}^\dagger(R_i)$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     momentum_creation_op:
       LLM: $\hat{p}^{\dag}_{x\kk s}, \hat{p}^{\dag}_{y\kk s}, \hat{d}^{\dag}_{\kk s}$
       human: $c_{\alpha,s}^\dagger(k)$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_Fourier_Transformation:
       LLM: $\HH_{\kk s}$
       human: $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     real_variable:
       LLM: $\kk$ 
       human: i
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: $\HH_{\kk s}$ is the Hamiltonian in momentum space, $\hat{C}^{\dag}_{\kk s}$ is the creation operator in real space, $\hat{p}^{\dag}_{x\kk s}, \hat{p}^{\dag}_{y\kk s}, \hat{d}^{\dag}_{\kk s}$ are the creation operators in momentum space, $\kk$ is the momentum, $s$ is the spin index, $n$ is the total density of holes, $n^p$ is the total density of holes on the oxygen sites, $\eta$ is the nematic order parameter, $\gamma_1(k_i)$ and $\gamma_2(\kk)$ are elements of the Hamiltonian matrix, $\xi_{x}$, $\xi_{y}$, and $\xi_{d}$ are the diagonal elements of the Hamiltonian matrix, $\tilde{U}_{p}$, $\tilde{V}_{pp}$, and $\tilde{U}_{d}$ are the effective interaction parameters, and $\mu$ is the chemical potential.
       human: |
@@ -192,14 +192,14 @@
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
     Note that hopping have no position dependence now.:
       LLM: 
       human: False
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source:
@@ -212,56 +212,56 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     single-particle|second-quantized:
       LLM: second-quantized
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     real_creation_op:
       LLM:  $\hat{C}^{\dag}_{\kk s}$
       human: $c_{\alpha,s}^\dagger(R_i)$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     momentum_creation_op:
       LLM: $\hat{p}^{\dag}_{x\kk s}, \hat{p}^{\dag}_{y\kk s}, \hat{d}^{\dag}_{\kk s}$
       human: $c_{\alpha,s}^\dagger(k)$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_Fourier_Transformation:
       LLM: $\HH_{\kk s}$
       human: $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     real_variable:
       LLM: $\kk$
       human: $i$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     momentum_var:
       LLM: $s$
       human: $k$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     Note that interaction have no position dependence now:
       LLM: True
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
 
 
 - task: Wick's theorem
@@ -275,14 +275,14 @@
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     Hartree_Fock_symbol:
       LLM: $\HH_{\rm MF}
       human: $\hat{H}^{int,HF,U_d}$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: $\HH_{\rm MF}$ is the mean-field Hamiltonian, $\hat{C}^{\dag}_{\kk s}$ is the creation operator, $\HH_{\kk s}$ is the Hamiltonian, $f(n^{p}, \eta)$ is a function of the total density of holes on the oxygen sites and the nematic order parameter, $n$ is the total density of holes, $n^p$ is the total density of holes on the oxygen sites, $\eta$ is the nematic order parameter, $\gamma_1(k_i)$, $\gamma_2(\kk)$, $\xi_{x}$, $\xi_{y}$, and $\xi_{d}$ are elements of the matrix, $\tilde{U}_{p}$, $\tilde{V}_{pp}$, and $\tilde{U}_{d}$ are the effective interaction parameters, and $\mu$ is the chemical potential.
       human: |
@@ -291,7 +291,7 @@
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
 
 
 - task: Extract quadratic term
@@ -305,21 +305,21 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     bilinear_op:
       LLM: $\hat{C}^{\dag}_{\kk s}\HH_{\kk s}\hat{C}^{\phantom{\dag}}_{\kk s}$
       human: $c^\dagger c$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     Hartree_Fock_second_quantized_symbol:
       LLM: $\HH_{\kk s}$
       human: $\hat{H}^{int,HF,U_d}$
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: $\HH_{\rm MF}$ is the mean-field Hamiltonian, $\hat{C}^{\dag}_{\kk s}$ is the creation operator, $\HH_{\kk s}$ is the Hamiltonian matrix, and $\hat{C}^{\phantom{\dag}}_{\kk s}$ is the annihilation operator. The elements of the matrix $\HH_{\kk s}$ are given by $\gamma_1(k_i)$, $\gamma_2(\kk)$, $\xi_{x}$, $\xi_{y}$, and $\xi_{d}$. The effective interaction parameters are $\tilde{U}_{p}$, $\tilde{V}_{pp}$, and $\tilde{U}_{d}$. The total density of holes is denoted by $n$, the total density of holes on the oxygen sites is denoted by $n^p$, and the nematic order parameter is denoted by $\eta$.
       human: |
@@ -327,7 +327,7 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Hartree term only
   source:
@@ -340,21 +340,21 @@
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     expected_value_Hartree:
       LLM: $\langle \hat{n}^{p}_{i+\hat{\nu}/2 , s}\rangle$
       human: $\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     Hartree_second_quantized_symbol:
       LLM: $\HH_{\rm MF}$
       human: $\hat{H}^{int,Hartree,U_d}$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
 
 
 - task: Swap the index only
@@ -368,42 +368,42 @@
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     expected_value:
       LLM: $n^{p}_{\nu s}$
       human: $\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     expression_Hartree_1:
       LLM: $\tilde{U}_{p} \frac{n^{p}}{4}$ and $\tilde{V}_{pp}\frac{\eta}{4}$
       human: $\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     expression_Hartree_2:
       LLM: $\tilde{U}_{d} \frac{(n-n^p)}{2}$
       human: $\langle c_{\alpha_2,s_2}^\dagger(k_3) c_{\alpha_2,s_2}(k_4)\rangle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2)$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     relabel:
       LLM: $n^{p}$ and $\eta$
       human: $k_1 \leftrightarrow k_3$ and $k_2 \leftrightarrow k_4$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     Unsummed_Indices:
       LLM: $n$, $\eta$, and $\mu$
       human: spin index
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Reduce momentum in Hartree term (momentum in BZ)
   source:
@@ -416,20 +416,20 @@
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     expected_value:
       LLM: $n^{p}_{\nu s}$
       human: $\langle c_{\alpha_i,s_i}^\dagger(k_i) c_{\alpha_j,s_j}(k_j) \rangle$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     expected_value_nonzero:
       LLM: $n^{p}_{i+\hat{\nu}/2 , s}$
       human: $\langle c_{\alpha_i,s_i}^\dagger(k_i) c_{\alpha_j,s_j}(k_j) \rangle=\langle c_{\alpha_i,s_i}^\dagger(k_i) c_{\alpha_j,s_j}(k_j) \rangle \delta_{k_i,k_j}$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
 
   

@@ -9,56 +9,56 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     real|momentum:
       LLM: real
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     single-particle|second-quantized:
       LLM: second-quantized
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     degrees_of_freedom:
       LLM: valley index $s$, spin-up or down, coupled with $+K$  or $-K$  valley, respectively, in the Brillouin zone
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     site i and site j with the amplitude hopping:
       LLM: between site i and site j with the amplitude hopping $t_s$.
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     kinetic_symbol:
       LLM: $H$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: $t_s$ represents band structures (depending on $\theta$), and effective interparticle Coulomb interactions $ U $  represent the correlation effect (depending on $\epsilon$). Both $ t $ and $ U $ involve distant nearest neighbors (i.e., our parametrization of Eq.~\eqref{eq:hubbard} includes hopping up to the third nearest neighbors and Coulomb coupling term $ U $ up to 1993 distant sites).
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     You should ensure the hermiticity of the Hamiltonian:
       LLM: $t_s$ represents band structures (depending on $\theta$), and effective interparticle Coulomb interactions $ U $  represent the correlation effect (depending on $\epsilon$). Both $ t $ and $ U $ involve distant nearest neighbors (i.e., our parametrization of Eq.~\eqref{eq:hubbard} includes hopping up to the third nearest neighbors and Coulomb coupling term $ U $ up to 1993 distant sites).
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source: 
@@ -71,42 +71,42 @@
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
     kinetic_symbol:
       LLM: $\sum_{s}\sum_{i,j}^{} t_{s}\left(\bm{R}_i-\bm{R}_j\right) c_{i,s}^\dagger c_{j,s}$
       human: $H^{kinetic}$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     site i and site j with the interaction strength:
       LLM: site i and site j with the interaction strength $U(\bm{R}_i-\bm{R}_j)$.
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     degrees_of_freedom:
       LLM: valley indices $s$ and $s'$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     density_symbol:
       LLM: $c_{i,s}^\dagger c_{j,s'}^\dagger c_{j,s'} c_{i,s}$
       human: $c_{i,s}^\dagger c_{i,s}$
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: $t_s$ represents band structures, $U$ represents the correlation effect, $c_{i,s}^\dagger$ and $c_{j,s'}$ are creation and annihilation operators, respectively, and $\bm{R}_i$ and $\bm{R}_j$ are real space positions.
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
   source: 
@@ -119,49 +119,49 @@
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
     real_creation_op:
       LLM: c_{i,s}^\dagger
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     momentum_creation_op:
       LLM: 
       human: c_{k,s}^\dagger
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_Fourier_Transformation:
       LLM: 
       human:  $c_{{k},s}^\dagger= \frac{1}{\sqrt{N}} \sum_i c_{i,s}^\dagger e^{i k \cdot R_i}$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     real_variable:
       LLM: i
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: The hopping terms t_s represent band structures (depending on θ), and effective interparticle Coulomb interactions U represent the correlation effect (depending on ε). Valley index s, spin-up or down, is coupled with +K or -K valley, respectively, in the Brillouin zone. Both t and U involve distant nearest neighbors (i.e., our parametrization of Eq.~\eqref{eq:hubbard} includes hopping up to the third nearest neighbors and Coulomb coupling term U up to 1993 distant sites).
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     Note that hopping have no position dependence now.:
       LLM: True
       human: False
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source: 
@@ -174,56 +174,56 @@
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
     single-particle|second-quantized:
       LLM: second-quantized
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     real_creation_op:
       LLM: c_{i,s}^\dagger
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     momentum_creation_op:
       LLM: 
       human: c_{k,s}^\dagger
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_Fourier_Transformation:
       LLM: 
       human: $c_{{k},s}^\dagger= \frac{1}{\sqrt{N}} \sum_i c_{i,s}^\dagger e^{i k \cdot R_i}$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     real_variable:
       LLM: i
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     momentum_var:
       LLM: 
       human: k
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     Note that interaction have no position dependence now:
       LLM: 
       human: False
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Wick's theorem
   source: 
@@ -236,21 +236,21 @@
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     Hartree_Fock_symbol:
       LLM: 
       human: H_{int}^{HF}
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: The hopping terms $t_s$ represent band structures (depending on $\theta$), and effective interparticle Coulomb interactions $ U $  represent the correlation effect (depending on $\epsilon$). Valley index $s$ , spin-up or down, is coupled with $+K$  or $-K$  valley, respectively, in the Brillouin zone. Both $ t $ and $ U $ involve distant nearest neighbors.
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
       
 - task: Extract quadratic term
   source: 
@@ -263,28 +263,28 @@
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     bilinear_op:
       LLM: $c_{i,s}^\dagger c_{j,s}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     Hartree_Fock_second_quantized_symbol:
       LLM: H
       human: H_{int}^{HF,2}
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: $t_s$ represents the hopping terms which are band structures (depending on $\theta$), and effective interparticle Coulomb interactions $ U $  represent the correlation effect (depending on $\epsilon$). Valley index $s$ , spin-up or down, is coupled with $+K$  or $-K$  valley, respectively, in the Brillouin zone. Both $ t $ and $ U $ involve distant nearest neighbors.
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     
 - task: Expand interaction
   source: 
@@ -297,14 +297,14 @@
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     momentum:
       LLM: $\bm{R}_i-\bm{R}_j$
       human: $\bm{k}_\alpha-\bm{k}_\delta$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     
 - task: Swap the index only
   source: 
@@ -317,42 +317,42 @@
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
     expected_value:
       LLM: t_{s}
       human: $\expval{c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s}}$ and $\expval{c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'}}$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     expression_Hartree_1:
       LLM: c_{i,s}^\dagger c_{j,s}
       human: $c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'}$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     expression_Hartree_2:
       LLM: c_{i,s}^\dagger c_{j,s'}^\dagger c_{j,s'} c_{i,s}
       human: $c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\delta,s}$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     relabel:
       LLM: 
       human: $\bm{k}_\gamma \leftrightarrow \bm{k}_\delta$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     Unsummed_Indices:
       LLM: $\bm{k}_\alpha, \bm{k}_\beta$
       human: 
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     
 - task: Reduce momentum in Hartree term (momentum in BZ)
   source: 
@@ -365,21 +365,21 @@
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
     expected_value:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     expected_value_nonzero:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     
 - task: Reduce momentum in Fock term (momentum in BZ)
   source: 
@@ -392,21 +392,21 @@
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     expected_value:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     expected_value_nonzero:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     
 - task: Combine the Hartree and Fock term
   source: 
@@ -419,21 +419,21 @@
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     Fock:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     swap rule:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     
 - task: Construct full Hamiltonian after HF
   source: 
@@ -446,48 +446,48 @@
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     kinetic_symbol:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     expression_kinetic:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     int_symbol:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     expression_int:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     Ham_symbol:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
 
 
