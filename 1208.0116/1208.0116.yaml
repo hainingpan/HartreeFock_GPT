@@ -9,49 +9,49 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     real|momentum:
       LLM: real
       human: momentum
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     single-particle|second-quantized:
       LLM: second-quantized
       human: single-particle
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     degrees_of_freedom:
       LLM: six sublattice sites labeled as A, B, A', B', A'', B''
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     kinetic_symbol:
       LLM: H_0
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     variable:
       LLM: γ_0, γ_1, γ_2, γ_3, γ_N, f
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     order:
       LLM: A, B, A', B', A'', B''
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: |
         f(k) = e^(i k_y a / sqrt(3)) * (1 + 2 e^(-i 3 k_{y} a / 2sqrt(3)) * cos(k_x a / 2)), where a = 2.46 Å.  
@@ -61,14 +61,14 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     Note that the sublattice degrees of freedom is suppressed for now and will be stated later:
       LLM: True
       human: False
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Define each term in Kinetic Hamiltonian (continuum version)
   source:
@@ -81,56 +81,56 @@
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     parabolic|Dirac|cos:
       LLM: Dirac
       human: cos
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     electrons|holes:
       LLM: electrons
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     momentum_shift:
       LLM: k_r
       human: None
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     k_symbol:
       LLM: k
       human: None
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     shifted_Ek:
       LLM: f(k)
       human: None
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     r_symbol:
       LLM: r
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     kinetic_symbol:
       LLM: {H}_0
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: |
         {f\left( {\bf k} \right) &=&    e^{ i k_y a / \sqrt{3} } \left( 1 + 2 e^{-i 3 k_{y} a / 2\sqrt{3}}  
@@ -170,14 +170,14 @@
       score: 
         Haining: 0(?)
         Will: 
-        Subha: 
+        Yasaman: 
     In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.:
       LLM: True
       human: False
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Convert from single-particle to second-quantized form, return in matrix
   source:
@@ -190,42 +190,42 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     nonint_symbol:
       LLM: $H_0$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     kinetic_symbol:
       LLM: 
       human: $H_0$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     potential_symbol:
       LLM: None
       human: None
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     $r$|$k$:
       LLM: $k$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     second_nonint_symbol:
       LLM: 
       human: $\hat{H}_0$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: |
         $f\left( {\bf k} \right) = e^{ i k_y a / \sqrt{3} } \left( 1 + 2 e^{-i 3 k_{y} a / 2\sqrt{3}}  
@@ -236,7 +236,7 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Convert from single-particle to second-quantized form, return in summation (expand the matrix)
   source:
@@ -249,21 +249,21 @@
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     matrix_element_symbol:
       LLM: $\gamma$
       human: γ_0, γ_1, γ_2, γ_3, γ_N, f
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
     basis_symbol:
       LLM: $f$
       human: c_{k,\lambda}^\dagger
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: |
         $f\left( {\bf k} \right) = e^{ i k_y a / \sqrt{3} } \left( 1 + 2 e^{-i 3 k_{y} a / 2\sqrt{3}}  
@@ -274,7 +274,7 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
 
 # This is not necessary because H_0 is already in momentum space
 # - task: Convert noninteracting Hamiltonian in real space to momentum space (continuum version)
@@ -288,49 +288,49 @@
 #       score: 
 #         Haining: 0
 #         Will: 
-#         Subha: 
+#         Yasaman: 
 #     momentum_creation_op:
 #       LLM: 
 #       human: 
 #       score: 
 #         Haining: 
 #         Will: 
-#         Subha: 
+#         Yasaman: 
 #     definition_of_Fourier_Transformation:
 #       LLM: 
 #       human: 
 #       score: 
 #         Haining: 
 #         Will: 
-#         Subha: 
+#         Yasaman: 
 #     real_variable:
 #       LLM: 
 #       human: 
 #       score: 
 #         Haining: 
 #         Will: 
-#         Subha: 
+#         Yasaman: 
 #     entire_real|first_Brillouin_Zone:
 #       LLM: 
 #       human: 
 #       score: 
 #         Haining: 
 #         Will: 
-#         Subha: 
+#         Yasaman: 
 #     second_nonint_symbol:
 #       LLM: 
 #       human: 
 #       score: 
 #         Haining: 
 #         Will: 
-#         Subha: 
+#         Yasaman: 
 #     definition_of_variables:
 #       LLM: 
 #       human: 
 #       score: 
 #         Haining: 
 #         Will: 
-#         Subha: 
+#         Yasaman: 
 
 # The bare interaction before contraction does not appear
 - task: Construct interaction Hamiltonian (momentum space)
@@ -344,63 +344,63 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     index_of_operator:
       LLM: $\lambda$ and $\lambda^{\prime}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     momentum:
       LLM: ${\bf k}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     interaction:
       LLM: $U_H^{\lambda \lambda^{\prime}}$ and $U_{X}^{\lambda \lambda'}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     int_form:
       LLM: 
       human: $V(q)=U_H^{l l^{\prime}}$ and $U_X^{l \, l^{\prime}} \left( {\bf q} \right)$
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     normalization_factor:
       LLM: $\frac{1}{A}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     op:
       LLM: $c^{\dag}_{{\bf k} \lambda}$, $c_{{\bf k} \lambda}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: $c^{\dag}_{{\bf k} \lambda}$, $c_{{\bf k} \lambda}$ are Bloch state creation and annihilation operators, and $\lambda = (l,\sigma)$ lumps lattice and spin indices. The Hartree and Exchange Coulomb integrals in Eq.(~\ref{hfgen}), $U_H^{l l^{\prime}}$ and $U_X^{l \, l^{\prime}} \left( {\bf q} \right)$ involve sums over reciprocal lattice vectors ${\bf G}$. In these equations ${\bf s}_l$ is the (2D projection of the) position of the sublattice in the unit cell.
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$:
       LLM: False
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Wick's theorem
   source:
@@ -413,21 +413,21 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     Hartree_Fock_symbol:
       LLM: $V_{HF}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: $c^{\dag}_{{\bf k} \lambda}$, $c_{{\bf k} \lambda}$ are Bloch state creation and annihilation operators, and $\lambda = (l,\sigma)$ lumps lattice and spin indices. The Hartree and Exchange Coulomb integrals in Eq.(~\ref{hfgen}), $U_H^{l l^{\prime}}$ and $U_X^{l \, l^{\prime}} \left( {\bf q} \right)$ involve sums over reciprocal lattice vectors ${\bf G}$. In these equations ${\bf s}_l$ is the (2D projection of the) position of the sublattice in the unit cell.
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Extract quadratic term
   source:
@@ -440,28 +440,28 @@
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     bilinear_op:
       LLM: $c^{\dag}_{{\bf k} \lambda} c_{{\bf k} \lambda}$ and $c^{\dag}_{{\bf k} \lambda} c_{{\bf k} \lambda^{\prime}}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     Hartree_Fock_second_quantized_symbol:
       LLM: $V_{HF}^{(2)}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: $c^{\dag}_{{\bf k} \lambda}$ and $c_{{\bf k} \lambda}$ are Bloch state creation and annihilation operators, and $\lambda = (l,\sigma)$ lumps lattice and spin indices. The Hartree and Exchange Coulomb integrals in Eq.(~\ref{hfgen}), denoted as $U_H^{l l^{\prime}}$ and $U_X^{l \, l^{\prime}} \left( {\bf q} \right)$, involve sums over reciprocal lattice vectors ${\bf G}$. In these equations ${\bf s}_l$ is the (2D projection of the) position of the sublattice in the unit cell.
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Swap the index to combine Hartree and Fock terms
   source:
@@ -474,28 +474,28 @@
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
     expected_value:
       LLM: $\left<  c^{\dag}_{{\bf k}^{\prime} \lambda^{\prime}} c_{{\bf k}^{\prime} \lambda^{\prime}} \right>$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     expression_Hartree_1:
       LLM: $U_H^{\lambda \lambda^{\prime}}$
       human: \left<  c^{\dag}_{{\bf k}^{\prime} \lambda^{\prime}} c_{{\bf k}^{\prime} \lambda^{\prime}} \right>
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     expression_Hartree_2:
       LLM: $U_{X}^{\lambda \lambda'}$
       human: c^{\dag}_{{\bf k} \lambda} c_{{\bf k} \lambda}
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
   source:
@@ -508,21 +508,21 @@
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
     expected_value:
       LLM: $\left<  c^{\dag}_{{\bf k}^{\prime} \lambda^{\prime}} c_{{\bf k}^{\prime} \lambda^{\prime}} \right>$
       human: 
       score: 
         Haining: 2
         Will: 
-        Subha: 
+        Yasaman: 
     expected_value_nonzero:
       LLM: $\left<  c^{\dag}_{{\bf k}^{\prime} \lambda^{\prime}} c_{{\bf k}^{\prime} \lambda^{\prime}} \right> $
       human: $\left<  c^{\dag}_{{\bf k}^{\prime} \lambda^{\prime}} c_{{\bf k}^{\prime} \lambda^{\prime}} \right> = \left<  c^{\dag}_{{\bf k}^{\prime} \lambda^{\prime}} c_{{\bf k}^{\prime} \lambda^{\prime}} \right> \delta_{k,k'}$
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
   source:
@@ -535,21 +535,21 @@
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
     expected_value:
       LLM: $\left<  c^{\dag}_{{\bf k}^{\prime} \lambda^{\prime}} c_{{\bf k}^{\prime} \lambda^{\prime}} \right>$ and $\left<  c^{\dag}_{{\bf k}^{\prime} \lambda^{\prime}} c_{{\bf k}^{\prime} \lambda} \right>$
       human: $\left<  c^{\dag}_{{\bf k}^{\prime} \lambda^{\prime}} c_{{\bf k}^{\prime} \lambda} \right>$
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
     expected_value_nonzero:
       LLM: $\left<  c^{\dag}_{{\bf k}^{\prime} \lambda^{\prime}} c_{{\bf k}^{\prime} \lambda^{\prime}} \right>$ and $\left<  c^{\dag}_{{\bf k}^{\prime} \lambda^{\prime}} c_{{\bf k}^{\prime} \lambda} \right>$
       human: $\left<  c^{\dag}_{{\bf k}^{\prime} \lambda^{\prime}} c_{{\bf k}^{\prime} \lambda} \right>= \left<  c^{\dag}_{{\bf k}^{\prime} \lambda^{\prime}} c_{{\bf k}^{\prime} \lambda} \right> \delta_{k,k'}$
       score: 
         Haining: 1
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Combine the Hartree and Fock term
   source:
@@ -562,21 +562,21 @@
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     Fock:
       LLM: $U_{X}^{\lambda \lambda'}$
       human: $V_{F}^{(2)}$
       score: 
         Haining: 0
         Will: 
-        Subha: 
+        Yasaman: 
     swap rule:
       LLM: ${\bf k}^{\prime} \lambda^{\prime}$ with ${\bf k} \lambda$
       human: 
       score: 
         Haining: 2(?)
         Will: 
-        Subha: 
+        Yasaman: 
 
 - task: Construct full Hamiltonian after HF
   source:
@@ -589,49 +589,49 @@
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     kinetic_symbol:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     expression_kinetic:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     int_symbol:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     expression_int:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     Ham_symbol:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
     definition_of_variables:
       LLM: 
       human: 
       score: 
         Haining: 
         Will: 
-        Subha: 
+        Yasaman: 
 
 
 
