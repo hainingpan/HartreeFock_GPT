@@ -1,59 +1,492 @@
+# Construct Kinetic Hamiltonian (lattice version) Need a rerun to use momentum version.
 - task: Construct Kinetic Hamiltonian (lattice version)
   source:
     0812.2894.tex:
       - [230,245]
-      
+  placeholder:
+    system:
+      LLM: an electron
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Yasaman: 
+    real|momentum:
+      LLM: real
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    single-particle|second-quantized:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    degrees_of_freedom:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    site i and site j with the amplitude hopping:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    kinetic_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    definition_of_variables:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    You should ensure the hermiticity of the Hamiltonian:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+  
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source:
     0812.2894.tex:
       - [515,536]
+  placeholder:
+    second_int_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    kinetic_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    site i and site j with the interaction strength:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    degrees_of_freedom:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    density_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    definition_of_variables:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
 
 - task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
   source:
     0812.2894.tex:
       - [245,270]
+  placeholder:
+    nonint_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    real_creation_op:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    momentum_creation_op:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    definition_of_Fourier_Transformation:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    real_variable:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    definition_of_variables:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    Note that hopping have no position dependence now.:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
 
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source:
     0812.2894.tex:
       - [515,536]
+  placeholder:
+    second_int_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    single-particle|second-quantized:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    real_creation_op:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    momentum_creation_op:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    definition_of_Fourier_Transformation:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    real_variable:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    momentum_var:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    Note that interaction have no position dependence now:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
 
 - task: Wick's theorem
   source:
     0812.2894.tex:
       - [435,592]
+  placeholder:
+    second_int_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    Hartree_Fock_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    definition_of_variables:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
 
 - task: Extract quadratic term
   source:
     0812.2894.tex:
       - [435,592]
+  placeholder:
+    Hartree_Fock_term_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    bilinear_op:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    Hartree_Fock_second_quantized_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    definition_of_variables:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
 
 - task: Expand interaction
   source:
     0812.2894.tex:
       - [435,592]
+  placeholder:
+    Hartree_Fock_second_quantized_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    momentum:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
 
 - task: Swap the index only
   source:
     0812.2894.tex:
       - [435,592]
+  placeholder:
+    Hartree_Fock_second_quantized_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    expected_value:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    expression_Hartree_1:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    expression_Hartree_2:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    relabel:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    Unsummed_Indices:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
 
 - task: Reduce momentum in Hartree term (momentum in BZ)
   source:
     0812.2894.tex:
       - [435,592]
+  placeholder:
+    Hartree_second_quantized_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    expected_value:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    expected_value_nonzero:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
 
 - task: Reduce momentum in Fock term (momentum in BZ)
   source:
     0812.2894.tex:
       - [435,592]
+  placeholder:
+    Fock_second_quantized_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    expected_value:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    expected_value_nonzero:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
 
 - task: Combine the Hartree and Fock term
   source:
     0812.2894.tex:
       - [435,592]
+  placeholder:
+    symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    Fock:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    swap rule:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
 
 - task: Construct full Hamiltonian after HF
   source:
     0812.2894.tex:
       - [435,592]
+  placeholder:
+    Hartree_Fock_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    kinetic_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    expression_kinetic:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    int_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    expression_int:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    Ham_symbol:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
+    definition_of_variables:
+      LLM: 
+      human: 
+      score: 
+        Haining: 
+        Will: 
+        Yasaman: 
