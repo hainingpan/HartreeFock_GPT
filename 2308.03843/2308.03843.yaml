@@ -1,3 +1,4 @@
+- branch: lattice, second-quantized
 - task: Construct Kinetic Hamiltonian (lattice version)
   source:
     2308.03843.tex:

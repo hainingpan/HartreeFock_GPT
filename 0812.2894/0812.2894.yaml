@@ -1,4 +1,5 @@
 # Construct Kinetic Hamiltonian (lattice version) Need a rerun to use momentum version.
+- branch: lattice, second-quantized
 - task: Construct Kinetic Hamiltonian (lattice version)
   source:
     0812.2894.tex:

@@ -1,4 +1,5 @@
 # This paper is highly likely to perform very poorly because the formalism of block matrix is not very compatible with the current template
+- branch: lattice, second-quantized
 - task: Construct Kinetic Hamiltonian (continuum version, single-particle)
   source:
     1812.04213.tex:

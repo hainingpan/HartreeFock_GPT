@@ -1,6 +1,7 @@
 # Interaction is not density-density interaction, contains Hund coupling, which is outside the template
 # "Combine the Hartree and Fock term" is skipped because the information is not in the paper, need to go back to this once the previous prompts are answered
 # Macro of \bq,\bk are not standard latex, which may cause troubles
+- branch: lattice, second-quantized
 - task: Construct Kinetic Hamiltonian (lattice version)
   source: 
     1310.2674.tex:

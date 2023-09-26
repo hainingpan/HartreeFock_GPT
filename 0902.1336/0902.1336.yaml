@@ -1,4 +1,5 @@
 # The problem here is the existence of SOC, which is also the drawback of the template fashion. Namely, it relies on the generality of the template to cover the variety of problems.
+- branch: lattice, second-quantized
 - task: Construct Kinetic Hamiltonian (lattice version)
   source:
     0902.1336.tex:

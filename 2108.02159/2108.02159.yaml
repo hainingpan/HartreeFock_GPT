@@ -1,3 +1,4 @@
+- branch: continuum, second-quantized
 - task: Construct Kinetic Hamiltonian (continuum version, second-quantized)
   source:
     2108.02159.tex:

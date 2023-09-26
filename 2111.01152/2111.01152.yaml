@@ -1,3 +1,4 @@
+- branch: continuum, first-quantized
 - task: Construct Kinetic Hamiltonian (continuum version, single-particle)
   source:
     2111.01152.tex:

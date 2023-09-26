@@ -1,4 +1,5 @@
 # Reasons for the absence of [Reduce momentum in Hartree term (momentum in BZ), Reduce momentum in Fock term (momentum in BZ), Combine the Hartree and Fock term, Construct full Hamiltonian after HF] is becuase these information does not appear in the paper. It's better to change the template such that it does not require information from the text to generate a template. Otherwise it performs very poorly.
+- branch: lattice, second-quantized
 - task: Construct Kinetic Hamiltonian (lattice version)
   source:
     2110.11330.tex:

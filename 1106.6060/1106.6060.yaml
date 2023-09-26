@@ -1,4 +1,5 @@
 # There is a problem here that the human annotated version split the Hamiltonian into 4 pieces, which is not possible in LLM annotation.
+- branch: lattice, second-quantized
 - task: Construct Kinetic Hamiltonian (lattice version)
   source:
     1106.6060.tex:
