@@ -10,56 +10,58 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     real|momentum:
       LLM: real
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     single-particle|second-quantized:
       LLM: second-quantized
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     degrees_of_freedom:
       LLM: the position of site $i$ in a triangular lattice formed in the moir\'e pattern, and the spin index $s$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     site i and site j with the amplitude hopping:
       LLM: site i and site j with the amplitude $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     kinetic_symbol:
       LLM: $H$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # Seems reasonable since unclear how to infer this
     definition_of_variables:
       LLM: $\bm{R}_i$ represents the position of site $i$ in a triangular lattice formed in the moir\'e pattern, $s$ is the spin index, and $t$ and $U$ are, respectively, the hopping parameter and the interaction strength. $c_{i,s}^\dagger$ is used to represent the hole operator, and $s=\uparrow$ and $\downarrow$ are locked to $+K$ and $-K$ valleys, respectively. A filling factor $\nu$ is defined as $(1/\mathcal{N}) \sum_{i,s} c_{i,s}^{\dagger} c_{i,s} $, which counts the number of holes per moir\'e cell ($\mathcal{N}$ is the total number of moir\'e sites in the system).
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     You should ensure the hermiticity of the Hamiltonian:
       LLM: True
       human: False
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # Not a task, remove from scoring
 
     
 - task: Construct interaction Hamiltonian (real space, lattice version)
@@ -74,42 +76,43 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     kinetic_symbol:
       LLM: $H$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # Reasonable given previous responses
     site i and site j with the interaction strength:
       LLM: site $i$ and site $j$ with the interaction strength $U(\bm{R}_i-\bm{R}_j)$.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     degrees_of_freedom:
       LLM: spins $s$ and $s'$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     density_symbol:
       LLM: $n_{i,s}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: 2
       human: 
       score: 
         Haining: $\bm{R}_i$ represents the position of site $i$ in a triangular lattice formed in the moir\'e pattern, $s$ is the spin index, $U(\bm{R}_i-\bm{R}_j)$ is the interaction strength, $n_{i,s}$ is the binary occupancy number of site $i$, and $c_{i,s}^\dagger$ represents the hole operator.
         Will: 
-        Yasaman: 
+        Yasaman: 0
   
 - task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
   source:
@@ -122,49 +125,50 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     real_creation_op:
       LLM: c_{\bm{k},s}^\dagger
       human: c_{R_\bm{i},s}^\dagger
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     momentum_creation_op:
       LLM: c_{\bm{k},s}^\dagger
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_Fourier_Transformation:
       LLM: \varepsilon_s(\bm{k})
       human: $c_{\bm{k},s}^\dagger= \frac{1}{\sqrt{N}} \sum_i c_{R_\bm{i},s}^\dagger e^{i k \cdot R_i}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     real_variable:
       LLM: \bm{k}
       human: R_\bm{i}
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     definition_of_variables:
       LLM: H_0 is the noninteracting Hamiltonian, \bm{k} is the momentum, \varepsilon_s(\bm{k}) is the non-interacting band energy dispersion, and c_{\bm{k},s}^\dagger is the creation operator in momentum space.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     Note that hopping have no position dependence now.:
       LLM: True
       human: False
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # Not a task, remove to not bias scoring
   
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source:
@@ -177,56 +181,60 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     single-particle|second-quantized:
       LLM: second-quantized
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     real_creation_op:
       LLM: c_{\bm{k}_\alpha,s}^\dagger
       human: c_{R_\bm{i},s}^\dagger
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     momentum_creation_op:
       LLM: c_{\bm{k}_\alpha,s}^\dagger
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_Fourier_Transformation:
       LLM: U(\bm{q})=\sum_{\bm{R}}U(\bm{R})e^{i\bm{q}\cdot\bm{R}}
       human: $c_{\bm{k},s}^\dagger= \frac{1}{\sqrt{N}} \sum_i c_{R_\bm{i},s}^\dagger e^{i k \cdot R_i}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # Gave partial credit since although it’s not the Fourier transform for the creation operator 
+        # (and although the latter is specified in the example so it’s one-shot effectively), the answer 
+        # is reasonable given the excerpt.
     real_variable:
       LLM: \bm{R}
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     momentum_var:
       LLM: \bm{q}
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     Note that interaction have no position dependence now:
       LLM: true
       human: 
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # Not a task, remove to not bias scoring
   
 - task: Wick's theorem
   source:
@@ -239,21 +247,22 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     Hartree_Fock_symbol:
       LLM: 
       human: $H_{\text{int,MF}}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # Not sure how LLM should infer this.
     definition_of_variables:
       LLM: $H_{\text{int}}$ is the interaction term, $\mathcal{N}$ is a normalization constant, $s$ and $s'$ are spin indices, $\bm{k}$ is the momentum vector, $U(\bm{k}_\alpha-\bm{k}_\delta)$ is the interaction potential, $\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta}$ is the Kronecker delta function, $c_{\bm{k}_\alpha,s}^\dagger$ and $c_{\bm{k}_\delta,s}$ are creation and annihilation operators respectively, and $\expval{...}$ denotes expectation values.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
   
 - task: Extract quadratic term
   source:
@@ -266,28 +275,29 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # Unclear how this should be inferred.
     bilinear_op:
       LLM: $c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'}$ and $c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\delta,s}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     Hartree_Fock_second_quantized_symbol:
       LLM: $H_{\text{int}}^{(2)}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: $H_{\text{int}}$ is the interaction Hamiltonian, $\mathcal{N}$ is a normalization factor, $s$ and $s'$ are spin indices, $\bm{k}$ is the momentum vector, $U(\bm{k}_\alpha-\bm{k}_\delta)$ is the interaction potential, $\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta}$ is the Kronecker delta function, $c_{\bm{k}_\alpha,s}^\dagger$ and $c_{\bm{k}_\delta,s}$ are creation and annihilation operators, and $\expval{...}$ denotes expectation values.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
   
 - task: Expand interaction
   source:
@@ -300,14 +310,14 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     momentum:
       LLM: $\bm{k}_\alpha-\bm{k}_\delta$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
   
 - task: Swap the index only
   source:
@@ -320,40 +330,40 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expected_value:
       LLM: $\expval{c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s}}$ and $\expval{c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'}}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expression_Hartree_1:
       LLM: $c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expression_Hartree_2:
       LLM: $c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\delta,s}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     relabel:
       LLM: $\bm{k}_\gamma \leftrightarrow \bm{k}_\delta$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     Unsummed_Indices:
       LLM: $\bm{k}_\alpha, \bm{k}_\beta$
       human: spin index
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
   
