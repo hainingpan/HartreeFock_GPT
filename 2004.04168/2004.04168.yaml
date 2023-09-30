@@ -11,56 +11,59 @@
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     real|momentum:
       LLM: real
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     single-particle|second-quantized:
       LLM: second-quantized
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     degrees_of_freedom:
       LLM: spin states associated with $ +K $ and $-K$ valleys
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 0
+        # Might be correct from the paper, but not sure how this is inferred from the excerpt alone.
     site i and site j with the amplitude hopping:
       LLM: between site i and site j with the amplitude $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     kinetic_symbol:
       LLM: $H_{\text{TB}}$
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     definition_of_variables:
       LLM: $s= \uparrow,\downarrow\ $ represents spin $\uparrow$ and $\downarrow$ states associated respectively with $ +K $ and $-K$ valleys, $ \bm{R}_i $ represents a site in the triangular lattice, and $ c_{j,s} $ ($ c_{j,s}^\dagger $) is  electron annihilation (creation) operator. $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$ is the hopping parameter.
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 1
+        # Might have scored 2 but again not clear how the $\pm K$ valley structure is inferred from the excerpt.
     You should ensure the hermiticity of the Hamiltonian:
       LLM: true
       human: false
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 2
+        # N/A, this is not a task, remove from biasing the score.
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source:
     2004.04168.tex:
@@ -72,43 +75,50 @@
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 1
+        # Gave it partial credit since I think this is challenging for LLM to infer it should give a symbol, not the answer
     kinetic_symbol:
       LLM: $\sum_{s}\sum_{i,j}^{} t_{s}\left(\bm{R}_i-\bm{R}_j\right) c_{i,s}^\dagger c_{j,s}$
       human: $\hat{H}_{Kinetic}$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 1
+        # Gave it partial credit since I think this is challenging for LLM to infer it should give a symbol, not the answer
     site i and site j with the interaction strength:
       LLM: between sites $i$ and $j$ with the interaction strength $U(\bm{R}_i-\bm{R}_j)$
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     degrees_of_freedom:
       LLM: $s,s'$
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
+        # This is impressive given that it knows to leave out positions!
     density_symbol:
       LLM: $c_{i,s}^\dagger c_{j,s'}^\dagger c_{j,s'} c_{i,s}$
       human: $n_s^\dagger(R_i)$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 1
+        # Gave it partial credit since I think this is challenging for LLM to infer it should give a density symbol (which does not appear in the excerpt)
     definition_of_variables:
       LLM: $t_{s}$ is the hopping parameter, $c_{i,s}^\dagger$ and $c_{j,s}$ are the creation and annihilation operators, respectively, $U(\bm{R}_i-\bm{R}_j)$ is the repulsion between sites $i$ and $j$, and $\epsilon$ is the effective background dielectric constant.
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
+        # Surprising that it knows to leave out the kinetic term
 - task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
+# Note the example in the prompt template is close to the example in the paper, hence this is closer to 1-shot.
+# Why does LLM leave so many blanks?
   source:
     2004.04168.tex:
       - []
@@ -119,35 +129,35 @@
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     real_creation_op:
       LLM:
       human: $c_s^\dagger(R_i)$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     momentum_creation_op:
       LLM:
       human: $c_s^\dagger(k)$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     definition_of_Fourier_Transformation:
       LLM:
       human: $c_s^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_s^\dagger(R_i) e^{i k \cdot R_i}$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     real_variable:
       LLM:
       human: $i$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     definition_of_variables:
       LLM:
       human: |
@@ -157,14 +167,15 @@
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     Note that hopping have no position dependence now.:
       LLM:
       human: false
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 2
+        # N/A, not a task and remove from biasing the score.
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source:
     2004.04168.tex:
@@ -176,56 +187,58 @@
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 2
+        # Seems a reasonable answer
     single-particle|second-quantized:
       LLM:
       human: second quantized
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     real_creation_op:
       LLM:
       human: $c_s^\dagger(R_i)$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     momentum_creation_op:
       LLM:
       human: $c_s^\dagger(k)$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     definition_of_Fourier_Transformation:
       LLM:
       human: c_s^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_s^\dagger(R_i) e^{i k \cdot R_i}
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     real_variable:
       LLM:
       human: $i$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     momentum_var:
       LLM:
       human: $k$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     Note that interaction have no position dependence now:
       LLM:
       human: false
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 2
+        # N/A, this is not a task and remove from biasing the score.
 - task: Wick's theorem
   source:
     2004.04168.tex:
@@ -237,14 +250,14 @@
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     Hartree_Fock_symbol:
       LLM:
       human: $\hat{H}^{int,HF}$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     definition_of_variables:
       LLM:
       human: |
@@ -253,7 +266,7 @@
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
 - task: Extract quadratic term
   source:
     2004.04168.tex:
@@ -265,21 +278,22 @@
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     bilinear_op:
       LLM: B
       human: $c^\dagger c$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     Hartree_Fock_second_quantized_symbol:
       LLM: H'
       human: $\hat{H}^{HF,2}$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
+        # Some of these seem ambiguous for LLM to infer
     definition_of_variables:
       LLM: H represents the Hartree-Fock term, B represents the bilinear operator, and H' represents the Hartree-Fock term with only the quadratic terms preserved.
       human: |
@@ -287,7 +301,8 @@
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 1
+        # Partial credit, consistent with the previous answers above
 - task: Construct full Hamiltonian after HF
   source:
     2004.04168.tex:
