@@ -10,77 +10,83 @@
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     real|momentum:
       LLM: real
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
+        # Both correct, kinetic and potential term are mixed
     single-particle|second-quantized:
       LLM: single-particle
       human: second-quantized
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 2
+        # Why marked second-quantized? Looks like single-particle.
     degrees_of_freedom:
       LLM: spin/valley
       human: moire reciprocal lattice vectors $b$ (infinite set), spin index (spin up and spin down)
       score:
         Haining: 1
         Will:
-        Yasaman:
+        Yasaman: 1
+        # partial credit
     kinetic_symbol:
       LLM: $T$
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     dispersion_symbol:
       LLM: $\hbar$, $m^*$, $\b{k}$
       human: $E_{\sigma,b}(k)$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
+        # But, there’s no symbol that can be extracted from the excerpt (for kinetic term alone)
     annihilation_op:
       LLM: $\b{k}$
       human: $c_{\sigma,b}(k)$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
+        # Expected response is \psi_{\alpha}(r) since that is given in excerpt
     creation_op:
       LLM: $\b{b}$
       human: $c_{\sigma,b}^\dagger(k)$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     k|r:
       LLM: $\b{k}$
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
+        # Surprised by this answer
     entire_space|first_Brillouin_zone:
       LLM: first Brillouin zone
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     definition_of_variables:
       LLM: $\hbar$ is the reduced Planck constant, $m^*$ is the effective mass of the electrons, $\b{k}$ is the momentum in the first moiré Brillouin zone, $\b{b}$'s are moiré reciprocal lattice vectors.
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
 - task: Define each term in Kinetic Hamiltonian (continuum version)
   source:
     2108.02159.tex:
@@ -92,56 +98,59 @@
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
+        # This includes the potential too, but there’s no alternative symbol in the excerpt
     parabolic|Dirac|cos:
       LLM: parabolic
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     electrons|holes:
       LLM: electrons
       human: holes
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 1
+        # Partial credit, since excerpt also says “T is for electrons”
     momentum_shift:
       LLM: b
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     k_symbol:
       LLM: k
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     shifted_Ek:
       LLM: "{H_{0}}_{\b{b},\b{b}'}(\b{k})"
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     r_symbol:
       LLM: r
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     kinetic_symbol:
       LLM: H_{0}
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 1
+        #  Reasonable, would have preferred T
     definition_of_variables:
       LLM: |
         b: moir\'e reciprocal lattice vectors, k: momentum, H_{0}: single-particle Hamiltonian, m^*: effective mass of electrons, V_j: material-dependent parameters, V_M: moir\'e modulation strength, phi: shape of moir\'e modulation, Delta: moir\'e potential, r: position vector, psi^{(\dag)}_{\alpha}(\b r): fermion field operators, alpha: label representing locked spin/valley
@@ -149,14 +158,15 @@
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.:
       LLM: true
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
+        # Check
 - task: Construct Potential Hamiltonian (continuum version)
   source:
     2108.02159.tex:
@@ -168,21 +178,23 @@
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 1
+        # Would have preferred \Delta(r)
     real|momentum:
       LLM: real
       human: momentum
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 2
+        # Both seem valid answers as both appear in excerpt
     single-particle|second-quantized:
       LLM: single-particle
       human: second-quantized
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 2
     diagonal_potential:
       LLM: |
         -\frac{\hbar^2}{2m^*}\(\b{k}+\b{b}\)^2 \, \delta_{\b{b},\b{b}'}
@@ -190,28 +202,29 @@
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     interaction_degrees_of_freedom:
       LLM: orbitals centered on different sites
       human: $b$ and $b'$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     offdiagonal_potential:
       LLM: \sum_{j=1}^6 V_j\delta_{\b{b}_j,\b{b}-\b{b}'}
       human: $\Delta_{\sigma, b,b'}$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 2
+        # Seems reasonable
     definition_of_variables:
       LLM: H_{0} is the single-particle Hamiltonian of the moir\'e continuum model, T is the single-particle kinetic energy operator for electrons with effective mass m^*, \Delta(\mathbf{r}) is the moir\'e potential, V_j = V_M\exp\[(-1)^{j-1}i\phi\] where V_M characterizes the moir\'e modulation strength and \phi its shape, \b{k} is in the first moir\'e Brillouin zone and the \b{b}'s are moir\'e reciprocal lattice vectors.
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
 - task: Define each term in Potential Hamiltonian (continuum version)
   source:
     2108.02159.tex:
@@ -223,36 +236,40 @@
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     Potential_variables:
       LLM: $V_j$ and $\phi$
       human: $\Delta_{\sigma, b,b'}$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 1
+        # partial credit
     expression_diag:
       LLM: $-\frac{\hbar^2}{2m^*}\(\b{k}+\b{b}\)^2 \, \delta_{\b{b},\b{b}'}$
       human: $\Delta_{\sigma, b,b}=\sum_{j=1}^6 V_j \delta_{b_j,0}$, where $V_j=V_Me^{(-1)^{j-1}i\phi}$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     expression_offdiag:
       LLM: $\sum_{j=1}^6 V_j\delta_{\b{b}_j,\b{b}-\b{b}'}$
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     definition_of_variables:
       LLM: $V_j = V_M\exp\[(-1)^{j-1}i\phi\]$ where $V_M$ characterizes the moir\'e modulation strength and $\phi$ its shape. The fermion field operators $\psi^{(\dag)}_{\alpha}(\b r)$ in this model carry only one label, representing locked spin/valley. The single-particle Hamiltonian of the moir\'e continuum model $H_{0} = T + \Delta(\mathbf{r})$, where $T$ is the single-particle kinetic energy operator for electrons with effective mass $m^*$.
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 1
+        # First part correct, partial credit for irrelevant information
 - task: Construct interaction Hamiltonian (momentum space)
+# YB: I gave 0’s for all tasks in this section, but note that many of them are 
+# not addressed directly in the excerpt 
   source:
     2108.02159.tex:
       - [281, 291]
@@ -263,56 +280,56 @@
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     index_of_operator:
       LLM:
       human: spin index
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     momentum:
       LLM:
       human: momentum
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     interaction:
       LLM:
       human: the bare Coulomb interaction
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     int_form:
       LLM:
       human: 2\pi e^2/(\epsilon |q|)
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     normalization_factor:
       LLM:
       human: $\frac{1}{2 N V}$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     op:
       LLM:
       human: $c_{\sigma,b}(k)$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     definition_of_variables:
       LLM:
       human:
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$:
       LLM:
       human: |
@@ -321,7 +338,7 @@
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
 - task: Wick's theorem
   source:
     2108.02159.tex:
@@ -333,21 +350,22 @@
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     Hartree_Fock_symbol:
       LLM: $\Sigma^{HF}$
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     definition_of_variables:
       LLM: $\Sigma^{HF}$ is the Hartree-Fock self-energy, $\rho$ is the single-particle density matrix, $\b{k}$ is the Brillouin-zone, $\b{b}$ is the reciprocal lattice vectors, $\alpha$ and $\beta$ label spin, $A$ is the finite sample area corresponding to a discrete Brillouin-zone mesh, and $\rho_{\alpha,\b{b};\beta,\b{b}'}$ is the self-consistently determined momentum-space density matrix.
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
+        # $\b{k}$ is *in* the Brillouin zone
 - task: Extract quadratic term
   source:
     2108.02159.tex:
@@ -359,28 +377,28 @@
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     bilinear_op:
       LLM: $\rho_{\alpha,\b{b};\beta,\b{b}'}$
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     Hartree_Fock_second_quantized_symbol:
       LLM: $\Sigma^{HF}_{\alpha,\b{b};\beta,\b{b}'}$
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     definition_of_variables:
       LLM: In $\Sigma^{HF}_{\alpha,\b{b};\beta,\b{b}'}$, Greek letters label spin, $A$ is the finite sample area corresponding to a discrete Brillouin-zone mesh, and $\rho_{\alpha,\b{b};\beta,\b{b}'}$ is the self-consistently determined momentum-space density matrix.
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
 - task: Expand interaction
   source:
     2108.02159.tex:
@@ -392,14 +410,14 @@
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     momentum:
       LLM: $\b{k}$
       human:
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
 - task: Swap the index to combine Hartree and Fock terms
   source:
     2108.02159.tex:
@@ -411,28 +429,28 @@
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     expected_value:
       LLM: $\rho_{\alpha',\b{b}+\b{b}'';\alpha',\b{b}'+\b{b}''}(\b{k}')$ and $\rho_{\alpha,\b{b}+\b{b}'';\beta,\b{b}'+\b{b}''}(\b{k}')$
       human: $\langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) \rangle$
       score:
         Haining: 1
         Will:
-        Yasaman:
+        Yasaman: 0
     expression_Hartree_1:
       LLM: $\frac{\delta_{\alpha,\beta}}{A}\sum_{\alpha'}V_{\alpha'\alpha}(\b{b}'-\b{b})\sum_{\b{k}',\b{b}''}$
       human: $\langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3)$
       score:
         Haining: 1
         Will:
-        Yasaman:
+        Yasaman: 0
     expression_Hartree_2:
       LLM: $-\frac{1}{A}\sum_{\b{b}'',k'}V_{\alpha\beta}(\b{b}''+\b{k}'-\b{k})$
       human: $\langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4)$
       score:
         Haining: 1
         Will:
-        Yasaman:
+        Yasaman: 0
 - task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
   source:
     2108.02159.tex:
@@ -444,21 +462,21 @@
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 0
     expected_value:
       LLM: $\rho_{\alpha',\b{b}+\b{b}'';\alpha',\b{b}'+\b{b}''}(\b{k}')$
       human: $\langle c_{\sigma_i,b_i}^\dagger(k_i) c_{\sigma_j,b_j}(k_j) \rangle$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     expected_value_nonzero:
       LLM: $\delta_{\alpha,\beta}$
       human: $\langle c_{\sigma_i,b_i}^\dagger(k_i) c_{\sigma_j,b_j}(k_j) \rangle=\langle c_{\sigma_i,b_i}^\dagger(k_i) c_{\sigma_j,b_j}(k_j) \rangle \delta_{k_i,k_j}$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
 - task: Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
   source:
     2108.02159.tex:
@@ -470,18 +488,18 @@
       score:
         Haining: 2
         Will:
-        Yasaman:
+        Yasaman: 2
     expected_value:
       LLM: $\rho_{\alpha',\b{b}+\b{b}'';\alpha',\b{b}'+\b{b}''}(\b{k}')$
       human: $\langle c_{\sigma_i,b_i}^\dagger(k_i) c_{\sigma_j,b_j}(k_j) \rangle$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
     expected_value_nonzero:
       LLM: $\rho_{\alpha,\b{b};\beta,\b{b}'}$
       human: $\langle c_{\sigma_i,b_i}^\dagger(k_i) c_{\sigma_j,b_j}(k_j) \rangle=\langle c_{\sigma_i,b_i}^\dagger(k_i) c_{\sigma_j,b_j}(k_j) \rangle \delta_{k_i,k_j}$
       score:
         Haining: 0
         Will:
-        Yasaman:
+        Yasaman: 0
