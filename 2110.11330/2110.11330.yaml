@@ -11,56 +11,59 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     real|momentum:
       LLM: real
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     single-particle|second-quantized:
       LLM: second-quantized
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     degrees_of_freedom:
       LLM: spin $s=\uparrow$ and $ \downarrow$ coupled with the $+K$ and $-K$ valleys
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     site i and site j with the amplitude hopping:
       LLM: site $i$ and site $j$ with the amplitude $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     kinetic_symbol:
       LLM: $H$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # No symbol for kinetic term appears directly in the excerpt
     definition_of_variables:
       LLM: $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$ is the hopping between the moir\'e lattice site $i$ and $j$, fitted from the first moir\'e valence band of twisted WSe$_2$ at $\pm K$ valleys in the noninteracting picture. $s=\uparrow$ and $ \downarrow$ are coupled with the $+K$ and $-K$ valleys.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # Partial credit, also would have liked operators
     You should ensure the hermiticity of the Hamiltonian:
       LLM: True
       human: False
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
+        # Check
 
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source:
@@ -74,42 +77,44 @@
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # Answer is reasonable (symbol vs actual form)
     kinetic_symbol:
       LLM: $\sum_{s}\sum_{i,j}^{} t_{s}\left(\bm{R}_i-\bm{R}_j\right) c_{i,s}^\dagger c_{j,s}$
       human: $H$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # Answer is reasonable (symbol vs actual form)
     site i and site j with the interaction strength:
       LLM: site i and site j with the interaction strength $U(\bm{R}_i-\bm{R}_j)$.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     degrees_of_freedom:
       LLM: $s, s'$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     density_symbol:
       LLM: $c_{i,s}^\dagger c_{j,s'}^\dagger c_{j,s'} c_{i,s}$
       human: $n_{i,s}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     definition_of_variables:
       LLM: $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$ is the hopping between the moir\'e lattice site $i$ and $j$, $s=\uparrow$ and $ \downarrow$ are coupled with the $+K$ and $-K$ valleys, $U(\bm{R}_i-\bm{R}_j)$ describes the Coulomb repulsion between site $i$ and $j$.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
 
 - task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
   source:
@@ -122,49 +127,52 @@
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # Reasonable since no explicit symbol given in excerpt for noninteracting H
     real_creation_op:
       LLM: c_{i,s}^\dagger
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     momentum_creation_op:
       LLM: c_{\bm{k},s}^\dagger
       human: 
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # Why marked 0?
     definition_of_Fourier_Transformation:
       LLM: 
       human: $c_{\bm{k},s}^\dagger= \frac{1}{\sqrt{N}} \sum_i c_{R_\bm{i},s}^\dagger e^{i k \cdot R_i}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     real_variable:
       LLM: i
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: H is the noninteracting Hamiltonian, t_{s}\left(\bm{R}_i-\bm{R}_j\right) is the hopping between the moir\'e lattice site i and j, s=\uparrow and $ \downarrow are coupled with the +K and -K valleys, U(\bm{R}_i-\bm{R}_j) describes the Coulomb repulsion between site i and j, and c_{i,s}^\dagger is the creation operator in real space.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     Note that hopping have no position dependence now.:
       LLM: True
       human: False
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
+        # Check
 
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source:
@@ -177,56 +185,58 @@
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # Reasonable since H is the symbol that appears in excerpt
     single-particle|second-quantized:
       LLM: second-quantized
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     real_creation_op:
       LLM: $c_{i,s}^\dagger$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     momentum_creation_op:
       LLM: 
       human: $c_{k,s}^\dagger$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     definition_of_Fourier_Transformation:
       LLM: 
       human: $c_{k,s}^\dagger= \frac{1}{\sqrt{N}} \sum_i c_{R_\bm{i},s}^\dagger e^{i k \cdot R_i}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     real_variable:
       LLM: $\bm{R}_i$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     momentum_var:
       LLM: 
       human: k
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     Note that interaction have no position dependence now:
       LLM: true
       human: False
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
+        # Check
 
 - task: Wick's theorem
   source:
@@ -239,21 +249,23 @@
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # Reasonable answer given excerpt (i.e. extracted interaction explicitly)
     Hartree_Fock_symbol:
       LLM: 
       human: $H_{\text{int,MF}}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     definition_of_variables:
       LLM: $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$ is the hopping between the moir\'e lattice site $i$ and $j$, fitted from the first moir\'e valence band of twisted WSe$_2$ at $\pm K$ valleys in the noninteracting picture, and $s=\uparrow$ and $ \downarrow$ are coupled with the $+K$ and $-K$ valleys. $U(\bm{R}_i-\bm{R}_j)$ describes the Coulomb repulsion between site $i$ and $j$.
       human: 
       score: 
         Haining: 
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # C.f. Haining left blank
 
 - task: Extract quadratic term
   source:
@@ -266,28 +278,31 @@
       score: 
         Haining: 
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # Partial credit, reasonable answer given excerpt
     bilinear_op:
       LLM: $c_{i,s}^\dagger c_{j,s}$ and $c_{i,s}^\dagger c_{j,s'}^\dagger c_{j,s'} c_{i,s}$
       human: $c^\dagger c$
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # Partial credit
     Hartree_Fock_second_quantized_symbol:
       LLM: $H_{\text{quadratic}}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 0
     definition_of_variables:
       LLM: $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$ is the hopping between the moir\'e lattice site $i$ and $j$, fitted from the first moir\'e valence band of twisted WSe$_2$ at $\pm K$ valleys in the noninteracting picture, and $s=\uparrow$ and $ \downarrow$ are coupled with the $+K$ and $-K$ valleys. $U(\bm{R}_i-\bm{R}_j)$ describes the Coulomb repulsion between site $i$ and $j$.
       human: 
       score: 
         Haining: 
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # Why left blank?
 
 - task: Expand interaction
   source:
@@ -300,14 +315,15 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # Reasonable given excerpt
     momentum:
       LLM: $\bm{R}_i-\bm{R}_j$
       human: $\bm{k}_\alpha-\bm{k}_\delta$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
 
 - task: Swap the index only
   source:
@@ -320,39 +336,40 @@
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # Reasonable given excerpt
     expected_value:
       LLM: $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$
       human: $\expval{c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s}}$ and $\expval{c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'}}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     expression_Hartree_1:
       LLM: $\sum_{s}\sum_{i,j}^{} t_{s}\left(\bm{R}_i-\bm{R}_j\right) c_{i,s}^\dagger c_{j,s}$
       human: $c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'}$
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 0
     expression_Hartree_2:
       LLM: $\frac{1}{2}\sum_{s,s'}\sum_{i,j}U(\bm{R}_i-\bm{R}_j) c_{i,s}^\dagger c_{j,s'}^\dagger c_{j,s'} c_{i,s}$
       human: $c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\delta,s}$
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 0
     relabel:
       LLM: $i$ and $j$
       human: $\bm{k}_\gamma \leftrightarrow \bm{k}_\delta$
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 0
     Unsummed_Indices:
       LLM: $s$ and $s'$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
