@@ -86,63 +86,63 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     parabolic|Dirac|cos:
       LLM: parabolic
       human:
       score:
         Haining: 2
-        Will:
+        Will: 0
         Yasaman:
     electrons|holes:
       LLM: electrons
       human: holes
       score:
         Haining: 0
-        Will:
+        Will: 0
         Yasaman:
     In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.:
       LLM: true
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     momentum_shift:
       LLM: $\bm{\kappa}=\frac{4\pi}{3a_M}\left(1,0\right)$
       human: $+\kappa$ and $-\kappa$
       score:
         Haining: 1
-        Will:
+        Will: 0
         Yasaman:
     k_symbol:
       LLM: $\bm{k}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     shifted_Ek:
       LLM: $\bm{k}-\tau \bm{\kappa}$
       human: $E_{t,+K}$ and $E_{t,-K}$
       score:
         Haining: 0
-        Will:
+        Will: 1
         Yasaman:
     r_symbol:
       LLM: \bm{r}
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     kinetic_symbol:
       LLM: $\hat{\mathcal{H}}_0$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     definition_of_variables:
       LLM: $\tau=\pm 1$ represents $\pm K$ valleys, $\bm{\kappa}=\frac{4\pi}{3a_M}\left(1,0\right)$  is
@@ -156,7 +156,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
 - task: Construct Potential Hamiltonian (continuum version)
   source:
@@ -170,21 +170,21 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     real|momentum:
       LLM: momentum
       human: real
       score:
         Haining: 0
-        Will:
+        Will: 0
         Yasaman:
     single-particle|second-quantized:
       LLM: second-quantized
       human: single-particle
       score:
         Haining: 0
-        Will:
+        Will: 0
         Yasaman:
     diagonal_potential:
       LLM: $-\frac{\hbar^2\bm{k}^2}{2m_\mathfrak{b}}+\Delta_{\mathfrak{b}}(\bm{r})$
@@ -193,21 +193,21 @@
       human: $\Delta_l(r)$
       score:
         Haining: 0
-        Will:
+        Will: 1
         Yasaman:
     interaction_degrees_of_freedom:
       LLM: the bottom layer ($\mathfrak{b}$) and top layer ($\mathfrak{t}$)
       human: $t$ and $b$
       score:
         Haining: 1
-        Will:
+        Will: 1
         Yasaman:
     offdiagonal_potential:
       LLM: $\Delta_{\text{T},\tau}(\bm{r})$ and $\Delta_{\text{T},\tau}^\dag(\bm{r})$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     definition_of_variables:
       LLM: $\tau=\pm 1$ represents $\pm K$ valleys, $\bm{\kappa}=\frac{4\pi}{3a_M}\left(1,0\right)$
@@ -217,7 +217,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
 - task: Define each term in Potential Hamiltonian (continuum version)
   source:
@@ -232,7 +232,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     Potential_variables:
       LLM: $\Delta_{\mathfrak{b}}(\bm{r})$, $\Delta_{\text{T},\tau}(\bm{r})$, $-\frac{\hbar^2\bm{k}^2}{2m_\mathfrak{b}}$,
@@ -241,7 +241,7 @@
       human: the intralayer potential $\Delta_l(r)$ and interlayer tunneling $\Delta_{T,\tau}(r)$
       score:
         Haining: 1
-        Will:
+        Will: 1
         Yasaman:
     expression_diag:
       LLM: $-\frac{\hbar^2\bm{k}^2}{2m_\mathfrak{b}}+\Delta_{\mathfrak{b}}(\bm{r})$
@@ -251,7 +251,7 @@
         \cdot r  +\psi_b)$
       score:
         Haining: 1
-        Will:
+        Will: 2
         Yasaman:
     expression_offdiag:
       LLM: $\Delta_{\text{T},\tau}(\bm{r})$ and $\Delta_{\text{T},\tau}^\dag(\bm{r})$
@@ -260,7 +260,7 @@
         e^{-i g_3 \cdot r})$.
       score:
         Haining: 1
-        Will:
+        Will: 2
         Yasaman:
     definition_of_variables:
       LLM: $\tau=\pm 1$ represents $\pm K$ valleys, $\bm{\kappa}=\frac{4\pi}{3a_M}\left(1,0\right)$
@@ -274,7 +274,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
 - task: Convert from single-particle to second-quantized form, return in matrix
   source:
@@ -286,14 +286,14 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     nonint_symbol:
       LLM: $\hat{\mathcal{H}}_0$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     kinetic_symbol:
       LLM: $-\frac{\hbar^2\bm{k}^2}{2m_\mathfrak{b}}$ and $-\frac{\hbar^2\left(\bm{k}-\tau
@@ -301,7 +301,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 1
         Yasaman:
     potential_symbol:
       LLM: $\Delta_{\mathfrak{b},\tau}(\bm{r})$, $\Delta_{\text{T},\tau}(\bm{r})$,
@@ -310,21 +310,21 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 1
         Yasaman:
     $r$|$k$:
       LLM: $r$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     second_nonint_symbol:
       LLM:
       human: $\hat{H}^{0}$
       score:
         Haining: 0
-        Will:
+        Will: 0
         Yasaman:
     definition_of_variables:
       LLM: $\tau=\pm $ represents $\pm K$ valleys, $\hbar \bm{k} = -i \hbar \partial_{\bm{r}}$
@@ -335,7 +335,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
 - task: Convert from single-particle to second-quantized form, return in summation
     (expand the matrix)
@@ -348,21 +348,21 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 0
         Yasaman:
     matrix_element_symbol:
       LLM: $H_{\tau}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 0
         Yasaman:
     basis_symbol:
       LLM: $\Psi_{\tau}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     definition_of_variables:
       LLM: $\hat{\mathcal{H}}_0$ is the second-quantized form Hamiltonian, $H_{\tau}$
@@ -375,7 +375,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
 - task: Convert noninteracting Hamiltonian in real space to momentum space (continuum
     version)
@@ -389,14 +389,14 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     momentum_creation_op:
       LLM: $c_{\bm{k}_{\alpha},l_{\alpha},\tau}^\dagger$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     definition_of_Fourier_Transformation:
       LLM: 
@@ -407,28 +407,28 @@
         e^{i k \cdot r}$
       score:
         Haining: 0
-        Will:
+        Will: 2
         Yasaman:
     real_variable:
       LLM: $\bm{r}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     entire_real|first_Brillouin_Zone:
       LLM: entire real space
       human:
       score:
         Haining: 2
-        Will:
+        Will: (?)
         Yasaman:
     second_nonint_symbol:
       LLM: $\hat{\mathcal{H}}_0$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     definition_of_variables:
       LLM: $\tau=\pm $ represents $\pm K$ valleys, $\hbar \bm{k} = -i \hbar \partial_{\bm{r}}$
@@ -446,7 +446,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
 - task: Particle-hole transformation
   source:
@@ -458,49 +458,49 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     particle_op:
       LLM: $c_{\bm{k},l,\tau}^\dagger$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     particle_creation_op:
       LLM: $c_{\bm{k},l,\tau}^\dagger$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     hole_creation_op:
       LLM: $b_{\bm{k},l,\tau}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     particle_annihilation_op:
       LLM: $c_{\bm{k},l,\tau}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     hole_annihilation_op:
       LLM: $b_{\bm{k},l,\tau}^\dagger$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     second_nonint_symbol:
       LLM: $\hat{\mathcal{H}}_0$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     definition_of_variables:
       LLM: The hole operator is defined as $b_{\bm{k},l,\tau}=c_{\bm{k},l,\tau}^\dagger$.
@@ -508,7 +508,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
 - task: Simplify the Hamiltonian in the particle-hole basis
   source:
@@ -520,42 +520,42 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     hole_op:
       LLM: $b_{\bm{k},l,\tau}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     index_1:
       LLM: $\bm{k}_{\alpha}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     index_2:
       LLM: $\bm{k}_{\beta}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     op:
       LLM: $b_{\bm{k},l,\tau}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 1
         Yasaman:
     Ham_op:
       LLM: $[h^{(\tau)}]^{\intercal}_{\bm{k}_{\alpha}l_{\alpha},\bm{k}_{\beta}l_{\beta}}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     definition_of_variables:
       LLM: $b_{\bm{k},l,\tau}=c_{\bm{k},l,\tau}^\dagger$, and $\hat{\mathcal{H}}_0$
@@ -566,7 +566,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
 - task: Construct interaction Hamiltonian (momentum space)
   source:
@@ -578,49 +578,49 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     index_of_operator:
       LLM:
       human: the valley index and layer index
       score:
         Haining: 0
-        Will:
+        Will: 0
         Yasaman:
     momentum:
       LLM:
       human: momentum
       score:
         Haining: 0
-        Will:
+        Will: 0
         Yasaman:
     For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$:
       LLM: false
       human:
       score:
         Haining: 2
-        Will:
+        Will: (?)
         Yasaman:
     interaction:
       LLM: dual-gate screened Coulomb
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     int_form:
       LLM: 2\pi e^2\tanh(|\bm{k}|d)}/{(\epsilon |\bm{k}|)
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     normalization_factor:
       LLM: $\frac{1}{2A}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     op:
       LLM: $b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger$, $b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger$,
@@ -628,7 +628,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: (?)
         Yasaman:
     definition_of_variables:
       LLM: $\bm{k}_{\alpha},\bm{k}_{\beta},\bm{k}_{\gamma},\bm{k}_{\delta}$ are the
@@ -638,7 +638,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
 - task: Wick's theorem
   source:
@@ -650,14 +650,14 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     Hartree_Fock_symbol:
       LLM: $\hat{\mathcal{H}}^{\text{HF}}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     definition_of_variables:
       LLM: $\hat{\mathcal{H}}^{\text{HF}}$ is the Hartree-Fock Hamiltonian, $\hat{\mathcal{H}}_{\text{int}}^{\text{HF}}$
@@ -670,7 +670,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
 - task: Extract quadratic term
   source:
@@ -682,7 +682,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     bilinear_op:
       LLM: $b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}}$
@@ -690,14 +690,14 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     Hartree_Fock_second_quantized_symbol:
       LLM: $\hat{\mathcal{H}}_{\text{int}}^{\text{HF}}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     definition_of_variables:
       LLM: $\hat{\mathcal{H}}^{\text{HF}}$ is the Hartree-Fock term symbol, $\hat{\mathcal{H}}_{\text{int}}^{\text{HF}}$
@@ -707,7 +707,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
 - task: Swap the index to combine Hartree and Fock terms
   source:
@@ -719,7 +719,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman:
     expected_value:
       LLM: $\expval{b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}}$
@@ -727,7 +727,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: (?)
         Yasaman:
     expression_Hartree_1:
       LLM: $b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}}$
@@ -735,7 +735,7 @@
         b_{\tau_2,l_2}(k_3)`$
       score:
         Haining: 1
-        Will:
+        Will: (?)
         Yasaman:
     expression_Hartree_2:
       LLM: $b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}$
@@ -743,5 +743,5 @@
         b_{\tau_1,l_1}(k_4)`$
       score:
         Haining: 1
-        Will:
+        Will: (?)
         Yasaman:
