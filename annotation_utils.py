@@ -3,23 +3,28 @@ import os
 import yaml
 import re
 
+# constants
+ANNOTATED_PAPERS = ['0812.2894', '0902.1336', '1010.1819', '1106.6060', '1208.0116', '1212.5363', '1310.2674', '1812.04213', '2004.04168', '2008.08998', '2012.04554', '2108.02159', '2110.11330', '2111.01152', '2112.07523', '2308.03843', '2308.07488']
+
 def get_task_yaml_for_paper(arxiv_id, path):
+  """Returns the scored yaml task file for a specific paper."""
   path = os.path.join(path, arxiv_id + '.yaml')
   paper_tasks = yaml.safe_load(open(path, 'r'))
   return paper_tasks
 
 def load_excerpt(subdir, sources):
-    excerpt=''
-    for tex, lines in sources.items():
-        with open(os.path.join(subdir, tex),'r') as f:
-            f_list=list(f)
-            for line in lines:
-              if line: #sometimes it's []
-                excerpt=excerpt+''.join(f_list[line[0]:line[1]])
-    return excerpt
+  """Load the excerpt for a given paper."""
+  excerpt=''
+  for tex, lines in sources.items():
+      with open(os.path.join(subdir, tex),'r') as f:
+          f_list=list(f)
+          for line in lines:
+            if line: #sometimes it's []
+              excerpt=excerpt+''.join(f_list[line[0]:line[1]])
+  return excerpt
 
 def return_correct_prompt_template_for_task(task):
-  # Parses a single entry in the yaml file for a paper to construct the correct (ground truth) completed template
+  """Parses a single entry in the yaml file for a paper to construct the correct (ground truth) completed template as a dict of placeholder->entry."""
   correct_phdict = {}
   for ph in task['placeholder']:
     if bool(task['placeholder'][ph]['human']): # LLM was wrong
@@ -32,6 +37,7 @@ def return_correct_prompt_template_for_task(task):
   return correct_phdict
 
 def fill_placeholders(placeholders, placeholders_optional, mapping, empty_template):
+  """Returns the annotated prompt."""
   for ph in placeholders:
     tag = '{'+ph+'}'
     if tag not in empty_template:
@@ -54,7 +60,7 @@ def fill_placeholders(placeholders, placeholders_optional, mapping, empty_templa
 
 #from Haining score.ipynb notebooks
 def extract_filled_values(template_str):
-  # Returns all mandatory and optional placeholders for a template
+  """Returns all mandatory and optional placeholders for a template."""
   template_str = template_str.replace('{{', '').replace('}}', '')
   # Extract placeholders from the template
   # placeholders = re.findall(r"\{(\w+)\}", template_str)
