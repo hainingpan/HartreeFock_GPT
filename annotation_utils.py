@@ -15,6 +15,7 @@ def get_task_yaml_for_paper(arxiv_id, path):
   paper_tasks = yaml.safe_load(open(path, 'r'))
   return paper_tasks
 
+# Adapted from the extractor.ipynb notebooks. 
 def load_excerpt(subdir, sources):
   """Load the excerpt for a given paper."""
   excerpt=''
@@ -61,7 +62,7 @@ def fill_placeholders(placeholders, placeholders_optional, mapping, empty_templa
         print(f'Placeholder {tag} not in Yaml File.')
   return empty_template
 
-#from Haining score.ipynb notebooks
+# Adapted from Haining score.ipynb notebooks
 def extract_filled_values(template_str):
   """Returns all mandatory and optional placeholders for a template."""
   template_str = template_str.replace('{{', '').replace('}}', '')
