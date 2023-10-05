@@ -21,9 +21,9 @@
         # Both correct, kinetic and potential term are mixed
     single-particle|second-quantized:
       LLM: single-particle
-      human: second-quantized
+      human: 
       score:
-        Haining: 0
+        Haining: 2
         Will:
         Yasaman: 2
         # Why marked second-quantized? Looks like single-particle.
@@ -190,9 +190,9 @@
         # Both seem valid answers as both appear in excerpt
     single-particle|second-quantized:
       LLM: single-particle
-      human: second-quantized
+      human: 
       score:
-        Haining: 0
+        Haining: 2
         Will:
         Yasaman: 2
     diagonal_potential:
@@ -359,7 +359,7 @@
         Will:
         Yasaman: 2
     definition_of_variables:
-      LLM: $\Sigma^{HF}$ is the Hartree-Fock self-energy, $\rho$ is the single-particle density matrix, $\b{k}$ is the Brillouin-zone, $\b{b}$ is the reciprocal lattice vectors, $\alpha$ and $\beta$ label spin, $A$ is the finite sample area corresponding to a discrete Brillouin-zone mesh, and $\rho_{\alpha,\b{b};\beta,\b{b}'}$ is the self-consistently determined momentum-space density matrix.
+      LLM: $\Sigma^{HF}$ is the Hartree-Fock self-energy, $\rho$ is the single-particle density matrix, $\b{k}$ is in the Brillouin-zone, $\b{b}$ is the reciprocal lattice vectors, $\alpha$ and $\beta$ label spin, $A$ is the finite sample area corresponding to a discrete Brillouin-zone mesh, and $\rho_{\alpha,\b{b};\beta,\b{b}'}$ is the self-consistently determined momentum-space density matrix.
       human:
       score:
         Haining: 2
