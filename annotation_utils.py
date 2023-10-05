@@ -98,6 +98,6 @@ def make_df_for_paper(gdirpath, arxiv_id, task_templates):
       gt_mapping.append(json.dumps(phdict))
       annotated_prompts.append(completed)
   
-  return pd.DataFrame({'arxiv_id': [arxiv_id]*len(tasks), 'task': tasks, 'excerpt': excerpts, 'blank_templates': templates, 'gt_mapping': gt_mapping, 'annotated_prompts': annotated_prompts, 'annotated': annotation_status})
+  return pd.DataFrame({'arxiv_id': [str(arxiv_id)]*len(tasks), 'task': tasks, 'excerpt': excerpts, 'blank_templates': templates, 'gt_mapping': gt_mapping, 'annotated_prompts': annotated_prompts, 'annotated': annotation_status})
 
 
