@@ -50,9 +50,9 @@
         # No symbol for kinetic term appears directly in the excerpt
     definition_of_variables:
       LLM: $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$ is the hopping between the moir\'e lattice site $i$ and $j$, fitted from the first moir\'e valence band of twisted WSe$_2$ at $\pm K$ valleys in the noninteracting picture. $s=\uparrow$ and $ \downarrow$ are coupled with the $+K$ and $-K$ valleys.
-      human: 
+      human: $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$ is the hopping between the moir\'e lattice site $i$ and $j$, fitted from the first moir\'e valence band of twisted WSe$_2$ at $\pm K$ valleys in the noninteracting picture. $s=\uparrow$ and $ \downarrow$ are coupled with the $+K$ and $-K$ valleys. $c_{i,s}^\dagger$ is the creation operator at site i with spin s. $c_{i,s}$ is the annihilation operator at site i with spin s.
       score: 
-        Haining: 2
+        Haining: 1
         Will: 
         Yasaman: 1
         # Partial credit, also would have liked operators
@@ -140,7 +140,7 @@
       LLM: c_{\bm{k},s}^\dagger
       human: 
       score: 
-        Haining: 0
+        Haining: 2
         Will: 
         Yasaman: 2
         # Why marked 0?
@@ -276,7 +276,7 @@
       LLM: $H$
       human: $H_{\text{int,MF}}$
       score: 
-        Haining: 
+        Haining: 1
         Will: 
         Yasaman: 1
         # Partial credit, reasonable answer given excerpt
@@ -299,7 +299,7 @@
       LLM: $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$ is the hopping between the moir\'e lattice site $i$ and $j$, fitted from the first moir\'e valence band of twisted WSe$_2$ at $\pm K$ valleys in the noninteracting picture, and $s=\uparrow$ and $ \downarrow$ are coupled with the $+K$ and $-K$ valleys. $U(\bm{R}_i-\bm{R}_j)$ describes the Coulomb repulsion between site $i$ and $j$.
       human: 
       score: 
-        Haining: 
+        Haining: 2
         Will: 
         Yasaman: 2
         # Why left blank?
