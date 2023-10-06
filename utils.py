@@ -3,6 +3,7 @@ import json
 import openai
 from dotenv import load_dotenv
 import os
+import yaml
 
 model_params = {
     'model': "gpt-4",
@@ -11,9 +12,6 @@ model_params = {
 
 load_dotenv('../.env')
 openai.api_key  = os.getenv('OPENAI_API_KEY')
-
-
-
 
 def load_prompt_template(file):
     prompt_dict = {}
@@ -40,14 +38,14 @@ def load_prompt_template(file):
     return prompt_dict
 
 def generate_prompt(kwargs,prompt_dict):
-    message={
-    'role':
-    'user',
-    'content':
-    prompt_dict[kwargs['task']].format(
-        **kwargs).strip()
-}
-    return message
+    if 'task' in kwargs:
+        message={
+        'role':
+        'user',
+        'content':
+        prompt_dict[kwargs['task']].format(**kwargs).strip()
+    }
+        return message
 
 def assembly_message(sys_msg,user_msg,AI_msg):
     messages = sys_msg
@@ -115,8 +113,10 @@ def run(prompt_template, arxiv_number):
 
     Should run from each directory 'arxiv_number'.'''
     prompt_dict=load_prompt_template(prompt_template)
-    with open(f'{arxiv_number}.jsonl','r') as f:
-        kwargs= [json.loads(line) for line in f]
+    # with open(f'{arxiv_number}.jsonl','r') as f:
+    #     kwargs= [json.loads(line) for line in f]
+    with open(f'{arxiv_number}.yaml','r') as f:
+        kwargs= yaml.safe_load(f)
 
     prompts=[generate_prompt(kwarg,prompt_dict=prompt_dict) for kwarg in kwargs]
     
