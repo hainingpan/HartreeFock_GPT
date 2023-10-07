@@ -113,9 +113,9 @@
         Yasaman: 2
     electrons|holes:
       LLM: electrons and holes
-      human: holes
+      human: 
       score: 
-        Haining: 1
+        Haining: 2
         Will: 
         Yasaman: 0
         # electron vs hole seems ambiguous from the excerpt (no mention of either individually); I deducted for not picking between the two.
