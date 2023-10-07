@@ -10,77 +10,86 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # reasonable although better ansewrs exist given excerpt
     real|momentum:
       LLM: momentum
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     single-particle|second-quantized:
       LLM: single-particle
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # either answer acceptable
     degrees_of_freedom:
       LLM: four-component spinors $\psi_{\bm k}=(a_{c\uparrow\bm k},a_{v\uparrow\bm k},a_{c\downarrow\bm k},a_{v\downarrow\bm k})^T$, where $c$ and $v$ denote the conduction and valence bands, and $\uparrow$ and $\downarrow$ denote two opposite spins.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # impressive
     kinetic_symbol:
       LLM: $H_{\rm{BHZ}}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     dispersion_symbol:
       LLM: $h_{\uparrow}$, $h_{\downarrow}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # gave full score
     annihilation_op:
       LLM: $\psi_{\bm k}^{\dagger}$
       human: $\psi_{\bm k}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # partial credit. There is actually a bit of ambiguity since {annihilation_op} placeholder doesn't specify for which particle type,
+        # e.g. could be hole instead of electron.
     creation_op:
       LLM: $\psi_{\bm k}$
       human: $\psi_{\bm k}^{\dagger}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # partial credit
     k|r:
       LLM: k
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     entire_space|first_Brillouin_zone:
       LLM: entire_space
       human: first_Brillouin_zone
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # partial credit, excerpt also doesn't specify what summation runs over
     definition_of_variables:
       LLM: $h_{\uparrow}$ and $h_{\downarrow}$ are the two $2\times 2$ matrices that can be explicitly expressed as given in the excerpt. $m_e$ and $m_h$ are the effective masses of electrons and holes, $E_g$ is the band gap, $A$ is the strength of hybridization between the conduction and valence bands, and $\bm Q$ is the momentum shift due to the in-plane magnetic field. Without the magnetic field, $\bm Q=0$ and $h_{\uparrow},h_{downarrow}$ are time-reversal partners.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # reasonably complete ansewr (could have also includd operator information)
 
 - task: Define each term in Kinetic Hamiltonian (continuum version)
   source:
@@ -93,56 +102,58 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # reasonable given no dispersion appears explicitly in excerpt
     parabolic|Dirac|cos:
       LLM: parabolic
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     electrons|holes:
       LLM: electrons and holes
-      human: holes
+      human: 
       score: 
-        Haining: 1
+        Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 0
+        # electron vs hole seems ambiguous from the excerpt (no mention of either individually); I deducted for not picking between the two.
     momentum_shift:
       LLM: $\bm Q$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     k_symbol:
       LLM: $\bm k$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     shifted_Ek:
       LLM: $h_{\uparrow}(\bm k)$ and $h_{\downarrow}(\bm k)$
       human: diagonal elements of $h_{\uparrow}(\bm k)$ and $h_{\downarrow}(\bm k)$
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 1
     r_symbol:
       LLM: \bm r
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     kinetic_symbol:
       LLM: $H_{\rm{BHZ}}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: |
         $\psi_{\bm k}$: field operators, $c$ and $v$: conduction and valence bands, $\uparrow$ and $\downarrow$: two opposite spins, $h_{\uparrow}$ and $h_{\downarrow}$: two $2\times 2$ matrices, $m_e$ and $m_h$: effective masses of electrons and holes, $E_g$: band gap, $A$: strength of hybridization between the conduction and valence bands, $\bm Q$: momentum shift due to the in-plane magnetic field.
@@ -150,14 +161,15 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.:
       LLM: True
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # remove from scoring?
 
 - task: Construct interaction Hamiltonian (momentum space)
   source:
@@ -170,63 +182,64 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     index_of_operator:
       LLM: band and spin indices
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     momentum:
       LLM: momentum
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     interaction:
       LLM: Coulomb interaction
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     int_form:
       LLM: $V(q)=2\pi e^2/\epsilon q$ and $U(q)=V(q)\exp(-qd)$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     normalization_factor:
       LLM: $1/2S$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     op:
       LLM: $a_{bs\bm k+\bm q}^{\dagger}$, $a_{b's'\bm k'-\bm q}^{\dagger}$, $a_{b's'\bm k'}$, $a_{bs\bm k}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: $S$ is the area of the two-dimensional system, $b,b'$ and $s,s'$ are band and spin indices respectively, $V_{cc}(q)=V_{vv}(q)=V(q)=2\pi e^2/\epsilon q$ is the intralayer Coulomb interaction, $V_{cv}(q)=V_{vc}(q)=U(q)=V(q)\exp(-qd)$ is the interlayer Coulomb interaction at interlayer distance $d$, and $\epsilon$ is the dielectric constant of the surrounding three-dimensional material.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$:
       LLM: False
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # remove from scoring
 
 - task: Wick's theorem
   source:
@@ -239,21 +252,22 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     Hartree_Fock_symbol:
       LLM: $H_{\rm{MF}}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: $\Sigma_H$ and $\Sigma_F$ are the Hartree and Fock terms respectively, $V_{bb'}$ is the interaction potential, $\rho_{b's'\,n''}^{b's'\,n''+n'-n}$ is the density matrix, $a_{bsn'\bm k}^{\dagger}$ and $a_{bsn\bm k}$ are the creation and annihilation operators, $H_{\rm{BHZ}}$ is the base Hamiltonian, and $H_{\rm{MF}}$ is the mean-field Hamiltonian.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # all answers above seem reasonable
 
 - task: Extract quadratic term
   source:
@@ -266,28 +280,28 @@
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     bilinear_op:
       LLM: $a_{bsn'\bm k}^{\dagger} a_{bsn\bm k}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     Hartree_Fock_second_quantized_symbol:
       LLM: $\Sigma_H$ and $\Sigma_F$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: $\Sigma_H$ and $\Sigma_F$ are the Hartree and Fock terms respectively. $a_{bsn'\bm k}^{\dagger}$ and $a_{bsn\bm k}$ are creation and annihilation operators. $\rho_{b's'\,n''}^{b's'\,n''+n'-n}(\bm k')$ is the density matrix. $V_{bb'}((n'-n)\bm Q)$ and $V_{bb'}((n''-n)\bm Q+\bm k'-\bm k)$ are the interaction potentials. $H_{\rm{BHZ}}$ is the BHZ Hamiltonian. $H_{\rm{MF}}$ is the mean-field Hamiltonian.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
 
 - task: Expand interaction
   source:
@@ -300,14 +314,14 @@
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     momentum:
       LLM: $(n'-n)\bm Q$ and $(n''-n)\bm Q+\bm k'-\bm k$.
       human: q
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
 
 - task: Swap the index to combine Hartree and Fock terms
   source:
@@ -320,28 +334,29 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
-    expected_value:
+        Yasaman: 2
+    expected_value: 
       LLM: $\rho_{b's'\,n''}^{b's'\,n''+n'-n}(\bm k')$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # impressive
     expression_Hartree_1:
       LLM: $\Sigma_H$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expression_Hartree_2:
       LLM: $\Sigma_F$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
 
 - task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
   source:
@@ -354,21 +369,22 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # impressive
     expected_value:
       LLM: $\rho_{b's'\,n''}^{b's'\,n''+n'-n}(\bm k')$
       human: 
       score: 
         Haining: 2(?)
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expected_value_nonzero:
       LLM: $\rho_{b's'n'}^{bsn}(\bm k) = \langle a_{b's'n'\bm k}^{\dagger} a_{bsn\bm k} \rangle - \delta_{bb'}\delta_{bv}\delta_{ss'}\delta_{nn'}$
       human: 
       score: 
         Haining: 2(?)
         Will: 
-        Yasaman: 
+        Yasaman: 2
 
 - task: Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
   source:
@@ -381,21 +397,22 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expected_value:
       LLM: $\rho_{bs\,n''}^{b's'\,n''+n'-n}(\bm k')$
       human: 
       score: 
         Haining: 2(?)
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expected_value_nonzero:
       LLM: $\delta_{bb'}\delta_{bv}\delta_{ss'}\delta_{nn'}$
       human: 
       score: 
         Haining: 2(?)
         Will: 
-        Yasaman: 
+        Yasaman: 0
+        # not sure what's expected here based on template
 
 - task: Combine the Hartree and Fock term
   source:
@@ -415,7 +432,7 @@
       score: 
         Haining: 
         Will: 
-        Yasaman: 
+        Yasaman: 2
     swap rule:
       LLM: 
       human: TBD
