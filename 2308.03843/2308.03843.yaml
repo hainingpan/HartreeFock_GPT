@@ -10,56 +10,58 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     real|momentum:
       LLM: real
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     single-particle|second-quantized:
       LLM: second-quantized
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     degrees_of_freedom:
       LLM:  spin and sublattice
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # partial credit -- missing unit cell
     site i and site j with the amplitude hopping:
       LLM: site i and site j with the amplitude h_{\alpha\beta}(R_{i}-R_{j})
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     kinetic_symbol:
       LLM: H_{0}
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: d_{\alpha,i,\sigma} is the annihilation operator of an electron with spin σ=↑,↓ on sublattice α of unit cell i, and h_{\alpha\beta}(R_{i}-R_{j}) is the corresponding tight-binding matrix element between sublattices α and β located in unit cells centered at R_{i} and R_{j} respectively.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     You should ensure the hermiticity of the Hamiltonian:
       LLM: True
       human: False
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # remove from scoring
 
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source:
@@ -72,42 +74,44 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     kinetic_symbol:
       LLM: kinetic_symbol
       human: H_{0}
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     site i and site j with the interaction strength:
       LLM: site i and site j with the interaction strength $V_{\alpha\beta}(\mathbf{R}_{i}-\mathbf{R}_{j})$
       human: 
       score: 
-        Haining: 
+        Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # missing Haining's score
     degrees_of_freedom:
       LLM: $\alpha\beta$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     density_symbol:
       LLM: $\hat{n}_{\alpha,i}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: $\hat{n}_{\alpha,i}=\sum_{\sigma}d_{\alpha,i,\sigma}^{\dagger}d_{\alpha,i,\sigma}$ is the local density operator and $V_{\alpha\beta}(\mathbf{R})=e^{2}/(\varepsilon\xi)\sum_{m=-\infty}^{\infty}(-1)^{m}[(|\boldsymbol{\tau}_{\alpha}-\boldsymbol{\mathbf{\tau}}_{\beta}+\mathbf{R}|/\xi)^{2}+m^{2}]^{-\frac{1}{2}}$ is the screened form of the interaction in the presence of symmetric gates located at the top and bottom of the TBG heterostructure.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # reasonable, could be more complete with additional variables
 
 - task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
   source:
@@ -120,35 +124,36 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     real_creation_op:
       LLM: d_{\alpha,\mathbf{k},\sigma}^{\dagger}
       human: d_{\alpha,i,\sigma}^{\dagger}
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # partial credit, does not appear in the current excerpt
     momentum_creation_op:
       LLM: d_{\alpha,\mathbf{k},\sigma}^{\dagger}
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_Fourier_Transformation:
       LLM: 
       human: $d_{\alpha,\mathbf{k},\sigma}^{\dagger}= \frac{1}{\sqrt{N}} \sum_i d_{\alpha,i,\sigma}^{\dagger} e^{i k \cdot R_i}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     real_variable:
       LLM: 
       human: $i$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     definition_of_variables:
       LLM: 
       human: |
@@ -158,14 +163,15 @@
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     Note that hopping have no position dependence now.:
       LLM: true
       human: false
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+      # remove from scoring
 
 
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
@@ -179,56 +185,59 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     single-particle|second-quantized:
       LLM: second-quantized
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     real_creation_op:
       LLM: $\hat{n}_{\alpha}$
       human: d_{\alpha,i,\sigma}^{\dagger}
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     momentum_creation_op:
       LLM: $\hat{n}_{\alpha}(\mathbf{q})$
       human: d_{\alpha,\mathbf{k},\sigma}^{\dagger}
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
+        #note not given explicitly in this excerpt
     definition_of_Fourier_Transformation:
       LLM: $V_{\alpha\beta}(\mathbf{q})$
       human: $d_{\alpha,\mathbf{k},\sigma}^{\dagger}= \frac{1}{\sqrt{N}} \sum_i d_{\alpha,i,\sigma}^{\dagger} e^{i k \cdot R_i}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
+        # note, actually reasonable interpretation of "definition of Fourier transform"
     real_variable:
       LLM: $\alpha$
       human: $i$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     momentum_var:
       LLM: $\mathbf{q}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     Note that interaction have no position dependence now:
       LLM: True
       human: False
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # remove from scoring
 
 - task: Wick's theorem
   source:
@@ -241,21 +250,22 @@
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # partial credit -- I think placeholder is challenging for LLM or human to interpret
     Hartree_Fock_symbol:
       LLM: $\bar{h}_{\alpha\beta}(\mathbf{k},\sigma)$
       human: $\mathcal{H}_{\text{HF}}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     definition_of_variables:
       LLM: $\mathcal{H}_{\text{HF}}$ is the Hartree-Fock Hamiltonian, $\bar{h}_{\alpha\beta}(\mathbf{k},\sigma)$ is the renormalized matrix elements due to both Hartree and Fock contributions, $h_{\alpha\beta}^{\text{H}}(\mathbf{k},\sigma)$ and $h_{\alpha\beta}^{\text{F}}(\mathbf{k},\sigma)$ are the Hartree and Fock contributions respectively, $\rho_{\alpha\beta}(\mathbf{k},\sigma)$ is the zero-temperature density matrix for a given momentum and spin, and $\phi_{\alpha,\mathbf{k}}^{(n)}(\sigma)$ are the exact eigenvectors of $\mathcal{H}_{\text{HF}}$.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
 
 - task: Extract quadratic term
   source:
@@ -268,28 +278,29 @@
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     bilinear_op:
       LLM: $d_{\alpha,\mathbf{k},\sigma}^{\dagger}d_{\beta,\mathbf{k},\sigma}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     Hartree_Fock_second_quantized_symbol:
       LLM: $\mathcal{H}_{\text{HF}}$
       human: $\mathcal{H}_{\text{HF},2}$
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # reasonable answer. challenging to interpret what placeholder requires -- filter these questions later in analysis.
     definition_of_variables:
       LLM: $\mathcal{H}_{\text{HF}}$ is the Hartree-Fock term, $\bar{h}_{\alpha\beta}(\mathbf{k},\sigma)$ is the renormalized matrix elements due to both Hartree and Fock contributions, $d_{\alpha,\mathbf{k},\sigma}^{\dagger}$ and $d_{\beta,\mathbf{k},\sigma}$ are creation and annihilation operators respectively, and $\rho_{\alpha\beta}(\mathbf{k},\sigma)$ is the zero-temperature density matrix for a given momentum and spin.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
 
 - task: Expand interaction
   source:
@@ -302,14 +313,14 @@
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 2
     momentum:
       LLM: \mathbf{k}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
 
 - task: Swap the index only
   source:
@@ -322,42 +333,43 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expected_value:
       LLM: $\rho_{\alpha\beta}(\mathbf{k},\sigma)$
       human: 
       score: 
         Haining: 
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expression_Hartree_1:
       LLM: $h_{\alpha\beta}^{\text{H}}(\mathbf{k},\sigma)$
       human: 
       score: 
         Haining: 2(?)
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # not sure what placeholder expects here
     expression_Hartree_2:
       LLM: $h_{\alpha\beta}^{\text{H}}(\mathbf{k},\sigma)$
       human: 
       score: 
         Haining: 2(?)
         Will: 
-        Yasaman: 
+        Yasaman: 2
     relabel:
       LLM: $\alpha$ and $\beta$
       human: 
       score: 
         Haining: 2(?)
         Will: 
-        Yasaman: 
+        Yasaman: 2
     Unsummed_Indices:
       LLM: $\mathbf{k},\sigma$
       human: 
       score: 
         Haining: 2(?)
         Will: 
-        Yasaman: 
+        Yasaman: 2
 
 - task: Reduce momentum in Hartree term (momentum in BZ)
   source:
@@ -370,21 +382,22 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expected_value:
       LLM: $\rho_{\alpha\beta}(\mathbf{k},\sigma)$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expected_value_nonzero:
       LLM: $\rho_{\alpha\beta}(\mathbf{k},\sigma)=\delta_{\alpha\beta}\sum_{\gamma,\mathbf{k}^{\prime},\sigma^{\prime}}V_{\beta\gamma}(0)\rho_{\gamma\gamma}(\mathbf{k}^{\prime},\sigma^{\prime})$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 0
+        # doesn't appear in this excerpt -- not sure what is expected here in template.
 
 - task: Reduce momentum in Fock term (momentum in BZ)
   source:
@@ -397,21 +410,21 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expected_value:
       LLM: $\rho_{\alpha\beta}(\mathbf{k},\sigma)$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expected_value_nonzero:
       LLM: $\rho_{\alpha\beta}(\mathbf{k},\sigma)=\sum_{n}^{\text{occupied}}\phi_{\alpha,\mathbf{k}}^{(n)}(\sigma)\phi_{\beta,\mathbf{k}}^{(n)*}(\sigma)$.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 0
 
 - task: Combine the Hartree and Fock term
   source:
@@ -424,18 +437,20 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # what about other placeholders in this prompt, e.g. {Hartree}?
     Fock:
       LLM: $h_{\alpha\beta}^{\text{F}}(\mathbf{k},\sigma)$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     swap rule:
       LLM: 
       human: (?)
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: ?
+        # not sure what answer is expected
