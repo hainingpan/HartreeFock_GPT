@@ -86,7 +86,7 @@
       LLM: site i and site j with the interaction strength $V_{\alpha\beta}(\mathbf{R}_{i}-\mathbf{R}_{j})$
       human: 
       score: 
-        Haining: 
+        Haining: 2
         Will: 
         Yasaman: 2
         # missing Haining's score
