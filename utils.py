@@ -58,7 +58,7 @@ def return_correct_prompt_template_for_task(task):
   """Parses a single entry in the yaml file for a paper to construct the correct (ground truth) completed template as a dict of placeholder->entry."""
   correct_phdict = {}
   for ph in task['placeholder']:
-    if bool(task['placeholder'][ph]['human']): # LLM was wrong
+    if (task['placeholder'][ph]['human']) is not None: # LLM was wrong
       correct_phdict.update({ph: task['placeholder'][ph]['human']})
     else:
       if task['placeholder'][ph]['score']['Haining']==2:
