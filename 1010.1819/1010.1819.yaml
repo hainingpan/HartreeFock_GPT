@@ -10,63 +10,67 @@
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 0
     real|momentum:
       LLM: real
       human: momentum
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # either answer acceptable, not really specified further
     single-particle|second-quantized:
       LLM: second-quantized
       human: single-particle
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # either answer acceptable, not really specified further
     degrees_of_freedom:
       LLM: the total number of unit cells in the system, the band's Wannier wavefunction, and the carbon site with position relative to a the triangular lattice vector.
       human: four sublattice indices on both layers, A, B, \tilde{A}, \tilde{B}
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 0
     kinetic_symbol:
       LLM: 
       human: H_0
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     variable:
       LLM: 
       human: $\gamma_0$, $\gamma_1$, $\gamma_3$, $\gamma_4$ and f
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     order:
       LLM: the four sublattice indexes
       human:  A, B, \tilde{A}, \tilde{B}
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # partial credit
     definition_of_variables:
       LLM: N is the total number of unit cells in the system, φ is the band's Wannier wavefunction, and κ labels the carbon site with position τκ relative to a the triangular lattice vector R_i. The notations A, B, Ā, B̄ are used for the four sublattice indexes κ, where B and Ā are the opposite-layer near-neighbor-pair sites.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     Note that the sublattice degrees of freedom is suppressed for now and will be stated later:
       LLM: True
       human: False
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # remove from scoring
 
 - task: Define each term in Kinetic Hamiltonian (continuum version)
   source:
@@ -79,56 +83,58 @@
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # reasonable answer given excerpt.
+        # Dispersion could mean after diagonalization. Also unclear can give multiple answers.
     parabolic|Dirac|cos:
       LLM: 
       human: cos
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     electrons|holes:
       LLM: 
       human: electrons
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     momentum_shift:
       LLM: 
       human: None
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     k_symbol:
       LLM: 
       human: None
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     shifted_Ek:
       LLM: 
       human: None
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     r_symbol:
       LLM: r
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     kinetic_symbol:
       LLM: k
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: |
         {f\left( {\bf k} \right) &=&   e^{ i k_y a / \sqrt{3} } \left( 1 + 2 e^{-i 3 k_{y} a / 2\sqrt{3}}  
@@ -154,14 +160,16 @@
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 0
+        # deducted due to too much irrelevant information.
     In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.:
       LLM: True
       human: False
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # remove from scoring
 
 - task: Convert from single-particle to second-quantized form, return in matrix
   source:
@@ -174,42 +182,44 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     nonint_symbol:
       LLM: $H_0$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     kinetic_symbol:
       LLM: $H_0$
       human: None
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # seems reasonable
     potential_symbol:
       LLM: potential_symbol
       human: None
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # partial credit since symbol doesn’t appear
     $r$|$k$:
       LLM: $k$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     second_nonint_symbol:
       LLM: $\hat{H}_0$
       human: 
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: |
         The model's Bloch basis states are written as $\psi_{{\bf k}\kappa} \left({\mathbf r} \right) = \frac{1}{\sqrt{N}} \sum_{i} e^{i {\mathbf k} \left( {\mathbf R}_i + {\bf \tau}_{\kappa} \right)} 
@@ -220,7 +230,8 @@
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # reasonable compared to previous answers
 
 - task: Convert from single-particle to second-quantized form, return in summation (expand the matrix)
   source:
@@ -233,21 +244,22 @@
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # partial credit
     matrix_element_symbol:
       LLM: {gamma_i} 
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     basis_symbol:
       LLM: {\psi_{{\bf k}\kappa}}
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: |
         {H}_0 is the four band tight-binding model Hamiltonian of a graphene bilayer, {\psi_{{\bf k}\kappa}} is the model's Bloch basis states, and {gamma_i} are the tight-binding model parameters.
@@ -255,7 +267,7 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
 
 - task: Construct interaction Hamiltonian (momentum space)
   source:
@@ -269,63 +281,68 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # reasonable since no other relevant symbol appears
     index_of_operator:
       LLM: $\kappa, \kappa^{\prime}, \kappa^{\prime}, \kappa$
       human: $\lambda, \lambda^{\prime}, \lambda^{\prime}, \lambda$
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # seems $\lambda$’s never referenced in the excerpt?
     momentum:
       LLM: 
       human: k
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     interaction:
       LLM: 
       human: electron-electron Coulomb interaction
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     int_form:
       LLM: 2 \pi e^2 / \left(  \left| \bf q \right|   \epsilon_r \right)
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     normalization_factor:
       LLM: $A$
       human: $1/A$
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 0
+        # normalization also seems to not appear in excerpt?
     op:
       LLM: creation and annihilation operators
       human: c_{k,\lambda}^\dagger and c_{k,\lambda}
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # accepted, operators not explicitly referenced in excerpt
     definition_of_variables:
       LLM: $\kappa, \kappa^{\prime}$ are the indices of operators, $q$ is the momentum, $V^{\kappa \kappa^{\prime}}$ is the interaction Hamiltonian, $\epsilon_r$ is the relative dielectric constant, $c=3.35 \AA$ is the interlayer separation, $A$ is the total area of the graphene sheet, $r_0 = 3 \widetilde{a}_0$ is the root mean square radius corresponding to the covalent radius of the carbon atom $a_0 = 0.77 \AA$.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$:
       LLM: False
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # remove from scoring
 
 - task: Wick's theorem
   source:
@@ -338,21 +355,23 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # seems reasonable
     Hartree_Fock_symbol:
       LLM: $V^{HF}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: $\lambda$ is a composite label for sublattice $\kappa$ and spin $\sigma$. $N_{\lambda}$ is the Hartree term and $W^{X}_{{\bf k} \lambda \lambda'}$ is the Fock (exchange) term. ${\bf G}$ is a reciprocal lattice vector.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # partial credit, incorrect reference to Hartree term
 
 - task: Extract quadratic term
   source:
@@ -365,21 +384,21 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     bilinear_op:
       LLM: c_{{\bf k} \lambda}^{\dag} c_{{\bf k} \lambda}
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     Hartree_Fock_second_quantized_symbol:
       LLM: V^{HF}_{quadratic}
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: |
         $\lambda$ is a composite label for sublattice $\kappa$ and spin $\sigma$.  
@@ -392,7 +411,7 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
 
 - task: Expand interaction
   source:
@@ -407,14 +426,15 @@
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # acceptable to give actual expression since ambiguous intent
     momentum:
       LLM: ${\bf k}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
 
 - task: Swap the index to combine Hartree and Fock terms
   source:
@@ -427,28 +447,28 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expected_value:
       LLM: $N_{\lambda}$
       human: \left< c^{\dag}_{{\bf k}' \lambda} c_{{\bf k}' \lambda} \right>
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 0
     expression_Hartree_1:
       LLM: and $\left<c_{{\bf k}' \lambda'}^{\dag} c_{{\bf k}' \lambda} \right>$ in the second Fock term) in the first Hartree term ($U_H^{\lambda \lambda'} N_{\lambda'} c_{{\bf k} \lambda}^{\dag} c_{{\bf k} \lambda}$
       human: $\left<c_{{\bf k} \lambda}^{\dag} c_{{\bf k} \lambda} \right>c_{{\bf k'} \lambda'}^{\dag} c_{{\bf k'} \lambda'}$
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 0
     expression_Hartree_2:
       LLM: $W^{X}_{{\bf k} {\lambda' \lambda}}  c_{{\bf k} \lambda}^{\dag} c_{{\bf k} \lambda'}$
       human: $c_{{\bf k} \lambda}^{\dag} c_{{\bf k} \lambda} \left<c_{{\bf k'} \lambda'}^{\dag} c_{{\bf k'} \lambda'}\right>$
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 0
 
 - task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
   source:
@@ -461,21 +481,23 @@
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
-    expected_value:
+        Yasaman: 0
+        # one of the few excerpts where Hartree and Fock terms are explicitly labeled! So deducted here.
+    expected_value: 
       LLM: $N_{\lambda}$
       human: \left< c^{\dag}_{{\bf k}' \lambda} c_{{\bf k}' \lambda} \right>
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # accepted since they are related, unclear if shouldn't be an expression or not
     expected_value_nonzero:
       LLM: $N_{\lambda} =\sum_{{\bf k}'} \left< c^{\dag}_{{\bf k}' \lambda} c_{{\bf k}' \lambda} \right>  = \sum_{{\bf k}'} n_{{\bf k}' \lambda}$
       human: \left< c^{\dag}_{{\bf k}' \lambda} c_{{\bf k'}' \lambda} \right>=\delta_{k,k'}
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 0
 
 - task: Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
   source:
@@ -488,21 +510,21 @@
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expected_value:
       LLM: $\left< c^{\dag}_{{\bf k}' \lambda} c_{{\bf k}' \lambda} \right>$
       human: \left< c^{\dag}_{{\bf k}' \lambda} c_{{\bf k}' \lambda} \right>
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 1
     expected_value_nonzero:
       LLM: $\left< c^{\dag}_{{\bf k}' \lambda} c_{{\bf k}' \lambda} \right> = \sum_{{\bf k}'} n_{{\bf k}' \lambda}$
       human: $c_{{\bf k} \lambda}^{\dag} c_{{\bf k} \lambda} \left<c_{{\bf k'} \lambda'}^{\dag} c_{{\bf k'} \lambda'}\right>$
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 0
 
 - task: Combine the Hartree and Fock term
   source:
@@ -515,21 +537,23 @@
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # reasonable given excerpt
     Fock:
       LLM: W^{X}_{{\bf k} {\lambda' \lambda}}
       human: V^{Fock}_{quadratic}
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # reasonable given excerpt
     swap rule:
       LLM: 
       human: TBD(?)
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
 
 - task: Construct full Hamiltonian after HF
   source:
