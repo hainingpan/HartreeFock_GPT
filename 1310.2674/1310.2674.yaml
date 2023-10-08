@@ -30,9 +30,9 @@
         Yasaman: 2
     degrees_of_freedom:
       LLM: both 3d $e_g$ orbitals at each Ni site and the 2p$_\sigma$ orbital at each O site.
-      human: spin $\alpha$ and orbital $\sigma$
+      human:  orbital $\alpha$ and spin $\sigma$
       score: 
-        Haining: 0
+        Haining: 1
         Will: 
         Yasaman: 2
         # seems reasonable based on excerpt? spin is $\sigma$
