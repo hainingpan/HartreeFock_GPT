@@ -193,9 +193,9 @@
         # impressive
     interaction_degrees_of_freedom:
       LLM: the intralayer and interlayer moir\'e potentials
-      human: 
+      human: layer index $l$ and valley index $\tau$
       score: 
-        Haining: 2
+        Haining: 0
         Will: 
         Yasaman: 0
         # potentials not DOF?
