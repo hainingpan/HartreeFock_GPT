@@ -135,7 +135,7 @@ def run(prompt_template, arxiv_number):
     prompt_dict=load_prompt_template(prompt_template)
     with open(f'{arxiv_number}.yaml','r') as f:
         kwargs= yaml.safe_load(f)
-    kwargs=[kwarg for kwarg in kwargs[:2] if 'task' in kwarg]
+    kwargs=[kwarg for kwarg in kwargs if 'task' in kwarg]
 
     prompts=[generate_prompt(kwarg,prompt_dict=prompt_dict) for kwarg in kwargs]
 
