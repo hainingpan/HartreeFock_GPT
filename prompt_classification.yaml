@@ -1,0 +1,223 @@
+- task: Construct Kinetic Hamiltonian (continuum version, single-particle)
+  placeholder:
+    system:
+    real|momentum:
+    single-particle|second-quantized:
+    degrees_of_freedom:
+    kinetic_symbol:
+    variable:
+    order:
+    definition_of_variables:
+    Note that the sublattice degrees of freedom is suppressed for now and will be stated later:
+
+- task: Construct Kinetic Hamiltonian (continuum version, second-quantized)
+  placeholder:
+    system:
+    real|momentum:
+    single-particle|second-quantized:
+    degrees_of_freedom:
+    kinetic_symbol:
+    dispersion_symbol:
+    annihilation_op:
+    creation_op:
+    k|r: # THIS MAY NOT APPEAR, CHECK
+    entire_space|first_Brillouin_zone:
+    definition_of_variables:
+
+
+- task: Construct Kinetic Hamiltonian (lattice version)
+  placeholder:
+    system:
+    real|momentum:
+    single-particle|second-quantized:
+    degrees_of_freedom: 
+    site i and site j with the amplitude hopping:
+    kinetic_symbol:
+    definition_of_variables:
+    You should ensure the hermiticity of the Hamiltonian:
+
+- task: Define each term in Kinetic Hamiltonian (continuum version)
+  placeholder:
+    Energy_dispersion:
+    parabolic|Dirac|cos:
+    electrons|holes:
+    momentum_shift:
+    k_symbol:
+    shifted_Ek:
+    r_symbol:
+    kinetic_symbol:
+    definition_of_variables:
+    In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.:
+
+- task: Construct Potential Hamiltonian (continuum version)
+  placeholder:
+    potential_symbol:
+    real|momentum:
+    single-particle|second-quantized:
+    diagonal_potential:
+    interaction_degrees_of_freedom:
+    offdiagonal_potential:
+    definition_of_variables:
+    
+- task: Define each term in Potential Hamiltonian (continuum version)
+  placeholder:
+    potential_symbol:
+    Potential_variables:
+    expression_diag:
+    expression_offdiag:
+    expression_Potential:
+    definition_of_variables:
+
+- task: Construct interaction Hamiltonian (real space, lattice version)
+  placeholder:
+    second_int_symbol:
+    kinetic_symbol:
+    site i and site j with the interaction strength:
+    degrees_of_freedom:
+    density_symbol:
+    definition_of_variables:
+
+- task: Construct interaction Hamiltonian (momentum space)
+  placeholder:
+    second_int_symbol:
+    index_of_operator:
+    momentum:
+    interaction:
+    int_form:
+    normalization_factor:
+    op:
+    definition_of_variables:
+    For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$:
+
+- task: Convert from single-particle to second-quantized form, return in matrix
+  placeholder:
+    real|momentum:
+    nonint_symbol:
+    kinetic_symbol:
+    potential_symbol:
+    $r$|$k$:
+    second_nonint_symbol:
+    definition_of_variables:    
+
+- task: Convert from single-particle to second-quantized form, return in summation (expand the matrix)
+  placeholder:
+    second_nonint_symbol:
+    matrix_element_symbol:
+    basis_symbol:
+    definition_of_variables:
+  
+- task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
+  placeholder:
+    nonint_symbol:
+    real_creation_op:
+    momentum_creation_op:
+    definition_of_Fourier_Transformation:
+    real_variable:
+    definition_of_variables:
+    Note that hopping have no position dependence now.:
+
+- task: Convert noninteracting Hamiltonian in real space to momentum space (continuum version)
+
+- task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
+  placeholder:
+    second_int_symbol:
+    single-particle|second-quantized:
+    real_creation_op:
+    momentum_creation_op:
+    definition_of_Fourier_Transformation:
+    real_variable:
+    momentum_var:
+    Note that interaction have no position dependence now:
+
+- task: Particle-hole transformation
+  placeholder:
+    hole_op:
+    particle_op:
+    particle_creation_op:
+    hole_creation_op:
+    particle_annihilation_op:
+    hole_annihilation_op:
+    second_nonint_symbol:
+    definition_of_variables:
+    expression_particle_Ham:
+
+- task: Simplify the Hamiltonian in the particle-hole basis
+  placeholder:
+    second_nonint_symbol:
+    hole_op:
+    index_1:
+    index_2:
+    op:
+    Ham_op: 
+    definition_of_variables:
+    expression_hole_Ham:
+    
+- task: Wick's theorem
+  placeholder:
+    second_int_symbol:
+    Hartree_Fock_symbol:
+    definition_of_variables:
+  
+- task: Extract quadratic term
+  placeholder:
+    Hartree_Fock_term_symbol:
+    bilinear_op:
+    Hartree_Fock_second_quantized_symbol:
+    definition_of_variables:
+
+- task: Hartree term only (NOT SURE THIS APPEARS)
+
+- task: Fock term only (NOT SURE THIS APPEARS)
+  
+- task: Expand interaction
+  placeholder:
+    Hartree_Fock_second_quantized_symbol:
+    momentum:
+  
+- task: Swap the index only
+  placeholder:
+    Hartree_Fock_second_quantized_symbol:
+    expected_value:
+    expression_Hartree_1:
+    expression_Hartree_2:
+    relabel:
+    Unsummed_Indices:
+
+  - task: Swap the index to combine Hartree and Fock terms
+  placeholder:
+    Hartree_Fock_second_quantized_symbol:
+    expected_value:
+    expression_Hartree_1:
+    expression_Hartree_2:
+
+- task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
+  placeholder:
+    Hartree_second_quantized_symbol:
+    expected_value: 
+    expected_value_nonzero:
+
+- task: Reduce momentum in Hartree term (momentum in BZ)
+  placeholder:
+    Hartree_second_quantized_symbol:
+    expected_value:
+    expected_value_nonzero:
+
+- task: Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
+  placeholder:
+    Fock_second_quantized_symbol:
+    expected_value:
+    expected_value_nonzero:
+
+- task: Reduce momentum in Fock term (momentum in BZ)
+  placeholder:
+    Fock_second_quantized_symbol:
+    expected_value:
+    expected_value_nonzero:
+
+- task: Combine the Hartree and Fock term
+  placeholder:
+    symbol:
+    Fock:
+    swap rule:
+
+    
