@@ -100,6 +100,33 @@ def make_df_for_paper(gdirpath, arxiv_id, task_templates):
   
   return pd.DataFrame({'arxiv_id': [str(arxiv_id)]*len(tasks), 'task': tasks, 'excerpt': excerpts, 'blank_templates': templates, 'gt_mapping': gt_mapping, 'annotated_prompts': annotated_prompts, 'annotated': annotation_status})
 
+def make_placeholderdf_for_paper(gdirpath, arxiv_id, task_templates):
+  print(f'Arxiv Id: {arxiv_id}  ##############')
+  paper_dir = os.path.join(gdirpath, arxiv_id)
+  paper_yaml = get_task_yaml_for_paper(arxiv_id, paper_dir)
+  taskwise_df = []
+  for elem in paper_yaml: # each task
+    if 'task' in elem:
+      task_name = elem['task']
+      task_template = task_templates[task_name]
+      print(f"Task {task_name}")
+      # get placeholder GT mapping
+      phdict = return_correct_prompt_template_for_task(elem)
+      keys = []
+      values = []
+      baseline_score = []
+      for k in phdict:
+        keys.append(k)
+        values.append(phdict[k])
+        baseline_score.append(elem['placeholder'][k]['score']['Haining'])
+      #extend with nph
+      Nplh = len(keys)
+      excerpt = load_excerpt(paper_dir, elem['source'])
+      # placeholder level dataframe for a single task
+      taskwise_df.append(pd.DataFrame({'gt_key': keys, 'gt_value': values, 'gpt-4_score': baseline_score, 'arxiv_id': [arxiv_id]*Nplh,  'task': [task_name]*Nplh, 'excerpt': [excerpt]*Nplh, 'blank_template': [task_template]*Nplh}))  
+  return pd.concat(taskwise_df)
+
+
 def expand_promptdf_to_placeholderdf(df, index_row):
   gt_dict = json.loads(df.iloc[index_row]['gt_mapping'])
   arxiv_id = str(df.iloc[index_row]['arxiv_id'])
