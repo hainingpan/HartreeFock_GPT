@@ -100,4 +100,22 @@ def make_df_for_paper(gdirpath, arxiv_id, task_templates):
   
   return pd.DataFrame({'arxiv_id': [str(arxiv_id)]*len(tasks), 'task': tasks, 'excerpt': excerpts, 'blank_templates': templates, 'gt_mapping': gt_mapping, 'annotated_prompts': annotated_prompts, 'annotated': annotation_status})
 
+def expand_promptdf_to_placeholderdf(df, index_row):
+  gt_dict = json.loads(df.iloc[index_row]['gt_mapping'])
+  arxiv_id = str(df.iloc[index_row]['arxiv_id'])
+  paper_tasks = get_task_yaml_for_paper(arxiv_id, path)
+  task_id_map = {} #stores task_name -> index in paper_tasks yaml
 
+  for it, elem in enumerate(paper_tasks):
+    task_id_map[elem['task']]= it
+  relevant_task = paper_tasks[task_id_map[df.iloc[index_row]['task']]]
+
+  keys = []
+  values = []
+  baseline_score = []
+  for k in gt_dict:
+    keys.append(k)
+    values.append(gt_dict[k])
+    baseline_score.append(relevant_task['placeholder'][k]['score']['Haining'])
+  Nplaceholders = len(keys)
+  return pd.DataFrame({'gt_key': keys, 'gt_value': values, 'gpt-4_score': baseline_score, 'arxiv_id': [df.iloc[index_row]['arxiv_id']]*Nplaceholders, 'task': [df.iloc[index_row]['task']]*Nplaceholders, 'excerpt': [df.iloc[index_row]['excerpt']]*Nplaceholders, 'blank_template': [df.iloc[index_row]['blank_templates']]*Nplaceholders})
