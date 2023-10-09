@@ -79,6 +79,13 @@
         Will: 1
         Yasaman: 2
   answer: $H_{Kinetic}(r) = \begin{pmatrix} E_{+K,b} & 0 & 0 & 0 \\ 0 & E_{+K,t} & 0 & 0 \\ 0 & 0 & E_{-K,b} & 0 \\ 0 & 0 & 0 & E_{-K,t} \end{pmatrix}$
+  score:
+    prompt_quality: 1
+    follow_instructions: 1
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 1
+    # bottom layer does not have a shift of Kappa, but this may be also due to the unclear instruction (so 1 point drop for `prompt_quality`)
 - task: Define each term in Kinetic Hamiltonian (continuum version)
   source:
     2111.01152.tex:
@@ -169,6 +176,13 @@
     expression_kinetic:
       human: $H_{Kinetic}(r) = \begin{pmatrix} E_{+K,b} & 0 & 0 & 0 \\ 0 & E_{+K,t} & 0 & 0 \\ 0 & 0 & E_{-K,b} & 0 \\ 0 & 0 & 0 & E_{-K,t} \end{pmatrix}$
   answer: $H_{Kinetic}(r) = \begin{pmatrix} -\frac{\hbar^2 k^2}{2 m_b} & 0 & 0 & 0 \\ 0 & -\frac{\hbar^2 (k-\kappa)^2}{2 m_t} & 0 & 0 \\ 0 & 0 & -\frac{\hbar^2 k^2}{2 m_b} & 0 \\ 0 & 0 & 0 & -\frac{\hbar^2 (k+\kappa)^2}{2 m_t} \end{pmatrix}$
+  score:
+    prompt_quality: 2
+    follow_instructions: 1
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 1
+    # no shift in bottom layer, but it catches valley-dependent shift accurately
 - task: Construct Potential Hamiltonian (continuum version)
   source:
     2111.01152.tex:
@@ -234,6 +248,12 @@
         Yasaman: 1
         # partial credit for missing operator reference
   answer: $H_{Potential}(r) = \begin{pmatrix} \Delta_b(r) & \Delta_{T,+K}(r) & 0 & 0 \\ \Delta_{T,+K}^*(r) & \Delta_t(r) & 0 & 0 \\ 0 & 0 & \Delta_b(r) & \Delta_{T,-K}(r) \\ 0 & 0 & \Delta_{T,-K}^*(r) & \Delta_t(r) \end{pmatrix}$
+  score:
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Define each term in Potential Hamiltonian (continuum version)
   source:
     2111.01152.tex:
@@ -297,6 +317,12 @@
     expression_Potential:
       human: $H_{Potential}(r) = \begin{pmatrix} \Delta_b(r) & \Delta_{T,+K}(r) & 0 & 0 \\ \Delta_{T,+K}^*(r) & \Delta_t(r) & 0 & 0 \\ 0 & 0 & \Delta_b(r) & \Delta_{T,-K}(r) \\ 0 & 0 & \Delta_{T,-K}^*(r) & \Delta_t(r) \end{pmatrix}$
   answer: $H_{Potential}(r) = \begin{pmatrix} 2V_b\sum_{j=1,3,5} \cos(g_j \cdot r  +\psi_b) & w(1+\omega e^{i g_2 \cdot r} + \omega^2 e^{i g_3 \cdot r}) & 0 & 0 \\ w(1+\omega^{-1}e^{-i g_2 \cdot r} + \omega^{-2} e^{-i g_3 \cdot r}) & V_{zt} & 0 & 0 \\ 0 & 0 & 2V_b\sum_{j=1,3,5} \cos(g_j \cdot r  +\psi_b) & -w(1+\omega^{-1}e^{-i g_2 \cdot r} + \omega^{-2} e^{-i g_3 \cdot r}) \\ 0 & 0 & -w(1+\omega e^{i g_2 \cdot r} + \omega^2 e^{i g_3 \cdot r}) & V_{zt} \end{pmatrix}$
+  score:
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Convert from single-particle to second-quantized form, return in matrix
   source:
     2111.01152_SM.tex:
@@ -360,6 +386,12 @@
         Yasaman: 1
         # partial credit for not including operator reference
   answer: $\hat{H}^{0} = \int dr \vec{\psi}^\dagger(r) H^{0}(r) \vec{\psi}(r)$
+  score:
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Convert from single-particle to second-quantized form, return in summation
     (expand the matrix)
   source:
@@ -404,6 +436,13 @@
     expression_second_nonint:
       human: $\hat{H}^{0} = \int dr \vec{\psi}^\dagger(r) H^{0}(r) \vec{\psi}(r)$
   answer: $\hat{H}^{0} = \int dr \sum_{l_1, l_2} \left( \psi_{+K,l_1}^\dagger(r) H^{0}_{+K,l_1,+K,l_2}(r) \psi_{+K,l_2}(r) + \psi_{-K,l_1}^\dagger(r) H^{0}_{-K,l_1,-K,l_2}(r) \psi_{-K,l_2}(r) \right)$
+  score:
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 1
+    final_answer_accuracy: 1
+    # The interlayer coupling is missing during when expanding the matrix
 - task: Convert noninteracting Hamiltonian in real space to momentum space (continuum
     version)
   source:
@@ -476,6 +515,13 @@
         Will: 2
         Yasaman: 2
   answer: $\hat{H}^{0} = \sum_{\tau, l_1, l_2, k_1, k_2} c_{\tau,l_1}^\dagger(k_1) H^{0}_{\tau,l_1,\tau,l_2}(k_1,k_2) c_{\tau,l_2}(k_2)$
+  score:
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
+
 - task: Particle-hole transformation
   source:
     2111.01152_SM.tex:
@@ -544,6 +590,12 @@
     expression_particle_Ham:
       human: $\hat{H}^{0} = \sum_{\tau, l_1, l_2, k_1, k_2} c_{\tau,l_1}^\dagger(k_1) H^{0}_{\tau,l_1,\tau,l_2}(k_1,k_2) c_{\tau,l_2}(k_2)$
   answer: $\hat{H}^{0} = \sum_{\tau, l_1, l_2, k_1, k_2} b_{\tau, l_1}(k_1) H^{0}_{\tau, l_1, \tau, l_2}(k_1, k_2) b_{\tau, l_2}^\dagger(k_2)$
+  score:
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Simplify the Hamiltonian in the particle-hole basis
   source:
     2111.01152_SM.tex:
@@ -597,14 +649,21 @@
         h^{(\tau)}-\sum_{\bm{k}_{\alpha},\bm{k}_{\beta}}\sum_{l_{\alpha},l_{\beta}}\sum_{\tau}
         [h^{(\tau)}]^{\intercal}_{\bm{k}_{\alpha}l_{\alpha},\bm{k}_{\beta}l_{\beta}}
         b_{\bm{k}_{\alpha},l_{\alpha},\tau}^\dagger b_{\bm{k}_{\beta},l_{\beta},\tau}$
-      human:
+      human: $b_{\bm{k},l,\tau}=c_{\bm{k},l,\tau}^\dagger$
       score:
-        Haining: 2
+        Haining: 1
         Will: 2
         Yasaman: 2
     expression_hole_Ham:
       human: $\hat{H}^{0} = \sum_{\tau, l_1, l_2, k_1, k_2} b_{\tau, l_1}(k_1) H^{0}_{\tau, l_1, \tau, l_2}(k_1, k_2) b_{\tau, l_2}^\dagger(k_2)$
   answer: $\hat{H}^{0} = \sum_{\tau, l_1, k_1} H^{0}_{\tau, l_1, \tau, l_1}(k_1, k_1) - \sum_{\tau, l_1, l_2, k_1, k_2} b_{\tau, l_1}^\dagger(k_1) (H^{0}_{\tau, l_1, \tau, l_2}(k_1, k_2))^* b_{\tau, l_2}(k_2)$
+  score:
+    prompt_quality: 1
+    follow_instructions: 1
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
+    # This is because in the `defition of variables`, it already output the final answer, maybe I should mask it.
 - task: Construct interaction Hamiltonian (momentum space)
   source:
     2111.01152_SM.tex:
@@ -680,6 +739,12 @@
         Will: 2
         Yasaman: 2
   answer: $\hat{H}^{int} = \frac{1}{2V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4} b_{l_1,\tau_1}^\dagger(k_1)b_{l_2,\tau_2}^\dagger(k_2)b_{l_2,\tau_2}(k_3)b_{l_1,\tau_1}(k_4) V(|k_1-k_4|)\delta_{k_1+k_2,k_3+k_4}$
+  score:
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Wick's theorem
   source:
     2111.01152_SM.tex:
@@ -715,6 +780,12 @@
     expression_int:
       human: $\hat{H}^{int} = \frac{1}{2V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4} b_{l_1,\tau_1}^\dagger(k_1)b_{l_2,\tau_2}^\dagger(k_2)b_{l_2,\tau_2}(k_3)b_{l_1,\tau_1}(k_4) V(|k_1-k_4|)\delta_{k_1+k_2,k_3+k_4}$
   answer: $\hat{H}^{int,HF}=\frac{1}{2V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4} \left[\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) + \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4)-\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) \rangle - \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) - \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) + \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) \rangle\right] V(|k_1-k_4|)\delta_{k_1+k_2,k_3+k_4}$
+  score:
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Extract quadratic term
   source:
     2111.01152_SM.tex:
@@ -755,6 +826,12 @@
     expression_HF:
       human: $\hat{H}^{int,HF}=\frac{1}{2V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4} \left[\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) + \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4)-\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) \rangle - \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) - \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) + \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) \rangle\right] V(|k_1-k_4|)\delta_{k_1+k_2,k_3+k_4}$
   answer: $\hat{H}^{int,HF,2}=\frac{1}{2V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4} \left[\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) + \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) - \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) - \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3)\right] V(|k_1-k_4|)\delta_{k_1+k_2,k_3+k_4}$
+  score:
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Swap the index to combine Hartree and Fock terms
   source:
     2111.01152_SM.tex:
@@ -792,5 +869,12 @@
         Will: (?)
         Yasaman: 1
     expression_HF_2:
-      human: $\hat{H}^{int,HF}=\frac{1}{2V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4} \left[\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) + \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4)-\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) \rangle - \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) - \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) + \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) \rangle\right] V(|k_1-k_4|)\delta_{k_1+k_2,k_3+k_4}$
+      human: $\hat{H}^{int,HF,2}=\frac{1}{2V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4} \left[\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) + \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) - \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) - \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3)\right] V(|k_1-k_4|)\delta_{k_1+k_2,k_3+k_4}$
   answer: $\hat{H}^{int,HF,2}=\frac{1}{V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4} \left[\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) - \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4)\right] V(|k_1-k_4|)\\delta_{k_1+k_2,k_3+k_4}$
+  score:
+    prompt_quality: 1
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
+    # Maybe use another `expression_HF_2`?  
