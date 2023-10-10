@@ -128,9 +128,9 @@ def make_placeholderdf_for_paper(gdirpath, arxiv_id, task_templates):
 
 
 def expand_promptdf_to_placeholderdf(df, index_row, gdirpath):
-  paper_dir = os.path.join(gdirpath, arxiv_id)
   gt_dict = json.loads(df.iloc[index_row]['gt_mapping'])
   arxiv_id = str(df.iloc[index_row]['arxiv_id'])
+  paper_dir = os.path.join(gdirpath, arxiv_id)
   paper_tasks = get_task_yaml_for_paper(arxiv_id, paper_dir)
   task_id_map = {} #stores task_name -> index in paper_tasks yaml
 
