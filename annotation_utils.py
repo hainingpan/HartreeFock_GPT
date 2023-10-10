@@ -135,8 +135,9 @@ def expand_promptdf_to_placeholderdf(df, index_row, gdirpath):
   task_id_map = {} #stores task_name -> index in paper_tasks yaml
 
   for it, elem in enumerate(paper_tasks):
-    task_id_map[elem['task']]= it
-  relevant_task = paper_tasks[task_id_map[df.iloc[index_row]['task']]]
+    if 'task' in elem:
+        task_id_map[elem['task']]= it
+      relevant_task = paper_tasks[task_id_map[df.iloc[index_row]['task']]]
 
   keys = []
   values = []
