@@ -40,6 +40,7 @@
     kinetic_symbol:
     definition_of_variables:
     You should ensure the hermiticity of the Hamiltonian: A
+    # Due to unclear instructions to LLM.
 
 - task: Define each term in Kinetic Hamiltonian (continuum version)
   placeholder:
@@ -49,10 +50,12 @@
     momentum_shift:
     k_symbol:
     shifted_Ek: A
+    # Placeholder not descriptive: Ek not standard to infer as dispersion. 
     r_symbol:
     kinetic_symbol:
     definition_of_variables:
     In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.: A
+    # Due to unclear instructions to LLM.
 
 - task: Construct Potential Hamiltonian (continuum version)
   placeholder:
@@ -69,8 +72,8 @@
   placeholder:
     potential_symbol: A
     Potential_variables: A
-    expression_diag:
-    expression_offdiag:
+    expression_diag: A 
+    expression_offdiag: A
     expression_Potential: A
     definition_of_variables:
 
@@ -191,7 +194,7 @@
   
 - task: Swap the index only
   placeholder:
-    Hartree_Fock_second_quantized_symbol:
+    Hartree_Fock_second_quantized_symbol: A
     expected_value: A
     expression_Hartree_1: A
     expression_Hartree_2: A
@@ -200,7 +203,7 @@
 
   - task: Swap the index to combine Hartree and Fock terms
   placeholder:
-    Hartree_Fock_second_quantized_symbol:
+    Hartree_Fock_second_quantized_symbol: A
     expected_value: A
     expression_Hartree_1: A
     expression_Hartree_2: A
@@ -232,7 +235,7 @@
 
 - task: Combine the Hartree and Fock term
   placeholder:
-    symbol:
+    symbol: A
     Hartree: A
     Fock: A
     swap rule: A
