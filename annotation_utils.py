@@ -127,10 +127,10 @@ def make_placeholderdf_for_paper(gdirpath, arxiv_id, task_templates):
   return pd.concat(taskwise_df)
 
 
-def expand_promptdf_to_placeholderdf(df, index_row):
+def expand_promptdf_to_placeholderdf(df, index_row, gdirpath):
   gt_dict = json.loads(df.iloc[index_row]['gt_mapping'])
   arxiv_id = str(df.iloc[index_row]['arxiv_id'])
-  paper_tasks = get_task_yaml_for_paper(arxiv_id, path)
+  paper_tasks = get_task_yaml_for_paper(arxiv_id, gdirpath)
   task_id_map = {} #stores task_name -> index in paper_tasks yaml
 
   for it, elem in enumerate(paper_tasks):
