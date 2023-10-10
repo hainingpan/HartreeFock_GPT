@@ -1,0 +1,244 @@
+# This file classifies all task+placeholder combinations that appear in the prompt annotations, for filtering in the analysis.
+# We use the label A = ambiguous to denote combinations that a human annotator might find ambiguous / challenging to infer and leave blank if it is reasonable for evaluation.
+# For some task+placeholder combinations, I leave a comment on the line that follows.
+
+- task: Construct Kinetic Hamiltonian (continuum version, single-particle)
+  placeholder:
+    system: 
+    real|momentum: 
+    single-particle|second-quantized: A
+    # Not a mutually exclusive categorization / terminology
+    degrees_of_freedom: 
+    kinetic_symbol:
+    variable: A
+    order:
+    definition_of_variables:
+    Note that the sublattice degrees of freedom is suppressed for now and will be stated later: A
+    # Due to unclear instructions to LLM.
+
+- task: Construct Kinetic Hamiltonian (continuum version, second-quantized)
+  placeholder:
+    system:
+    real|momentum:
+    single-particle|second-quantized: A
+    degrees_of_freedom:
+    kinetic_symbol:
+    dispersion_symbol: A
+    annihilation_op:
+    creation_op:
+    k|r:
+    entire_space|first_Brillouin_zone:
+    definition_of_variables:
+
+- task: Construct Kinetic Hamiltonian (lattice version)
+  placeholder:
+    system:
+    real|momentum:
+    single-particle|second-quantized: A
+    degrees_of_freedom: 
+    site i and site j with the amplitude hopping:
+    kinetic_symbol:
+    definition_of_variables:
+    You should ensure the hermiticity of the Hamiltonian: A
+    # Due to unclear instructions to LLM.
+
+- task: Define each term in Kinetic Hamiltonian (continuum version)
+  placeholder:
+    Energy_dispersion: A
+    parabolic|Dirac|cos:
+    electrons|holes:
+    momentum_shift:
+    k_symbol:
+    shifted_Ek: A
+    # Placeholder not descriptive: Ek not standard to infer as dispersion. 
+    r_symbol:
+    kinetic_symbol:
+    definition_of_variables:
+    In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.: A
+    # Due to unclear instructions to LLM.
+
+- task: Construct Potential Hamiltonian (continuum version)
+  placeholder:
+    potential_symbol: A
+    # Because some papers did not explicitly have a symbol and/or mixed kinetic and potential terms in noninteracting Hamiltonian
+    real|momentum:
+    single-particle|second-quantized: A
+    diagonal_potential:
+    interaction_degrees_of_freedom:
+    offdiagonal_potential:
+    definition_of_variables:
+    
+- task: Define each term in Potential Hamiltonian (continuum version)
+  placeholder:
+    potential_symbol: A
+    Potential_variables: A
+    expression_diag: A 
+    expression_offdiag: A
+    expression_Potential: A
+    definition_of_variables:
+
+- task: Construct interaction Hamiltonian (real space, lattice version)
+  placeholder:
+    second_int_symbol: A
+    # Placeholder description not sufficiently descriptive
+    kinetic_symbol:
+    site i and site j with the interaction strength:
+    degrees_of_freedom:
+    density_symbol: A
+    definition_of_variables:
+
+- task: Construct interaction Hamiltonian (momentum space)
+  placeholder:
+    second_int_symbol: A
+    index_of_operator: A
+    # Placeholder description not sufficiently descriptive
+    momentum:
+    interaction:
+    int_form:
+    normalization_factor:
+    op: A
+    # Placeholder description not sufficiently descriptive
+    definition_of_variables:
+    For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$: A
+
+- task: Convert from single-particle to second-quantized form, return in matrix
+  placeholder:
+    real|momentum:
+    nonint_symbol: A
+    # Placeholder description not sufficiently descriptive
+    kinetic_symbol:
+    potential_symbol:
+    $r$|$k$:
+    second_nonint_symbol: A
+    # Placeholder description not sufficiently descriptive
+    definition_of_variables:    
+
+- task: Convert from single-particle to second-quantized form, return in summation (expand the matrix)
+  placeholder:
+    second_nonint_symbol: A
+    matrix_element_symbol: A
+    basis_symbol: A
+    definition_of_variables:
+  
+- task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
+  placeholder:
+    nonint_symbol: A
+    real_creation_op:
+    momentum_creation_op:
+    definition_of_Fourier_Transformation:
+    real_variable:
+    definition_of_variables: 
+    Note that hopping have no position dependence now.: A
+
+- task: Convert noninteracting Hamiltonian in real space to momentum space (continuum version)
+
+- task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
+  placeholder:
+    second_int_symbol: A
+    single-particle|second-quantized: A
+    real_creation_op:
+    momentum_creation_op:
+    definition_of_Fourier_Transformation:
+    real_variable:
+    momentum_var:
+    Note that interaction have no position dependence now: A
+
+- task: Particle-hole transformation
+  placeholder:
+    hole_op:
+    particle_op:
+    particle_creation_op:
+    hole_creation_op:
+    particle_annihilation_op:
+    hole_annihilation_op:
+    second_nonint_symbol: A
+    definition_of_variables:
+    expression_particle_Ham: A
+    # Placeholder description not sufficiently descriptive
+
+- task: Simplify the Hamiltonian in the particle-hole basis
+  placeholder:
+    second_nonint_symbol: A
+    hole_op: A
+    index_1: A
+    index_2: A
+    op: A
+    Ham_op: A
+    definition_of_variables:
+    expression_hole_Ham: A
+    
+- task: Wick's theorem
+  placeholder:
+    second_int_symbol:
+    # Left the above because it's place in the template seems descriptive
+    Hartree_Fock_symbol:
+    definition_of_variables:
+  
+- task: Extract quadratic term
+  placeholder:
+    Hartree_Fock_term_symbol:
+    bilinear_op: A
+    # Placeholder description could be more descriptive
+    Hartree_Fock_second_quantized_symbol: A
+    definition_of_variables:
+
+- task: Hartree term only (NOT SURE THIS APPEARS)
+
+- task: Fock term only (NOT SURE THIS APPEARS)
+  
+- task: Expand interaction
+  placeholder:
+    Hartree_Fock_second_quantized_symbol: A
+    momentum:
+    expression_HF_2: A
+  
+- task: Swap the index only
+  placeholder:
+    Hartree_Fock_second_quantized_symbol: A
+    expected_value: A
+    expression_Hartree_1: A
+    expression_Hartree_2: A
+    relabel: A
+    Unsummed_Indices: A
+
+  - task: Swap the index to combine Hartree and Fock terms
+  placeholder:
+    Hartree_Fock_second_quantized_symbol: A
+    expected_value: A
+    expression_Hartree_1: A
+    expression_Hartree_2: A
+
+- task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
+  placeholder:
+    Hartree_second_quantized_symbol: A
+    # Because many papers did not split into Hartree and Fock terms separately
+    expected_value: A
+    expected_value_nonzero: A
+
+- task: Reduce momentum in Hartree term (momentum in BZ)
+  placeholder:
+    Hartree_second_quantized_symbol: A
+    expected_value: A
+    expected_value_nonzero: A
+
+- task: Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
+  placeholder:
+    Fock_second_quantized_symbol: A
+    expected_value: A
+    expected_value_nonzero: A
+
+- task: Reduce momentum in Fock term (momentum in BZ)
+  placeholder:
+    Fock_second_quantized_symbol: A
+    expected_value: A
+    expected_value_nonzero: A
+
+- task: Combine the Hartree and Fock term
+  placeholder:
+    symbol: A
+    Hartree: A
+    Fock: A
+    swap rule: A
+    # Placeholder not sufficiently descriptive
+
+    
