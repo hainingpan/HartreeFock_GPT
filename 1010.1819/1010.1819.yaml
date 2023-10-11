@@ -78,7 +78,8 @@
       - [138,169]
   placeholder:
     Energy_dispersion:
-      LLM: {H}_0
+      LLM: |
+        {H}_0
       human: $\gamma_0$, $\gamma_1$, $\gamma_3$, $\gamma_4$ and f
       score: 
         Haining: 0
@@ -239,7 +240,8 @@
       - [122,169]
   placeholder:
     second_nonint_symbol:
-      LLM: {H}_0
+      LLM: |
+        {H}_0
       human: $\hat{H}_0$
       score: 
         Haining: 1
@@ -247,14 +249,16 @@
         Yasaman: 1
         # partial credit
     matrix_element_symbol:
-      LLM: {gamma_i} 
+      LLM: |
+        {gamma_i} 
       human: 
       score: 
         Haining: 2
         Will: 
         Yasaman: 2
     basis_symbol:
-      LLM: {\psi_{{\bf k}\kappa}}
+      LLM: |
+        {\psi_{{\bf k}\kappa}}
       human: 
       score: 
         Haining: 2
