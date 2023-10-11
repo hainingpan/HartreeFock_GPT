@@ -133,7 +133,8 @@
         Will: 
         Yasaman: 2
     kinetic_symbol:
-      LLM: {H}_0
+      LLM: |
+        {H}_0
       human: 
       score: 
         Haining: 2
@@ -174,7 +175,8 @@
         for the strain Hamiltonian becomes inaccurate, by setting  
         $k_r = \gamma_1 / \hbar \upsilon_F = 0.0573 \AA^{-1}$.}
 
-      human: ?
+      human: |
+        ?
       score: 
         Haining: 0(?)
         Will: 
