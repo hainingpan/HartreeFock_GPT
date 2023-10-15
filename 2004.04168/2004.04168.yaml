@@ -65,6 +65,14 @@
         Yasaman: 2
         # N/A, this is not a task, remove from biasing the score.
   answer: $$\hat{H}_{Kinetic} = \sum_{R_i, R_j} \sum_{s=\uparrow,\downarrow} t_s(R_i - R_j) \, c_{s}^\dagger(R_i) c_{s}(R_j)$$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 1
+    # A minus sign before hopping amplitude
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source:
     2004.04168.tex:
@@ -118,6 +126,13 @@
         Yasaman: 2
         # Surprising that it knows to leave out the kinetic term
   answer: $$\hat{H}^{int} = \frac{1}{2} \sum_{R_i, R_j} \sum_{s, s'=\uparrow,\downarrow} U(R_i - R_j) \, n_{s}(R_i) n_{s'}(R_j)$$
+  score:
+    in_paper: 1
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
 # Note the example in the prompt template is close to the example in the paper, hence this is closer to 1-shot.
 # Why does LLM leave so many blanks?
@@ -181,6 +196,13 @@
     expression_nonint:
       human: $$\hat{H}_{Kinetic} = \sum_{R_i, R_j} \sum_{s=\uparrow,\downarrow} t_s(R_i - R_j) \, c_{s}^\dagger(R_i) c_{s}(R_j)$$
   answer: $\hat{H}_{Kinetic} = \sum_{s, k} E_s(k) c^\dagger_s(k)  c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source:
     2004.04168.tex:
@@ -246,7 +268,14 @@
         # N/A, this is not a task and remove from biasing the score.
     expression_int:
       human: $$\hat{H}^{int} = \frac{1}{2} \sum_{R_i, R_j} \sum_{s, s'=\uparrow,\downarrow} U(R_i - R_j) \, n_{s}(R_i) n_{s'}(R_j)$$
-  answer: $$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4}  U(k_1-k_4) c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4) \sum_{G} \delta(k_1-k_4+k_2-k_3,G)$$
+  answer: $$\hat{H}^{int} = \frac{1}{2N} \sum_{s, s'} \sum_{k_1, k_2, k_3, k_4} U(k_1 - k_4) c_s^\dagger(k_1) c_{s'}^\dagger(k_2) c_{s'}(k_3) c_s(k_4) \sum_G \delta(k_1-k_4+k_2-k_3, G)$$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Wick's theorem
   source:
     2004.04168.tex:
@@ -276,8 +305,16 @@
         Will:
         Yasaman: 0
     expression_int:
-      human: $$\hat{H}^{int}=\frac{1}{N}\sum_{s,s'}\sum_{k_1,k_2,k_3,k_4}  U(k_1-k_4) c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4) \sum_{G} \delta(k_1-k_4+k_2-k_3,G)$$
+      human: $$\hat{H}^{int} = \frac{1}{2N} \sum_{s, s'} \sum_{k_1, k_2, k_3, k_4} U(k_1 - k_4) c_s^\dagger(k_1) c_{s'}^\dagger(k_2) c_{s'}(k_3) c_s(k_4) \sum_G \delta(k_1-k_4+k_2-k_3, G)$$
   answer: $$\hat{H}^{int,HF} = \frac{1}{2N} \sum_{s, s'} \sum_{k_1, k_2, k_3, k_4} U(k_1 - k_4) \left( \langle c_s^\dagger(k_1) c_s(k_4) \rangle c_{s'}^\dagger(k_2) c_{s'}(k_3) + \langle c_{s'}^\dagger(k_2) c_{s'}(k_3) \rangle c_s^\dagger(k_1) c_s(k_4) - \langle c_s^\dagger(k_1) c_s(k_4) \rangle \langle c_{s'}^\dagger(k_2) c_{s'}(k_3) \rangle \\ - \langle c_s^\dagger(k_1) c_{s'}(k_3) \rangle c_{s'}^\dagger(k_2) c_s(k_4) - \langle c_{s'}^\dagger(k_2) c_s(k_4) \rangle c_s^\dagger(k_1) c_{s'}(k_3) + \langle c_s^\dagger(k_1) c_{s'}(k_3) \rangle \langle c_{s'}^\dagger(k_2) c_s(k_4) \rangle \right) \sum_G \delta(k_1-k_4+k_2-k_3, G).$$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 1
+    # The final step is not correct.
 - task: Extract quadratic term
   source:
     2004.04168.tex:
@@ -317,6 +354,14 @@
     expression_HF:
       human: $$\hat{H}^{int,HF} = \frac{1}{2N} \sum_{s, s'} \sum_{k_1, k_2, k_3, k_4} U(k_1 - k_4) \left( \langle c_s^\dagger(k_1) c_s(k_4) \rangle c_{s'}^\dagger(k_2) c_{s'}(k_3) + \langle c_{s'}^\dagger(k_2) c_{s'}(k_3) \rangle c_s^\dagger(k_1) c_s(k_4) - \langle c_s^\dagger(k_1) c_s(k_4) \rangle \langle c_{s'}^\dagger(k_2) c_{s'}(k_3) \rangle  - \langle c_s^\dagger(k_1) c_{s'}(k_3) \rangle c_{s'}^\dagger(k_2) c_s(k_4) - \langle c_{s'}^\dagger(k_2) c_s(k_4) \rangle c_s^\dagger(k_1) c_{s'}(k_3) + \langle c_s^\dagger(k_1) c_{s'}(k_3) \rangle \langle c_{s'}^\dagger(k_2) c_s(k_4) \rangle \right) \sum_G \delta(k_1-k_4+k_2-k_3, G).$$
   answer: $\hat{H}^{int,HF,2} = \frac{1}{2N} \sum_{s, s'} \sum_{k_1, k_2, k_3, k_4} U(k_1 - k_4) \left( \langle c_s^\dagger(k_1) c_s(k_4) \rangle c_{s'}^\dagger(k_2) c_{s'}(k_3) + \langle c_{s'}^\dagger(k_2) c_{s'}(k_3) \rangle c_s^\dagger(k_1) c_s(k_4) - \langle c_s^\dagger(k_1) c_{s'}(k_3) \rangle c_{s'}^\dagger(k_2) c_s(k_4) - \langle c_{s'}^\dagger(k_2) c_s(k_4) \rangle c_s^\dagger(k_1) c_{s'}(k_3) \right) \sum_G \delta(k_1-k_4+k_2-k_3, G)$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 1
+    physics_logic: 1
+    math_derivation: 2
+    final_answer_accuracy: 1
+    # It additionally throw out the Fock term
 - task: Construct full Hamiltonian after HF
   source:
     2004.04168.tex:
@@ -373,3 +418,10 @@
         Will:
         Yasaman:
   answer: $$\n\hat{H}^{HF} = \sum_{s, k} E_s(k) c_s^{\dagger}(k) c_s(k) + \frac{1}{2N} \sum_{s, s'} \sum_{k_1, k_2, k_3, k_4} U(k_1 - k_4) \left( \langle c_s^\dagger(k_1) c_s(k_4) \rangle c_{s'}^\dagger(k_2) c_{s'}(k_3) + \langle c_{s'}^\dagger(k_2) c_{s'}(k_3) \rangle c_s^\dagger(k_1) c_s(k_4) - \langle c_s^\dagger(k_1) c_s(k_4) \rangle \langle c_{s'}^\dagger(k_2) c_{s'}(k_3) \rangle \\ - \langle c_s^\dagger(k_1) c_{s'}(k_3) \rangle c_{s'}^\dagger(k_2) c_s(k_4) - \langle c_{s'}^\dagger(k_2) c_s(k_4) \rangle c_s^\dagger(k_1) c_{s'}(k_3) + \langle c_s^\dagger(k_1) c_{s'}(k_3) \rangle \langle c_{s'}^\dagger(k_2) c_s(k_4) \rangle \right) \sum_G \delta(k_1-k_4+k_2-k_3, G).\n$$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
