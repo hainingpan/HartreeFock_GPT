@@ -162,7 +162,7 @@
         Haining: 2
         Will: 
         Yasaman: 2
-    In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.:
+    In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.:
       LLM: True
       human: 
       score: 

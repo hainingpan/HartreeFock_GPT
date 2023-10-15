@@ -182,7 +182,7 @@
         Will: 
         Yasaman: 0
         # due to too much information – beginning is correct
-    In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.:
+    In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.:
       LLM: True
       human: False
       score: 

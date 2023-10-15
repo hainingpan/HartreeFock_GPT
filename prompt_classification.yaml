@@ -54,7 +54,7 @@
     r_symbol:
     kinetic_symbol:
     definition_of_variables:
-    In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.: A
+    In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.: A
     # Due to unclear instructions to LLM.
 
 - task: Construct Potential Hamiltonian (continuum version)
