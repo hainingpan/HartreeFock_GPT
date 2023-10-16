@@ -107,10 +107,10 @@
         Will: 
         Yasaman: 2
     definition_of_variables:
-      LLM: 2
+      LLM: $\bm{R}_i$ represents the position of site $i$ in a triangular lattice formed in the moir\'e pattern, $s$ is the spin index, $U(\bm{R}_i-\bm{R}_j)$ is the interaction strength, $n_{i,s}$ is the binary occupancy number of site $i$, and $c_{i,s}^\dagger$ represents the hole operator.
       human: 
       score: 
-        Haining: $\bm{R}_i$ represents the position of site $i$ in a triangular lattice formed in the moir\'e pattern, $s$ is the spin index, $U(\bm{R}_i-\bm{R}_j)$ is the interaction strength, $n_{i,s}$ is the binary occupancy number of site $i$, and $c_{i,s}^\dagger$ represents the hole operator.
+        Haining: 2
         Will: 
         Yasaman: 0
   

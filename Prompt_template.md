@@ -74,9 +74,9 @@ Use the following conventions for the symbols:
 **Prompt:**  
 You will be instructed to construct each term, namely {Energy_dispersion}.  
 For all energy dispersions, {Energy_dispersion}, it characterizes the {parabolic|Dirac|cos} dispersion for {electrons|holes}.   
-[In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.]  
+[In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.]  
 You should follow the EXAMPLE below to obtain correct energy dispersion, select the correct EXAMPLE by noticing the type of dispersion.  
-Finally, in the real space, the momentum ${k_symbol}=-i \partial_{r_symbol}$. You should keep the form of ${k_symbol}$ in the Hamiltonian for short notations but should remember ${k_symbol}$ is an operator.  
+Finally, in the real space, the momentum ${k_symbol}=-i \partial_{{{r_symbol}}}$. You should keep the form of ${k_symbol}$ in the Hamiltonian for short notations but should remember ${k_symbol}$ is an operator.  
 You should recall that {expression_kinetic}.    
 Return the expression for {Energy_dispersion} in the Kinetic Hamiltonian, and substitute it into the Kinetic Hamiltonian {kinetic_symbol}.  
 

@@ -10,49 +10,51 @@
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     real|momentum:
       LLM: real
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     single-particle|second-quantized:
       LLM: second-quantized
       human: single-particle
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
+        # placeholder needs to be modified or question filtered - scored based 
+        # on no second quantized operators appearing in excerpt 
     degrees_of_freedom:
       LLM: intralayer and interlayer moiré potentials, moiré reciprocal lattice vectors, mBZ corners, effective mass, and out-of-plane electric field.
       human: valley index ($\tau$) and layer index ($l$)
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     kinetic_symbol:
       LLM: H_K
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     variable:
       LLM: variables
       human: $E_{+K,t}$ ,  $E_{+K,b}$ , $E_{-K,t}$ ,  $E_{-K,b}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     order:
       LLM: the matrix provided.
       human: (+K,b), (+K,t), (-K,b), (-K,t)
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     definition_of_variables:
       LLM: |
         - $\Delta_{b/t}$ represents the intralayer and interlayer moiré potentials
@@ -64,14 +66,15 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     Note that the sublattice degrees of freedom is suppressed for now and will be stated later:
       LLM: True
       human: False
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # remove from scoring
     
 - task: Define each term in Kinetic Hamiltonian (continuum version)
   source:
@@ -84,70 +87,73 @@
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # reasonable answer given that dispersion not referenced directly
     parabolic|Dirac|cos:
       LLM: parabolic
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     electrons|holes:
       LLM: electrons
       human: holes
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     momentum_shift:
       LLM: $\bm{\kappa}_+$ and $\bm{\kappa}_-$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     k_symbol:
       LLM: $\bm{k}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     shifted_Ek:
       LLM: $-\frac{\hbar^2(\bm{k}-\bm{\kappa}_+)^2}{2m^*} + \Delta_b(\bm{r})$ and $-\frac{\hbar^2(\bm{k}-\bm{\kappa}_-)^2}{2m^*} + \Delta_t(\bm{r})$
       human: $-\frac{\hbar^2(\bm{k}-\bm{\kappa}_+)^2}{2m^*}$ and $-\frac{\hbar^2(\bm{k}-\bm{\kappa}_-)^2}{2m^*}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # reasonable answer
     r_symbol:
       LLM: \bm{r}}
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     kinetic_symbol:
       LLM: $H_K$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: $\bm{k}$ is the momentum, $\bm{\kappa}_+$ and $\bm{\kappa}_-$ are the mBZ corners, $m^*$ is the effective mass and is taken as $0.6 m_e$, where $m_e$ is the free electron mass, $\Delta_b(\bm{r})$ and $\Delta_t(\bm{r})$ are the intralayer and interlayer moir\'e potentials, respectively, $\bm{G}_i$ are moir\'e reciprocal lattice vectors with $a_M$ being the moir\'e lattice constant, $\Delta_D$ is the layer-differentiating potential included in $H_K$ to take into account the out-of-plane electric field.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
-    In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.:
+        Yasaman: 2
+    In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.:
       LLM: True
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # remove from scoring
     
 - task: Construct Potential Hamiltonian (continuum version)
   source:
@@ -160,49 +166,54 @@
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # challenging for LLM given symbol does not appear in excerpt
     real|momentum:
       LLM: real
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     single-particle|second-quantized:
       LLM: second-quantized
       human: single-particle
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
+        # filter this question later
     diagonal_potential:
       LLM: $\Delta_b(\bm{r})$ and $\Delta_t(\bm{r})$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # impressive
     interaction_degrees_of_freedom:
       LLM: the intralayer and interlayer moir\'e potentials
-      human: 
+      human: layer index $l$ and valley index $\tau$
       score: 
-        Haining: 2
+        Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
+        # potentials not DOF?
     offdiagonal_potential:
       LLM:  $\Delta_T(\bm{r})$ and $\Delta_T^{\dagger}(\bm{r})$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # impressive
     definition_of_variables:
       LLM: The intralayer and interlayer moir\'e potentials are $\Delta_{b/t}=2V\sum_{i=1,3,5}\cos(\bm{G}_i\cdot\bm{r}\pm\phi)$ and $\Delta_T = w(1+e^{-i \bm{G}_2 \cdot \bm{r}} + e^{-i \bm{G}_3 \cdot \bm{r}})$, respectively. $\bm{G}_i = \frac{4\pi}{\sqrt{3} a_M }(\cos\frac{i-1}{3}\pi, \sin\frac{i-1}{3}\pi)$ are moir\'e reciprocal lattice vectors with $a_M$ being the moir\'e lattice constant. $\bm{\kappa}_+ = 2\bm{G}_1 / 3 - \bm{G}_2 / 3$ and $\bm{\kappa}_- = \bm{G}_1 / 3 + \bm{G}_2 / 3$ are the mBZ corners. $m^*$ is the effective mass and is taken as $0.6 m_e$, where $m_e$ is the free electron mass. Layer-differentiating potential proportional to $\Delta_D$ is included in $H_K$ to take into account the out-of-plane electric field. For $K'$ valley, the continuum model Hamiltonian can be deduced by acting time reversal operator on $H_K$.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
      
 - task: Define each term in Potential Hamiltonian (continuum version)
   source:
@@ -215,35 +226,36 @@
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # challenging for LLM given symbol does not appear in excerpt
     Potential_variables:
       LLM: $\Delta_{b/t}$, $\Delta_T$, and $\Delta_D$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expression_diag:
       LLM: $-\frac{\hbar^2(\bm{k}-\bm{\kappa}_+)^2}{2m^*} + \Delta_b(\bm{r})$ and $-\frac{\hbar^2(\bm{k}-\bm{\kappa}_-)^2}{2m^*} + \Delta_t(\bm{r})$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expression_offdiag:
       LLM: $\Delta_T(\bm{r})$ and $\Delta_T^{\dagger}(\bm{r})$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: $\Delta_{b/t}=2V\sum_{i=1,3,5}\cos(\bm{G}_i\cdot\bm{r}\pm\phi)$, $\Delta_T = w(1+e^{-i \bm{G}_2 \cdot \bm{r}} + e^{-i \bm{G}_3 \cdot \bm{r}})$, $\bm{G}_i = \frac{4\pi}{\sqrt{3} a_M }(\cos\frac{i-1}{3}\pi, \sin\frac{i-1}{3}\pi)$, $\bm{\kappa}_+ = 2\bm{G}_1 / 3 - \bm{G}_2 / 3$, $\bm{\kappa}_- = \bm{G}_1 / 3 + \bm{G}_2 / 3$, $m^* = 0.6 m_e$, and $\Delta_D$ is the layer-differentiating potential.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     
 - task: Convert from single-particle to second-quantized form, return in matrix
   source:
@@ -256,49 +268,54 @@
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # ambiguous from excerpt
     nonint_symbol:
       LLM: $H_K$
       human: $H_0$
       score: 
         Haining: 1
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # seems reasonable
     kinetic_symbol:
       LLM: $-\frac{\hbar^2(\bm{k}-\bm{\kappa}_+)^2}{2m^*} + \Delta_b(\bm{r})$
       human: $H_K$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # partial credit
     potential_symbol:
       LLM: $\Delta_T(\bm{r})$
       human: $H_P$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # reasonable, partial credit
     $r$|$k$:
       LLM: $k$
       human: $r$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # either seems reasonable
     second_nonint_symbol:
       LLM: 
       human: $\hat{H}_0$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     definition_of_variables:
       LLM: $H_K$ is the noninteracting Hamiltonian in the momentum space, $-\frac{\hbar^2(\bm{k}-\bm{\kappa}_+)^2}{2m^*} + \Delta_b(\bm{r})$ is the Kinetic Hamiltonian, $\Delta_T(\bm{r})$ is the Potential Hamiltonian, and $k$ is the momentum space position.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     
 - task: Convert from single-particle to second-quantized form, return in summation (expand the matrix)
   source:
@@ -311,28 +328,30 @@
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # reasonable
     matrix_element_symbol:
       LLM: $\Delta_{b/t}$, $\Delta_T$, $\Delta_D$,
       human: $H_0$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # reasonable
     basis_symbol:
       LLM: $\bm{G}_i$
       human: $\psi_{\tau,l}(r)$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     definition_of_variables:
       LLM: The intralayer and interlayer moiré potentials are represented by $\Delta_{b/t}=2V\sum_{i=1,3,5}\cos(\bm{G}_i\cdot\bm{r}\pm\phi)$ and $\Delta_T = w(1+e^{-i \bm{G}_2 \cdot \bm{r}} + e^{-i \bm{G}_3 \cdot \bm{r}})$, respectively. $\bm{G}_i = \frac{4\pi}{\sqrt{3} a_M }(\cos\frac{i-1}{3}\pi, \sin\frac{i-1}{3}\pi)$ are moiré reciprocal lattice vectors with $a_M$ being the moiré lattice constant. $\bm{\kappa}_+ = 2\bm{G}_1 / 3 - \bm{G}_2 / 3$ and $\bm{\kappa}_- = \bm{G}_1 / 3 + \bm{G}_2 / 3$ are the mBZ corners. $m^*$ is the effective mass and is taken as $0.6 m_e$, where $m_e$ is the free electron mass. Layer-differentiating potential proportional to $\Delta_D$ is included in $H_K$ to take into account the out-of-plane electric field.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
 
 - task: Convert noninteracting Hamiltonian in real space to momentum space (continuum version)
   source:
@@ -345,42 +364,42 @@
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     momentum_creation_op:
       LLM: 
       human: $\psi_{\tau,l}(k)$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     definition_of_Fourier_Transformation:
       LLM: 
       human: $\psi_{\tau,l}^\dagger(k)= \frac{1}{\sqrt{A}} \int dr \psi_{\tau,l}^\dagger(r) e^{i k \cdot r}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     real_variable:
       LLM: 
       human: r
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     entire_real|first_Brillouin_Zone:
       LLM: 
       human: entire real space
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     second_nonint_symbol:
       LLM: 
       human: $\hat{H}_0$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     definition_of_variables:
       LLM: 
       human: |
@@ -390,7 +409,7 @@
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
 
 - task: Construct interaction Hamiltonian (momentum space)
   source:
@@ -403,63 +422,65 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     index_of_operator:
       LLM: 
       human: l,\tau
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # seems reasonable -- why discrepancy? 
     momentum:
       LLM: momentum
       human: k
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     interaction:
       LLM: Coulomb interaction
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     int_form:
       LLM: $V_{ll'}(\bm{q}) = \frac{e^2}{2\epsilon\epsilon_0 |\bm{q}|} \left[\tanh(d_{\rm gate}|\bm{q}|) + (1-\delta_{ll'})(e^{-d |\bm{q}|}-1)\right]$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     normalization_factor:
       LLM: $\frac{1}{2A}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     op:
       LLM: $c_{l \tau \bm{k}+\bm{q}}^{\dagger}$, $c_{l' \tau' \bm{k}' -\bm{q}}^{\dagger}$, $c_{l' \tau' \bm{k}'}$ and $c_{l \tau\bm{k}}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     definition_of_variables:
       LLM: $A$ is the area of the system, $l$ and $l'$ label layers and $\tau$ and $\tau'$ label valleys. $\epsilon$ is the relative dielectric constant, $\epsilon_0$ is the vacuum permittivity, $d_{\rm gate}$ is the distance between the sample and the symmetric metal gate, and $d$ is the distance between the two monolayers.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$:
       LLM: False
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # remove from scoring
 
 - task: Wick's theorem
   source:
@@ -472,21 +493,22 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     Hartree_Fock_symbol:
       LLM: 
       human: $H_{\rm int}^{MF}$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
+        # challenging, does not appear in the excerpt
     definition_of_variables:
       LLM: $H_{\rm int}$ is the interaction term, $A$ is the area of the system, $l$ and $l'$ label layers, $\tau$ and $\tau'$ label valleys, $\bm{k}$, $\bm{k}'$, and $\bm{q}$ are wave vectors, $V_{ll'}(\bm{q})$ is the Coulomb interaction, $c_{l \tau \bm{k}+\bm{q}}^{\dagger}$ and $c_{l' \tau' \bm{k}' -\bm{q}}^{\dagger}$ are creation operators, and $c_{l' \tau' \bm{k}'}$ and $c_{l \tau\bm{k}}$ are annihilation operators.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
 
 - task: Extract quadratic term
   source:
@@ -499,28 +521,29 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     bilinear_op:
       LLM: $c_{l \tau \bm{k}+\bm{q}}^{\dagger} c_{l' \tau' \bm{k}' -\bm{q}}^{\dagger} c_{l' \tau' \bm{k}'} c_{l \tau\bm{k}}$
       human: $c^\dagger c$
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     Hartree_Fock_second_quantized_symbol:
       LLM: $H_{\rm int}^{(2)}$
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
+        # reasonable since symbol doesn't appear explicitly
     definition_of_variables:
       LLM: $H_{\rm int}$ is the interaction Hamiltonian, $A$ is the area of the system, $l$ and $l'$ label layers, $\tau$ and $\tau'$ label valleys, $\bm{k}$, $\bm{k}'$, and $\bm{q}$ are wave vectors, $V_{ll'}(\bm{q})$ is the Coulomb interaction, $c_{l \tau \bm{k}+\bm{q}}^{\dagger}$ and $c_{l' \tau' \bm{k}' -\bm{q}}^{\dagger}$ are creation operators, and $c_{l' \tau' \bm{k}'}$ and $c_{l \tau\bm{k}}$ are annihilation operators.
       human: 
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
 
 - task: Expand interaction
   source:
@@ -533,14 +556,15 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     momentum:
       LLM: $\bm{k}$ and $\bm{k}'$
       human: q
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 1
+        # reasonable as placeholders for “momentum,” even though not correct in template – partial credit
 
 - task: Swap the index to combine Hartree and Fock terms
   source:
@@ -553,28 +577,29 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expected_value:
       LLM: 
       human: \expval{c_{l,\tau,k+q}^\dagger c_{l,\tau,k}}
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     expression_Hartree_1:
       LLM: 
       human: \expval{c_{l,\tau,k+q}^\dagger c_{l,\tau,k}} c_{l',\tau',k'-q}^\dagger c_{l,\tau,k}
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     expression_Hartree_2:
       LLM: 
       human: \expval{c_{l',\tau',k'-q}^\dagger c_{l,\tau,k}} c_{l,\tau,k+q}^\dagger c_{l,\tau,k}
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
+        # excerpt does not have much information about HF for this template
 
 - task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
   source:
@@ -587,21 +612,21 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
+        Yasaman: 2
     expected_value:
       LLM: $\langle\dots\rangle$
       human: \expval{c_{l,\tau,k+q}^\dagger c_{l,\tau,k}}
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     expected_value_nonzero:
       LLM: $\langle c_{l \tau \bm{k}+\bm{q}}^{\dagger} c_{l' \tau' \bm{k}' -\bm{q}}^{\dagger} c_{l' \tau' \bm{k}'} c_{l \tau\bm{k}}\rangle$
       human: \expval{c_{l,\tau,k}^\dagger c_{l',\tau',k'}} =\delta{l,l'}\delta{\tau,\tau'},\delta{k,k'}
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
 
 - task: Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
   source:
@@ -614,19 +639,19 @@
       score: 
         Haining: 2
         Will: 
-        Yasaman: 
-    expected_value:
+        Yasaman: 2
+    expected_value: 
       LLM: $\langle\dots\rangle$
       human: \expval{c_{l,\tau,k+q}^\dagger c_{l',\tau',k'}}
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
     expected_value_nonzero:
       LLM: $\langle\dots\rangle \neq 0$
       human: \expval{c_{l,\tau,k+q}^\dagger c_{l',\tau',k'}}=\delta_{l,l'}\delta{\tau,\tau'}\delta{k+q,k}
       score: 
         Haining: 0
         Will: 
-        Yasaman: 
+        Yasaman: 0
 

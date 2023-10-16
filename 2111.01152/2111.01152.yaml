@@ -78,6 +78,15 @@
         Haining: 2
         Will: 1
         Yasaman: 2
+  answer: $H_{Kinetic}(r) = \begin{pmatrix} E_{+K,b} & 0 & 0 & 0 \\ 0 & E_{+K,t} & 0 & 0 \\ 0 & 0 & E_{-K,b} & 0 \\ 0 & 0 & 0 & E_{-K,t} \end{pmatrix}$
+  score:
+    in_paper: 1
+    prompt_quality: 1
+    follow_instructions: 1
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 1
+    # bottom layer does not have a shift of Kappa, but this may be also due to the unclear instruction (so 1 point drop for `prompt_quality`)
 - task: Define each term in Kinetic Hamiltonian (continuum version)
   source:
     2111.01152.tex:
@@ -90,28 +99,28 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     parabolic|Dirac|cos:
       LLM: parabolic
       human:
       score:
         Haining: 2
-        Will:
+        Will: 0
         Yasaman: 2
     electrons|holes:
       LLM: electrons
       human: holes
       score:
         Haining: 0
-        Will:
+        Will: 0
         Yasaman: 0
-    In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.:
+    In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.:
       LLM: true
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
         # check
     momentum_shift:
@@ -119,22 +128,22 @@
       human: $+\kappa$ and $-\kappa$
       score:
         Haining: 1
-        Will:
+        Will: 0
         Yasaman: 1
         # partial credit
     k_symbol:
-      LLM: $\bm{k}$
+      LLM: \bm{k}
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     shifted_Ek:
       LLM: $\bm{k}-\tau \bm{\kappa}$
       human: $E_{t,+K}$ and $E_{t,-K}$
       score:
         Haining: 0
-        Will:
+        Will: 1
         Yasaman: 1
         # partial credit, challenging when symbol doesn’t explicitly appear
     r_symbol:
@@ -142,14 +151,14 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     kinetic_symbol:
       LLM: $\hat{\mathcal{H}}_0$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     definition_of_variables:
       LLM: $\tau=\pm 1$ represents $\pm K$ valleys, $\bm{\kappa}=\frac{4\pi}{3a_M}\left(1,0\right)$  is
@@ -163,9 +172,19 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 1
-        # partial credit for missing reference to operators
+    expression_kinetic:
+      human: $H_{Kinetic}(r) = \begin{pmatrix} E_{+K,b} & 0 & 0 & 0 \\ 0 & E_{+K,t} & 0 & 0 \\ 0 & 0 & E_{-K,b} & 0 \\ 0 & 0 & 0 & E_{-K,t} \end{pmatrix}$
+  answer: $H_{Kinetic}(r) = \begin{pmatrix} -\frac{\hbar^2 k^2}{2 m_b} & 0 & 0 & 0 \\ 0 & -\frac{\hbar^2 (k-\kappa)^2}{2 m_t} & 0 & 0 \\ 0 & 0 & -\frac{\hbar^2 k^2}{2 m_b} & 0 \\ 0 & 0 & 0 & -\frac{\hbar^2 (k+\kappa)^2}{2 m_t} \end{pmatrix}$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 1
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 1
+    # no shift in bottom layer, but it catches valley-dependent shift accurately
 - task: Construct Potential Hamiltonian (continuum version)
   source:
     2111.01152.tex:
@@ -178,7 +197,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
         # valid given excerpt
     real|momentum:
@@ -186,14 +205,14 @@
       human: real
       score:
         Haining: 0
-        Will:
+        Will: 0
         Yasaman: 0
     single-particle|second-quantized:
       LLM: second-quantized
       human: single-particle
       score:
         Haining: 0
-        Will:
+        Will: 0
         Yasaman: 2
         # check: clarification re terminology for this task
     diagonal_potential:
@@ -203,21 +222,21 @@
       human: $\Delta_l(r)$
       score:
         Haining: 0
-        Will:
+        Will: 1
         Yasaman: 0
     interaction_degrees_of_freedom:
       LLM: the bottom layer ($\mathfrak{b}$) and top layer ($\mathfrak{t}$)
       human: $t$ and $b$
       score:
         Haining: 1
-        Will:
+        Will: 1
         Yasaman: 2
     offdiagonal_potential:
       LLM: $\Delta_{\text{T},\tau}(\bm{r})$ and $\Delta_{\text{T},\tau}^\dag(\bm{r})$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     definition_of_variables:
       LLM: $\tau=\pm 1$ represents $\pm K$ valleys, $\bm{\kappa}=\frac{4\pi}{3a_M}\left(1,0\right)$
@@ -227,10 +246,17 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 1
         # partial credit for missing operator reference
-        
+  answer: $H_{Potential}(r) = \begin{pmatrix} \Delta_b(r) & \Delta_{T,+K}(r) & 0 & 0 \\ \Delta_{T,+K}^*(r) & \Delta_t(r) & 0 & 0 \\ 0 & 0 & \Delta_b(r) & \Delta_{T,-K}(r) \\ 0 & 0 & \Delta_{T,-K}^*(r) & \Delta_t(r) \end{pmatrix}$
+  score:
+    in_paper: 1
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Define each term in Potential Hamiltonian (continuum version)
   source:
     2111.01152.tex:
@@ -244,7 +270,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 0
         # because SM info is included in excerpt, a better answer would be \Delta(r)
     Potential_variables:
@@ -254,7 +280,7 @@
       human: the intralayer potential $\Delta_l(r)$ and interlayer tunneling $\Delta_{T,\tau}(r)$
       score:
         Haining: 1
-        Will:
+        Will: 1
         Yasaman: 1
     expression_diag:
       LLM: $-\frac{\hbar^2\bm{k}^2}{2m_\mathfrak{b}}+\Delta_{\mathfrak{b}}(\bm{r})$
@@ -264,7 +290,7 @@
         \cdot r  +\psi_b)$
       score:
         Haining: 1
-        Will:
+        Will: 2
         Yasaman: 1
     expression_offdiag:
       LLM: $\Delta_{\text{T},\tau}(\bm{r})$ and $\Delta_{\text{T},\tau}^\dag(\bm{r})$
@@ -273,7 +299,7 @@
         e^{-i g_3 \cdot r})$.
       score:
         Haining: 1
-        Will:
+        Will: 2
         Yasaman: 2
         # fine to not write out expression
     definition_of_variables:
@@ -288,9 +314,19 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 1
         # partial credit for missing operator reference
+    expression_Potential:
+      human: $H_{Potential}(r) = \begin{pmatrix} \Delta_b(r) & \Delta_{T,+K}(r) & 0 & 0 \\ \Delta_{T,+K}^*(r) & \Delta_t(r) & 0 & 0 \\ 0 & 0 & \Delta_b(r) & \Delta_{T,-K}(r) \\ 0 & 0 & \Delta_{T,-K}^*(r) & \Delta_t(r) \end{pmatrix}$
+  answer: $H_{Potential}(r) = \begin{pmatrix} 2V_b\sum_{j=1,3,5} \cos(g_j \cdot r  +\psi_b) & w(1+\omega e^{i g_2 \cdot r} + \omega^2 e^{i g_3 \cdot r}) & 0 & 0 \\ w(1+\omega^{-1}e^{-i g_2 \cdot r} + \omega^{-2} e^{-i g_3 \cdot r}) & V_{zt} & 0 & 0 \\ 0 & 0 & 2V_b\sum_{j=1,3,5} \cos(g_j \cdot r  +\psi_b) & -w(1+\omega^{-1}e^{-i g_2 \cdot r} + \omega^{-2} e^{-i g_3 \cdot r}) \\ 0 & 0 & -w(1+\omega e^{i g_2 \cdot r} + \omega^2 e^{i g_3 \cdot r}) & V_{zt} \end{pmatrix}$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Convert from single-particle to second-quantized form, return in matrix
   source:
     2111.01152_SM.tex:
@@ -301,14 +337,14 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     nonint_symbol:
       LLM: $\hat{\mathcal{H}}_0$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     kinetic_symbol:
       LLM: $-\frac{\hbar^2\bm{k}^2}{2m_\mathfrak{b}}$ and $-\frac{\hbar^2\left(\bm{k}-\tau
@@ -316,7 +352,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 1
         Yasaman: 2
     potential_symbol:
       LLM: $\Delta_{\mathfrak{b},\tau}(\bm{r})$, $\Delta_{\text{T},\tau}(\bm{r})$,
@@ -325,21 +361,21 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 1
         Yasaman: 2
     $r$|$k$:
       LLM: $r$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     second_nonint_symbol:
       LLM:
       human: $\hat{H}^{0}$
       score:
         Haining: 0
-        Will:
+        Will: 0
         Yasaman: 2
     definition_of_variables:
       LLM: $\tau=\pm $ represents $\pm K$ valleys, $\hbar \bm{k} = -i \hbar \partial_{\bm{r}}$
@@ -350,9 +386,17 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 1
         # partial credit for not including operator reference
+  answer: $\hat{H}^{0} = \int dr \vec{\psi}^\dagger(r) H^{0}(r) \vec{\psi}(r)$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Convert from single-particle to second-quantized form, return in summation
     (expand the matrix)
   source:
@@ -364,21 +408,21 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 0
         Yasaman: 2
     matrix_element_symbol:
       LLM: $H_{\tau}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 0
         Yasaman: 2
     basis_symbol:
       LLM: $\Psi_{\tau}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
         # this is surprising! 
     definition_of_variables:
@@ -392,8 +436,19 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
+    expression_second_nonint:
+      human: $\hat{H}^{0} = \int dr \vec{\psi}^\dagger(r) H^{0}(r) \vec{\psi}(r)$
+  answer: $\hat{H}^{0} = \int dr \sum_{l_1, l_2} \left( \psi_{+K,l_1}^\dagger(r) H^{0}_{+K,l_1,+K,l_2}(r) \psi_{+K,l_2}(r) + \psi_{-K,l_1}^\dagger(r) H^{0}_{-K,l_1,-K,l_2}(r) \psi_{-K,l_2}(r) \right)$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 1
+    final_answer_accuracy: 1
+    # It misses the summation of tau, though it recognizes that there is no intervalley coupling
 - task: Convert noninteracting Hamiltonian in real space to momentum space (continuum
     version)
   source:
@@ -406,14 +461,14 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     momentum_creation_op:
       LLM: $c_{\bm{k}_{\alpha},l_{\alpha},\tau}^\dagger$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     definition_of_Fourier_Transformation:
       LLM: 
@@ -424,28 +479,28 @@
         e^{i k \cdot r}$
       score:
         Haining: 0
-        Will:
+        Will: 2
         Yasaman: 0
     real_variable:
       LLM: $\bm{r}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     entire_real|first_Brillouin_Zone:
       LLM: entire real space
       human:
       score:
         Haining: 2
-        Will:
+        Will: (?)
         Yasaman: 2
     second_nonint_symbol:
       LLM: $\hat{\mathcal{H}}_0$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     definition_of_variables:
       LLM: $\tau=\pm $ represents $\pm K$ valleys, $\hbar \bm{k} = -i \hbar \partial_{\bm{r}}$
@@ -463,8 +518,17 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
+  answer: $\hat{H}^{0} = \sum_{\tau, l_1, l_2, k_1, k_2} c_{\tau,l_1}^\dagger(k_1) H^{0}_{\tau,l_1,\tau,l_2}(k_1,k_2) c_{\tau,l_2}(k_2)$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 1
+    # It misses the summation of tau.
 - task: Particle-hole transformation
   source:
     2111.01152_SM.tex:
@@ -475,28 +539,28 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     particle_op:
       LLM: $c_{\bm{k},l,\tau}^\dagger$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     particle_creation_op:
       LLM: $c_{\bm{k},l,\tau}^\dagger$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     hole_creation_op:
       LLM: $b_{\bm{k},l,\tau}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 0
         # why no dagger?
     particle_annihilation_op:
@@ -504,14 +568,14 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     hole_annihilation_op:
       LLM: $b_{\bm{k},l,\tau}^\dagger$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 0
         # should haven no dagger?
     second_nonint_symbol:
@@ -519,7 +583,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     definition_of_variables:
       LLM: The hole operator is defined as $b_{\bm{k},l,\tau}=c_{\bm{k},l,\tau}^\dagger$.
@@ -527,9 +591,19 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 1
         # partial credit for not including hamiltonian matrix elements
+    expression_particle_Ham:
+      human: $\hat{H}^{0} = \sum_{\tau, l_1, l_2, k_1, k_2} c_{\tau,l_1}^\dagger(k_1) H^{0}_{\tau,l_1,\tau,l_2}(k_1,k_2) c_{\tau,l_2}(k_2)$
+  answer: $\hat{H}^{0} = \sum_{\tau, l_1, l_2, k_1, k_2} b_{\tau, l_1}(k_1) H^{0}_{\tau, l_1, \tau, l_2}(k_1, k_2) b_{\tau, l_2}^\dagger(k_2)$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Simplify the Hamiltonian in the particle-hole basis
   source:
     2111.01152_SM.tex:
@@ -540,42 +614,42 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     hole_op:
       LLM: $b_{\bm{k},l,\tau}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     index_1:
       LLM: $\bm{k}_{\alpha}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     index_2:
       LLM: $\bm{k}_{\beta}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     op:
       LLM: $b_{\bm{k},l,\tau}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 1
         Yasaman: 2
     Ham_op: 
       LLM: $[h^{(\tau)}]^{\intercal}_{\bm{k}_{\alpha}l_{\alpha},\bm{k}_{\beta}l_{\beta}}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     definition_of_variables:
       LLM: $b_{\bm{k},l,\tau}=c_{\bm{k},l,\tau}^\dagger$, and $\hat{\mathcal{H}}_0$
@@ -583,11 +657,21 @@
         h^{(\tau)}-\sum_{\bm{k}_{\alpha},\bm{k}_{\beta}}\sum_{l_{\alpha},l_{\beta}}\sum_{\tau}
         [h^{(\tau)}]^{\intercal}_{\bm{k}_{\alpha}l_{\alpha},\bm{k}_{\beta}l_{\beta}}
         b_{\bm{k}_{\alpha},l_{\alpha},\tau}^\dagger b_{\bm{k}_{\beta},l_{\beta},\tau}$
-      human:
+      human: $b_{\bm{k},l,\tau}=c_{\bm{k},l,\tau}^\dagger$
       score:
-        Haining: 2
-        Will:
+        Haining: 1
+        Will: 2
         Yasaman: 2
+    expression_hole_Ham:
+      human: $\hat{H}^{0} = \sum_{\tau, l_1, l_2, k_1, k_2} b_{\tau, l_1}(k_1) H^{0}_{\tau, l_1, \tau, l_2}(k_1, k_2) b_{\tau, l_2}^\dagger(k_2)$
+  answer: $\hat{H}^{0} = \sum_{\tau, l_1, k_1} H^{0}_{\tau, l_1, \tau, l_1}(k_1, k_1) - \sum_{\tau, l_1, l_2, k_1, k_2} b_{\tau, l_1}^\dagger(k_1) (H^{0}_{\tau, l_1, \tau, l_2}(k_1, k_2))^* b_{\tau, l_2}(k_2)$
+  score:
+    in_paper: 2
+    prompt_quality: 1
+    follow_instructions: 1
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Construct interaction Hamiltonian (momentum space)
   source:
     2111.01152_SM.tex:
@@ -598,28 +682,28 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     index_of_operator:
       LLM:
       human: the valley index and layer index
       score:
         Haining: 0
-        Will:
+        Will: 0
         Yasaman: 0
     momentum:
       LLM:
       human: momentum
       score:
         Haining: 0
-        Will:
+        Will: 0
         Yasaman: 0
     For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$:
       LLM: false
       human:
       score:
         Haining: 2
-        Will:
+        Will: (?)
         Yasaman: 2
         # check
     interaction:
@@ -627,21 +711,21 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     int_form:
-      LLM: 2\pi e^2\tanh(|\bm{k}|d)}/{(\epsilon |\bm{k}|)
+      LLM: 2\pi e^2\tanh(|\bm{k}|d)/(\epsilon |\bm{k}|)
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     normalization_factor:
       LLM: $\frac{1}{2A}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
         # surprisingly got it correct
     op:
@@ -650,7 +734,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: (?)
         Yasaman: 2
     definition_of_variables:
       LLM: $\bm{k}_{\alpha},\bm{k}_{\beta},\bm{k}_{\gamma},\bm{k}_{\delta}$ are the
@@ -660,8 +744,16 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
+  answer: $\hat{H}^{int} = \frac{1}{2V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4} b_{l_1,\tau_1}^\dagger(k_1)b_{l_2,\tau_2}^\dagger(k_2)b_{l_2,\tau_2}(k_3)b_{l_1,\tau_1}(k_4) V(|k_1-k_4|)\delta_{k_1+k_2,k_3+k_4}$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Wick's theorem
   source:
     2111.01152_SM.tex:
@@ -672,14 +764,14 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     Hartree_Fock_symbol:
       LLM: $\hat{\mathcal{H}}^{\text{HF}}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     definition_of_variables:
       LLM: $\hat{\mathcal{H}}^{\text{HF}}$ is the Hartree-Fock Hamiltonian, $\hat{\mathcal{H}}_{\text{int}}^{\text{HF}}$
@@ -688,12 +780,22 @@
         $\tau_{\alpha},\tau_{\beta}$ are the spin quantum numbers, $V(\bm{k}_{\alpha}-\bm{k}_{\delta})$
         is the interaction potential, $b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger$
         and $b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}$ are the creation and annihilation
-        operators, and $\expval{...}$ denotes the expectation value.
+        operators, and $\langle{...}\rangle$ denotes the expectation value.
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
+    expression_int:
+      human: $\hat{H}^{int} = \frac{1}{2V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4} b_{l_1,\tau_1}^\dagger(k_1)b_{l_2,\tau_2}^\dagger(k_2)b_{l_2,\tau_2}(k_3)b_{l_1,\tau_1}(k_4) V(|k_1-k_4|)\delta_{k_1+k_2,k_3+k_4}$
+  answer: $\hat{H}^{int,HF}=\frac{1}{2V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4} \left[\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) + \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4)-\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) \rangle - \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) - \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) + \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) \rangle\right] V(|k_1-k_4|)\delta_{k_1+k_2,k_3+k_4}$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Extract quadratic term
   source:
     2111.01152_SM.tex:
@@ -704,7 +806,7 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     bilinear_op:
       LLM: $b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}}$
@@ -712,14 +814,14 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     Hartree_Fock_second_quantized_symbol:
       LLM: $\hat{\mathcal{H}}_{\text{int}}^{\text{HF}}$
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     definition_of_variables:
       LLM: $\hat{\mathcal{H}}^{\text{HF}}$ is the Hartree-Fock term symbol, $\hat{\mathcal{H}}_{\text{int}}^{\text{HF}}$
@@ -729,8 +831,18 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
+    expression_HF:
+      human: $\hat{H}^{int,HF}=\frac{1}{2V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4} \left[\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) + \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4)-\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) \rangle - \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) - \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) + \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) \rangle\right] V(|k_1-k_4|)\delta_{k_1+k_2,k_3+k_4}$
+  answer: $\hat{H}^{int,HF,2}=\frac{1}{2V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4} \left[\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) + \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) - \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) - \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3)\right] V(|k_1-k_4|)\delta_{k_1+k_2,k_3+k_4}$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Swap the index to combine Hartree and Fock terms
   source:
     2111.01152_SM.tex:
@@ -741,15 +853,15 @@
       human:
       score:
         Haining: 2
-        Will:
+        Will: 2
         Yasaman: 2
     expected_value:
-      LLM: $\expval{b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}}$
-        and $\expval{b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}}}$
+      LLM: $\langle{b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}}\rangle$
+        and $\langle{b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}}}\rangle$
       human:
       score:
         Haining: 2
-        Will:
+        Will: (?)
         Yasaman: 2
     expression_Hartree_1:
       LLM: $b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}}$
@@ -757,7 +869,7 @@
         b_{\tau_2,l_2}(k_3)`$
       score:
         Haining: 1
-        Will:
+        Will: (?)
         Yasaman: 1
     expression_Hartree_2:
       LLM: $b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}$
@@ -765,5 +877,15 @@
         b_{\tau_1,l_1}(k_4)`$
       score:
         Haining: 1
-        Will:
+        Will: (?)
         Yasaman: 1
+    expression_HF_2:
+      human: $\hat{H}^{int,HF,2}=\frac{1}{2V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4} \left[\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) + \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) - \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) - \langle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4) \rangle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3)\right] V(|k_1-k_4|)\delta_{k_1+k_2,k_3+k_4}$
+  answer: $\hat{H}^{int,HF,2}=\frac{1}{V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4} \left[\langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_1,\tau_1}(k_4) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_2,\tau_2}(k_3) - \langle b_{l_1,\tau_1}^\dagger(k_1) b_{l_2,\tau_2}(k_3) \rangle b_{l_2,\tau_2}^\dagger(k_2) b_{l_1,\tau_1}(k_4)\right] V(|k_1-k_4|)\\delta_{k_1+k_2,k_3+k_4}$
+  score:
+    in_paper: 2
+    prompt_quality: 1
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
