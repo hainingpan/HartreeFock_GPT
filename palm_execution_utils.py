@@ -51,7 +51,7 @@ class PalmExecution:
 
         Should run from each directory 'arxiv_number'.'''
         prompt_dict= utils.load_prompt_template(prompt_template)
-        with open(f'{arxiv_number}.yaml','r') as f:
+        with open(f'{arxiv_number}/{arxiv_number}.yaml','r') as f:
             kwargs= yaml.safe_load(f)
         kwargs=[kwarg for kwarg in kwargs if 'task' in kwarg]
 
@@ -76,6 +76,6 @@ class PalmExecution:
             added=f'## {task}  \n**Prompt:**  \n{prompt}\n\n**Completion:**  \n{answer}\n\n'
             string+=added
 
-        with open(f'{arxiv_number}_auto.md','w') as f:
+        with open(f'{arxiv_number}_auto_palm.md','w') as f:
             f.write(string)
 
