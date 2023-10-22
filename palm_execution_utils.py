@@ -5,7 +5,7 @@ import json
 import os
 import yaml
 
-import utils
+from . import utils
 # from utils import load_prompt, generate_prompt, return_correct_prompt_template_for_task, assembly_message, extract_var
 
 class PalmExecution:
