@@ -63,10 +63,10 @@ class PalmExecution:
             prompt=prompt_i['content']
             if idx==0:
                 summarization=''
-                response=solver(summarization=summarization, prompt=prompt,prompt_dict=prompt_dict)
+                response= self.solver(summarization=summarization, prompt=prompt,prompt_dict=prompt_dict)
             else:
-                summarization=summarizer(summarization=summarization, prompt=prompt, response=response,prompt_dict=prompt_dict)        
-                response=solver(summarization=summarization, prompt=prompt,prompt_dict=prompt_dict)
+                summarization=self.summarizer(summarization=summarization, prompt=prompt, response=response,prompt_dict=prompt_dict)        
+                response= self.solver(summarization=summarization, prompt=prompt,prompt_dict=prompt_dict)
             answers.append(response)
         
         string=''
