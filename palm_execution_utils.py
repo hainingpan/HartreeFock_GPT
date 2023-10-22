@@ -23,7 +23,7 @@ class PalmExecution:
         var=var_old+var_new
         
         summarization_prompt=prompt_dict['Conversation summarizer'].format(background=summarization, question=prompt, answer=response)
-        rs = palm.generate_text(summarization_prompt, **self.model_config)
+        rs = palm.generate_text(prompt=summarization_prompt, **self.model_config)
         summarized=rs.result
 
         if len(var)>0:
