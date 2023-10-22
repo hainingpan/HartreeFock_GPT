@@ -43,7 +43,7 @@ class PalmExecution:
         rs= palm.generate_text(prompt=messages, **self.model_config)
         return rs.result
 
-    def run(self, prompt_template, arxiv_number):
+    def run(self, prompt_template, arxiv_number, path='HartreeFock_GPT/'):
         '''Load the prompt_template, and the descriptor file from arxiv number
         Generate prompts, and feed into `solver`.
         The response will be summarized by `summarizer`.
@@ -51,7 +51,7 @@ class PalmExecution:
 
         Should run from each directory 'arxiv_number'.'''
         prompt_dict= utils.load_prompt_template(prompt_template)
-        with open(f'{arxiv_number}/{arxiv_number}.yaml','r') as f:
+        with open(os.path.join(path, f'{arxiv_number}/{arxiv_number}.yaml'),'r') as f:
             kwargs= yaml.safe_load(f)
         kwargs=[kwarg for kwarg in kwargs if 'task' in kwarg]
 
