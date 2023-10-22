@@ -8,7 +8,7 @@ import yaml
 class PalmExecution:
     def __init__(self, api_key_dict, prompt_template, arxiv_number, model='text-bison-001', temperature=0):
         api_key = api_key_dict['API_KEY']
-        palm.configure(api_key)
+        palm.configure(api_key = api_key)
         self.prompt_template = prompt_template
         self.arxiv_number = arxiv_number
         self.model_config = {'model': model, 'temperature': temperature}
