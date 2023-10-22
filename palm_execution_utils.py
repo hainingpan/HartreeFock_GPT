@@ -6,7 +6,7 @@ import os
 import yaml
 
 class PalmExecution:
-    def __init__(api_key_dict, prompt_template, arxiv_number, model='text-bison-001', temperature=0):
+    def __init__(self, api_key_dict, prompt_template, arxiv_number, model='text-bison-001', temperature=0):
         api_key = api_key_dict['API_KEY']
         palm.configure(api_key)
         self.prompt_template = prompt_template
