@@ -88,6 +88,13 @@
         Will:
         Yasaman: 2
   answer: $H_{Kinetic} = \sum_{\sigma,b,k} E_{\sigma,b}(k) c_{\sigma,b}^\dagger(k) c_{\sigma,b}(k)$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Define each term in Kinetic Hamiltonian (continuum version)
   source:
     2108.02159.tex:
@@ -171,6 +178,14 @@
     expression_kinetic:
       human: $H_{Kinetic} = \sum_{\sigma,b,k} E_{\sigma,b}(k) c_{\sigma,b}^\dagger(k) c_{\sigma,b}(k)$
   answer: $H_{Kinetic} = -\frac{\hbar^2}{2 m^*} \sum_{\sigma,b,k} (k+b)^2 c_{\sigma,b}^\dagger(k) c_{\sigma,b}(k)$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
+    # Though the sign before `b` is opposite, it can be considered correct as b is a set of vectors which contains C6 rotational symmetry.
 - task: Construct Potential Hamiltonian (continuum version)
   source:
     2108.02159.tex:
@@ -230,6 +245,13 @@
         Will:
         Yasaman: 2
   answer: $H_{Potential} = \sum_{\sigma,b,b',k} \Delta_{\sigma, b,b'} c_{\sigma,b}^\dagger(k) c_{\sigma,b'}(k)$
+  score:
+    in_paper: 1
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Define each term in Potential Hamiltonian (continuum version)
   source:
     2108.02159.tex:
@@ -275,6 +297,13 @@
     expression_Potential:
       human: $H_{Potential} = \sum_{\sigma,b,b',k} \Delta_{\sigma, b,b'} c_{\sigma,b}^\dagger(k) c_{\sigma,b'}(k)$
   answer: $H_{Potential} = \sum_{\sigma,b,b',k, j=1}^6 V_j \delta_{b_j,b-b'} c_{\sigma,b}^\dagger(k) c_{\sigma,b'}(k)$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Construct interaction Hamiltonian (momentum space)
 # YB: I gave 0’s for all tasks in this section, but note that many of them are 
 # not addressed directly in the excerpt 
@@ -342,14 +371,19 @@
         Yasaman: 0
     For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$:
       LLM:
-      human: |
-        $\epsilon$ : dielectric constant  
-        $V(q)$ : bare Coulomb interaction in the momentum space
+      human: True
       score:
         Haining: 0
         Will:
         Yasaman: 0
   answer: $\hat{H}^{int} = \frac{1}{2 N A} \sum_{\sigma_1, \sigma_2, b_1, b_2, b_3, b_4, k_1, k_2, k_3, k_4} c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) c_{\sigma_1,b_4}(k_4) V(q) \delta_{k_1+b_1+k_2+b_2,k_3+b_3+k_4+b_4}$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Wick's theorem
   source:
     2108.02159.tex:
@@ -380,6 +414,14 @@
     expression_int:
       human: $\hat{H}^{int} = \frac{1}{2 N A} \sum_{\sigma_1, \sigma_2, b_1, b_2, b_3, b_4, k_1, k_2, k_3, k_4} c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) c_{\sigma_1,b_4}(k_4) V(q) \delta_{k_1+b_1+k_2+b_2,k_3+b_3+k_4+b_4}$, where $q=k_1+b_1-k_4-b_4$.
   answer: $\hat{H}^{int,HF} = \frac{1}{2 N A} \sum_{\sigma_1, \sigma_2, b_1, b_2, b_3, b_4, k_1, k_2, k_3, k_4} V(q) \delta_{k_1+b_1+k_2+b_2,k_3+b_3+k_4+b_4} [\langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3)+ \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4)- \langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) \rangle \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) \rangle- \langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4)- \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3)+ \langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3) \rangle \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4) \rangle]$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 1
+    math_derivation: 2
+    final_answer_accuracy: 1
+    # Correctly performing the Wick's expansion, misunderstood "normal terms"
 - task: Extract quadratic term
   source:
     2108.02159.tex:
@@ -416,6 +458,13 @@
     expression_HF:
       human: $\Sigma^{int,HF} = \frac{1}{2 N A} \sum_{\sigma_1, \sigma_2, b_1, b_2, b_3, b_4, k_1, k_2, k_3, k_4} V(q) \delta_{k_1+b_1+k_2+b_2,k_3+b_3+k_4+b_4} [\langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3)+ \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4)- \langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) \rangle \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) \rangle- \langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4)- \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3)+ \langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3) \rangle \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4) \rangle]$
   answer: $\hat{H}^{int,HF,2} = \frac{1}{2 N A} \sum_{\sigma_1, \sigma_2, b_1, b_2, b_3, b_4, k_1, k_2, k_3, k_4} V(q) \delta_{k_1+b_1+k_2+b_2,k_3+b_3+k_4+b_4} [\langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) + \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) - \langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4) - \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3)]$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Expand interaction
   source:
     2108.02159.tex:
@@ -438,6 +487,14 @@
     expression_HF_2:
       human: $\Sigma^{int,HF,2} = \frac{1}{2 N A} \sum_{\sigma_1, \sigma_2, b_1, b_2, b_3, b_4, k_1, k_2, k_3, k_4} V(q) \delta_{k_1+b_1+k_2+b_2,k_3+b_3+k_4+b_4} [\langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) + \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) - \langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4) - \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3)]$
   answer: \hat{H}^{int,HF,2} = \frac{1}{2 N A} \sum_{\sigma_1, \sigma_2, b_1, b_2, b_3, b_4, k_1, k_2, k_3, k_4} V(k_1+b_1-k_4-b_4) \delta_{k_1+b_1+k_2+b_2,k_3+b_3+k_4+b_4} [\langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) + \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) - \langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4) - \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3)]
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 0
+    math_derivation: 2
+    final_answer_accuracy: 0
+    # Completely failed to understand the logic of replacing the momentum in the interaction term with the difference in the momentum between the incoming and outgoing particles with the same type.
 - task: Swap the index to combine Hartree and Fock terms
   source:
     2108.02159.tex:
@@ -474,6 +531,13 @@
     expression_HF_2:
       human: $\Sigma^{int,HF,2} = \frac{1}{2 N A} \sum_{\sigma_1, \sigma_2, b_1, b_2, b_3, b_4, k_1, k_2, k_3, k_4} V(k_1+b_1-k_4-b_4) \delta_{k_1+b_1+k_2+b_2,k_3+b_3+k_4+b_4} [\langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) + \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) - \langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4) - \langle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3)]$
   answer: $\hat{H}^{int,HF,2} = \frac{1}{N A} \sum_{\sigma_1, \sigma_2, b_1, b_2, b_3, b_4, k_1, k_2, k_3, k_4} V(k_1+b_1-k_4-b_4) \delta_{k_1+b_1+k_2+b_2,k_3+b_3+k_4+b_4} [\langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3) - \langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4)]$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
   source:
     2108.02159.tex:
@@ -503,6 +567,13 @@
     expression_Hartree:
         human: $\Sigma^{int,Hartree,2}= \frac{1}{N A} \sum_{\sigma_1, \sigma_2, b_1, b_2, b_3, b_4, k_1, k_2, k_3, k_4} V(k_1+b_1-k_4-b_4) \delta_{k_1+b_1+k_2+b_2,k_3+b_3+k_4+b_4}\langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_4) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_3)$
   answer: $\hat{H}^{int,Hartree,2}= \frac{1}{N A} \sum_{\sigma_1, \sigma_2, b_1, b_2, b_3, b_4, k_1, k_2} V(b_1-b_4) \delta_{b_1+b_2,b_3+b_4}\langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_1,b_4}(k_1) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_2,b_3}(k_2)$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
   source:
     2108.02159.tex:
@@ -532,3 +603,10 @@
     expression_Fock: 
       human: $\Sigma^{int,Fock,2}= -\frac{1}{N A} \sum_{\sigma_1, \sigma_2, b_1, b_2, b_3, b_4, k_1, k_2, k_3, k_4} V(k_1+b_1-k_4-b_4) \delta_{k_1+b_1+k_2+b_2,k_3+b_3+k_4+b_4} \langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_3) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_4)$
   answer: $\hat{H}^{int,Fock,2}= -\frac{1}{N A} \sum_{\sigma_1, \sigma_2, b_1, b_2, b_3, b_4, k_1, k_2} V(k_1+b_1-k_2-b_4) \delta_{b_1+b_2,b_3+b_4}\langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_1) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_2)$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
