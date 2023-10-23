@@ -64,7 +64,7 @@ def return_correct_prompt_template_for_task(task):
       if task['placeholder'][ph]['score']['Haining']==2:
         correct_phdict.update({ph: task['placeholder'][ph]['LLM']})
       else:
-        raise ValueError(f'Omitting Task {task}: No correct answer')
+        raise ValueError(f'Omitting Task {task["task"]}/{ph} No correct answer')
   return correct_phdict
 
 def assembly_message(sys_msg,user_msg,AI_msg):
@@ -124,8 +124,13 @@ def solver(summarization, prompt,prompt_dict):
     response=rs['choices'][0]['message'].content
     return response
 
+def load_yaml(arxiv_number):
+    # Repetative but ensure yaml is always latest even if I change the yaml after start running 
+    with open(f'{arxiv_number}.yaml','r') as f:
+        kwargs= yaml.safe_load(f)
+    return [kwarg for kwarg in kwargs if 'task' in kwarg] # remove the branch of this file
 
-def run(prompt_template, arxiv_number):
+def run(prompt_template, arxiv_number, interactive):
     '''Load the prompt_template, and the descriptor file from arxiv number
     Generate prompts, and feed into `solver`.
     The response will be summarized by `summarizer`.
@@ -133,14 +138,16 @@ def run(prompt_template, arxiv_number):
 
     Should run from each directory 'arxiv_number'.'''
     prompt_dict=load_prompt_template(prompt_template)
-    with open(f'{arxiv_number}.yaml','r') as f:
-        kwargs= yaml.safe_load(f)
-    kwargs=[kwarg for kwarg in kwargs if 'task' in kwarg]
+    number_of_tasks=len(load_yaml(arxiv_number))
 
-    prompts=[generate_prompt(kwarg,prompt_dict=prompt_dict) for kwarg in kwargs]
-
-    answers=[]
-    for idx,prompt_i in enumerate(prompts):
+    # prompts=[generate_prompt(kwarg,prompt_dict=prompt_dict) for kwarg in kwargs]
+    # answers=[]
+    with open(f'{arxiv_number}_auto.md','w') as f:
+        pass
+    string=''
+    for idx in range(number_of_tasks):
+        kwarg=load_yaml(arxiv_number)[idx]
+        prompt_i=generate_prompt(kwarg,prompt_dict=prompt_dict)
         print(f'Asking {idx}..')
         prompt=prompt_i['content']
         if idx==0:
@@ -149,26 +156,36 @@ def run(prompt_template, arxiv_number):
         else:
             summarization=summarizer(summarization=summarization, prompt=prompt, response=response,prompt_dict=prompt_dict)        
             response=solver(summarization=summarization, prompt=prompt,prompt_dict=prompt_dict)
-        answers.append(response)
-    
-    string=''
-    for kwarg,prompt_i,answer in zip(kwargs,prompts,answers):
+
+        
+        
+        # answers.append(response)
         task=kwarg['task']
         prompt=prompt_i['content']
-        added=f'## {task}  \n**Prompt:**  \n{prompt}\n\n**Completion:**  \n{answer}\n\n'
-        string+=added
+        added=f'## {task}  \n**Prompt:**  \n{prompt}\n\n**Completion:**  \n{response}\n\n'
+        with open(f'{arxiv_number}_auto.md','a') as f:
+            f.write(added)
 
-    with open(f'{arxiv_number}_auto.md','w') as f:
-        f.write(string)
+        if interactive:
+            input('Press Enter to continue...')
+    # for kwarg,prompt_i,answer in zip(kwargs,prompts,answers):
+    #     task=kwarg['task']
+    #     prompt=prompt_i['content']
+    #     added=f'## {task}  \n**Prompt:**  \n{prompt}\n\n**Completion:**  \n{answer}\n\n'
+    #     string+=added
+
+    # with open(f'{arxiv_number}_auto.md','w') as f:
+    #     f.write(string)
 
 def main():
     parser = argparse.ArgumentParser(description='Run problem solving with AI based on given template and Arxiv paper.')
     parser.add_argument('prompt_template', type=str, help='Path to the prompt template file.')
     parser.add_argument('arxiv_number', type=str, help='Arxiv paper number.')
+    parser.add_argument('--interactive', action='store_true', help='Whether to pause after each task.')
 
     args = parser.parse_args()
 
-    run(args.prompt_template, args.arxiv_number)
+    run(args.prompt_template, args.arxiv_number, args.interactive)
 
 if __name__ == "__main__":
     main()
