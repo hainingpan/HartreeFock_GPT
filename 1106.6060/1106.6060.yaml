@@ -1,4 +1,7 @@
 # There is a problem here that the human annotated version split the Hamiltonian into 4 pieces, which is not possible in LLM annotation.
+# If just force to run, the result will not be optimal. One possible solution is to split the Hamiltonian into 4 pieces, and query the 4 pieces separately.
+
+# "Wick's theorm" "Extract quadratic term", are too complicated, 
 - branch: lattice, second-quantized
 - task: Construct Kinetic Hamiltonian (lattice version)
   source:
@@ -49,7 +52,7 @@
         Will: 
         Yasaman: 
     kinetic_symbol:
-      LLM: $\HH_{0}$
+      LLM: $\mathcal{H}_{0}$
       human: 
       score: 
         Haining: 2
@@ -65,14 +68,28 @@
         Haining: 2
         Will: 
         Yasaman: 
-
+    You should ensure the hermiticity of the Hamiltonian:
+      LLM: True
+      human: 
+      score: 
+        Haining: 2
+        Will: 
+        Yasaman: 
+  answer:
+  score: 
+    in_paper: 
+    prompt_quality: 
+    follow_instructions: 
+    physics_logic: 
+    math_derivation: 
+    final_answer_accuracy:
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source:
     1106.6060.tex:
       - [147, 156]
   placeholder:
     second_int_symbol:
-      LLM: \HH'
+      LLM: $\mathcal{H}'$
       human: 
       score: 
         Haining: 2
@@ -116,7 +133,7 @@
         Will: 
         Yasaman: 
     density_symbol:
-      LLM: \hat{n}
+      LLM: $\hat{n}$
       human: 
       score: 
         Haining: 2
@@ -124,7 +141,7 @@
         Yasaman: 
     definition_of_variables:
       LLM: |
-        - \HH' is the interaction part of the Hamiltonian
+        - \mathcal{H}' is the interaction part of the Hamiltonian
         - U_{d}, U_{p}, V_{pd}, and V_{pp} are the interaction strengths
         - \hat{n} is the density operator
         - i is the site index
@@ -143,14 +160,21 @@
         Haining: 1
         Will: 
         Yasaman: 
-
+  answer:
+  score: 
+    in_paper: 
+    prompt_quality: 
+    follow_instructions: 
+    physics_logic: 
+    math_derivation: 
+    final_answer_accuracy:
 - task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
   source:
     1106.6060.tex:
       - [221, 267]
   placeholder:
     nonint_symbol:
-      LLM: $\HH_{\rm MF}$
+      LLM: $\mathcal{H}_{\rm 0}$
       human: 
       score: 
         Haining: 2
@@ -171,7 +195,7 @@
         Will: 
         Yasaman: 
     definition_of_Fourier_Transformation:
-      LLM: $\HH_{\kk s}$
+      LLM: $\mathcal{H}_{\kk s}$
       human: $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$
       score: 
         Haining: 0
@@ -185,7 +209,7 @@
         Will: 
         Yasaman: 
     definition_of_variables:
-      LLM: $\HH_{\kk s}$ is the Hamiltonian in momentum space, $\hat{C}^{\dag}_{\kk s}$ is the creation operator in real space, $\hat{p}^{\dag}_{x\kk s}, \hat{p}^{\dag}_{y\kk s}, \hat{d}^{\dag}_{\kk s}$ are the creation operators in momentum space, $\kk$ is the momentum, $s$ is the spin index, $n$ is the total density of holes, $n^p$ is the total density of holes on the oxygen sites, $\eta$ is the nematic order parameter, $\gamma_1(k_i)$ and $\gamma_2(\kk)$ are elements of the Hamiltonian matrix, $\xi_{x}$, $\xi_{y}$, and $\xi_{d}$ are the diagonal elements of the Hamiltonian matrix, $\tilde{U}_{p}$, $\tilde{V}_{pp}$, and $\tilde{U}_{d}$ are the effective interaction parameters, and $\mu$ is the chemical potential.
+      LLM: $\mathcal{H}_{\kk s}$ is the Hamiltonian in momentum space, $\hat{C}^{\dag}_{\kk s}$ is the creation operator in real space, $\hat{p}^{\dag}_{x\kk s}, \hat{p}^{\dag}_{y\kk s}, \hat{d}^{\dag}_{\kk s}$ are the creation operators in momentum space, $\kk$ is the momentum, $s$ is the spin index, $n$ is the total density of holes, $n^p$ is the total density of holes on the oxygen sites, $\eta$ is the nematic order parameter, $\gamma_1(k_i)$ and $\gamma_2(\kk)$ are elements of the Hamiltonian matrix, $\xi_{x}$, $\xi_{y}$, and $\xi_{d}$ are the diagonal elements of the Hamiltonian matrix, $\tilde{U}_{p}$, $\tilde{V}_{pp}$, and $\tilde{U}_{d}$ are the effective interaction parameters, and $\mu$ is the chemical potential.
       human: |
         $c_{\alpha,s}(k)$ : electron annihilation operator at momentum $k$, spin $s$ and orbital $\alpha$
         $c_{\alpha,s}^\dagger(k)$ : electron creation operator at momentum $k$, spin $s$ and orbital $\alpha$
@@ -201,14 +225,23 @@
         Haining: 0
         Will: 
         Yasaman: 
-
+    expression_nonint:
+      human: $H_0 = -t_{pd}\sum_{R_i, s} ( c_{d,s}^\dagger(R_i) c_{p_x,s}(R_i+\hat{x}/2) + c_{p_x,s}^\dagger(R_i+\hat{x}/2) c_{d,s}(R_i) + c_{d,s}^\dagger(R_i) c_{p_x,s}(R_i-\hat{x}/2) + c_{p_x,s}^\dagger(R_i-\hat{x}/2) c_{d,s}(R_i)+ c_{d,s}^\dagger(R_i) c_{p_y,s}(R_i+\hat{y}/2) + c_{p_y,s}^\dagger(R_i+\hat{y}/2) c_{d,s}(R_i)+ c_{d,s}^\dagger(R_i) c_{p_y,s}(R_i-\hat{y}/2) + c_{p_y,s}^\dagger(R_i-\hat{y}/2) c_{d,s}(R_i) )-t_{pp}\sum_{R_i, s} ( c_{p_x,s}^\dagger(R_i+\hat{x}/2) c_{p_y,s}(R_i+\hat{y}/2) + c_{p_y,s}^\dagger(R_i+\hat{y}/2) c_{p_x,s}(R_i+\hat{x}/2) + c_{p_x,s}^\dagger(R_i+\hat{x}/2) c_{p_y,s}(R_i-\hat{y}/2) + c_{p_y,s}^\dagger(R_i-\hat{y}/2) c_{p_x,s}(R_i+\hat{x}/2) + c_{p_x,s}^\dagger(R_i-\hat{x}/2) c_{p_y,s}(R_i+\hat{y}/2) + c_{p_y,s}^\dagger(R_i+\hat{y}/2) c_{p_x,s}(R_i-\hat{x}/2) + c_{p_x,s}^\dagger(R_i-\hat{x}/2) c_{p_y,s}(R_i-\hat{y}/2) + c_{p_y,s}^\dagger(R_i-\hat{y}/2) c_{p_x,s}(R_i-\hat{x}/2) )$
+  answer:
+  score: 
+    in_paper: 
+    prompt_quality: 
+    follow_instructions: 
+    physics_logic: 
+    math_derivation: 
+    final_answer_accuracy:
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source:
     1106.6060.tex:
       - [221, 267]
   placeholder:
     second_int_symbol:
-      LLM: $\HH_{\rm MF}$
+      LLM: $\mathcal{H}_{\rm int}$
       human: 
       score: 
         Haining: 2
@@ -236,7 +269,7 @@
         Will: 
         Yasaman: 
     definition_of_Fourier_Transformation:
-      LLM: $\HH_{\kk s}$
+      LLM: $\mathcal{H}_{\kk s}$
       human: $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$
       score: 
         Haining: 0
@@ -263,29 +296,38 @@
         Haining: 2
         Will: 
         Yasaman: 
-
-
+    expression_int: 
+      human: |
+        $U_d \sum_{R_i} n_{d,\uparrow}(R_i) n_{d,\downarrow}(R_i) + \frac{U_p}{2} \sum_{R_i} [n_{p_x,\uparrow}(R_i+\hat{x}/2) n_{p_x,\downarrow}(R_i+\hat{x}/2) + n_{p_y,\uparrow}(R_i+\hat{y}/2) n_{p_y,\downarrow}(R_i+\hat{y}/2)] + V_{pd} \sum_{R_i, s, s^{\prime}} [n_{d,s}(R_i)n_{p_x,s^{\prime}}(R_i+\hat{x}/2) + n_{d,s}(R_i)n_{p_x,s^{\prime}}(R_i-\hat{x}/2) + n_{d,s}(R_i)n_{p_y,s^{\prime}}(R_i+\hat{y}/2) + n_{d,s}(R_i)n_{p_y,s^{\prime}}(R_i-\hat{y}/2)] + V_{pp} \sum_{R_i, s, s^{\prime}} \sum_{\sigma_x, \sigma_y} n_{p_x,s}(R_i+\sigma_x\hat{x}/2) n_{p_y,s^{\prime}}(R_i+\sigma_y\hat{y}/2)$, where $\sigma_x$ and $\sigma_y$ both take value of $\pm 1$
+  answer: $\frac{U_d}{N}\sum_{k_1,k_2,k_3,k_4} c_{d,\uparrow}^\dagger(k_1)c_{d,\uparrow}(k_2)c_{d,\downarrow}^\dagger(k_3)c_{d,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G)+\frac{U_p}{2N} \sum_{k_1,k_2,k_3,k_4} \{c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\uparrow}(k_2) c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G) + c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\uparrow}(k_2) c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \}+2V_{pd} \sum_{s, s^{\prime}} \frac{1}{N} \sum_{k_1,k_2,k_3,k_4} \Big[ c_{d,s}^\dagger(k_1)c_{d,s}(k_2)c_{p_x,s^{\prime}}^\dagger(k_3)c_{p_x,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)+ c_{d,s}^\dagger(k_1)c_{d,s}(k_2)c_{p_y,s^{\prime}}^\dagger(k_3)c_{p_y,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right) \Big] \sum_{G} \delta(k_1-k_2+k_3-k_4,G)+\frac{V_{pp}}{N} \sum_{s, s^{\prime}} \sum_{\sigma_x, \sigma_y} \sum_{k_1, k_2, k_3, k_4} \sum_{G} \delta(k_2 - k_1 + k_4 - k_3, G) e^{-i (k_1 - k_2) \cdot \sigma_x\hat{x}/2 - i (k_3 - k_4) \cdot \sigma_y\hat{y}/2} c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4)$
+  score: 
+    in_paper: 
+    prompt_quality: 
+    follow_instructions: 
+    physics_logic: 
+    math_derivation: 
+    final_answer_accuracy:
 - task: Wick's theorem
   source:
     1106.6060.tex:
       - [221, 267]
   placeholder:
     second_int_symbol:
-      LLM: $\HH_{\rm MF}$
+      LLM: $\mathcal{H}_{\rm MF}$
       human: $\hat{H}^{int}$
       score: 
         Haining: 0
         Will: 
         Yasaman: 
     Hartree_Fock_symbol:
-      LLM: $\HH_{\rm MF}
+      LLM: $\mathcal{H}_{\rm MF}
       human: $\hat{H}^{int,HF,U_d}$
       score: 
         Haining: 0
         Will: 
         Yasaman: 
     definition_of_variables:
-      LLM: $\HH_{\rm MF}$ is the mean-field Hamiltonian, $\hat{C}^{\dag}_{\kk s}$ is the creation operator, $\HH_{\kk s}$ is the Hamiltonian, $f(n^{p}, \eta)$ is a function of the total density of holes on the oxygen sites and the nematic order parameter, $n$ is the total density of holes, $n^p$ is the total density of holes on the oxygen sites, $\eta$ is the nematic order parameter, $\gamma_1(k_i)$, $\gamma_2(\kk)$, $\xi_{x}$, $\xi_{y}$, and $\xi_{d}$ are elements of the matrix, $\tilde{U}_{p}$, $\tilde{V}_{pp}$, and $\tilde{U}_{d}$ are the effective interaction parameters, and $\mu$ is the chemical potential.
+      LLM: $\mathcal{H}_{\rm MF}$ is the mean-field Hamiltonian, $\hat{C}^{\dag}_{\kk s}$ is the creation operator, $\mathcal{H}_{\kk s}$ is the Hamiltonian, $f(n^{p}, \eta)$ is a function of the total density of holes on the oxygen sites and the nematic order parameter, $n$ is the total density of holes, $n^p$ is the total density of holes on the oxygen sites, $\eta$ is the nematic order parameter, $\gamma_1(k_i)$, $\gamma_2(\kk)$, $\xi_{x}$, $\xi_{y}$, and $\xi_{d}$ are elements of the matrix, $\tilde{U}_{p}$, $\tilde{V}_{pp}$, and $\tilde{U}_{d}$ are the effective interaction parameters, and $\mu$ is the chemical potential.
       human: |
         $\langle c_{\alpha,s}^\dagger(k_1) c_{\alpha^{\prime},s^{\prime}}(k_2) \rangle$ : expectation of $c_{\alpha,s}^\dagger(k_1) c_{\alpha^{\prime},s^{\prime}}(k_2)$ over the many-body ground states  
         $\hat{H}^{int,HF,U_p}$ : second term in the interaction term after Hartree-Fock approximation  
@@ -293,43 +335,60 @@
         Haining: 0
         Will: 
         Yasaman: 
-
-
+    expression_int:
+      human: $\frac{U_d}{N}\sum_{k_1,k_2,k_3,k_4} c_{d,\uparrow}^\dagger(k_1)c_{d,\uparrow}(k_2)c_{d,\downarrow}^\dagger(k_3)c_{d,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G)+\frac{U_p}{2N} \sum_{k_1,k_2,k_3,k_4} \{c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\uparrow}(k_2) c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G) + c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\uparrow}(k_2) c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\downarrow}(k_4) \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \}+2V_{pd} \sum_{s, s^{\prime}} \frac{1}{N} \sum_{k_1,k_2,k_3,k_4} \Big[ c_{d,s}^\dagger(k_1)c_{d,s}(k_2)c_{p_x,s^{\prime}}^\dagger(k_3)c_{p_x,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)+ c_{d,s}^\dagger(k_1)c_{d,s}(k_2)c_{p_y,s^{\prime}}^\dagger(k_3)c_{p_y,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right) \Big] \sum_{G} \delta(k_1-k_2+k_3-k_4,G)+\frac{V_{pp}}{N} \sum_{s, s^{\prime}} \sum_{\sigma_x, \sigma_y} \sum_{k_1, k_2, k_3, k_4} \sum_{G} \delta(k_2 - k_1 + k_4 - k_3, G) e^{-i (k_1 - k_2) \cdot \sigma_x\hat{x}/2 - i (k_3 - k_4) \cdot \sigma_y\hat{y}/2} c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4)$
+  answer: $\frac{U_d}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \big[ \langle c_{d,\uparrow}^\dagger(k_1) c_{d,\uparrow}(k_2) \rangle c_{d,\downarrow}^\dagger(k_3) c_{d,\downarrow}(k_4)+ \langle c_{d,\downarrow}^\dagger(k_3) c_{d,\downarrow}(k_4) \rangle c_{d,\uparrow}^\dagger(k_1) c_{d,\uparrow}(k_2)- \langle c_{d,\uparrow}^\dagger(k_1) c_{d,\uparrow}(k_2) \rangle \langle c_{d,\downarrow}^\dagger(k_3) c_{d,\downarrow}(k_4) \rangle- \langle c_{d,\uparrow}^\dagger(k_1) c_{d,\downarrow}(k_4) \rangle c_{d,\downarrow}^\dagger(k_3) c_{d,\uparrow}(k_2)- \langle c_{d,\downarrow}^\dagger(k_3) c_{d,\uparrow}(k_2) \rangle c_{d,\uparrow}^\dagger(k_1) c_{d,\downarrow}(k_4)+ \langle c_{d,\uparrow}^\dagger(k_1) c_{d,\downarrow}(k_4) \rangle \langle c_{d,\downarrow}^\dagger(k_3) c_{d,\uparrow}(k_2) \rangle \big]+\frac{U_p}{2N} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big\{ \langle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\uparrow}(k_2) \rangle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\downarrow}(k_4)+ \langle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\downarrow}(k_4) \rangle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\uparrow}(k_2)- \langle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\uparrow}(k_2) \rangle \langle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\downarrow}(k_4) \rangle- \langle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\downarrow}(k_4) \rangle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\uparrow}(k_2)- \langle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\uparrow}(k_2) \rangle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\downarrow}(k_4)+ \langle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\downarrow}(k_4) \rangle \langle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\uparrow}(k_2) \rangle + \langle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\uparrow}(k_2) \rangle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\downarrow}(k_4)+ \langle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\downarrow}(k_4) \rangle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\uparrow}(k_2)- \langle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\uparrow}(k_2) \rangle \langle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\downarrow}(k_4) \rangle- \langle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\downarrow}(k_4) \rangle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\uparrow}(k_2)- \langle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\uparrow}(k_2) \rangle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\downarrow}(k_4)+ \langle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\downarrow}(k_4) \rangle \langle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\uparrow}(k_2) \rangle \Big\}+2V_{pd} \sum_{s, s^{\prime}} \frac{1}{N} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big[\langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right) + \langle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4) \rangle c_{d,s}^\dagger(k_1) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)- \langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle \langle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4) \rangle \cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)- \langle c_{d,s}^\dagger(k_1) c_{p_x,s^{\prime}}(k_4) \rangle c_{p_x,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)- \langle c_{p_x,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2) \rangle c_{d,s}^\dagger(k_1) c_{p_x,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)+ \langle c_{d,s}^\dagger(k_1) c_{p_x,s^{\prime}}(k_4) \rangle \langle c_{p_x,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2) \rangle \cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)+ \langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)+ \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) \rangle c_{d,s}^\dagger(k_1) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)- \langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) \rangle \cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)- \langle c_{d,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)- \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2) \rangle c_{d,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)+ \langle c_{d,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4) \rangle \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2) \rangle \cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)\Big]+\frac{V_{pp}}{N} \sum_{s, s^{\prime}} \sum_{\sigma_x, \sigma_y} \sum_{k_1, k_2, k_3, k_4} \sum_{G} \delta(k_2 - k_1 + k_4 - k_3, G) e^{-i (k_1 - k_2) \cdot \sigma_x\hat{x}/2 - i (k_3 - k_4) \cdot \sigma_y\hat{y}/2} \times \Big[\langle c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) + \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) \rangle c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) - \langle c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) \rangle \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) \rangle - \langle c_{p_x,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_x,s}(k_2) - \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_x,s}(k_2) \rangle c_{p_x,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4) + \langle c_{p_x,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4) \rangle \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_x,s}(k_2) \rangle \Big]$
+  score: 
+    in_paper: 
+    prompt_quality: 
+    follow_instructions: 
+    physics_logic: 
+    math_derivation: 
+    final_answer_accuracy:
 - task: Extract quadratic term
   source:
     1106.6060.tex:
       - [221, 267]
   placeholder:
     Hartree_Fock_term_symbol:
-      LLM: $\HH_{\rm MF}$
+      LLM: $\mathcal{H}_{\rm MF}$
       human: 
       score: 
         Haining: 2
         Will: 
         Yasaman: 
     bilinear_op:
-      LLM: $\hat{C}^{\dag}_{\kk s}\HH_{\kk s}\hat{C}^{\phantom{\dag}}_{\kk s}$
+      LLM: $\hat{C}^{\dag}_{\kk s}\mathcal{H}_{\kk s}\hat{C}^{\phantom{\dag}}_{\kk s}$
       human: $c^\dagger c$
       score: 
         Haining: 0
         Will: 
         Yasaman: 
     Hartree_Fock_second_quantized_symbol:
-      LLM: $\HH_{\kk s}$
+      LLM: $\mathcal{H}_{\kk s}$
       human: $\hat{H}^{int,HF,U_d}$
       score: 
         Haining: 2
         Will: 
         Yasaman: 
     definition_of_variables:
-      LLM: $\HH_{\rm MF}$ is the mean-field Hamiltonian, $\hat{C}^{\dag}_{\kk s}$ is the creation operator, $\HH_{\kk s}$ is the Hamiltonian matrix, and $\hat{C}^{\phantom{\dag}}_{\kk s}$ is the annihilation operator. The elements of the matrix $\HH_{\kk s}$ are given by $\gamma_1(k_i)$, $\gamma_2(\kk)$, $\xi_{x}$, $\xi_{y}$, and $\xi_{d}$. The effective interaction parameters are $\tilde{U}_{p}$, $\tilde{V}_{pp}$, and $\tilde{U}_{d}$. The total density of holes is denoted by $n$, the total density of holes on the oxygen sites is denoted by $n^p$, and the nematic order parameter is denoted by $\eta$.
+      LLM: $\mathcal{H}_{\rm MF}$ is the mean-field Hamiltonian, $\hat{C}^{\dag}_{\kk s}$ is the creation operator, $\mathcal{H}_{\kk s}$ is the Hamiltonian matrix, and $\hat{C}^{\phantom{\dag}}_{\kk s}$ is the annihilation operator. The elements of the matrix $\mathcal{H}_{\kk s}$ are given by $\gamma_1(k_i)$, $\gamma_2(\kk)$, $\xi_{x}$, $\xi_{y}$, and $\xi_{d}$. The effective interaction parameters are $\tilde{U}_{p}$, $\tilde{V}_{pp}$, and $\tilde{U}_{d}$. The total density of holes is denoted by $n$, the total density of holes on the oxygen sites is denoted by $n^p$, and the nematic order parameter is denoted by $\eta$.
       human: |
         $\hat{H}^{int,HF,U_d,2}$ : the quadratic terms in $\hat{H}^{int,HF,U_d}$
       score: 
         Haining: 2
         Will: 
         Yasaman: 
-
+    expression_HF: 
+      human: $\frac{U_d}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \big[ \langle c_{d,\uparrow}^\dagger(k_1) c_{d,\uparrow}(k_2) \rangle c_{d,\downarrow}^\dagger(k_3) c_{d,\downarrow}(k_4)+ \langle c_{d,\downarrow}^\dagger(k_3) c_{d,\downarrow}(k_4) \rangle c_{d,\uparrow}^\dagger(k_1) c_{d,\uparrow}(k_2)- \langle c_{d,\uparrow}^\dagger(k_1) c_{d,\uparrow}(k_2) \rangle \langle c_{d,\downarrow}^\dagger(k_3) c_{d,\downarrow}(k_4) \rangle- \langle c_{d,\uparrow}^\dagger(k_1) c_{d,\downarrow}(k_4) \rangle c_{d,\downarrow}^\dagger(k_3) c_{d,\uparrow}(k_2)- \langle c_{d,\downarrow}^\dagger(k_3) c_{d,\uparrow}(k_2) \rangle c_{d,\uparrow}^\dagger(k_1) c_{d,\downarrow}(k_4)+ \langle c_{d,\uparrow}^\dagger(k_1) c_{d,\downarrow}(k_4) \rangle \langle c_{d,\downarrow}^\dagger(k_3) c_{d,\uparrow}(k_2) \rangle \big]+\frac{U_p}{2N} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big\{ \langle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\uparrow}(k_2) \rangle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\downarrow}(k_4)+ \langle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\downarrow}(k_4) \rangle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\uparrow}(k_2)- \langle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\uparrow}(k_2) \rangle \langle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\downarrow}(k_4) \rangle- \langle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\downarrow}(k_4) \rangle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\uparrow}(k_2)- \langle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\uparrow}(k_2) \rangle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\downarrow}(k_4)+ \langle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\downarrow}(k_4) \rangle \langle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\uparrow}(k_2) \rangle + \langle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\uparrow}(k_2) \rangle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\downarrow}(k_4)+ \langle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\downarrow}(k_4) \rangle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\uparrow}(k_2)- \langle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\uparrow}(k_2) \rangle \langle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\downarrow}(k_4) \rangle- \langle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\downarrow}(k_4) \rangle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\uparrow}(k_2)- \langle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\uparrow}(k_2) \rangle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\downarrow}(k_4)+ \langle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\downarrow}(k_4) \rangle \langle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\uparrow}(k_2) \rangle \Big\}+2V_{pd} \sum_{s, s^{\prime}} \frac{1}{N} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big[\langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right) + \langle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4) \rangle c_{d,s}^\dagger(k_1) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)- \langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle \langle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4) \rangle \cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)- \langle c_{d,s}^\dagger(k_1) c_{p_x,s^{\prime}}(k_4) \rangle c_{p_x,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)- \langle c_{p_x,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2) \rangle c_{d,s}^\dagger(k_1) c_{p_x,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)+ \langle c_{d,s}^\dagger(k_1) c_{p_x,s^{\prime}}(k_4) \rangle \langle c_{p_x,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2) \rangle \cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)+ \langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)+ \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) \rangle c_{d,s}^\dagger(k_1) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)- \langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) \rangle \cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)- \langle c_{d,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)- \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2) \rangle c_{d,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)+ \langle c_{d,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4) \rangle \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2) \rangle \cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)\Big]+\frac{V_{pp}}{N} \sum_{s, s^{\prime}} \sum_{\sigma_x, \sigma_y} \sum_{k_1, k_2, k_3, k_4} \sum_{G} \delta(k_2 - k_1 + k_4 - k_3, G) e^{-i (k_1 - k_2) \cdot \sigma_x\hat{x}/2 - i (k_3 - k_4) \cdot \sigma_y\hat{y}/2} \times \Big[\langle c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) + \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) \rangle c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) - \langle c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) \rangle \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) \rangle - \langle c_{p_x,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_x,s}(k_2) - \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_x,s}(k_2) \rangle c_{p_x,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4) + \langle c_{p_x,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4) \rangle \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_x,s}(k_2) \rangle \Big]$
+  answer:
+  score: 
+    in_paper: 
+    prompt_quality: 
+    follow_instructions: 
+    physics_logic: 
+    math_derivation: 
+    final_answer_accuracy:
 - task: Hartree term only
   source:
     1106.6060.tex:
@@ -337,7 +396,7 @@
   placeholder:
     Hartree_Fock_second_quantized_symbol:
       LLM: Eq.~\eqref{eq:interaction}
-      human: the first term with $U_d$
+      human: $\hat{H}^{int,HF,2}$
       score: 
         Haining: 0
         Will: 
@@ -350,22 +409,30 @@
         Will: 
         Yasaman: 
     Hartree_second_quantized_symbol:
-      LLM: $\HH_{\rm MF}$
+      LLM: $\mathcal{H}_{\rm MF}$
       human: $\hat{H}^{int,Hartree,U_d}$
       score: 
         Haining: 0
         Will: 
         Yasaman: 
-
-
+    expression_HF:
+      human: $\frac{U_d}{N}\sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \big[ \langle c_{d,\uparrow}^\dagger(k_1) c_{d,\uparrow}(k_2) \rangle c_{d,\downarrow}^\dagger(k_3) c_{d,\downarrow}(k_4)+ \langle c_{d,\downarrow}^\dagger(k_3) c_{d,\downarrow}(k_4) \rangle c_{d,\uparrow}^\dagger(k_1) c_{d,\uparrow}(k_2)- \langle c_{d,\uparrow}^\dagger(k_1) c_{d,\uparrow}(k_2) \rangle \langle c_{d,\downarrow}^\dagger(k_3) c_{d,\downarrow}(k_4) \rangle- \langle c_{d,\uparrow}^\dagger(k_1) c_{d,\downarrow}(k_4) \rangle c_{d,\downarrow}^\dagger(k_3) c_{d,\uparrow}(k_2)- \langle c_{d,\downarrow}^\dagger(k_3) c_{d,\uparrow}(k_2) \rangle c_{d,\uparrow}^\dagger(k_1) c_{d,\downarrow}(k_4)+ \langle c_{d,\uparrow}^\dagger(k_1) c_{d,\downarrow}(k_4) \rangle \langle c_{d,\downarrow}^\dagger(k_3) c_{d,\uparrow}(k_2) \rangle \big]+\frac{U_p}{2N} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big\{ \langle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\uparrow}(k_2) \rangle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\downarrow}(k_4)+ \langle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\downarrow}(k_4) \rangle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\uparrow}(k_2)- \langle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\uparrow}(k_2) \rangle \langle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\downarrow}(k_4) \rangle- \langle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\downarrow}(k_4) \rangle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\uparrow}(k_2)- \langle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\uparrow}(k_2) \rangle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\downarrow}(k_4)+ \langle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\downarrow}(k_4) \rangle \langle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\uparrow}(k_2) \rangle + \langle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\uparrow}(k_2) \rangle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\downarrow}(k_4)+ \langle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\downarrow}(k_4) \rangle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\uparrow}(k_2)- \langle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\uparrow}(k_2) \rangle \langle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\downarrow}(k_4) \rangle- \langle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\downarrow}(k_4) \rangle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\uparrow}(k_2)- \langle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\uparrow}(k_2) \rangle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\downarrow}(k_4)+ \langle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\downarrow}(k_4) \rangle \langle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\uparrow}(k_2) \rangle \Big\}+2V_{pd} \sum_{s, s^{\prime}} \frac{1}{N} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big[\langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right) + \langle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4) \rangle c_{d,s}^\dagger(k_1) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)- \langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle \langle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4) \rangle \cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)- \langle c_{d,s}^\dagger(k_1) c_{p_x,s^{\prime}}(k_4) \rangle c_{p_x,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)- \langle c_{p_x,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2) \rangle c_{d,s}^\dagger(k_1) c_{p_x,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)+ \langle c_{d,s}^\dagger(k_1) c_{p_x,s^{\prime}}(k_4) \rangle \langle c_{p_x,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2) \rangle \cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)+ \langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)+ \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) \rangle c_{d,s}^\dagger(k_1) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)- \langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) \rangle \cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)- \langle c_{d,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)- \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2) \rangle c_{d,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)+ \langle c_{d,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4) \rangle \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{d,s}(k_2) \rangle \cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)\Big]+\frac{V_{pp}}{N} \sum_{s, s^{\prime}} \sum_{\sigma_x, \sigma_y} \sum_{k_1, k_2, k_3, k_4} \sum_{G} \delta(k_2 - k_1 + k_4 - k_3, G) e^{-i (k_1 - k_2) \cdot \sigma_x\hat{x}/2 - i (k_3 - k_4) \cdot \sigma_y\hat{y}/2} \times \Big[\langle c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) + \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) \rangle c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) - \langle c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) \rangle \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) \rangle - \langle c_{p_x,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_x,s}(k_2) - \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_x,s}(k_2) \rangle c_{p_x,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4) + \langle c_{p_x,s}^\dagger(k_1) c_{p_y,s^{\prime}}(k_4) \rangle \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_x,s}(k_2) \rangle \Big]$
+  answer:
+  score: 
+    in_paper: 
+    prompt_quality: 
+    follow_instructions: 
+    physics_logic: 
+    math_derivation: 
+    final_answer_accuracy:
 - task: Swap the index only
   source:
     1106.6060.tex:
       - [177, 267]
   placeholder:
     Hartree_Fock_second_quantized_symbol:
-      LLM: $\HH_{\rm MF}$
-      human: $\hat{H}^{int,Hartree,U_d}$
+      LLM: $\mathcal{H}_{\rm MF}$
+      human: $\hat{H}^{int,Hartree}$
       score: 
         Haining: 0
         Will: 
@@ -405,15 +472,24 @@
         Haining: 0
         Will: 
         Yasaman: 
-
+    expression_HF_2:
+      human: $\frac{U_d}{N} \sum_{k_1, k_2, k_3, k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big[ \langle c_{d,\uparrow}^\dagger(k_1) c_{d,\uparrow}(k_2) \rangle c_{d,\downarrow}^\dagger(k_3) c_{d,\downarrow}(k_4) + \langle c_{d,\downarrow}^\dagger(k_3) c_{d,\downarrow}(k_4) \rangle c_{d,\uparrow}^\dagger(k_1) c_{d,\uparrow}(k_2) \Big]+\frac{U_p}{2N} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big\{ \langle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\uparrow}(k_2) \rangle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\downarrow}(k_4)+ \langle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\downarrow}(k_4) \rangle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\uparrow}(k_2)+ \langle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\uparrow}(k_2) \rangle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\downarrow}(k_4)+ \langle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\downarrow}(k_4) \rangle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\uparrow}(k_2) \Big\} + 2V_{pd} \sum_{s, s^{\prime}} \frac{1}{N} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big[\langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right) + \langle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4) \rangle c_{d,s}^\dagger(k_1) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)+ \langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)+ \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) \rangle c_{d,s}^\dagger(k_1) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right) \Big]+2V_{pd} \sum_{s, s^{\prime}} \frac{1}{N} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big[\langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right) + \langle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4) \rangle c_{d,s}^\dagger(k_1) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right)+ \langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)+ \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) \rangle c_{d,s}^\dagger(k_1) c_{d,s}(k_2)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right) \Big]+\frac{V_{pp}}{N} \sum_{s, s^{\prime}} \sum_{\sigma_x, \sigma_y} \sum_{k_1, k_2, k_3, k_4} \sum_{G} \delta(k_2 - k_1 + k_4 - k_3, G) e^{-i (k_1 - k_2) \cdot \sigma_x\hat{x}/2 - i (k_3 - k_4) \cdot \sigma_y\hat{y}/2} \times \Big[ \langle c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) + \langle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) \rangle c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) \Big]$
+  answer: $\frac{U_d}{N} \sum_{k_1, k_2, k_3, k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big[ \langle c_{d,\uparrow}^\dagger(k_1) c_{d,\uparrow}(k_2) \rangle c_{d,\downarrow}^\dagger(k_3) c_{d,\downarrow}(k_4) + \langle c_{d,\downarrow}^\dagger(k_1) c_{d,\downarrow}(k_2) \rangle c_{d,\uparrow}^\dagger(k_3) c_{d,\uparrow}(k_4) \Big]+\frac{U_p}{2N} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big\{ \langle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\uparrow}(k_2) \rangle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\downarrow}(k_4)+ \langle c_{p_x,\downarrow}^\dagger(k_1) c_{p_x,\downarrow}(k_2) \rangle c_{p_x,\uparrow}^\dagger(k_3) c_{p_x,\uparrow}(k_4)+ \langle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\uparrow}(k_2) \rangle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\downarrow}(k_4)+ \langle c_{p_y,\downarrow}^\dagger(k_1) c_{p_y,\downarrow}(k_2) \rangle c_{p_y,\uparrow}^\dagger(k_3) c_{p_y,\uparrow}(k_4) \Big\}+2V_{pd} \sum_{s, s^{\prime}} \frac{1}{N} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big[\langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right) + \langle c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) \rangle c_{d,s^{\prime}}^\dagger(k_3) c_{d,s^{\prime}}(k_4)\cos\left(\frac{k_1-k_2}{2}\cdot \hat{x}\right)+ \langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)+ \langle c_{p_y,s}^\dagger(k_1) c_{p_y,s}(k_2) \rangle c_{d,s^{\prime}}^\dagger(k_3) c_{d,s^{\prime}}(k_4)\cos\left(\frac{k_1-k_2}{2}\cdot \hat{y}\right) \Big]+\frac{V_{pp}}{N} \sum_{s, s^{\prime}} \sum_{\sigma_x, \sigma_y} \sum_{k_1, k_2, k_3, k_4} \sum_{G} \delta(k_2 - k_1 + k_4 - k_3, G) e^{-i (k_1 - k_2) \cdot \sigma_x\hat{x}/2 - i (k_3 - k_4) \cdot \sigma_y\hat{y}/2} \times \Big[ \langle c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) + \langle c_{p_y,s}^\dagger(k_1) c_{p_y,s}(k_2) \rangle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4) \Big]$
+  score: 
+    in_paper: 
+    prompt_quality: 
+    follow_instructions: 
+    physics_logic: 
+    math_derivation: 
+    final_answer_accuracy:
 - task: Reduce momentum in Hartree term (momentum in BZ)
   source:
     1106.6060.tex:
       - [177, 267]
   placeholder:
     Hartree_second_quantized_symbol:
-      LLM: $\HH_{\rm MF}$
-      human: $\hat{H}^{int,Hartree,U_d}$
+      LLM: $\mathcal{H}_{\rm MF}$
+      human: $\hat{H}^{int,Hartree}$
       score: 
         Haining: 0
         Will: 
@@ -432,5 +508,14 @@
         Haining: 0
         Will: 
         Yasaman: 
-
+    expression_Hartree:
+      human: $\frac{U_d}{N} \sum_{k_1, k_2, k_3, k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big[ \langle c_{d,\uparrow}^\dagger(k_1) c_{d,\uparrow}(k_2) \rangle c_{d,\downarrow}^\dagger(k_3) c_{d,\downarrow}(k_4) + \langle c_{d,\downarrow}^\dagger(k_1) c_{d,\downarrow}(k_2) \rangle c_{d,\uparrow}^\dagger(k_3) c_{d,\uparrow}(k_4) \Big]+\frac{U_p}{2N} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big\{ \langle c_{p_x,\uparrow}^\dagger(k_1) c_{p_x,\uparrow}(k_2) \rangle c_{p_x,\downarrow}^\dagger(k_3) c_{p_x,\downarrow}(k_4)+ \langle c_{p_x,\downarrow}^\dagger(k_1) c_{p_x,\downarrow}(k_2) \rangle c_{p_x,\uparrow}^\dagger(k_3) c_{p_x,\uparrow}(k_4)+ \langle c_{p_y,\uparrow}^\dagger(k_1) c_{p_y,\uparrow}(k_2) \rangle c_{p_y,\downarrow}^\dagger(k_3) c_{p_y,\downarrow}(k_4)+ \langle c_{p_y,\downarrow}^\dagger(k_1) c_{p_y,\downarrow}(k_2) \rangle c_{p_y,\uparrow}^\dagger(k_3) c_{p_y,\uparrow}(k_4) \Big\}+2V_{pd} \sum_{s, s^{\prime}} \frac{1}{N} \sum_{k_1,k_2,k_3,k_4} \sum_{G} \delta(k_1-k_2+k_3-k_4,G) \Big[\langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{x}\right) + \langle c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) \rangle c_{d,s^{\prime}}^\dagger(k_3) c_{d,s^{\prime}}(k_4)\cos\left(\frac{k_1-k_2}{2}\cdot \hat{x}\right)+ \langle c_{d,s}^\dagger(k_1) c_{d,s}(k_2) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4)\cos\left(\frac{k_3-k_4}{2}\cdot \hat{y}\right)+ \langle c_{p_y,s}^\dagger(k_1) c_{p_y,s}(k_2) \rangle c_{d,s^{\prime}}^\dagger(k_3) c_{d,s^{\prime}}(k_4)\cos\left(\frac{k_1-k_2}{2}\cdot \hat{y}\right) \Big]+\frac{V_{pp}}{N} \sum_{s, s^{\prime}} \sum_{\sigma_x, \sigma_y} \sum_{k_1, k_2, k_3, k_4} \sum_{G} \delta(k_2 - k_1 + k_4 - k_3, G) e^{-i (k_1 - k_2) \cdot \sigma_x\hat{x}/2 - i (k_3 - k_4) \cdot \sigma_y\hat{y}/2} \times \Big[ \langle c_{p_x,s}^\dagger(k_1) c_{p_x,s}(k_2) \rangle c_{p_y,s^{\prime}}^\dagger(k_3) c_{p_y,s^{\prime}}(k_4) + \langle c_{p_y,s}^\dagger(k_1) c_{p_y,s}(k_2) \rangle c_{p_x,s^{\prime}}^\dagger(k_3) c_{p_x,s^{\prime}}(k_4) \Big]$
+  answer:
+  score: 
+    in_paper: 
+    prompt_quality: 
+    follow_instructions: 
+    physics_logic: 
+    math_derivation: 
+    final_answer_accuracy:
   

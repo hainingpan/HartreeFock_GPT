@@ -201,7 +201,7 @@
     relabel: A
     Unsummed_Indices: A
 
-  - task: Swap the index to combine Hartree and Fock terms
+- task: Swap the index to combine Hartree and Fock terms
   placeholder:
     Hartree_Fock_second_quantized_symbol: A
     expected_value: A
