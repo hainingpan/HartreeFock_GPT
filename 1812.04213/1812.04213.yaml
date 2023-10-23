@@ -548,7 +548,7 @@
   score: 
     in_paper: 1
     prompt_quality: 2
-    follow_instructions: 
+    follow_instructions: 0
     physics_logic: 0
     math_derivation: 2
     final_answer_accuracy: 0
