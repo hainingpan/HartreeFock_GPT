@@ -38,6 +38,8 @@ def populate_prompt_fields(template: str, placeholder: str, excerpt: str):
   # relevant to the prompt.
   # Can generalize this to a list of placeholder-excerpt lists eg: if examples
   # exist too.
+  if placeholder not in template:
+      print(f'Warning: {placeholder} not found')
   template = template.replace(placeholder, excerpt)
   return template
 
