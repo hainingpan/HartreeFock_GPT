@@ -7,8 +7,8 @@ import pandas as pd
 import numpy as np
 
 # constants
-ANNOTATED_PAPERS = ['0812.2894', '0902.1336', '1010.1819', '1106.6060', '1208.0116', '1212.5363', '1310.2674', '1812.04213', '2004.04168', '2008.08998', '2012.04554', '2108.02159', '2110.11330', '2111.01152', '2112.07523', '2308.03843', '2308.07488']
-
+ANNOTATED_PAPERS = ['1010.1819', '1106.6060', '1208.0116', '1310.2674', '1812.04213', '2004.04168', '2008.08998', '2012.04554', '2108.02159', '2110.11330', '2111.01152', '2112.07523', '2308.03843', '2308.07488']
+# , '1212.5363''0812.2894', '0902.1336', 
 def get_task_yaml_for_paper(arxiv_id, path):
   """Returns the scored yaml task file for a specific paper."""
   path = os.path.join(path, arxiv_id + '.yaml')
@@ -118,7 +118,10 @@ def make_placeholderdf_for_paper(gdirpath, arxiv_id, task_templates):
       for k in phdict:
         keys.append(k)
         values.append(phdict[k])
-        baseline_score.append(elem['placeholder'][k]['score']['Haining'])
+        if 'score' not in elem['placeholder'][k]:
+            print(f'Warning: No score for {k}')
+        else:
+            baseline_score.append(elem['placeholder'][k]['score']['Haining'])
       #extend with nph
       Nplh = len(keys)
       excerpt = load_excerpt(paper_dir, elem['source'])
