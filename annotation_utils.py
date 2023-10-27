@@ -120,6 +120,7 @@ def make_placeholderdf_for_paper(gdirpath, arxiv_id, task_templates):
         values.append(phdict[k])
         if 'score' not in elem['placeholder'][k]:
             print(f'Warning: No score for {k}')
+            baseline_score.append(nan)
         else:
             baseline_score.append(elem['placeholder'][k]['score']['Haining'])
       #extend with nph
