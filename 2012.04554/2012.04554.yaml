@@ -350,10 +350,10 @@
   score:
     in_paper: 0
     prompt_quality: 2
-    follow_instructions: 
-    physics_logic: 
-    math_derivation: 
-    final_answer_accuracy: 
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Expand interaction
   source: 
     2012.04554.tex:
@@ -377,12 +377,12 @@
       human: $H_{int} = \frac{1}{2N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(k_1-k_2) \left[ \langle c_{k_1,s}^\dagger c_{k_2,s} \rangle c_{k_3,s'}^\dagger c_{k_4,s'} + \langle c_{k_3,s'}^\dagger c_{k_4,s'} \rangle c_{k_1,s}^\dagger c_{k_2,s} - \langle c_{k_1,s}^\dagger c_{k_4,s'} \rangle c_{k_3,s'}^\dagger c_{k_2,s} - \langle c_{k_3,s'}^\dagger c_{k_2,s} \rangle c_{k_1,s}^\dagger c_{k_4,s'} \right] \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$
   answer: 
   score:
-    in_paper: 
-    prompt_quality: 
-    follow_instructions: 
-    physics_logic: 
-    math_derivation: 
-    final_answer_accuracy: 
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Swap the index only
   source: 
     2012.04554.tex:
@@ -435,10 +435,10 @@
       human: $H_{int} = \frac{1}{2N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(k_1-k_2) \left[ \langle c_{k_1,s}^\dagger c_{k_2,s} \rangle c_{k_3,s'}^\dagger c_{k_4,s'} + \langle c_{k_3,s'}^\dagger c_{k_4,s'} \rangle c_{k_1,s}^\dagger c_{k_2,s} - \langle c_{k_1,s}^\dagger c_{k_4,s'} \rangle c_{k_3,s'}^\dagger c_{k_2,s} - \langle c_{k_3,s'}^\dagger c_{k_2,s} \rangle c_{k_1,s}^\dagger c_{k_4,s'} \right] \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$
   answer: 
   score:
-    in_paper: 
-    prompt_quality: 
-    follow_instructions: 
-    physics_logic: 
-    math_derivation: 
-    final_answer_accuracy: 
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 
