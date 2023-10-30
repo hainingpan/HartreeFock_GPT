@@ -1,3 +1,4 @@
+# Right now I have removed steps since "reduce momentum..", it may be a good idea to add back then, especially for consistency.
 - branch: lattice, second-quantized
 - task: Construct Kinetic Hamiltonian (lattice version)
   source: 
@@ -50,19 +51,27 @@
       LLM: $t_s$ represents band structures (depending on $\theta$), and effective interparticle Coulomb interactions $ U $  represent the correlation effect (depending on $\epsilon$). Both $ t $ and $ U $ involve distant nearest neighbors (i.e., our parametrization of Eq.~\eqref{eq:hubbard} includes hopping up to the third nearest neighbors and Coulomb coupling term $ U $ up to 1993 distant sites).
       human: 
       score: 
-        Haining: 
+        Haining: 2
         Will: 
         Yasaman: 1
         # Partial credit since no mention of operators
     You should ensure the hermiticity of the Hamiltonian:
-      LLM: $t_s$ represents band structures (depending on $\theta$), and effective interparticle Coulomb interactions $ U $  represent the correlation effect (depending on $\epsilon$). Both $ t $ and $ U $ involve distant nearest neighbors (i.e., our parametrization of Eq.~\eqref{eq:hubbard} includes hopping up to the third nearest neighbors and Coulomb coupling term $ U $ up to 1993 distant sites).
-      human: 
+      LLM: True
+      human: False
       score: 
-        Haining: 2
+        Haining: 0
         Will: 
         Yasaman: 0
         # Check
-
+  answer: 
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 1
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
+    # The sign before t is flipped
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source: 
     2012.04554.tex:
@@ -78,7 +87,7 @@
         # Seems reasonable given excerpt
     kinetic_symbol:
       LLM: $\sum_{s}\sum_{i,j}^{} t_{s}\left(\bm{R}_i-\bm{R}_j\right) c_{i,s}^\dagger c_{j,s}$
-      human: $H^{kinetic}$
+      human: $H$
       score: 
         Haining: 0
         Will: 
@@ -113,22 +122,29 @@
         Will: 
         Yasaman: 1
         # Partial credit since no mention of operators
-
+  answer: $H^{int} = \frac{1}{2} \sum_{i,j,s,s'} U(\bm{R}_i-\bm{R}_j) c_{i,s}^\dagger c_{i,s} c_{j,s'}^\dagger c_{j,s'}$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
   source: 
     2012.04554.tex:
       - [39,44]
   placeholder:
     nonint_symbol:
-      LLM: H
-      human: $H_{0}$
+      LLM: $H$
+      human:
       score: 
-        Haining: 1
+        Haining: 2
         Will: 
         Yasaman: 2
         # Reasonable given excerpt
     real_creation_op:
-      LLM: c_{i,s}^\dagger
+      LLM: $c_{i,s}^\dagger$
       human: 
       score: 
         Haining: 2
@@ -136,7 +152,7 @@
         Yasaman: 2
     momentum_creation_op:
       LLM: 
-      human: c_{k,s}^\dagger
+      human: $c_{k,s}^\dagger$
       score: 
         Haining: 0
         Will: 
@@ -171,7 +187,17 @@
         Will: 
         Yasaman: N/A
         # Check
-
+    expression_nonint: 
+      human: $\sum_{s}\sum_{i,j}^{} t_{s}\left(\bm{R}_i-\bm{R}_j\right) c_{i,s}^\dagger c_{j,s}$
+  answer: $H = \sum_{s}\sum_{k} E_{s}(k) c_{k,s}^\dagger c_{k,s}$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 1
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
+    # Opposite sign of E(k)
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source: 
     2012.04554.tex:
@@ -179,7 +205,7 @@
   placeholder:
     second_int_symbol:
       LLM: H
-      human: H_{int}
+      human: $H_{int}$
       score: 
         Haining: 1
         Will: 
@@ -193,7 +219,7 @@
         Will: 
         Yasaman: 2
     real_creation_op:
-      LLM: c_{i,s}^\dagger
+      LLM: $c_{i,s}^\dagger$
       human: 
       score: 
         Haining: 2
@@ -201,7 +227,7 @@
         Yasaman: 2
     momentum_creation_op:
       LLM: 
-      human: c_{k,s}^\dagger
+      human: $c_{k,s}^\dagger$
       score: 
         Haining: 0
         Will: 
@@ -235,7 +261,16 @@
         Will: 
         Yasaman: N/A
         # Check
-
+    expression_int: 
+      human: $H_{int} = \frac{1}{2} \sum_{i,j,s,s'} U(\bm{R}_i-\bm{R}_j) c_{i,s}^\dagger c_{i,s} c_{j,s'}^\dagger c_{j,s'}$
+  answer: $$H_{int} = \frac{1}{2N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(k_1-k_2) c_{k_1,s}^\dagger c_{k_2,s} c_{k_3,s'}^\dagger c_{k_4,s'} \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Wick's theorem
   source: 
     2012.04554.tex:
@@ -243,7 +278,7 @@
   placeholder:
     second_int_symbol:
       LLM: $\frac{1}{2}\sum_{s,s'}\sum_{i,j}U(\bm{R}_i-\bm{R}_j) c_{i,s}^\dagger c_{j,s'}^\dagger c_{j,s'} c_{i,s}$
-      human: H_{int}
+      human: $H_{int}$
       score: 
         Haining: 0
         Will: 
@@ -251,7 +286,7 @@
         # Reasonable given excerpt
     Hartree_Fock_symbol:
       LLM: 
-      human: H_{int}^{HF}
+      human: $H_{int}^{HF}$
       score: 
         Haining: 0
         Will: 
@@ -264,7 +299,16 @@
         Will: 
         Yasaman: 1
         # Partial credit for no mention of operators -- unless intended to be excluded here?
-      
+    expression_int: 
+      human: $$H_{int} = \frac{1}{2N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(k_1-k_2) c_{k_1,s}^\dagger c_{k_2,s} c_{k_3,s'}^\dagger c_{k_4,s'} \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$$
+  answer: $$H_{int} = \frac{1}{2N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(k_1-k_2) \left[ \langle c_{k_1,s}^\dagger c_{k_2,s} \rangle c_{k_3,s'}^\dagger c_{k_4,s'} + \langle c_{k_3,s'}^\dagger c_{k_4,s'} \rangle c_{k_1,s}^\dagger c_{k_2,s} - \langle c_{k_1,s}^\dagger c_{k_2,s} \rangle \langle c_{k_3,s'}^\dagger c_{k_4,s'}\rangle - \langle c_{k_1,s}^\dagger c_{k_4,s'} \rangle c_{k_3,s'}^\dagger c_{k_2,s} - \langle c_{k_3,s'}^\dagger c_{k_2,s} \rangle c_{k_1,s}^\dagger c_{k_4,s'} + \langle c_{k_1,s}^\dagger c_{k_4,s'}\rangle \langle c_{k_3,s'}^\dagger c_{k_2,s} \rangle \right] \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Extract quadratic term
   source: 
     2012.04554.tex:
@@ -272,7 +316,7 @@
   placeholder:
     Hartree_Fock_term_symbol:
       LLM: Hubbard Hamiltonian
-      human: H_{int}^{HF}
+      human: $H_{int}^{HF}$
       score: 
         Haining: 0
         Will: 
@@ -286,7 +330,7 @@
         Yasaman: 2
     Hartree_Fock_second_quantized_symbol:
       LLM: H
-      human: H_{int}^{HF,2}
+      human: $H_{int}^{HF,2}$
       score: 
         Haining: 1
         Will: 
@@ -300,7 +344,16 @@
         Will: 
         Yasaman: 1
         # Partial credit for not mentioning operators?
-    
+    expression_HF: 
+      human: $$H_{int} = \frac{1}{2N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(k_1-k_2) \left[ \langle c_{k_1,s}^\dagger c_{k_2,s} \rangle c_{k_3,s'}^\dagger c_{k_4,s'} + \langle c_{k_3,s'}^\dagger c_{k_4,s'} \rangle c_{k_1,s}^\dagger c_{k_2,s} - \langle c_{k_1,s}^\dagger c_{k_2,s} \rangle \langle c_{k_3,s'}^\dagger c_{k_4,s'}\rangle - \langle c_{k_1,s}^\dagger c_{k_4,s'} \rangle c_{k_3,s'}^\dagger c_{k_2,s} - \langle c_{k_3,s'}^\dagger c_{k_2,s} \rangle c_{k_1,s}^\dagger c_{k_4,s'} + \langle c_{k_1,s}^\dagger c_{k_4,s'}\rangle \langle c_{k_3,s'}^\dagger c_{k_2,s} \rangle \right] \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$$
+  answer: 
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 
+    physics_logic: 
+    math_derivation: 
+    final_answer_accuracy: 
 - task: Expand interaction
   source: 
     2012.04554.tex:
@@ -320,7 +373,16 @@
         Haining: 0
         Will: 
         Yasaman: 0
-    
+    expression_HF_2: 
+      human: $H_{int} = \frac{1}{2N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(k_1-k_2) \left[ \langle c_{k_1,s}^\dagger c_{k_2,s} \rangle c_{k_3,s'}^\dagger c_{k_4,s'} + \langle c_{k_3,s'}^\dagger c_{k_4,s'} \rangle c_{k_1,s}^\dagger c_{k_2,s} - \langle c_{k_1,s}^\dagger c_{k_4,s'} \rangle c_{k_3,s'}^\dagger c_{k_2,s} - \langle c_{k_3,s'}^\dagger c_{k_2,s} \rangle c_{k_1,s}^\dagger c_{k_4,s'} \right] \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$
+  answer: 
+  score:
+    in_paper: 
+    prompt_quality: 
+    follow_instructions: 
+    physics_logic: 
+    math_derivation: 
+    final_answer_accuracy: 
 - task: Swap the index only
   source: 
     2012.04554.tex:
@@ -336,7 +398,7 @@
         # Reasonable given excerpt
     expected_value:
       LLM: t_{s}
-      human: $\expval{c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s}}$ and $\expval{c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'}}$
+      human: $\langle{c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s}}\rangle$ and $\langle{c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'}}\rangle$
       score: 
         Haining: 0
         Will: 
@@ -357,156 +419,26 @@
         Yasaman: 0
     relabel:
       LLM: 
-      human: $\bm{k}_\gamma \leftrightarrow \bm{k}_\delta$
+      human: $\bm{k}_1 \leftrightarrow \bm{k}_3$, $\bm{k}_2 \leftrightarrow \bm{k}_4$, and $s$ and $s'$
       score: 
         Haining: 0
         Will: 
         Yasaman: 0
     Unsummed_Indices:
       LLM: $\bm{k}_\alpha, \bm{k}_\beta$
-      human: 
+      human: nothing
       score: 
         Haining: 0
         Will: 
         Yasaman: 0
-    
-- task: Reduce momentum in Hartree term (momentum in BZ)
-# Was LLM queried for this task and below?
-# I left off scoring further.
-  source: 
-    2012.04554.tex:
-      - [39,44]
-  placeholder:
-    Hartree_second_quantized_symbol:
-      LLM: 
-      human: 
-      score: 
-        Haining: 1
-        Will: 
-        Yasaman: 0
-        # Why is this partial credit?
-    expected_value:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    expected_value_nonzero:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    
-- task: Reduce momentum in Fock term (momentum in BZ)
-  source: 
-    2012.04554.tex:
-      - [39,44]
-  placeholder:
-    Fock_second_quantized_symbol:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    expected_value:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    expected_value_nonzero:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    
-- task: Combine the Hartree and Fock term
-  source: 
-    2012.04554.tex:
-      - [39,44]
-  placeholder:
-    symbol:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    Fock:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    swap rule:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    
-- task: Construct full Hamiltonian after HF
-  source: 
-    2012.04554.tex:
-      - [39,44]
-  placeholder:
-    Hartree_Fock_symbol:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    kinetic_symbol:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    expression_kinetic:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    int_symbol:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    expression_int:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    Ham_symbol:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    definition_of_variables:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-
+    expression_HF_2: 
+      human: $H_{int} = \frac{1}{2N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(k_1-k_2) \left[ \langle c_{k_1,s}^\dagger c_{k_2,s} \rangle c_{k_3,s'}^\dagger c_{k_4,s'} + \langle c_{k_3,s'}^\dagger c_{k_4,s'} \rangle c_{k_1,s}^\dagger c_{k_2,s} - \langle c_{k_1,s}^\dagger c_{k_4,s'} \rangle c_{k_3,s'}^\dagger c_{k_2,s} - \langle c_{k_3,s'}^\dagger c_{k_2,s} \rangle c_{k_1,s}^\dagger c_{k_4,s'} \right] \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$
+  answer: 
+  score:
+    in_paper: 
+    prompt_quality: 
+    follow_instructions: 
+    physics_logic: 
+    math_derivation: 
+    final_answer_accuracy: 
 
