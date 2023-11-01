@@ -109,10 +109,14 @@ def make_placeholderdf_for_paper(gdirpath, arxiv_id, task_templates):
   paper_dir = os.path.join(gdirpath, arxiv_id)
   paper_yaml = get_task_yaml_for_paper(arxiv_id, paper_dir)
   taskwise_df = []
+  eg_tag = '\n==='
   for elem in paper_yaml: # each task
     if 'task' in elem:
       task_name = elem['task']
       task_template = task_templates[task_name]
+      # remove example from template
+      if eg_tag in task_template:
+        task_template = task_template.split(eg_tag)[0]
       print(f"Task {task_name}")
       # get placeholder GT mapping
       phdict = return_correct_prompt_template_for_task(elem)
