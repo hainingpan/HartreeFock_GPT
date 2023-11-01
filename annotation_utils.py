@@ -77,6 +77,7 @@ def extract_filled_values(template_str):
 
 def make_df_for_paper(gdirpath, arxiv_id, task_templates):
   print(f'Arxiv Id: {arxiv_id}  ##############')
+  eg_tag = '\n==='
   paper_dir = os.path.join(gdirpath, arxiv_id)
   paper_yaml = get_task_yaml_for_paper(arxiv_id, paper_dir)
   tasks, templates, excerpts, gt_mapping, annotated_prompts, annotation_status = [], [], [], [], [], []
@@ -84,6 +85,8 @@ def make_df_for_paper(gdirpath, arxiv_id, task_templates):
     if 'task' in elem:
       task_name = elem['task']
       task_template = task_templates[task_name]
+      # remove example from template
+      task_template = task_template.split(eg_tag)[0]
       print(f"Task {task_name}")
       tasks.append(task_name)
       templates.append(task_template)
