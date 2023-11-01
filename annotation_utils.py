@@ -86,7 +86,8 @@ def make_df_for_paper(gdirpath, arxiv_id, task_templates):
       task_name = elem['task']
       task_template = task_templates[task_name]
       # remove example from template
-      task_template = task_template.split(eg_tag)[0]
+      if eg_tag in task_template:
+        task_template = task_template.split(eg_tag)[0]
       print(f"Task {task_name}")
       tasks.append(task_name)
       templates.append(task_template)
