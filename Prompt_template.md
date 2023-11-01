@@ -97,7 +97,8 @@ A dirac dispersion for electron/hole is a 2 by 2 matrix, i.e., $h_{{\theta}}(k)=
 ## Construct Potential Hamiltonian (continuum version)
 **Prompt:**  
 You will be instructed to describe the potential term of Hamiltonian {potential_symbol} in the {real|momentum} space in the {single-particle|second-quantized} form.  
-The potential Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian The diagonal terms are {diagonal_potential}.  
+The potential Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian.  
+The diagonal terms are {diagonal_potential}.  
 The off-diagonal terms are the coupling between {interaction_degrees_of_freedom}, {offdiagonal_potential}, which should be kept hermitian.  
 All others terms are zero.
 Express the potential Hamiltonian {potential_symbol} using {diagonal_potential} and {offdiagonal_potential}.  
@@ -162,7 +163,7 @@ The corresponding second quantized form is $\hat{{H}}=\vec{{\psi}}^\dagger H \ve
 **Prompt:**  
 You will be instructed to expand the second-quantized form Hamiltonian {second_nonint_symbol} using {matrix_element_symbol} and {basis_symbol}. You should follow the EXAMPLE below to expand the Hamiltonian.  
 You should use any previous knowledge to simplify it. For example, if any term of {matrix_element_symbol} is zero, you should remove it from the summation.
-You should recall that {expression_second_nonint}.  
+You should recall that {second_nonint_symbol} is {expression_second_nonint}.  
 Return the expanded form of {second_nonint_symbol} after simplification.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
@@ -194,7 +195,7 @@ $$\hat{{H}} = \int dr \frac{{1}}{{\sqrt{{V}}}} \sum_{{k_1}} c^\dagger(k_1) e^{{-
 **Prompt:**  
 You will be instructed to convert the noninteracting Hamiltonian {nonint_symbol} in the second quantized form from the basis in real space to the basis in momentum space. 
 To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that hopping have no position dependence now.]
-You should recall that {expression_nonint}
+You should recall that {nonint_symbol} is {expression_nonint}
 Express the total noninteracting Hamiltonian {nonint_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):
@@ -223,7 +224,7 @@ $$\hat{{H}}=\sum_{{k}} E(k) c^\dagger(k)  c(k)$$
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version)
 **Prompt:**  
 You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the {single-particle|second-quantized} form the basis in real space to the basis in momentum space.
-To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]  
 You should recall that {second_int_symbol} is {expression_int}.
 Express {second_int_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
 
@@ -284,7 +285,7 @@ Thus, we end up in $\hat{{H}}^{{0}}=\sum_{{i,j}} b_i H_{{i,j}} b_j^\dagger=\sum_
 You will be instructed to perform a Hartree-Fock approximation to expand the interaction term, {second_int_symbol}.  
 You should use Wick's theorem to expand the four-fermion term in {second_int_symbol} into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${{}}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
 You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
-You should recall that {expression_int}.  
+You should recall that {second_int_symbol} is {expression_int}.  
 Return the expanded interaction term after Hartree-Fock approximation as {Hartree_Fock_symbol}.
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
@@ -304,7 +305,7 @@ Be cautious about the order of the index and sign before each term here.
 You will be instructed to extract the quadratic terms in the {Hartree_Fock_term_symbol}.  
 The quadratic terms mean terms that are proportional to {bilinear_op}, which excludes terms that are solely expectations or products of expectations.  
 You should only preserve the quadratic terms in {Hartree_Fock_term_symbol}, denoted as {Hartree_Fock_second_quantized_symbol}.  
-You should recall that {expression_HF}.  
+You should recall that {Hartree_Fock_term_symbol} is {expression_HF}.  
 Return {Hartree_Fock_second_quantized_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
@@ -315,14 +316,14 @@ Use the following conventions for the symbols (You should also obey the conventi
 **Prompt:**  
 You will be instructed to keep only the Hartree term in {Hartree_Fock_second_quantized_symbol}.  
 Here, Hartree term only means that only the expected value in the form {expected_value_Hartree} (Note that the two indices are the same) should be the preserved. All other expected value terms should be dropped.
-You should recall that {expression_HF}  
+You should recall that {Hartree_Fock_second_quantized_symbol} is {expression_HF}  
 Return the simplified Hamiltonian with {Hartree_second_quantized_symbol}.  
 
 ## Fock term only
 **Prompt:**  
 You will be instructed to keep only the Fock term in {Hartree_Fock_second_term_symbol}.  
 Here, Fock term only means that only the expected value in the form {expected_value_Fock} (Note that the two indices are the different) should be the preserved. All other expected value terms should be dropped.
-You should recall that {expression_HF}  
+You should recall that {Hartree_Fock_second_term_symbol} is {expression_HF}  
 Return the simplified Hamiltonian with {Fock_second_quantized_symbol}.
 
 # Simplify the MF quadratic term
@@ -331,7 +332,7 @@ Return the simplified Hamiltonian with {Fock_second_quantized_symbol}.
 You will be instructed to expand interaction term $V(q)$ in the MF quadratic term {Hartree_Fock_second_quantized_symbol}.
 If you find the $V(q)$ in {Hartree_Fock_second_quantized_symbol} does not contain any momentum that is not in the summation sign. The interaction term is already expanded. No action to perform on interaction term.
 Otherwise, you will expand $V(q)$ by replacing $q$ with the momentum {momentum}.
-You should recall that {expression_HF_2}.
+You should recall that {Hartree_Fock_second_quantized_symbol} is {expression_HF_2}.
 Return {Hartree_Fock_second_quantized_symbol} with expanded interaction.
 
 ## Swap the index only
@@ -340,7 +341,7 @@ You will be instructed to simplify the quadratic term {Hartree_Fock_second_quant
 The logic is that the expected value ({expected_value}) in the first Hartree term ({expression_Hartree_1}) has the same form as the quadratic operators in the second Hartree term ({expression_Hartree_2}), and vice versa. The same applies to the Fock term.  
 Namely, a replacement of {relabel} is applied to ONLY the second Hartree or Fock term. You should not swap any index that is not in the summation, which includes {Unsummed_Indices}.  
 This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Hartree or Fock term, you can make the second Hartree or Fock term look identical to the first Hartree or Fock term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
-You should recall that {expression_HF_2}
+You should recall that {Hartree_Fock_second_quantized_symbol} is {expression_HF_2}
 Return the simplified {Hartree_Fock_second_quantized_symbol}.
 
 ===  
@@ -358,7 +359,7 @@ You will be instructed to simplify the quadratic term {Hartree_Fock_second_quant
 The logic is that the expected value ({expected_value}) in the first Hartree term ({expression_Hartree_1}) has the same form as the quadratic operators in the second Hartree term ({expression_Hartree_2}), and vice versa. The same applies to the Fock term.  
 This means, if you relabel the index by swapping the index in the "expected value" and "quadratic operators" in the second Hartree term, you can make the second Hartree term look identical to the first Hartree term, as long as $V(q)=V(-q)$, which is naturally satisfied in Coulomb interaction. You should follow the EXAMPLE below to simplify it through relabeling the index.  
 You should perform this trick of "relabeling the index" for both two Hartree terms and two Fock terms to reduce them to one Hartree term, and one Fock term.  
-You should recall that {expression_HF_2}.  
+You should recall that {Hartree_Fock_second_quantized_symbol} is {expression_HF_2}.  
 Return the simplified {Hartree_Fock_second_quantized_symbol} which reduces from four terms (two Hartree and two Fock terms) to only two terms (one Hartree and one Fock term)
 
 ===  
@@ -376,7 +377,7 @@ The expected value {expected_value} is only nonzero when the two momenta $k_i,k_
 You should use the property of Kronecker delta function $\delta_{{k_i,k_j}}$ to reduce one momentum $k_i$ but not $b_i$.
 Once you reduce one momentum inside the expected value $\langle\dots\rangle$. You will also notice the total momentum conservation will reduce another momentum in the quadratic term. Therefore, you should end up with only two momenta left in the summation.  
 You should follow the EXAMPLE below to reduce one momentum in the Hartree term, and another momentum in the quadratic term.  
-You should recall that {expression_Hartree}.  
+You should recall that {Hartree_second_quantized_symbol} is {expression_Hartree}.  
 Return the final simplified Hartree term {Hartree_second_quantized_symbol}.
 
 ===  
@@ -395,7 +396,7 @@ The expected value {expected_value} is only nonzero when the two momenta $k_i,k_
 You should use the property of Kronecker delta function $\delta_{{k_i,k_j}}$ to reduce one momentum $k_i$.
 Once you reduce one momentum inside the expected value $\langle\dots\rangle$. You will also notice the total momentum conservation will reduce another momentum in the quadratic term. Therefore, you should end up with only two momenta left in the summation.  
 You should follow the EXAMPLE below to reduce one momentum in the Hartree term, and another momentum in the quadratic term.  
-You should recall that {expression_Hartree}.  
+You should recall that {Hartree_second_quantized_symbol} is {expression_Hartree}.  
 Return the final simplified Hartree term {Hartree_second_quantized_symbol}.
 
 ===  
@@ -416,7 +417,7 @@ The expected value {expected_value} is only nonzero when the two momenta $k_i,k_
 You should use the property of Kronecker delta function $\delta_{{k_i,k_j}}$ to reduce one momentum $k_i$ but not $b_i$.  
 Once you reduce one momentum inside the expected value $\langle\dots\rangle$. You will also notice the total momentum conservation will reduce another momentum in the quadratic term. Therefore, you should end up with only two momenta left in the summation.
 You should follow the EXAMPLE below to reduce one momentum in the Fock term, and another momentum in the quadratic term.    
-You should recall that {expression_Fock}.  
+You should recall that {Fock_second_quantized_symbol} is {expression_Fock}.  
 Return the final simplified Fock term {Fock_second_quantized_symbol}.
 
 ===  
@@ -436,7 +437,7 @@ The expected value {expected_value} is only nonzero when the two momenta $k_i,k_
 You should use the property of Kronecker delta function $\delta_{{k_i,k_j}}$ to reduce one momentum $k_i$.  
 Once you reduce one momentum inside the expected value $\langle\dots\rangle$. You will also notice the total momentum conservation will reduce another momentum in the quadratic term. Therefore, you should end up with only two momenta left in the summation.
 You should follow the EXAMPLE below to reduce one momentum in the Fock term, and another momentum in the quadratic term.    
-You should recall that {expression_Fock}.  
+You should recall that {Fock_second_quantized_symbol} is {expression_Fock}.  
 Return the final simplified Fock term {Fock_second_quantized_symbol}.
 
 ===  

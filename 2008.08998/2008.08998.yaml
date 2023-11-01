@@ -1,3 +1,4 @@
+# Mostly good, missing the part for ``Reduce momentum in Hartree term`` and ``Reduce momentum in Fock term``
 - branch: lattice, second-quantized
 - task: Construct Kinetic Hamiltonian (lattice version)
   source:
@@ -62,8 +63,14 @@
         Will: 
         Yasaman: 2
         # Not a task, remove from scoring
-
-    
+  answer: $H=\sum_{s}\sum_{i,j}^{} t_{s}\left(\bm{R}_i-\bm{R}_j\right) c_{i,s}^\dagger c_{j,s}$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 1 # Extra sign before t , though does not affect physics
+    physics_logic: 2  
+    math_derivation: 2
+    final_answer_accuracy: 1 
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source:
     2008.08998.tex:
@@ -113,14 +120,21 @@
         Haining: 2
         Will: 
         Yasaman: 0
-  
+  answer: $H_{\text{Coulomb}}=\frac{1}{2}\sum_{s,s'}\sum_{i,j}U(\bm{R}_i-\bm{R}_j) c_{i,s}^\dagger c_{j,s'}^\dagger c_{j,s'} c_{i,s}$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
   source:
     2008.08998.tex:
       - [221,225]
   placeholder:
     nonint_symbol:
-      LLM: H_0
+      LLM: $H_0$
       human: 
       score: 
         Haining: 2
@@ -128,28 +142,28 @@
         Yasaman: 2
     real_creation_op:
       LLM: c_{\bm{k},s}^\dagger
-      human: c_{R_\bm{i},s}^\dagger
+      human: $c_{R_{\bm{i}},s}^\dagger$
       score: 
         Haining: 0
         Will: 
         Yasaman: 0
     momentum_creation_op:
       LLM: c_{\bm{k},s}^\dagger
-      human: 
+      human: $c_{\bm{k},s}^\dagger$
       score: 
         Haining: 2
         Will: 
         Yasaman: 2
     definition_of_Fourier_Transformation:
       LLM: \varepsilon_s(\bm{k})
-      human: $c_{\bm{k},s}^\dagger= \frac{1}{\sqrt{N}} \sum_i c_{R_\bm{i},s}^\dagger e^{i k \cdot R_i}$
+      human: $c_{\bm{k},s}^\dagger= \frac{1}{\sqrt{N}} \sum_i c_{R_{\bm{i}},s}^\dagger e^{i k \cdot R_i}$
       score: 
         Haining: 0
         Will: 
         Yasaman: 0
     real_variable:
       LLM: \bm{k}
-      human: R_\bm{i}
+      human: R_{\bm{i}}
       score: 
         Haining: 0
         Will: 
@@ -169,14 +183,23 @@
         Will: 
         Yasaman: 2
         # Not a task, remove to not bias scoring
-  
+    expression_nonint: 
+      human: $H=\sum_{s}\sum_{i,j}^{} t_{s}\left(\bm{R}_i-\bm{R}_j\right) c_{i,s}^\dagger c_{j,s}$
+  answer: $H_0=\sum_{s}\sum_{{\bm{k}}}^{}\varepsilon_s(\bm{k}) c_{\bm{k},s}^\dagger c_{\bm{k},s}$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source:
     2008.08998.tex:
       - [225,237]
   placeholder:
     second_int_symbol:
-      LLM: H_1
+      LLM: $H_{\text{Coulomb}}$
       human: 
       score: 
         Haining: 2
@@ -191,13 +214,13 @@
         Yasaman: 2
     real_creation_op:
       LLM: c_{\bm{k}_\alpha,s}^\dagger
-      human: c_{R_\bm{i},s}^\dagger
+      human: $c_{R_{\bm{i}},s}^\dagger$
       score: 
         Haining: 0
         Will: 
         Yasaman: 0
     momentum_creation_op:
-      LLM: c_{\bm{k}_\alpha,s}^\dagger
+      LLM: $c_{\bm{k}_\alpha,s}^\dagger$
       human: 
       score: 
         Haining: 2
@@ -205,7 +228,7 @@
         Yasaman: 2
     definition_of_Fourier_Transformation:
       LLM: U(\bm{q})=\sum_{\bm{R}}U(\bm{R})e^{i\bm{q}\cdot\bm{R}}
-      human: $c_{\bm{k},s}^\dagger= \frac{1}{\sqrt{N}} \sum_i c_{R_\bm{i},s}^\dagger e^{i k \cdot R_i}$
+      human: $c_{\bm{k},s}^\dagger= \frac{1}{\sqrt{N}} \sum_i c_{R_{\bm{i}},s}^\dagger e^{i k \cdot R_i}$
       score: 
         Haining: 0
         Will: 
@@ -229,20 +252,42 @@
         Yasaman: 2
     Note that interaction have no position dependence now:
       LLM: true
-      human: 
+      human: false
       score: 
         Haining: 0
         Will: 
         Yasaman: 2
         # Not a task, remove to not bias scoring
-  
+    expression_int: 
+      human: $H_{\text{Coulomb}}=\frac{1}{2}\sum_{s,s'}\sum_{i,j}U(\bm{R}_i-\bm{R}_j) c_{i,s}^\dagger c_{j,s'}^\dagger c_{j,s'} c_{i,s}$
+  answer: |
+    The interaction term $ H_1 $ in the momentum space is 
+    \begin{equation}
+      H_1=\frac{1}{2\mathcal{N}}\sum_{s,s'} \sum_{\bm{k}} U(\bm{k}_\alpha-\bm{k}_\delta)\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta} c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'} c_{\bm{k}_\delta,s},
+    \end{equation}
+    where $ \mathcal{N} $ is the number of total sites in the lattice, and  $ \bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma , \bm{k}_\delta $ are summed over the first $ \mathbb{BZ} $. Here, the interaction in the momentum space (as shown in Fig.~\ref{fig:tU}(d)) is
+    \begin{equation}
+      U(\bm{q})=\sum_{\bm{R}}U(\bm{R})e^{i\bm{q}\cdot\bm{R}},
+    \end{equation}
+    and
+    \begin{equation}
+      \delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta}=\sum_{\bm{G}}\delta(\bm{k}_\alpha+\bm{k}_\beta-\bm{k}_\gamma-\bm{k}_\delta,\bm{G}),
+    \end{equation}
+    where  $ \bm{G} $ is any moir\'e reciprocal lattice vector, and $ \delta(\dots) $ is the Kronecker delta function.
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Wick's theorem
   source:
     2008.08998.tex:
       - [239,245]
   placeholder:
     second_int_symbol:
-      LLM: $H_{\text{int}}$
+      LLM: $H_{\text{Coulomb}}$
       human: 
       score: 
         Haining: 2
@@ -257,13 +302,22 @@
         Yasaman: 2
         # Not sure how LLM should infer this.
     definition_of_variables:
-      LLM: $H_{\text{int}}$ is the interaction term, $\mathcal{N}$ is a normalization constant, $s$ and $s'$ are spin indices, $\bm{k}$ is the momentum vector, $U(\bm{k}_\alpha-\bm{k}_\delta)$ is the interaction potential, $\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta}$ is the Kronecker delta function, $c_{\bm{k}_\alpha,s}^\dagger$ and $c_{\bm{k}_\delta,s}$ are creation and annihilation operators respectively, and $\expval{...}$ denotes expectation values.
+      LLM: $H_{\text{int}}$ is the interaction term, $\mathcal{N}$ is a normalization constant, $s$ and $s'$ are spin indices, $\bm{k}$ is the momentum vector, $U(\bm{k}_\alpha-\bm{k}_\delta)$ is the interaction potential, $\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta}=\sum_{\bm{G}}\delta(\bm{k}_\alpha+\bm{k}_\beta-\bm{k}_\gamma-\bm{k}_\delta,\bm{G})$ is the Kronecker delta function, $c_{\bm{k}_\alpha,s}^\dagger$ and $c_{\bm{k}_\delta,s}$ are creation and annihilation operators respectively, and $\langle{...}\rangle$ denotes expectation values.
       human: 
       score: 
         Haining: 2
         Will: 
         Yasaman: 2
-  
+    expression_int:
+      human: $H_{\text{Coulomb}}=\frac{1}{2\mathcal{N}}\sum_{s,s'} \sum_{\bm{k}} U(\bm{k}_\alpha-\bm{k}_\delta)\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta} c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'} c_{\bm{k}_\delta,s}$, where $\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta}=\sum_{\bm{G}}\delta(\bm{k}_\alpha+\bm{k}_\beta-\bm{k}_\gamma-\bm{k}_\delta,\bm{G})$ is the Kronecker delta function
+  answer:
+  score:
+    in_paper: 0 # the literal form is not shown, only the quadratic terms are shown
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Extract quadratic term
   source:
     2008.08998.tex:
@@ -292,20 +346,37 @@
         Will: 
         Yasaman: 2
     definition_of_variables:
-      LLM: $H_{\text{int}}$ is the interaction Hamiltonian, $\mathcal{N}$ is a normalization factor, $s$ and $s'$ are spin indices, $\bm{k}$ is the momentum vector, $U(\bm{k}_\alpha-\bm{k}_\delta)$ is the interaction potential, $\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta}$ is the Kronecker delta function, $c_{\bm{k}_\alpha,s}^\dagger$ and $c_{\bm{k}_\delta,s}$ are creation and annihilation operators, and $\expval{...}$ denotes expectation values.
+      LLM: $H_{\text{int}}$ is the interaction Hamiltonian, $\mathcal{N}$ is a normalization factor, $s$ and $s'$ are spin indices, $\bm{k}$ is the momentum vector, $U(\bm{k}_\alpha-\bm{k}_\delta)$ is the interaction potential, $\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta}$ is the Kronecker delta function, $c_{\bm{k}_\alpha,s}^\dagger$ and $c_{\bm{k}_\delta,s}$ are creation and annihilation operators, and $\langle{...}\rangle$ denotes expectation values.
       human: 
       score: 
         Haining: 2
         Will: 
         Yasaman: 2
-  
+    expression_HF:
+      human: |
+        $H_{\text{Coulomb}}=\frac{1}{2\mathcal{N}}\sum_{s,s'} \sum_{\bm{k}} U(\bm{k}_\alpha-\bm{k}_\delta)\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta} \left[ \langle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s} \rangle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'} + \langle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'} \rangle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s} - \langle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s} \rangle \langle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'} \rangle - \langle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'} \rangle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\delta,s} - \langle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\delta,s} \rangle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'} + \langle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'} \rangle \langle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\delta,s} \rangle \right]$, where $\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta}=\sum_{\bm{G}}\delta(\bm{k}_\alpha+\bm{k}_\beta-\bm{k}_\gamma-\bm{k}_\delta,\bm{G})$
+  answer: |
+    Using the Hartree-Fock truncation, we obtain the mean-field Hamiltonian for the interaction term
+        \begin{widetext}
+          \begin{equation}\label{eq:HMF}
+            H_{\text{int}}=\frac{1}{\mathcal{N}} \sum_{s,s'} \sum_{\bm{k}} U(\bm{k}_\alpha-\bm{k}_\delta) \delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta} \\
+            \qty[\expval{c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s}}c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'}-\expval{c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'}}c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\delta,s}]
+          \end{equation}
+        \end{widetext}
+  score:
+    in_paper: 1 # exact form not shown, showing the one after swapping the index
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Expand interaction
   source:
     2008.08998.tex:
       - [239,245]
   placeholder:
     Hartree_Fock_second_quantized_symbol:
-      LLM: $H_{\text{int}}$
+      LLM: $H_{\text{int}}^{(2)}$
       human: 
       score: 
         Haining: 2
@@ -318,21 +389,31 @@
         Haining: 2
         Will: 
         Yasaman: 2
-  
+    expression_HF_2: 
+      human: |
+        $H_{\text{int}}^{(2)} = \frac{1}{2\mathcal{N}}\sum_{s,s'} \sum_{\bm{k}} U(\bm{k}_\alpha-\bm{k}_\delta)\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta} \left[ \langle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s} \rangle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'} + \langle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'} \rangle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s} - \langle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'} \rangle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\delta,s} - \langle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\delta,s} \rangle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'} \right]$, where $\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta}=\sum_{\bm{G}}\delta(\bm{k}_\alpha+\bm{k}_\beta-\bm{k}_\gamma-\bm{k}_\delta,\bm{G})$
+  answer:
+  score:
+    in_paper: 1
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Swap the index only
   source:
     2008.08998.tex:
       - [239,245]
   placeholder:
     Hartree_Fock_second_quantized_symbol:
-      LLM: $H_{\text{int}}$
+      LLM: $H_{\text{int}}^{(2)}$
       human: 
       score: 
         Haining: 2
         Will: 
         Yasaman: 2
     expected_value:
-      LLM: $\expval{c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s}}$ and $\expval{c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'}}$
+      LLM: $\langle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s} \rangle$ and $\langle{c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'}} \rangle$
       human: 
       score: 
         Haining: 2
@@ -354,16 +435,25 @@
         Yasaman: 2
     relabel:
       LLM: $\bm{k}_\gamma \leftrightarrow \bm{k}_\delta$
-      human: 
+      human: $\bm{k}_\alpha, \leftrightarrow \bm{k}_\beta$ and $\bm{k}_\gamma \leftrightarrow \bm{k}_\delta$
       score: 
-        Haining: 2
+        Haining: 1
         Will: 
         Yasaman: 2
     Unsummed_Indices:
       LLM: $\bm{k}_\alpha, \bm{k}_\beta$
-      human: spin index
+      human: nothings in this case
       score: 
         Haining: 0
         Will: 
-        Yasaman: 0
-  
+        Yasaman: 0  
+    expression_HF_2:
+      human: $H_{\text{int}}^{(2)} = \frac{1}{2\mathcal{N}}\sum_{s,s'} \sum_{\bm{k}} U(\bm{k}_\alpha-\bm{k}_\delta)\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta} \left[ \langle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s} \rangle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'} + \langle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'} \rangle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s} - \langle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'} \rangle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\delta,s} - \langle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\delta,s} \rangle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'} \right]$, where $\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta}=\sum_{\bm{G}}\delta(\bm{k}_\alpha+\bm{k}_\beta-\bm{k}_\gamma-\bm{k}_\delta,\bm{G})$
+  answer:
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
