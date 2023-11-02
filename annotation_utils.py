@@ -138,7 +138,28 @@ def make_placeholderdf_for_paper(gdirpath, arxiv_id, task_templates):
       taskwise_df.append(pd.DataFrame({'gt_key': keys, 'gt_value': values, 'gpt-4_score': baseline_score, 'arxiv_id': [arxiv_id]*Nplh,  'task': [task_name]*Nplh, 'excerpt': [excerpt]*Nplh, 'blank_template': [task_template]*Nplh}))  
   return pd.concat(taskwise_df)
 
-
+def retrieve_gpt_answer_from_yaml(df, index, dirpath):
+  """Retrieves the GPT answer for comparison."""
+  row = df.loc[index]
+  arxiv_id = row['arxiv_id']
+  paper_dir = os.path.join(dirpath, arxiv_id)
+  paper_tasks = annotation_utils.get_task_yaml_for_paper(arxiv_id, paper_dir)
+  task_id_map = {} #stores task_name -> index in paper_tasks yaml
+  for it, elem in enumerate(paper_tasks):
+    if 'task' in elem:
+      task_id_map[elem['task']]= it
+  relevant_task = paper_tasks[task_id_map[row['task']]]
+  assert relevant_task['task'] == row['task']
+  #placeholder
+  ph = row['gt_key']
+  if 'LLM' not in relevant_task['placeholder'][ph]:
+    gpt_ans = 'NaN'
+    print('No LLM Answer')
+  else:
+    gpt_ans = relevant_task['placeholder'][ph]['LLM']
+  print(f"GPT-4 reply for Paper {arxiv_id}, Task {row['task']}, Placeholder '{ph}' = {gpt_ans}")
+  return gpt_ans
+  
 def expand_promptdf_to_placeholderdf(df, index_row, gdirpath):
   gt_dict = json.loads(df.iloc[index_row]['gt_mapping'])
   arxiv_id = str(df.iloc[index_row]['arxiv_id'])
