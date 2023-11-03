@@ -143,7 +143,7 @@ def retrieve_gpt_answer_from_yaml(df, index, dirpath):
   row = df.loc[index]
   arxiv_id = row['arxiv_id']
   paper_dir = os.path.join(dirpath, arxiv_id)
-  paper_tasks = annotation_utils.get_task_yaml_for_paper(arxiv_id, paper_dir)
+  paper_tasks = get_task_yaml_for_paper(arxiv_id, paper_dir)
   task_id_map = {} #stores task_name -> index in paper_tasks yaml
   for it, elem in enumerate(paper_tasks):
     if 'task' in elem:
