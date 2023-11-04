@@ -238,7 +238,7 @@
     symbol: A
     Hartree: A
     Fock: A
-    swap rule: A
+    swap_rule: A
     # Placeholder not sufficiently descriptive
 
     
