@@ -454,7 +454,7 @@ Therefore, the final simplified Fock term after reducing one momentum is $\hat{{
 
 ## Combine the Hartree and Fock term
 **Prompt:**  
-You will now be instructed to combine the Hartree term {symbol} and the Fock term {symbol}.  
+You will now be instructed to combine the Hartree term {Hartree_symbol} and the Fock term {Fock_symbol}.  
 You should recall that the Hartree term {Hartree},  
 and the Fock term {Fock}.  
 You should perform the same trick of relabeling the index in the Fock term to make the quadratic operators in the Fock term the same as those in the Hartree term. The relabeling should be done with a swap : {swap rule}.
