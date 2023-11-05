@@ -1,6 +1,6 @@
 # Interaction is not density-density interaction, contains Hund coupling, which is outside the template
 # "Combine the Hartree and Fock term" is skipped because the information is not in the paper, need to go back to this once the previous prompts are answered
-# Macro of \bq,\bk are not standard latex, which may cause troubles
+# Macro of \bf q,\bf k are not standard latex, which may cause troubles
 - branch: lattice, second-quantized
 - task: Construct Kinetic Hamiltonian (lattice version)
   source: 
@@ -67,14 +67,21 @@
         Will: 
         Yasaman: 2
         # remove from scoring
-
+  answer: $H_{0} = \sum_{i,\alpha,\sigma} \epsilon_{\alpha} d^{\dagger}_{i,\alpha,\sigma} d^{\phantom\dagger}_{i,\alpha,\sigma} - \sum_{\langle i,j \rangle,\alpha,\beta,\sigma} t^{\alpha\beta}_{ij} d^{\dagger}_{i,\alpha,\sigma} d^{\phantom\dagger}_{j,\beta,\sigma}$
+  score: 
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source: 
     1310.2674.tex:
       - [225,252]
   placeholder:
     second_int_symbol:
-      LLM: H_{\rm {int}}
+      LLM: $H_{\rm {int}}$
       human: 
       score: 
         Haining: 2
@@ -91,9 +98,9 @@
       LLM: site i and site j with the interaction strength U, U', J, and J'
       human: |
         1. site i, $\alpha$, $\sigma$ and site i, $\alpha$, $\sigma'$ with $U/2$ where $\sigma\neq\sigma'$
-        2. site i, $\alpha$, $\sigma$ and site i, $\alpha'$, $\sigma'$ with $U'/2$, where $\alpha\neq\alpha'$, $\sigma\neq\sigma'$
-        3. site i, $\alpha$, $\sigma$ and site i, $\alpha'$, $\sigma'$ with $U'/2$, where $\alpha\neq\alpha'$, $\sigma\neq\sigma'$ (?)
-        4. site i, $\alpha$, $\sigma$ and site i, $\alpha'$, $\sigma'$ with $U'/2$, where $\alpha\neq\alpha'$, $\sigma\neq\sigma'$ (?)
+        2. site i, $\alpha$, $\sigma$ and site i, $\alpha'$, $\sigma'$ with $U'/2$, where $\alpha\neq\alpha'$
+        3. Coupling of $d_{i,\alpha,\sigma}^\dag d_{i,\alpha',\sigma'}^\dag d_{i,\alpha,\sigma'} d_{i,\alpha',\sigma}$ with $J/2$, 
+        4. Coupling of $d_{i,\alpha,\sigma}^\dag d_{i,\alpha,\sigma'}^\dag d_{i,\alpha',\sigma'} d_{i,\alpha',\sigma}$ with $J'/2$, where $\sigma\neq\sigma'$ and $\alpha\neq\alpha'$
       score: 
         Haining: 1
         Will: 
@@ -108,21 +115,29 @@
         Will: 
         Yasaman: 2
     density_symbol:
-      LLM: n_{i,\alpha,\sigma}
+      LLM: $n_{i,\alpha,\sigma}$
       human: 
       score: 
         Haining: 2
         Will: 
         Yasaman: 2
     definition_of_variables:
-      LLM: n_{i,\alpha,\sigma} = d^\dagger_{i,\alpha,\sigma}d^{\phantom\dagger}_{i,\alpha,\sigma} where d^\dagger_{i,\alpha,\sigma} creates a spin-$\sigma$ electron in one of the two $e_g$ orbitals if $i$ is a Ni site, or the $2p_\sigma$ orbital if $i$ is an O site.
+      LLM: $n_{i,\alpha,\sigma} = d^\dagger_{i,\alpha,\sigma}d^{\phantom\dagger}_{i,\alpha,\sigma}$ where $d^\dagger_{i,\alpha,\sigma}$ creates a spin-$\sigma$ electron in one of the two $e_g$ orbitals if $i$ is a Ni site, or the $2p_\sigma$ orbital if $i$ is an O site.
       human: 
       score: 
         Haining: 2
         Will: 
         Yasaman: 2
         # impressive?
-
+  answer: $H_{\rm {int}}=\sum_{i,\alpha,\sigma\ne\sigma^\prime} \frac{U}{2} n_{i,\alpha,\sigma}n_{i,\alpha,\sigma^\prime} + \sum_{i,\alpha\ne\alpha^\prime,\sigma,\sigma^\prime}\frac{U^\prime}{2}  n_{i,\alpha,\sigma}n_{i,\alpha^\prime,\sigma^\prime} +\sum_{i,\alpha,\alpha^\prime,\sigma,\sigma^\prime} \frac{J}{2}d^\dagger_{i,\alpha,\sigma}d^\dagger_{i,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{i,\alpha,\sigma^\prime}d^{\phantom\dagger}_{i,\alpha^\prime,\sigma}+\sum_{i,\alpha\ne\alpha^\prime,\sigma\ne\sigma^\prime} \frac{J^\prime}{2}d^\dagger_{i,\alpha,\sigma}d^\dagger_{i,\alpha,\sigma^\prime}d^{\phantom\dagger}_{i,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{i,\alpha^\prime,\sigma}$
+  score: 
+    in_paper: 2
+    prompt_quality: 1
+    follow_instructions: 2
+    physics_logic: 1
+    math_derivation: 2
+    final_answer_accuracy: 1
+    # The template is designed only for density-density interaction. The summation in the third term should not have $\alpha=\alpha'$.
 - task: Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
   source: 
     1310.2674_SM.tex:
@@ -138,34 +153,34 @@
         # partial credit. Ought to grade on most recent excerpt or all excerpts thus far from paper?
     real_creation_op:
       LLM: d
-      human: d^\dagger_{i,\alpha,\sigma}
+      human: $d^\dagger_{i,\alpha,\sigma}$
       score: 
         Haining: 1
         Will: 
         Yasaman: 0
     momentum_creation_op:
       LLM: d
-      human: d^\dagger_{\bk,\alpha,\sigma}
+      human: $d^\dagger_{\bf k,\alpha,\sigma}$
       score: 
         Haining: 1
         Will: 
         Yasaman: 0
     definition_of_Fourier_Transformation:
-      LLM: T_{\alpha,\beta}(\bk) d^\dagger_{\bk,\alpha,\sigma} d^{\phantom\dagger}_{\bk,\beta,\sigma}
-      human: $d^\dagger_{\bk,\alpha,\sigma}= \frac{1}{\sqrt{N}} \sum_i d^\dagger_{i,\alpha,\sigma} e^{i k \cdot R_i}$
+      LLM: T_{\alpha,\beta}(\bf k) d^\dagger_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k,\beta,\sigma}
+      human: $d^\dagger_{\bf k,\alpha,\sigma}= \frac{1}{\sqrt{N}} \sum_i d^\dagger_{i,\alpha,\sigma} e^{i k \cdot R_i}$
       score: 
         Haining: 0
         Will: 
         Yasaman: 0
     real_variable:
-      LLM: \bk
+      LLM: \bf k
       human: i
       score: 
         Haining: 0
         Will: 
         Yasaman: 0
     definition_of_variables:
-      LLM: H is the Hamiltonian, \bk is the momentum, \alpha and \beta are the indices for the basis in momentum space, \sigma is the spin index, T_{\alpha,\beta}(\bk) is the Fourier transformation, and d^\dagger_{\bk,\alpha,\sigma} and d^{\phantom\dagger}_{\bk,\beta,\sigma} are the creation and annihilation operators in momentum space respectively.
+      LLM: $H$ is the Hamiltonian, $\bf k$ is the momentum, $\alpha$ and $\beta$ are the indices for the basis in momentum space, $\sigma$ is the spin index, $T_{\alpha,\beta}(\bf k)$ is the Fourier transformation, and $d^\dagger_{\bf k,\alpha,\sigma}$ and $d^{\phantom\dagger}_{\bf k,\beta,\sigma}$ are the creation and annihilation operators in momentum space respectively.
       human: 
       score: 
         Haining: 2
@@ -180,7 +195,16 @@
         Will: 
         Yasaman: 2
         # remove from scoring
-
+    expression_nonint: 
+      human: $H_{0} = \sum_{i,\alpha,\sigma} \epsilon_{\alpha} d^{\dagger}_{i,\alpha,\sigma} d^{\phantom\dagger}_{i,\alpha,\sigma} - \sum_{\langle i,j \rangle,\alpha,\beta,\sigma} t^{\alpha\beta}_{ij} d^{\dagger}_{i,\alpha,\sigma} d^{\phantom\dagger}_{j,\beta,\sigma}$
+  answer: $\hat{H}_{\mathrm 0} = \sum_{\bf k,\alpha,\sigma} \epsilon_{\alpha} d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k,\alpha,\sigma} - \sum_{\bf k,\alpha,\beta,\sigma} t^{\alpha\beta}_{\bf k} d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k,\beta,\sigma}$ where $t^{\alpha\beta}_{\bf k} = \sum_{\langle i,j \rangle} t^{\alpha\beta}_{ij} e^{-i k \cdot (R_i - R_j)}$ is the Fourier transform of the hopping term. 
+  score: 
+    in_paper: 1
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source: 
     1310.2674_SM.tex:
@@ -188,7 +212,7 @@
   placeholder:
     second_int_symbol:
       LLM: $U^{\sigma\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}$
-      human: \hat{H}_{\rm {int}}
+      human: $\hat{H}_{\rm {int}}$
       score: 
         Haining: 0
         Will: 
@@ -203,28 +227,28 @@
         Yasaman: 2
     real_creation_op:
       LLM: d
-      human: d^\dagger_{i,\alpha,\sigma}
+      human: $d^\dagger_{i,\alpha,\sigma}$
       score: 
         Haining: 1
         Will: 
         Yasaman: 0
     momentum_creation_op:
       LLM: d
-      human: d^\dagger_{\bk,\alpha,\sigma}
+      human: $d^\dagger_{\bf k,\alpha,\sigma}$
       score: 
         Haining: 1
         Will: 
         Yasaman: 0
     definition_of_Fourier_Transformation:
-      LLM: T_{\alpha,\beta}(\bk) d^\dagger_{\bk,\alpha,\sigma} d^{\phantom\dagger}_{\bk,\beta,\sigma}
-      human: $d^\dagger_{\bk,\alpha,\sigma}= \frac{1}{\sqrt{N}} \sum_i d^\dagger_{i,\alpha,\sigma} e^{i k \cdot R_i}$
+      LLM: T_{\alpha,\beta}(\bf k) d^\dagger_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k,\beta,\sigma}
+      human: $d^\dagger_{\bf k,\alpha,\sigma}= \frac{1}{\sqrt{N}} \sum_i d^\dagger_{i,\alpha,\sigma} e^{i k \cdot R_i}$
       score: 
         Haining: 0
         Will: 
         Yasaman: 0
     real_variable:
-      LLM:  \bk
-      human: i
+      LLM:  \bf k
+      human: $i$
       score: 
         Haining: 0
         Will: 
@@ -244,43 +268,82 @@
         Will: 
         Yasaman: 2
         # remove from scoring
-
-
+    expression_int:
+      human: $H_{\rm {int}}=\sum_{i,\alpha,\sigma\ne\sigma^\prime} \frac{U}{2} n_{i,\alpha,\sigma}n_{i,\alpha,\sigma^\prime} + \sum_{i,\alpha\ne\alpha^\prime,\sigma,\sigma^\prime}\frac{U^\prime}{2}  n_{i,\alpha,\sigma}n_{i,\alpha^\prime,\sigma^\prime} +\sum_{i,\alpha,\alpha^\prime,\sigma,\sigma^\prime} \frac{J}{2}d^\dagger_{i,\alpha,\sigma}d^\dagger_{i,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{i,\alpha,\sigma^\prime}d^{\phantom\dagger}_{i,\alpha^\prime,\sigma}+\sum_{i,\alpha\ne\alpha^\prime,\sigma\ne\sigma^\prime} \frac{J^\prime}{2}d^\dagger_{i,\alpha,\sigma}d^\dagger_{i,\alpha,\sigma^\prime}d^{\phantom\dagger}_{i,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{i,\alpha^\prime,\sigma}$
+  answer: |
+    $H=\sum_{\alpha,\alpha^\prime,\beta,\beta^\prime,\sigma,\sigma^\prime}\sum_{\bf k,\bf k^\prime,\bf q} 
+    U^{\sigma,\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}(\bf q)  
+    d^{\dagger}_{\bf k,\alpha,\sigma}d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime}
+    d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime}
+    d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma}$, where $U^{\sigma\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}= 
+    \frac{U}{2} \delta_{-\sigma,\sigma^\prime}\delta_{\alpha,\alpha^\prime}\delta_{\alpha\beta}\delta_{\alpha\beta^\prime}  
+    +\frac{U^\prime}{2}(1-\delta_{\alpha\alpha^\prime}) \delta_{\alpha\beta}\delta_{\alpha^\prime\beta^\prime} \\\nonumber
+    +\frac{J}{2}(1-\delta_{\alpha\alpha^\prime})\delta_{\alpha\beta^\prime}\delta_{\alpha^\prime\beta} + 
+    \frac{J^\prime}{2}\delta_{\alpha\alpha^\prime}\delta_{\beta\beta^\prime}(1-\delta_{\sigma\sigma^\prime})(1-\delta_{\alpha\beta}).$
+  score: 
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 1
+    math_derivation: 2
+    final_answer_accuracy: 1
+    # Missing delta function
 - task: Wick's theorem
   source: 
     1310.2674_SM.tex:
       - [116,131]
   placeholder:
     second_int_symbol:
-      LLM: $M_{\alpha\beta}(\bk)$
+      LLM: $M_{\alpha\beta}(\bf k)$
       human: $\hat{H}_{\rm {int}}$
       score: 
         Haining: 1 
         Will: 
         Yasaman: 0
     Hartree_Fock_symbol:
-      LLM: $\langle d^\dagger_{\bq,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma^\prime} \rangle$ and $\langle d^\dagger_{\bq,\alpha^\prime,\sigma}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma} \rangle$
+      LLM: $\langle d^\dagger_{\bf q,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bf q,\beta^\prime,\sigma^\prime} \rangle$ and $\langle d^\dagger_{\bf q,\alpha^\prime,\sigma}d^{\phantom\dagger}_{\bf q,\beta^\prime,\sigma} \rangle$
       human: $\hat{H}_{\rm {int}}^{HF}$
       score: 
         Haining: 0
         Will: 
         Yasaman: 0
     definition_of_variables:
-      LLM: $M_{\alpha\beta}(\bk)$ is the interaction term, $T_{\alpha,\beta}(\bk)$ is the kinetic term, $\langle  \rangle$ defines the self-consistent Hartree-Fock fields, $U^{\sigma\sigma^\prime}_{\beta,\alpha^\prime,\alpha,\beta^\prime}$ and $U^{\sigma^\prime\sigma}_{\alpha^\prime,\beta,\beta^\prime,\alpha}$ are the interaction terms, and $d^\dagger_{\bq,\alpha^\prime,\sigma^\prime}$ and $d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma^\prime}$ are the creation and annihilation operators respectively.
+      LLM: $M_{\alpha\beta}(\bf k)$ is the interaction term, $T_{\alpha,\beta}(\bf k)$ is the kinetic term, $\langle  \rangle$ defines the self-consistent Hartree-Fock fields, $U^{\sigma\sigma^\prime}_{\beta,\alpha^\prime,\alpha,\beta^\prime}$ and $U^{\sigma^\prime\sigma}_{\alpha^\prime,\beta,\beta^\prime,\alpha}$ are the interaction terms, and $d^\dagger_{\bf q,\alpha^\prime,\sigma^\prime}$ and $d^{\phantom\dagger}_{\bf q,\beta^\prime,\sigma^\prime}$ are the creation and annihilation operators respectively.
       human: 
       score: 
         Haining: 2
         Will: 
         Yasaman: 2
         # note many in this prompt are reasonable given the current excerpt
-
+    expression_int: 
+      human: |
+        $H=\sum_{\alpha,\alpha^\prime,\beta,\beta^\prime,\sigma,\sigma^\prime}\sum_{\bf k,\bf k^\prime,\bf q} 
+        U^{\sigma,\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}(\bf q)  
+        d^{\dagger}_{\bf k,\alpha,\sigma}d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime}
+        d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime}
+        d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma}$, where $U^{\sigma\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}= 
+        \frac{U}{2} \delta_{-\sigma,\sigma^\prime}\delta_{\alpha,\alpha^\prime}\delta_{\alpha\beta}\delta_{\alpha\beta^\prime}  
+        +\frac{U^\prime}{2}(1-\delta_{\alpha\alpha^\prime}) \delta_{\alpha\beta}\delta_{\alpha^\prime\beta^\prime} \\\nonumber
+        +\frac{J}{2}(1-\delta_{\alpha\alpha^\prime})\delta_{\alpha\beta^\prime}\delta_{\alpha^\prime\beta} + 
+        \frac{J^\prime}{2}\delta_{\alpha\alpha^\prime}\delta_{\beta\beta^\prime}(1-\delta_{\sigma\sigma^\prime})(1-\delta_{\alpha\beta}).$
+  answer: |
+    $\hat{H}_{\rm {int}} = \sum_{\alpha,\alpha^\prime,\beta,\beta^\prime,\sigma,\sigma^\prime}\sum_{\bf k,\bf k^\prime,\bf q} 
+    U^{\sigma,\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}(\bf q)  
+    \left[ \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} + \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} - \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle - \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} - \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} + \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle \right]$
+  score: 
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Extract quadratic term
   source: 
     1310.2674_SM.tex:
       - [116,131]
   placeholder:
     Hartree_Fock_term_symbol:
-      LLM: $M_{\alpha\beta}(\bk)$
+      LLM: $M_{\alpha\beta}(\bf k)$
       human: $\hat{H}_{\rm {int}}^{HF}$
       score: 
         Haining: 1
@@ -288,14 +351,14 @@
         Yasaman: 2
         # reasonable in light of excerpt?
     bilinear_op:
-      LLM: $d^\dagger_{\bq,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma^\prime}$
+      LLM: $d^\dagger_{\bf q,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bf q,\beta^\prime,\sigma^\prime}$
       human: 
       score: 
         Haining: 2
         Will: 
         Yasaman: 2
     Hartree_Fock_second_quantized_symbol:
-      LLM: $M_{\alpha\beta}^{(2)}(\bk)$
+      LLM: $M_{\alpha\beta}^{(2)}(\bf k)$
       human: $\hat{H}_{\rm {int}}^{HF,2}$
       score: 
         Haining: 1
@@ -303,20 +366,32 @@
         Yasaman: 0
         # squared the quantity
     definition_of_variables:
-      LLM: $\bk$ is the momentum vector, $\alpha$ and $\beta$ are band indices, $\sigma$ and $\sigma^\prime$ are spin indices, $\bq$ is the wave vector, $d^\dagger_{\bq,\alpha^\prime,\sigma^\prime}$ and $d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma^\prime}$ are creation and annihilation operators respectively, $U^{\sigma\sigma^\prime}_{\beta,\alpha^\prime,\alpha,\beta^\prime}$ and $U^{\sigma^\prime\sigma}_{\alpha^\prime,\beta,\beta^\prime,\alpha}$ are interaction terms, and $T_{\alpha,\beta}(\bk)$ is the kinetic term. The average $\langle  \rangle$ defines the self-consistent Hartree-Fock fields.
+      LLM: $\bf k$ is the momentum vector, $\alpha$ and $\beta$ are band indices, $\sigma$ and $\sigma^\prime$ are spin indices, $\bf q$ is the wave vector, $d^\dagger_{\bf q,\alpha^\prime,\sigma^\prime}$ and $d^{\phantom\dagger}_{\bf q,\beta^\prime,\sigma^\prime}$ are creation and annihilation operators respectively, $U^{\sigma\sigma^\prime}_{\beta,\alpha^\prime,\alpha,\beta^\prime}$ and $U^{\sigma^\prime\sigma}_{\alpha^\prime,\beta,\beta^\prime,\alpha}$ are interaction terms, and $T_{\alpha,\beta}(\bf k)$ is the kinetic term. The average $\langle  \rangle$ defines the self-consistent Hartree-Fock fields.
       human: 
       score: 
         Haining: 2
         Will: 
         Yasaman: 2
-
+    expression_HF: 
+      human: |
+        $\hat{H}_{\rm {int}}^{HF} = \sum_{\alpha,\alpha^\prime,\beta,\beta^\prime,\sigma,\sigma^\prime}\sum_{\bf k,\bf k^\prime,\bf q} 
+        U^{\sigma,\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}(\bf q)  
+        \left[ \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} + \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} - \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle - \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} - \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} + \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle \right]$
+  answer:
+  score: 
+    in_paper: 
+    prompt_quality: 
+    follow_instructions: 
+    physics_logic: 
+    math_derivation: 
+    final_answer_accuracy: 
 - task: Expand interaction
   source: 
     1310.2674_SM.tex:
       - [116,131]
   placeholder:
     Hartree_Fock_second_quantized_symbol:
-      LLM: $M_{\alpha\beta}(\bk)$
+      LLM: $M_{\alpha\beta}(\bf k)$
       human: $\hat{H}_{\rm {int}}^{HF,2}$
       score: 
         Haining: 0
@@ -324,20 +399,35 @@
         Yasaman: 2
         # reasonable in light of excerpt?
     momentum:
-      LLM: $\bq$
+      LLM: $\bf q$
       human: 
       score: 
         Haining: 2
         Will: 
         Yasaman: 2
-
+    expression_HF_2:
+      human: |
+        $\hat{H}_{\rm {int}}^{HF} = \sum_{\alpha,\alpha^\prime,\beta,\beta^\prime,\sigma,\sigma^\prime}\sum_{\bf k,\bf k^\prime,\bf q} 
+        U^{\sigma,\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}(\bf q)  
+        \left[ \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} + \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} - \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} - \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime}  \right]$
+  answer: |
+        $\hat{H}_{\rm {int}}^{HF} = \sum_{\alpha,\alpha^\prime,\beta,\beta^\prime,\sigma,\sigma^\prime}\sum_{\bf k,\bf k^\prime,\bf q} 
+        U^{\sigma,\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}(\bf q)  
+        \left[ \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} + \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} - \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} - \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime}  \right]$
+  score: 
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Swap the index only
   source: 
     1310.2674_SM.tex:
       - [116,131]
   placeholder:
     Hartree_Fock_second_quantized_symbol:
-      LLM: $M_{\alpha\beta}(\bk)$
+      LLM: $M_{\alpha\beta}(\bf k)$
       human:  $\hat{H}_{\rm {int}}^{HF,2}$
       score: 
         Haining: 2
@@ -345,15 +435,15 @@
         Yasaman: 2
         # reasonable in light of excerpt?
     expected_value:
-      LLM: $\langle d^\dagger_{\bq,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma^\prime} \rangle$
-      human: 
+      LLM: $\langle d^\dagger_{\bf q,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bf q,\beta^\prime,\sigma^\prime} \rangle$
+      human: $\langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle$
       score: 
         Haining: 2
         Will: 
         Yasaman: 2
     expression_Hartree_1:
       LLM: $U^{\sigma\sigma^\prime}_{\beta,\alpha^\prime,\alpha,\beta^\prime} + U^{\sigma^\prime\sigma}_{\alpha^\prime,\beta,\beta^\prime,\alpha}$
-      human: $\langle d^{\dagger}_{\bk,\alpha,\sigma} d_{\bk+\bq,\beta,\sigma} \rangle d^{\dagger}_{\bk^\prime,\alpha^\prime,\sigma^\prime}d_{\bk^\prime-\bq,\beta^\prime,\sigma^\prime}$ 
+      human: $\langle d^{\dagger}_{\bf k,\alpha,\sigma} d_{\bf k+\bf q,\beta,\sigma} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime}d_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime}$ 
       score: 
         Haining: 0
         Will: 
@@ -361,7 +451,7 @@
         # would be challenging for LLM to extract based on excerpt
     expression_Hartree_2:
       LLM: $U^{\sigma\sigma}_{\alpha^\prime,\beta,\alpha,\beta^\prime} + U^{\sigma\sigma}_{\beta,\alpha^\prime,\beta^\prime,\alpha}$
-      human:  $d^{\dagger}_{\bk,\alpha,\sigma} d_{\bk+\bq,\beta,\sigma} \langle d^{\dagger}_{\bk^\prime,\alpha^\prime,\sigma^\prime}d_{\bk^\prime-\bq,\beta^\prime,\sigma^\prime} \rangle$
+      human:  $d^{\dagger}_{\bf k,\alpha,\sigma} d_{\bf k+\bf q,\beta,\sigma} \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime}d_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle$
       score: 
         Haining: 0
         Will: 
@@ -374,147 +464,210 @@
         Will: 
         Yasaman: 0
     Unsummed_Indices:
-      LLM: $\bq,\sigma,\sigma^\prime$
+      LLM: $\bf q,\sigma,\sigma^\prime$
       human: None
       score: 
         Haining: 0 (?) 
         Will: 
         Yasaman: 0
-
+    expression_HF_2:
+      human: |
+        $\hat{H}_{\rm {int}}^{HF} = \sum_{\alpha,\alpha^\prime,\beta,\beta^\prime,\sigma,\sigma^\prime}\sum_{\bf k,\bf k^\prime,\bf q} 
+        U^{\sigma,\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}(\bf q)  
+        \left[ \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} + \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} - \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} - \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime}  \right]$
+  answer: |
+    $\hat{H}_{\rm {int}}^{HF} = \sum_{\alpha,\alpha^\prime,\beta,\beta^\prime,\sigma,\sigma^\prime}\sum_{\bf k,\bf k^\prime,\bf q} 
+    U^{\sigma,\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}(\bf q)  
+    \left[ \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime}  - \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \right]$
+  score: 
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Reduce momentum in Hartree term (momentum in BZ)
   source: 
     1310.2674_SM.tex:
       - [116,131]
   placeholder:
     Hartree_second_quantized_symbol:
-      LLM: $M_{\alpha\beta}(\bk)$
-      human: $\hat{H}_{\rm {int}}^{HF,2}$
+      LLM: $M_{\alpha\beta}(\bf k)$
+      human: $\hat{H}_{\rm {int}}^{H,2}$
       score: 
         Haining: 2
         Will: 
         Yasaman: 2
         # reasonable in light of excerpt
     expected_value:
-      LLM: $\langle d^\dagger_{\bq,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma^\prime} \rangle$ and $\langle d^\dagger_{\bq,\alpha^\prime,\sigma}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma} \rangle$
-      human: $\langle d^{\dagger}_{\bk,\alpha,\sigma} d_{\bk+\bq,\beta,\sigma} \rangle$
+      LLM: $\langle d^\dagger_{\bf q,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bf q,\beta^\prime,\sigma^\prime} \rangle$ and $\langle d^\dagger_{\bf q,\alpha^\prime,\sigma}d^{\phantom\dagger}_{\bf q,\beta^\prime,\sigma} \rangle$
+      human: $\langle d^{\dagger}_{\bf k,\alpha,\sigma} d_{\bf k+\bf q,\beta,\sigma} \rangle$
       score: 
         Haining: 1
         Will: 
         Yasaman: 0
     expected_value_nonzero:
-      LLM: $\bq = \bq$ 
-      human: $\langle d^{\dagger}_{\bk,\alpha,\sigma} d_{\bk+\bq,\beta,\sigma} \rangle=\langle d^{\dagger}_{\bk,\alpha,\sigma} d_{\bk+\bq,\beta,\sigma} \rangle \delta_{q,0} $
+      LLM: $\bf q = \bf q$ 
+      human: $\langle d^{\dagger}_{\bf k,\alpha,\sigma} d_{\bf k+\bf q,\beta,\sigma} \rangle=\langle d^{\dagger}_{\bf k,\alpha,\sigma} d_{\bf k+\bf q,\beta,\sigma} \rangle \delta_{q,0} $
       score: 
         Haining: 1
         Will: 
         Yasaman: 0
-    
+    expression_Hartree:
+      human: |
+        $\hat{H}_{\rm {int}}^{H} = \sum_{\alpha,\alpha^\prime,\beta,\beta^\prime,\sigma,\sigma^\prime}\sum_{\bf k,\bf k^\prime,\bf q} 
+        U^{\sigma,\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}(\bf q)  
+        \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime}  $
+  answer:
+  score: 
+    in_paper: 1
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Reduce momentum in Fock term (momentum in BZ)
   source: 
     1310.2674_SM.tex:
       - [116,131]
   placeholder:
     Fock_second_quantized_symbol:
-      LLM: $M_{\alpha\beta}(\bk)$
-      human: 
+      LLM: $M_{\alpha\beta}(\bf k)$
+      human: $\hat{F}_{\rm {int}}^{H,2}$
       score: 
         Haining: 2
         Will: 
         Yasaman: 2
         # reasonable given excerpt
     expected_value:
-      LLM: $\langle d^\dagger_{\bq,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma^\prime} \rangle$ and $\langle d^\dagger_{\bq,\alpha^\prime,\sigma}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma} \rangle$
+      LLM: $\langle d^\dagger_{\bf q,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bf q,\beta^\prime,\sigma^\prime} \rangle$ and $\langle d^\dagger_{\bf q,\alpha^\prime,\sigma}d^{\phantom\dagger}_{\bf q,\beta^\prime,\sigma} \rangle$
       human: $\langle d^{\dagger}_{k,\alpha,\sigma} d_{k^\prime-q,\beta^\prime,\sigma^\prime} \rangle$
       score: 
         Haining: 1
         Will: 
         Yasaman: 0
     expected_value_nonzero:
-      LLM: $\langle d^\dagger_{\bq,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma^\prime} \rangle$ and $\langle d^\dagger_{\bq,\alpha^\prime,\sigma}d^{\phantom\dagger}_{\bq,\beta^\prime,\sigma} \rangle$
-      human: \langle d^{\dagger}_{k,\alpha,\sigma} d_{k^\prime-q,\beta^\prime,\sigma^\prime} \rangle= \langle d^{\dagger}_{k,\alpha,\sigma} d_{k^\prime-q,\beta^\prime,\sigma^\prime} \rangle \delta_{k,k'-q}
+      LLM: $\langle d^\dagger_{\bf q,\alpha^\prime,\sigma^\prime}d^{\phantom\dagger}_{\bf q,\beta^\prime,\sigma^\prime} \rangle$ and $\langle d^\dagger_{\bf q,\alpha^\prime,\sigma}d^{\phantom\dagger}_{\bf q,\beta^\prime,\sigma} \rangle$
+      human: $\langle d^{\dagger}_{k,\alpha,\sigma} d_{k^\prime-q,\beta^\prime,\sigma^\prime} \rangle= \langle d^{\dagger}_{k,\alpha,\sigma} d_{k^\prime-q,\beta^\prime,\sigma^\prime} \rangle \delta_{k,k'-q}$
       score: 
         Haining: 1
         Will: 
         Yasaman: 0
-
+    expression_Fock:
+      human: |
+        $\hat{H}_{\rm {int}}^{F} = - \sum_{\alpha,\alpha^\prime,\beta,\beta^\prime,\sigma,\sigma^\prime}\sum_{\bf k,\bf k^\prime,\bf q} 
+        U^{\sigma,\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}(\bf q)  
+        \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} $
+  answer:
+  score: 
+    in_paper: 1
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Combine the Hartree and Fock term
   source: 
     1310.2674_SM.tex:
       - [116,131]
   placeholder:
-    symbol:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
+    Hartree_symbol:
+      human: $\hat{H}_{\rm {int}}^{F}$
+      # score: 
+        # Haining: 
+        # Will: 
+        # Yasaman: 
+    Fock_symbol:
+      human: $\hat{F}_{\rm {int}}^{F}$
+    Hartree:
+      human: |
+        $\hat{H}_{\rm {int}}^{H,2} = \sum_{\alpha,\alpha^\prime,\beta,\beta^\prime,\sigma,\sigma^\prime}\sum_{\bf k} 
+        U^{\sigma,\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}(0)  
+        \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k,\beta,\sigma} \rangle d^{\dagger}_{\bf k,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k,\beta^\prime,\sigma^\prime}$.
     Fock:
       LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    swap rule:
+      human: |
+        $\hat{F}_{\rm {int}}^{H,2} = - \sum_{\alpha,\alpha^\prime,\beta,\beta^\prime,\sigma,\sigma^\prime}\sum_{\bf k} 
+        U^{\sigma,\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}(0)  
+        \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bf k,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k,\beta,\sigma}$.
+      # score: 
+        # Haining: 
+        # Will: 
+        # Yasaman: 
+    swap_rule:
       LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-
-- task: Construct full Hamiltonian after HF
-  source: 
-    1310.2674_SM.tex:
-      - [116,131]
-  placeholder:
-    Hartree_Fock_symbol:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    kinetic_symbol:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    expression_kinetic:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    int_symbol:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    expression_int:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    Ham_symbol:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
-    definition_of_variables:
-      LLM: 
-      human: 
-      score: 
-        Haining: 
-        Will: 
-        Yasaman: 
+      human: Nothing
+      # score: 
+        # Haining: 
+        # Will: 
+        # Yasaman: 
+  answer:
+  score: 
+    in_paper: 1
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
+# - task: Construct full Hamiltonian after HF
+#   source: 
+#     1310.2674_SM.tex:
+#       - [116,131]
+#   placeholder:
+#     Hartree_Fock_symbol:
+#       LLM: 
+#       human: 
+#       score: 
+#         Haining: 
+#         Will: 
+#         Yasaman: 
+#     kinetic_symbol:
+#       LLM: 
+#       human: 
+#       score: 
+#         Haining: 
+#         Will: 
+#         Yasaman: 
+#     expression_kinetic:
+#       LLM: 
+#       human: 
+#       score: 
+#         Haining: 
+#         Will: 
+#         Yasaman: 
+#     int_symbol:
+#       LLM: 
+#       human: 
+#       score: 
+#         Haining: 
+#         Will: 
+#         Yasaman: 
+#     expression_int:
+#       LLM: 
+#       human: 
+#       score: 
+#         Haining: 
+#         Will: 
+#         Yasaman: 
+#     Ham_symbol:
+#       LLM: 
+#       human: 
+#       score: 
+#         Haining: 
+#         Will: 
+#         Yasaman: 
+#     definition_of_variables:
+#       LLM: 
+#       human: 
+#       score: 
+#         Haining: 
+#         Will: 
+#         Yasaman: 
+#   answer:
+#   score: 
+#     in_paper: 
+#     prompt_quality: 
+#     follow_instructions: 
+#     physics_logic: 
+#     math_derivation: 
+#     final_answer_accuracy:
