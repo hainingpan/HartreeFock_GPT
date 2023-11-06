@@ -736,11 +736,11 @@
   answer: $$H_{\rm int}^{MF} = \frac{1}{A} \sum_{l,\tau} \sum_{l',\tau'} \sum_{\bm{k},\bm{k}',\bm{q}} V_{ll'}(\bm{q}) \left[ \langle c_{l \tau \bm{k}+\bm{q}}^{\dagger} c_{l \tau\bm{k}} \rangle c_{l' \tau' \bm{k}' -\bm{q}}^{\dagger} c_{l' \tau' \bm{k}'} - \langle c_{l \tau \bm{k}+\bm{q}}^{\dagger} c_{l' \tau' \bm{k}'} \rangle c_{l' \tau' \bm{k}' -\bm{q}}^{\dagger} c_{l \tau\bm{k}} \right]$$
   score:
     in_paper: 0
-    prompt_quality: 
-    follow_instructions: 
-    physics_logic: 
-    math_derivation: 
-    final_answer_accuracy: 
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 
 # Comment because it is already in the format where k are reduced 
 # - task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)

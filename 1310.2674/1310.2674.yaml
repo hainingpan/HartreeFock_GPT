@@ -379,12 +379,12 @@
         \left[ \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} + \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} - \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle - \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} - \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} + \langle d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k^\prime-\bf q,\beta^\prime,\sigma^\prime} \rangle \langle d^{\dagger}_{\bf k^\prime,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bf k+\bf q,\beta,\sigma} \rangle \right]$
   answer:
   score: 
-    in_paper: 
-    prompt_quality: 
-    follow_instructions: 
-    physics_logic: 
-    math_derivation: 
-    final_answer_accuracy: 
+    in_paper: 1
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
 - task: Expand interaction
   source: 
     1310.2674_SM.tex:
