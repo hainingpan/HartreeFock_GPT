@@ -461,7 +461,7 @@ You should perform the same trick of relabeling the index in the Fock term to ma
 You should add them, relabel the index in Fock term, and simply their sum. 
 Return the final sum of Hartree and Fock term. 
 
-## Construct full Hamiltonian after HF
+<!-- ## Construct full Hamiltonian after HF
 **Prompt:**  
 You will be instructed to construct the entire Hamiltonian after the Hartree-Fock approximation {Hartree_Fock_symbol}. 
 You should first recall the Kinetic Hamiltonian {kinetic_symbol} is {expression_kinetic}.  
@@ -470,7 +470,7 @@ You should then combine {kinetic_symbol} with the interacting Hamiltonian {int_s
 Return the expression for {Ham_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{definition_of_variables}
+{definition_of_variables} -->
 
 # Mathematical Simplify
 ## Mathematical simplify: inner product expansion
