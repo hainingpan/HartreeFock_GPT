@@ -88,7 +88,7 @@ EXAMPLE 1:
 A parabolic dispersion for electron is $E_{{\alpha}}=\frac{{\hbar^2 k^2}}{{2m_{{\alpha}}}}$, where $\alpha$ indicates the type of electron.  If there is a further shift of $q$ in the momentum $k$, the dispersion will become $E_{{\alpha}}=\frac{{\hbar^2 (k-q)^2}}{{2m_{{\alpha}}}}$.
 
 EXAMPLE 2:
-A parabolic dispersion for hole is $E_{{\alpha}}=-\frac{{\hbar^2 k^2}}{{2m_{{\alpha}}}}$, where $\alpha$ indicates the type of hole.  If there is a further shift of $q$ in the momentum $k$, the dispersion will become $E_{{\alpha}}=-\frac{{\hbar^2 (k-q)^2}}{{2m_{{\alpha}}}}$.
+A cos dispersion is $E_{{\alpha}}=-\cos(k a / 2)$, where $\alpha$ indicates the type of particle.  If there is a further shift of $q$ in the momentum $k$, the dispersion will become $E_{{\alpha}}=-\cos((k-q) a / 2))$. However, there could be more prefactors before cos depending on the geometry of the lattice.
 
 EXAMPLE 3:  
 A dirac dispersion for electron/hole is a 2 by 2 matrix, i.e., $h_{{\theta}}(k)=-\hbar v_D |k| \begin{{pmatrix}}  0 & e^{{i(\theta_{{k}}-\theta)}}\\ e^{{-i(\theta_{{\bar{{k}}}}-\theta)}} & 0 \end{{pmatrix}}$, where $v_D$ is the Fermi velocity, $\theta$ is the twist angle, and $\theta_k$ indicates the azumith angle of $k$. If there is a further shift of $K_{{\theta}}$ in the momentum $k$, the dispersion will become $h_{{\theta}}(k)=-\hbar v_D |k-K_{{\theta}}| \begin{{pmatrix}}  0 & e^{{i(\theta_{{k-K_{{\theta}}}}-\theta)}}\\ e^{{-i(\theta_{{k-K_{{\theta}}}}-\theta)}} & 0 \end{{pmatrix}}$.
@@ -454,14 +454,14 @@ Therefore, the final simplified Fock term after reducing one momentum is $\hat{{
 
 ## Combine the Hartree and Fock term
 **Prompt:**  
-You will now be instructed to combine the Hartree term {symbol} and the Fock term {symbol}.  
+You will now be instructed to combine the Hartree term {Hartree_symbol} and the Fock term {Fock_symbol}.  
 You should recall that the Hartree term {Hartree},  
 and the Fock term {Fock}.  
-You should perform the same trick of relabeling the index in the Fock term to make the quadratic operators in the Fock term the same as those in the Hartree term. The relabeling should be done with a swap : {swap rule}.
+You should perform the same trick of relabeling the index in the Fock term to make the quadratic operators in the Fock term the same as those in the Hartree term. The relabeling should be done with a swap : {swap_rule}.
 You should add them, relabel the index in Fock term, and simply their sum. 
 Return the final sum of Hartree and Fock term. 
 
-## Construct full Hamiltonian after HF
+<!-- ## Construct full Hamiltonian after HF
 **Prompt:**  
 You will be instructed to construct the entire Hamiltonian after the Hartree-Fock approximation {Hartree_Fock_symbol}. 
 You should first recall the Kinetic Hamiltonian {kinetic_symbol} is {expression_kinetic}.  
@@ -470,7 +470,7 @@ You should then combine {kinetic_symbol} with the interacting Hamiltonian {int_s
 Return the expression for {Ham_symbol}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{definition_of_variables}
+{definition_of_variables} -->
 
 # Mathematical Simplify
 ## Mathematical simplify: inner product expansion
