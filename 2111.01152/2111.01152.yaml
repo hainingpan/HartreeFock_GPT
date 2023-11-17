@@ -668,7 +668,7 @@
   score:
     in_paper: 2
     prompt_quality: 1
-    follow_instructions: 1
+    follow_instructions: 2
     physics_logic: 2
     math_derivation: 2
     final_answer_accuracy: 2
