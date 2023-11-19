@@ -185,7 +185,7 @@ def expand_promptdf_to_placeholderdf(df, index_row, gdirpath):
 # Execution
 def load_executed_prompts(arxiv_id, dirpath):
   fname = os.path.join(dirpath, arxiv_id, f'{arxiv_id}_auto.md')
-  paper_tasks = annotation_utils.get_task_yaml_for_paper(arxiv_id, os.path.join(dirpath, arxiv_id))
+  paper_tasks = get_task_yaml_for_paper(arxiv_id, os.path.join(dirpath, arxiv_id))
 
   task_id_map = {} #stores task_name -> index in paper_tasks yaml
   for it, elem in enumerate(paper_tasks):
