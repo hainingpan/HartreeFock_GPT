@@ -238,5 +238,9 @@ def parse_scoring_task(exec_task):
   prompt = exec_task['prompt']
   lm_execution = exec_task['lm_execution']
   score = exec_task['score']
+  if score:
+    target = score['final_answer_accuracy']
+  else:
+    target = 'NA'
   return {'inputs': f"""PROBLEM: {prompt}\n\nSOLUTION: {lm_execution}\n\nSCORE: """, 'targets': score['final_answer_accuracy']}
 
