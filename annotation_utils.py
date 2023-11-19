@@ -181,3 +181,62 @@ def expand_promptdf_to_placeholderdf(df, index_row, gdirpath):
     baseline_score.append(relevant_task['placeholder'][k]['score']['Haining'])
   Nplaceholders = len(keys)
   return pd.DataFrame({'gt_key': keys, 'gt_value': values, 'gpt-4_score': baseline_score, 'arxiv_id': [df.iloc[index_row]['arxiv_id']]*Nplaceholders, 'task': [df.iloc[index_row]['task']]*Nplaceholders, 'excerpt': [df.iloc[index_row]['excerpt']]*Nplaceholders, 'blank_template': [df.iloc[index_row]['blank_templates']]*Nplaceholders})
+
+# Execution
+def load_executed_prompts(arxiv_id, dirpath):
+  fname = os.path.join(dirpath, arxiv_id, f'{arxiv_id}_auto.md')
+  paper_tasks = annotation_utils.get_task_yaml_for_paper(arxiv_id, os.path.join(dirpath, arxiv_id))
+
+  task_id_map = {} #stores task_name -> index in paper_tasks yaml
+  for it, elem in enumerate(paper_tasks):
+    if 'task' in elem:
+      task_id_map[elem['task']]= it
+
+  exe_dict = {}
+  current_task = None  # Track the current task, initialized to None
+  lines = open(fname, 'r').readlines()
+  lines = [l.strip() for l in lines]
+  il = 0
+  while il < len(lines):
+    line = lines[il]
+    # not skipping any comments
+    if line.startswith('## '):
+      # New task starts
+      current_task = line[3:]
+      print(f'Task: {current_task} at Line {il}')
+      subcount = il+1
+      assert lines[subcount]=='**Prompt:**'
+      subcount = il+2 # il+2 is where the prompt starts
+      while subcount < len(lines) and not lines[subcount]=='**Completion:**':
+        subcount+=1
+      p_end = subcount # lines[p_end]=**Completion:**
+
+      while subcount < len(lines) and not lines[subcount].startswith('## '):
+        subcount+=1
+      c_end = subcount
+      try:
+        score = paper_tasks[task_id_map[current_task]]['score']
+      except KeyError as e:
+        print(f'No score for {current_task}')
+        score = None
+      exe_dict[current_task] = {'prompt': ' '.join(lines[il+2:p_end]), 'lm_execution': ' '.join(lines[p_end+1:c_end]), 'score': score} # p_end+1 is where the completion starts
+      il = c_end
+  return exe_dict
+
+def consolidate_exec_data(exec_dict):
+  executed = []
+  for paper in exec_dict:
+    paper_tasks = exec_dict[paper]
+    for task in paper_tasks:
+      reparsed = paper_tasks[task]
+      reparsed['task'] = task
+      reparsed['paper'] = paper
+      executed.append(paper_tasks[task])
+  return executed
+
+def parse_scoring_task(exec_task):
+  prompt = exec_task['prompt']
+  lm_execution = exec_task['lm_execution']
+  score = exec_task['score']
+  return {'inputs': f"""PROBLEM: {prompt}\n\nSOLUTION: {lm_execution}\n\nSCORE: """, 'targets': score['final_answer_accuracy']}
+
