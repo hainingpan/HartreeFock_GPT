@@ -1,4 +1,5 @@
 # Reasons for the absence of [Reduce momentum in Hartree term (momentum in BZ), Reduce momentum in Fock term (momentum in BZ), Combine the Hartree and Fock term, Construct full Hamiltonian after HF] is becuase these information does not appear in the paper. It's better to change the template such that it does not require information from the text to generate a template. Otherwise it performs very poorly.
+# This is fixed by manual human input
 - branch: lattice, second-quantized
 - task: Construct Kinetic Hamiltonian (lattice version)
   source:
@@ -437,7 +438,7 @@
         Yasaman: 2
     expression_HF_2: 
       human: $H_{\text{quadratic}} = \frac{1}{2N}\sum_{s,s'}\sum_{k,k',q,q'} U(k-q) \left[\langle c_{k,s}^\dagger c_{q,s}\rangle c_{k',s'}^\dagger c_{q',s'} + \langle c_{k',s'}^\dagger c_{q',s'}\rangle c_{k,s}^\dagger c_{q,s} - \langle c_{k,s}^\dagger c_{q',s'} \rangle c_{k',s'}^\dagger c_{q,s} -  \langle c_{k',s'}^\dagger c_{q,s} \rangle c_{k,s}^\dagger c_{q',s'}\right] \sum_{G} \delta(k-q+k'-q',G)$
-  answer:
+  answer: $H_{\text{quadratic}} = \frac{1}{N}\sum_{s,s'}\sum_{k,k',q,q'} U(k-q) \left[\langle c_{k,s}^\dagger c_{q,s}\rangle c_{k',s'}^\dagger c_{q',s'}  - \langle c_{k,s}^\dagger c_{q',s'} \rangle c_{k',s'}^\dagger c_{q,s} \right] \sum_{G} \delta(k-q+k'-q',G)$
   score: 
     in_paper: 0
     prompt_quality: 2
@@ -446,3 +447,94 @@
     math_derivation: 2
     final_answer_accuracy: 1
     # It did not  swap s and s'
+
+- task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
+  source: 
+  placeholder:
+    Hartree_second_quantized_symbol:
+      LLM: 
+      human: $H_{\text{Hartree}}$
+      # score: 
+      #   Haining: 2
+    expected_value:
+      LLM: 
+      human: $\langle c_{k,s}^\dagger c_{q,s}\rangle$
+      # score: 
+      #   Haining: 2
+    expected_value_nonzero:
+      LLM:
+      human: $\langle c_{k,s}^\dagger c_{q,s}\rangle=\langle c_{k,s}^\dagger c_{q,s}\rangle \delta_{k,q}$
+      # score: 
+      #   Haining: 0
+    expression_Hartree: 
+      human: $H_{\text{Hartree}} = \frac{1}{N}\sum_{s,s'}\sum_{k,k',q,q'} U(k-q) \langle c_{k,s}^\dagger c_{q,s}\rangle c_{k',s'}^\dagger c_{q',s'}   \sum_{G} \delta(k-q+k'-q',G)$.
+  answer: $H_{\text{Hartree}} = \frac{1}{N}\sum_{s,s'}\sum_{k,k'} U(0) \langle c_{k,s}^\dagger c_{k,s}\rangle c_{k',s'}^\dagger c_{k',s'}$
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
+
+- task: Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
+  source: 
+  placeholder:
+    Fock_second_quantized_symbol:
+      LLM: 
+      human: $H_{\text{Fock}}$
+      # score: 
+      #   Haining: 2
+    expected_value:
+      LLM: 
+      human: $\langle c_{k,s}^\dagger c_{q',s'} \rangle$
+      # score: 
+      #   Haining: 2
+    expected_value_nonzero:
+      LLM: 
+      human: $\langle c_{k,s}^\dagger c_{q',s'} \rangle=\langle c_{k,s}^\dagger c_{q',s'} \rangle\delta_{k,q'}$
+      # score: 
+      #   Haining: 0
+    expression_Fock: 
+      human: $H_{\text{Fock}} = -\frac{1}{N}\sum_{s,s'}\sum_{k,k',q,q'} U(k-q)  \langle c_{k,s}^\dagger c_{q',s'} \rangle c_{k',s'}^\dagger c_{q,s} \sum_{G} \delta(k-q+k'-q',G)$
+  answer: $H_{\text{Fock}} = -\frac{1}{N}\sum_{s,s'}\sum_{k,q} U(k-q)  \langle c_{k,s}^\dagger c_{k,s'} \rangle c_{q,s'}^\dagger c_{q,s} $.
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 1
+    math_derivation: 1
+    final_answer_accuracy: 1
+    # The reduce of k' is incorrect.
+
+- task: Combine the Hartree and Fock term
+  source: 
+  placeholder:
+    Hartree_symbol:
+      human: $H_{\text{Hartree}}$
+      # score: 
+      #   Haining: 
+    Fock_symbol:
+      human: $H_{\text{Fock}}$
+      # score: 
+      #   Haining: 
+    Hartree:
+      human: $H_{\text{Hartree}} = \frac{1}{N}\sum_{s,s'}\sum_{k,k'} U(0) \langle c_{k,s}^\dagger c_{k,s}\rangle c_{k',s'}^\dagger c_{k',s'}$
+      # score: 
+      #   Haining:
+    Fock:
+      human:  $H_{\text{Fock}} = -\frac{1}{N}\sum_{s,s'}\sum_{k,q} U(k-q)  \langle c_{k,s}^\dagger c_{k,s'} \rangle c_{q,s'}^\dagger c_{q,s} $
+      # score: 
+      #   Haining: 
+    swap_rule:
+      human: Nothing
+      # score: 
+      #   Haining: 
+  answer:
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2

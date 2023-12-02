@@ -387,7 +387,7 @@ Inside the expected value, we realize $\langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(
 Thus, the Hartree term becomes $\sum_{{k_1,k_2, k_3, k_4,b_1,b_2,b_3,b_4}} V(k_1-k_4+b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_4) \rangle \delta_{{k_1,k_4}} c_{{b_2}}^\dagger(k_2) c_{{b_3}}(k_3) \delta_{{k_1+k_2+b_1+b_2,k_3+k_4+b_3+b_4}}$.  
 Use the property of Kronecker delta function $\delta_{{k_1,k_4}}$ to sum over $k_4$, we have $\sum_{{k_1, k_2, k_3,b_1,b_2,b_3,b_4}} V(k_1-k_1+b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_3}}(k_3) \delta_{{k_1+k_2+b_1+b_2,k_3+k_1+b_3+b_4}}=\sum_{{k_1, k_2, k_3,b_1,b_2,b_3,b_4}} V(b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_3}}(k_3) \delta_{{k_2+b_1+b_2,k_3+b_3+b_4}}$.  
 Because $k_i$ is momentum inside first Brilloun zone while $b_i$ is the reciprocal lattice. It is only when $k_2=k_3$ that $\delta_{{k_2+b_1+b_2,k_3+b_3+b_4}}$ is nonzero, i.e., $\delta_{{k_2+b_1+b_2,k_3+b_3+b_4}}=\delta_{{b_1+b_2,b_3+b_4}}\delta_{{k_2,k_3}}$. Therefore, the Hartree term simplifies to $\sum_{{k_1, k_2, k_3,b_1,b_2,b_3,b_4}} V(b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_3}}(k_3) \delta_{{b_1+b_2,b_3+b_4}}\delta_{{k_2,k_3}}=\sum_{{k_1, k_2,b_1,b_2,b_3,b_4}} V(b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_3}}(k_2) \delta_{{b_1+b_2,b_3+b_4}}$.  
-Therefore, the final simplified Hartree term after reducing two momenta is $\hat{{H}}^{{Hartree}}=\sum_{{k_1, k_2,b_1,b_2,b_3,b_4}}  V(b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_3}}(k_2) \delta_{{b_1+b_2,b_3+b_4}} \delta_{{b_1+b_2,b_3+b_4}}$ 
+Therefore, the final simplified Hartree term after reducing two momenta is $\hat{{H}}^{{Hartree}}=\sum_{{k_1, k_2,b_1,b_2,b_3,b_4}}  V(b_1-b_4) \langle c_{{b_1}}^\dagger(k_1) c_{{b_4}}(k_1) \rangle c_{{b_2}}^\dagger(k_2) c_{{b_3}}(k_2) \delta_{{b_1+b_2,b_3+b_4}}$ 
 
 ## Reduce momentum in Hartree term (momentum in BZ)
 **Prompt:**  
@@ -460,17 +460,6 @@ and the Fock term {Fock}.
 You should perform the same trick of relabeling the index in the Fock term to make the quadratic operators in the Fock term the same as those in the Hartree term. The relabeling should be done with a swap : {swap_rule}.
 You should add them, relabel the index in Fock term, and simply their sum. 
 Return the final sum of Hartree and Fock term. 
-
-<!-- ## Construct full Hamiltonian after HF
-**Prompt:**  
-You will be instructed to construct the entire Hamiltonian after the Hartree-Fock approximation {Hartree_Fock_symbol}. 
-You should first recall the Kinetic Hamiltonian {kinetic_symbol} is {expression_kinetic}.  
-You should then recall the interacting Hamiltonian {int_symbol} is {expression_int}.  
-You should then combine {kinetic_symbol} with the interacting Hamiltonian {int_symbol} after the Hartree-Fock approximation, which is the entire Hamiltonian {Ham_symbol} after Hartree-Fock.  
-Return the expression for {Ham_symbol}.  
-
-Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
-{definition_of_variables} -->
 
 # Mathematical Simplify
 ## Mathematical simplify: inner product expansion

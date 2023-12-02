@@ -1,4 +1,3 @@
-# Right now I have removed steps since "reduce momentum..", it may be a good idea to add back then, especially for consistency.
 - branch: lattice, second-quantized
 - task: Construct Kinetic Hamiltonian (lattice version)
   source: 
@@ -390,7 +389,7 @@
   placeholder:
     Hartree_Fock_second_quantized_symbol:
       LLM: H
-      human: H_{int}^{HF,2}
+      human: $H_{int}^{HF,2}$
       score: 
         Haining: 1
         Will: 
@@ -437,8 +436,100 @@
   score:
     in_paper: 0
     prompt_quality: 2
+    follow_instructions: 1
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
+    # The relabeling of indices is not implemented on k1<->k3, and k2<->k4
+
+- task: Reduce momentum in Hartree term (momentum in BZ)
+# did not run LLM since it is not in the paper, thus no need to score either
+  source: 
+  placeholder:
+    Hartree_second_quantized_symbol:
+      LLM: 
+      human: $H_{\text{Hartree}}$
+      # score: 
+      #   Haining: 2
+    expected_value:
+      LLM: 
+      human: $\langle c_{k_1,s}^\dagger c_{k_2,s} \rangle$
+      # score: 
+      #   Haining: 2
+    expected_value_nonzero:
+      LLM: 
+      human: $\langle c_{k_1,s}^\dagger c_{k_2,s} \rangle=\delta_{k_1,k_2} \langle c_{k_1,s}^\dagger c_{k_2,s} \rangle$
+      # score: 
+      #   Haining: 0
+    expression_Hartree: 
+      human: $H_{\text{Hartree}} = \frac{1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(k_3-k_4) \langle c_{k_1,s}^\dagger c_{k_2,s} \rangle c_{k_3,s'}^\dagger c_{k_4,s'} \sum_{G} \delta(k_1-k_2+k_3-k_4,G).$
+  answer: $H_{\text{Hartree}} = \frac{1}{N} \sum_{s,s'} \sum_{k_1,k_3} U(0) \langle c_{k_1,s}^\dagger c_{k_1,s} \rangle c_{k_3,s'}^\dagger c_{k_3,s'}$.
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 1
+    math_derivation: 1
+    final_answer_accuracy: 2
+    # The answer is correct but the simplification of dirac delta is of k1-k2 is wrong
+
+- task: Reduce momentum in Fock term (momentum in BZ)
+  source: 
+  placeholder:
+    Fock_second_quantized_symbol:
+      LLM: 
+      human: $H_{\text{Fock}}$
+      # score: 
+      #   Haining: 2
+    expected_value:
+      LLM: 
+      human: $\langle c_{k_1,s}^\dagger c_{k_4,s'} \rangle$
+      # score: 
+      #   Haining: 2
+    expected_value_nonzero:
+      LLM: 
+      human: $\langle c_{k_1,s}^\dagger c_{k_4,s'} \rangle=\delta_{k_1,k_4}\langle c_{k_1,s}^\dagger c_{k_4,s'} \rangle$
+      # score: 
+      #   Haining: 0
+    expression_Fock: 
+      human: $H_{Fock} = -\frac{1}{N} \sum_{s,s'} \sum_{k_1,k_2,k_3,k_4} U(k_3-k_4)  \langle c_{k_1,s}^\dagger c_{k_4,s'} \rangle c_{k_3,s'}^\dagger c_{k_2,s}\sum_{G} \delta(k_1-k_2+k_3-k_4,G).$
+  answer: $H_{Fock} = -\frac{1}{N} \sum_{s,s'} \sum_{k_1,k_2} U(k_2-k_1)  \langle c_{k_1,s}^\dagger c_{k_1,s'} \rangle c_{k_2,s'}^\dagger c_{k_2,s}$.
+  score:
+    in_paper: 0
+    prompt_quality: 2
     follow_instructions: 2
     physics_logic: 2
     math_derivation: 2
     final_answer_accuracy: 2
 
+- task: Combine the Hartree and Fock term
+  source: 
+  placeholder:
+    Hartree_symbol:
+      human: $H_{\text{Hartree}}$
+      score: 
+        Haining: 
+    Fock_symbol:
+      human: $H_{\text{Fock}}$
+      score: 
+        Haining: 
+    Hartree:
+      human: $H_{\text{Hartree}} = \frac{1}{N} \sum_{s,s'} \sum_{k_1,k_3} U(0) \langle c_{k_1,s}^\dagger c_{k_1,s} \rangle c_{k_3,s'}^\dagger c_{k_3,s'}$
+      score: 
+        Haining:
+    Fock:
+      human: $H_{Fock} = -\frac{1}{N} \sum_{s,s'} \sum_{k_1,k_2} U(k_2-k_1)  \langle c_{k_1,s}^\dagger c_{k_1,s'} \rangle c_{k_2,s'}^\dagger c_{k_2,s}$.
+      score: 
+        Haining: 
+    swap_rule:
+      human: Nothing
+      score: 
+        Haining: 
+  answer: $H_{\text{Hartree+Fock}} = H_{\text{Hartree}} + H_{\text{Fock}}= \frac{1}{N} \sum_{s,s'} \sum_{k_1,k_3} U(0) \langle c_{k_1,s}^\dagger c_{k_1,s} \rangle c_{k_3,s'}^\dagger c_{k_3,s'} - \frac{1}{N} \sum_{s,s'} \sum_{k_1,k_2} U(k_2-k_1)  \langle c_{k_1,s}^\dagger c_{k_1,s'} \rangle c_{k_2,s'}^\dagger c_{k_2,s}$.
+  score:
+    in_paper: 0
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2

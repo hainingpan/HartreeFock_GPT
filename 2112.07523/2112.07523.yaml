@@ -516,7 +516,7 @@
         # not sure what's expected here based on template
     expression_Fock: 
       human: $H_{\rm{MF}} =  -\frac{1}{S}\sum_{bb'ss'}\sum_{\bm{kk'q}} V_{bb'}(q)  \langle a_{bs\bm k+\bm q}^{\dagger} a_{b's'\bm k'} \rangle a_{b's'\bm k'-\bm q}^{\dagger} a_{bs\bm k}$.
-  answer: 
+  answer: $\Sigma_F = -\frac{1}{S}\sum_{bb'ss'}\sum_{\bm kq} V_{bb'}(q) \langle a_{bs\bm k+\bm q}^{\dagger} a_{b's'\bm k+\bm q} \rangle a_{b's'\bm k}^{\dagger} a_{bs\bm k}$
   score: 
     in_paper: 2
     prompt_quality: 1
@@ -525,3 +525,33 @@
     math_derivation: 2
     final_answer_accuracy: 1
     # Didn't realize that q is in the extended BZ.
+- task: Combine the Hartree and Fock term
+  source:
+    2112.07523.tex:
+      - [103,128]
+  placeholder:
+    Hartree_symbol:
+      human: $\Sigma_H$ 
+    Fock_symbol:
+      human: $\Sigma_F$
+    Hartree: 
+      human: |
+        \begin{equation}
+        \begin{split}
+        \Sigma_H = \frac{1}{S}\sum_{bb'\atop ss'}\sum_{nn'n''\atop \bm k\bm k'} &V_{bb'}((n'-n)\bm Q) \\
+        \times&\rho_{b's'\,n''}^{b's'\,n''+n'-n}(\bm k') \; a_{bsn'\bm k}^{\dagger} a_{bsn\bm k},
+        \end{split}
+        \end{equation}
+    Fock:
+      human: $\Sigma_F = -\frac{1}{S}\sum_{bb'ss'}\sum_{\bm kq} V_{bb'}(q) \langle a_{bs\bm k+\bm q}^{\dagger} a_{b's'\bm k+\bm q} \rangle a_{b's'\bm k}^{\dagger} a_{bs\bm k}$
+    swap_rule: 
+      human: Nothing
+  answer: 
+  score: 
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
+

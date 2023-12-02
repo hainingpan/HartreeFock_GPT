@@ -889,3 +889,94 @@
     physics_logic: 2
     math_derivation: 2
     final_answer_accuracy: 2
+
+- task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
+  source: 
+  placeholder:
+    Hartree_second_quantized_symbol:
+      LLM: 
+      human: $H_{\text{Hartree}}$
+      # score: 
+      #   Haining: 2
+    expected_value:
+      LLM: 
+      human: $\langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_1,\tau_1,q_4}(k_4) \rangle$
+      # score: 
+      #   Haining: 2
+    expected_value_nonzero:
+      LLM: 
+      human: $\langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_1,\tau_1,q_4}(k_4) \rangle = \langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_1,\tau_1,q_4}(k_4) \rangle \delta_{k_1,k_4}$
+      # score: 
+      #   Haining: 0
+    expression_Hartree: 
+      human: $\hat{\mathcal{H}}^{\text{HF}} = \frac{1}{V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4,q_1,q_2,q_3,q_4} \langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_1,\tau_1,q_4}(k_4) \rangle b_{l_2,\tau_2,q_2}^\dagger(k_2) b_{l_2,\tau_2,q_3}(k_3)  V(|k_1+q_1-k_4-q_4|)\delta_{k_1+k_2+q_1+q_2,k_3+k_4+q_3+q_4}$.
+  answer: $H_{\text{Hartree}} = \frac{1}{V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,q_1,q_2,q_3,q_4} \langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_1,\tau_1,q_4}(k_1) \rangle b_{l_2,\tau_2,q_2}^\dagger(k_2) b_{l_2,\tau_2,q_3}(k_2)  V(|q_1-q_4|)\delta_{q_1+q_2,q_3+q_4}$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 1
+    final_answer_accuracy: 2
+    # The simplifcation of delta function is not correct
+
+- task: Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
+  source: 
+  placeholder:
+    Fock_second_quantized_symbol:
+      LLM: 
+      human: $H_{\text{Fock}}$
+      # score: 
+      #   Haining: 2
+    expected_value:
+      LLM: 
+      human: $\langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_2,\tau_2,q_3}(k_3) \rangle$
+      # score: 
+      #   Haining: 2
+    expected_value_nonzero:
+      LLM: 
+      human: $\langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_2,\tau_2,q_3}(k_3) \rangle=\langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_2,\tau_2,q_3}(k_3) \rangle \delta_{k_1,k_3}$
+      # score: 
+      #   Haining: 0
+    expression_Fock: 
+      human: $\hat{\mathcal{H}}^{\text{HF}} = -\frac{1}{V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,k_3,k_4,q_1,q_2,q_3,q_4} \langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_2,\tau_2,q_3}(k_3) \rangle b_{l_2,\tau_2,q_2}^\dagger(k_2) b_{l_1,\tau_1,q_4}(k_4) V(|k_1+q_1-k_4-q_4|)\delta_{k_1+k_2+q_1+q_2,k_3+k_4+q_3+q_4}$
+  answer: $H_{\text{Fock}} = -\frac{1}{V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,q_1,q_2,q_3,q_4} \langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_2,\tau_2,q_3}(k_1) \rangle b_{l_2,\tau_2,q_2}^\dagger(k_2) b_{l_1,\tau_1,q_4}(k_2) V(|k_1+q_1-k_2-q_4|)\delta_{q_1+q_2,q_3+q_4}$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
+
+- task: Combine the Hartree and Fock term
+  source: 
+  placeholder:
+    Hartree_symbol:
+      human: $H_{\text{Hartree}}$
+      # score: 
+      #   Haining: 
+    Fock_symbol:
+      human: $H_{\text{Fock}}$
+      # score: 
+      #   Haining: 
+    Hartree:
+      human: $H_{\text{Hartree}} = \frac{1}{V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,q_1,q_2,q_3,q_4} \langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_1,\tau_1,q_4}(k_1) \rangle b_{l_2,\tau_2,q_2}^\dagger(k_2) b_{l_2,\tau_2,q_3}(k_2)  V(|q_1-q_4|)\delta_{q_1+q_2,q_3+q_4}$
+      # score: 
+      #   Haining:
+    Fock:
+      human: $H_{\text{Fock}} = -\frac{1}{V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,q_1,q_2,q_3,q_4} \langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_2,\tau_2,q_3}(k_1) \rangle b_{l_2,\tau_2,q_2}^\dagger(k_2) b_{l_1,\tau_1,q_4}(k_2) V(|k_1+q_1-k_2-q_4|)\delta_{q_1+q_2,q_3+q_4}$
+      # score: 
+      #   Haining: 
+    swap_rule:
+      human: Nothing
+      # score: 
+      #   Haining: 
+  answer:
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2

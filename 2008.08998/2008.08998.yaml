@@ -449,7 +449,7 @@
         Yasaman: 0  
     expression_HF_2:
       human: $H_{\text{int}}^{(2)} = \frac{1}{2\mathcal{N}}\sum_{s,s'} \sum_{\bm{k}} U(\bm{k}_\alpha-\bm{k}_\delta)\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta} \left[ \langle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s} \rangle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'} + \langle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'} \rangle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s} - \langle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'} \rangle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\delta,s} - \langle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\delta,s} \rangle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'} \right]$, where $\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta}=\sum_{\bm{G}}\delta(\bm{k}_\alpha+\bm{k}_\beta-\bm{k}_\gamma-\bm{k}_\delta,\bm{G})$
-  answer:
+  answer: $H_{\text{int}}^{(2)} = \frac{1}{\mathcal{N}}\sum_{s,s'} \sum_{\bm{k}} U(\bm{k}_\alpha-\bm{k}_\delta)\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta} \left[ \langle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\delta,s} \rangle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'} - \langle c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\gamma,s'} \rangle c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\delta,s} \right]$, where $\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta}=\sum_{\bm{G}}\delta(\bm{k}_\alpha+\bm{k}_\beta-\bm{k}_\gamma-\bm{k}_\delta,\bm{G})$
   score:
     in_paper: 2
     prompt_quality: 2
@@ -457,3 +457,101 @@
     physics_logic: 2
     math_derivation: 2
     final_answer_accuracy: 2
+
+- task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
+  source: 
+    2008.08998.tex:
+      - [259,268]
+  placeholder:
+    Hartree_second_quantized_symbol:
+      LLM: $H_{\text{Hartree}}$
+      human: 
+      score: 
+        Haining: 2
+    expected_value:
+      LLM: $\expval{c_{\bm{p}_\alpha+\bm{q}_\alpha,s}^\dagger c_{\bm{p}_\alpha+\bm{q}_\delta,s}}$
+      human: $\langle{c_{\bm{p}_\alpha,\bm{q}_\alpha,s}^\dagger c_{\bm{p}_\delta,\bm{q}_\delta,s}}\rangle$
+      score: 
+        Haining: 2
+    expected_value_nonzero:
+      LLM: $\expval{c_{\bm{p}_\alpha+\bm{q}_\alpha,s}^\dagger c_{\bm{p}_\alpha+\bm{q}_\alpha,s}}$
+      human: $\langle{c_{\bm{p}_\alpha,\bm{q}_\alpha,s}^\dagger c_{\bm{p}_\delta,\bm{q}_\delta,s}}\rangle=\langle{c_{\bm{p}_\alpha,\bm{q}_\alpha,s}^\dagger c_{\bm{p}_\delta,\bm{q}_\delta,s}}\rangle\delta_{c_{\bm{p}_\alpha,\bm{p}_\delta}}$
+      score: 
+        Haining: 0
+    expression_Hartree: 
+      human: $H_{\text{Hartree}} = \frac{1}{\mathcal{N}}\sum_{s,s'} \sum_{\bm{p},\bm{q}} U(\bm{p}_\alpha+\bm{q}_\alpha-\bm{p}_\delta-\bm{q}_\delta)\delta_{\bm{p}_\alpha+\bm{q}_\alpha+\bm{p}_\beta+\bm{q}_\beta,\bm{p}_\gamma+\bm{q}_\gamma+\bm{p}_\delta+\bm{q}_\delta} \langle c_{\bm{q}_\alpha,s}^\dagger(\bm{p}_\alpha) c_{\bm{q}_\delta,s}(\bm{p}_\delta) \rangle c_{\bm{q}_\beta,s'}^\dagger(\bm{p}_\beta) c_{\bm{q}_\gamma,s'}(\bm{p}_\gamma)  $.
+  answer: $H_{\text{Hartree}} = \frac{1}{\mathcal{N}}\sum_{s,s'} \sum_{\bm{p},\bm{q}} U(\bm{q}_\alpha-\bm{q}_\delta)\delta_{\bm{q}_\alpha+\bm{q}_\beta,\bm{q}_\gamma+\bm{q}_\delta} \langle c_{\bm{q}_\alpha,s}^\dagger(\bm{p}_\alpha) c_{\bm{q}_\delta,s}(\bm{p}_\alpha) \rangle c_{\bm{q}_\beta,s'}^\dagger(\bm{p}_\beta) c_{\bm{q}_\gamma,s'}(\bm{p}_\beta)$.
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 1
+    math_derivation: 2
+    final_answer_accuracy: 1
+    # q_\gamma = q_\beta & p_\alpha = p_\beta are incorrectly assumed
+
+- task: Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
+  source: 
+    2008.08998.tex:
+      - [269,274]
+  placeholder:
+    Fock_second_quantized_symbol:
+      LLM: $H_{\text{Fock}}$
+      human: 
+      score: 
+        Haining: 2
+    expected_value:
+      LLM: $\expval{c_{\bm{p}_\alpha+\bm{q}_\alpha,s}^\dagger c_{\bm{p}_\alpha+\bm{q}_\gamma,s'}}$
+      human: $\langle{c_{\bm{p}_\alpha,\bm{q}_\alpha,s}^\dagger c_{\bm{p}_\gamma,\bm{q}_\gamma,s'}}\rangle$
+      score: 
+        Haining: 2
+    expected_value_nonzero:
+      LLM: $\expval{c_{\bm{p}_\alpha+\bm{q}_\alpha,s}^\dagger c_{\bm{p}_\alpha+\bm{q}_\alpha,s'}}$
+      human: $\langle{c_{\bm{p}_\alpha,\bm{q}_\alpha,s}^\dagger c_{\bm{p}_\gamma,\bm{q}_\gamma,s'}}\rangle=\langle{c_{\bm{p}_\alpha,\bm{q}_\alpha,s}^\dagger c_{\bm{p}_\gamma,\bm{q}_\gamma,s'}}\rangle\delta_{c_{\bm{p}_\alpha,\bm{p}_\gamma}}$
+      score: 
+        Haining: 0
+    expression_Fock: 
+      human: $H_{\text{Fock}} = -\frac{1}{\mathcal{N}}\sum_{s,s'} \sum_{\bm{p},\bm{q}} U(\bm{p}_\alpha+\bm{q}_\alpha-\bm{p}_\delta-\bm{q}_\delta)\delta_{\bm{p}_\alpha+\bm{q}_\alpha+\bm{p}_\beta+\bm{q}_\beta,\bm{p}_\gamma+\bm{q}_\gamma+\bm{p}_\delta+\bm{q}_\delta} \langle c_{\bm{q}_\alpha,s}^\dagger(\bm{p}_\alpha) c_{\bm{q}_\gamma,s'}(\bm{p}_\gamma) \rangle c_{\bm{q}_\beta,s'}^\dagger(\bm{p}_\beta) c_{\bm{q}_\delta,s}(\bm{p}_\delta)  $.
+  answer: $H_{\text{Fock}} = -\frac{1}{\mathcal{N}}\sum_{s,s'} \sum_{\bm{p},\bm{q}} U(\bm{p}_\alpha+\bm{q}_\alpha-\bm{p}_\beta-\bm{q}_\delta)\delta_{\bm{q}_\alpha+\bm{q}_\beta,\bm{q}_\gamma+\bm{q}_\delta} \langle c_{\bm{q}_\alpha,s}^\dagger(\bm{p}_\alpha) c_{\bm{q}_\gamma,s'}(\bm{p}_\alpha) \rangle c_{\bm{q}_\beta,s'}^\dagger(\bm{p}_\beta) c_{\bm{q}_\delta,s}(\bm{p}_\beta)$
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 2
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
+
+- task: Combine the Hartree and Fock term
+  source: 
+    2008.08998.tex:
+      - [259,274]
+  placeholder:
+    Hartree_symbol:
+      human: $H_{\text{Hartree}}$
+      score: 
+        Haining: 
+    Fock_symbol:
+      human: $H_{\text{Fock}}$
+      score: 
+        Haining: 
+    Hartree:
+      human: $H_{\text{Hartree}} = \frac{1}{\mathcal{N}}\sum_{s,s'} \sum_{\bm{p},\bm{q}} U(\bm{q}_\alpha-\bm{q}_\delta)\delta_{\bm{q}_\alpha+\bm{q}_\beta,\bm{q}_\gamma+\bm{q}_\delta} \langle c_{\bm{q}_\alpha,s}^\dagger(\bm{p}_\alpha) c_{\bm{q}_\delta,s}(\bm{p}_\alpha) \rangle c_{\bm{q}_\beta,s'}^\dagger(\bm{p}_\beta) c_{\bm{q}_\gamma,s'}(\bm{p}_\beta)$
+      score: 
+        Haining:
+    Fock:
+      human: $H_{\text{Fock}} = -\frac{1}{\mathcal{N}}\sum_{s,s'} \sum_{\bm{p},\bm{q}} U(\bm{p}_\alpha+\bm{q}_\alpha-\bm{p}_\beta-\bm{q}_\delta)\delta_{\bm{q}_\alpha+\bm{q}_\beta,\bm{q}_\gamma+\bm{q}_\delta} \langle c_{\bm{q}_\alpha,s}^\dagger(\bm{p}_\alpha) c_{\bm{q}_\gamma,s'}(\bm{p}_\alpha) \rangle c_{\bm{q}_\beta,s'}^\dagger(\bm{p}_\beta) c_{\bm{q}_\delta,s}(\bm{p}_\beta)$
+      score: 
+        Haining: 
+    swap_rule:
+      human: Nothing
+      score: 
+        Haining: 
+  answer:
+  score:
+    in_paper: 2
+    prompt_quality: 2
+    follow_instructions: 1
+    physics_logic: 2
+    math_derivation: 2
+    final_answer_accuracy: 2
+    # The unnecessary swap in Fock term is unsolicited though correct
