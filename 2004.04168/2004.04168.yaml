@@ -68,10 +68,10 @@
   score:
     in_paper: 2
     prompt_quality: 2
-    follow_instructions: 2
+    follow_instructions: 1
     physics_logic: 2
     math_derivation: 2
-    final_answer_accuracy: 1
+    final_answer_accuracy: 2
     # A minus sign before hopping amplitude
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source:

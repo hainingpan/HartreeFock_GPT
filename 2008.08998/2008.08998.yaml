@@ -70,7 +70,7 @@
     follow_instructions: 1 # Extra sign before t , though does not affect physics
     physics_logic: 2  
     math_derivation: 2
-    final_answer_accuracy: 1 
+    final_answer_accuracy: 2
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source:
     2008.08998.tex:
