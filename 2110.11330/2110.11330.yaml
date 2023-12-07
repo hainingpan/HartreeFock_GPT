@@ -72,7 +72,7 @@
     follow_instructions: 1
     physics_logic: 2
     math_derivation: 2
-    final_answer_accuracy: 1
+    final_answer_accuracy: 2
     # The sign before t is flipped
 - task: Construct interaction Hamiltonian (real space, lattice version)
   source:
