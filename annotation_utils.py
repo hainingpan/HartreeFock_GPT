@@ -244,3 +244,31 @@ def parse_scoring_task(exec_task):
     target = 'NA'
   return {'inputs': f"""PROBLEM: {prompt}\n\nSOLUTION: {lm_execution}\n\nSCORE: """, 'targets': target}
 
+def render_as_markdown_row(df, index, dirpath):
+  paper, task, score_prompt = df.loc[index, 'paper'], df.loc[index, 'task'], df.loc[index, 'score_prompt']
+  lm_score_binary = df.loc[index, 'lm_score_with_reasoning_value']
+  lm_score_reason = df.loc[index, 'lm_score_with_reasoning_reason']
+  gt_score = df.loc[index, 'gt_score_final_answer_accuracy']
+  gt_score_reason = df.loc[index, 'Comment by Haining']
+  
+  # get GT Solution
+  fname = os.path.join(dirpath, paper, f'{paper}_auto.md')
+  paper_tasks = get_task_yaml_for_paper(paper, os.path.join(dirpath, paper))
+
+  task_id_map = {} #stores task_name -> index in paper_tasks yaml
+  for it, elem in enumerate(paper_tasks):
+    if 'task' in elem:
+      task_id_map[elem['task']] = it
+  targ_soln = paper_tasks[task_id_map[task]]['answer']
+
+  render = f"""
+  ### {index}: {paper}, {task} <br>
+  **SCORE PROMPT**: {score_prompt} <br>
+  === <br>
+  <table ><tr><th > LM SCORE (BINARY) <th><th> LM SCORE (REASON) <th><th> GT SCORE (0|1|2)  <th><th> GT SCORE (REASON) <tr><tr>
+  <tr><td> {lm_score_binary} <td><td> {lm_score_reason} <td><td> {gt_score} <td><td> {gt_score_reason}<td><tr><table>
+  === <br>
+
+  **Target Solution**: {targ_soln} <br>
+  """
+  return render
