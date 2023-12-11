@@ -246,6 +246,12 @@ def parse_scoring_task(exec_task):
 
 def render_as_markdown_row(df, index, dirpath):
   paper, task, score_prompt = df.loc[index, 'paper'], df.loc[index, 'task'], df.loc[index, 'score_prompt']
+  if paper not in ANNOTATED_PAPERS:
+    for ip, pname in enumerate(ANNOTATED_PAPERS):
+      if pname.startswith(paper):
+        print(f'Rename {paper} to {pname}')
+        paper=pname
+        break
   lm_score_binary = df.loc[index, 'lm_score_with_reasoning_value']
   lm_score_reason = df.loc[index, 'lm_score_with_reasoning_reason']
   gt_score = df.loc[index, 'gt_score_final_answer_accuracy']
