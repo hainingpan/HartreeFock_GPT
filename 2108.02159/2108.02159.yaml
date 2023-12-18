@@ -479,9 +479,9 @@
         Yasaman: 2
     momentum:
       LLM: $\bm{k}$
-      human:
-      score:
-        Haining: 2
+      human: $k_1+b_1-k_4-b_4$
+      score: 
+        Haining: 1
         Will:
         Yasaman: 2
     expression_HF_2:
@@ -491,10 +491,9 @@
     in_paper: 0
     prompt_quality: 2
     follow_instructions: 2
-    physics_logic: 0
+    physics_logic: 2
     math_derivation: 2
-    final_answer_accuracy: 0
-    # Completely failed to understand the logic of replacing the momentum in the interaction term with the difference in the momentum between the incoming and outgoing particles with the same type.
+    final_answer_accuracy: 2
 - task: Swap the index to combine Hartree and Fock terms
   source:
     2108.02159.tex:
