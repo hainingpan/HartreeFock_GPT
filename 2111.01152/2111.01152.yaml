@@ -449,8 +449,7 @@
     math_derivation: 1
     final_answer_accuracy: 1
     # It misses the summation of tau, though it recognizes that there is no intervalley coupling
-- task: Convert noninteracting Hamiltonian in real space to momentum space (continuum
-    version)
+- task: Convert noninteracting Hamiltonian in real space to momentum space (continuum version)
   source:
     2111.01152_SM.tex:
       - [46, 62]
