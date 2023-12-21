@@ -405,7 +405,7 @@
       LLM: $\langle \hat{n}^{p}_{i+\hat{\nu}/2 , s}\rangle$
       human: $\langle c_{\alpha_1,s_1}^\dagger(k_1) c_{\alpha_1,s_1}(k_2) \rangle$
       score: 
-        Haining: 0
+        Haining: 1
         Will: 
         Yasaman: 
     Hartree_second_quantized_symbol:
