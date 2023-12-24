@@ -138,7 +138,7 @@
 # Why does LLM leave so many blanks?
   source:
     2004.04168.tex:
-      - []
+      - [226, 230]
   placeholder:
     nonint_symbol:
       LLM:
@@ -206,7 +206,7 @@
 - task: Convert interacting Hamiltonian in real space to momentum space (lattice version)
   source:
     2004.04168.tex:
-      - []
+      - [246, 251]
   placeholder:
     second_int_symbol:
       LLM: $\hat{H}^{int}$
@@ -279,7 +279,7 @@
 - task: Wick's theorem
   source:
     2004.04168.tex:
-      - []
+      - [246, 251]
   placeholder:
     second_int_symbol:
       LLM:
@@ -318,7 +318,7 @@
 - task: Extract quadratic term
   source:
     2004.04168.tex:
-      - []
+      - [246, 251]
   placeholder:
     Hartree_Fock_term_symbol:
       LLM: H
