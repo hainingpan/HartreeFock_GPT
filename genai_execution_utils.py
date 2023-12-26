@@ -1,5 +1,5 @@
-"""Adapted utils.py to perform the execution step with Palm."""
-import google.generativeai as palm
+"""Adapted utils.py to perform the execution step with GenAI."""
+import google.generativeai as genai
 import argparse
 import json
 import os
@@ -9,12 +9,22 @@ from . import utils
 # from utils import load_prompt, generate_prompt, return_correct_prompt_template_for_task, assembly_message, extract_var
 
 class PalmExecution:
-    def __init__(self, api_key_dict, prompt_template, arxiv_number, model='text-bison-001', temperature=0):
+    def __init__(self, api_key_dict, prompt_template, arxiv_number, model_name='text-bison-001', temperature=0):
         api_key = api_key_dict['API_KEY']
-        palm.configure(api_key = api_key)
+        genai.configure(api_key = api_key)
         self.prompt_template = prompt_template
         self.arxiv_number = arxiv_number
-        self.model_config = {'model': model, 'temperature': temperature}
+        self.model_name = model_name
+        self.generation_config = {'temperature': temperature, 'top_p': 1, 'top_k': 1, 'max_output_tokens': 2048, 'stop_sequences': []}
+        self.safety_settings = [{'category': 'HARM_CATEGORY_HARASSMENT',
+        'threshold': 'BLOCK_MEDIUM_AND_ABOVE'},
+        {'category': 'HARM_CATEGORY_HATE_SPEECH',
+        'threshold': 'BLOCK_MEDIUM_AND_ABOVE'},
+        {'category': 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+        'threshold': 'BLOCK_MEDIUM_AND_ABOVE'},
+        {'category': 'HARM_CATEGORY_DANGEROUS_CONTENT',
+        'threshold': 'BLOCK_MEDIUM_AND_ABOVE'}]
+        self.model = genai.GenerativeModel(model_name=model_name)
 
     def summarizer(self, summarization, prompt, response,prompt_dict):
         '''Summarize the background (summarization) + question (prompt) + answer (response)'''
@@ -23,8 +33,9 @@ class PalmExecution:
         var=var_old+var_new
         
         summarization_prompt=prompt_dict['Conversation summarizer'].format(background=summarization, question=prompt, answer=response)
-        rs = palm.generate_text(prompt=summarization_prompt, **self.model_config)
-        summarized=rs.result
+        rs = self.model.generate_content(summarization_prompt, generation_config=self.generation_config,
+            safety_settings=self.safety_settings, stream=False)
+        summarized=rs.text
 
         if len(var)>0:
             if 'Use the following conventions for the symbols:  ' in summarized:
@@ -39,9 +50,10 @@ class PalmExecution:
         '''
         sys_msg=prompt_dict['Problem-solver']
         question_prompt='**Background**  \n{background}\n\n**Question**  \n{question}'.format(background=summarization,question=prompt)
-        messages = sys_msg + '\n'+ question_prompt
-        rs= palm.generate_text(prompt=messages, **self.model_config)
-        return rs.result
+        execution_prompt = sys_msg + '\n'+ question_prompt
+        rs= self.model.generate_content(execution_prompt, generation_config=self.generation_config,
+            safety_settings=self.safety_settings, stream=False)
+        return rs.text
 
     def run(self, prompt_template, arxiv_number, path='HartreeFock_GPT/'):
         '''Load the prompt_template, and the descriptor file from arxiv number
@@ -58,6 +70,7 @@ class PalmExecution:
         prompts=[utils.generate_prompt(kwarg,prompt_dict=prompt_dict) for kwarg in kwargs]
 
         answers=[]
+        summaries = []
         for idx,prompt_i in enumerate(prompts):
             print(f'Asking {idx}..')
             prompt=prompt_i['content']
@@ -68,6 +81,7 @@ class PalmExecution:
                 summarization=self.summarizer(summarization=summarization, prompt=prompt, response=response,prompt_dict=prompt_dict)        
                 response= self.solver(summarization=summarization, prompt=prompt,prompt_dict=prompt_dict)
             answers.append(response)
+            summaries.append(summarization)
         
         string=''
         for kwarg,prompt_i,answer in zip(kwargs,prompts,answers):
@@ -76,6 +90,17 @@ class PalmExecution:
             added=f'## {task}  \n**Prompt:**  \n{prompt}\n\n**Completion:**  \n{answer}\n\n'
             string+=added
 
-        with open(f'{arxiv_number}_auto_palm.md','w') as f:
+        with open(f'{arxiv_number}_auto_gemini.md','w') as f:
+            f.write(string)
+
+        # With the summarizer
+        string=''
+        for kwarg,prompt_i,answer,summary in zip(kwargs,prompts,answers,summaries):
+            task=kwarg['task']
+            prompt=prompt_i['content']
+            added=f'## {task}  \n**Background:**  \n{summary}\n**Prompt:**  \n{prompt}\n\n**Completion:**  \n{answer}\n\n'
+            string+=added
+
+        with open(f'{arxiv_number}_auto_withsummarizer_gemini.md','w') as f:
             f.write(string)
 
