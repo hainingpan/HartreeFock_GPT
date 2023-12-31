@@ -302,23 +302,23 @@ def render_as_markdown_row_nohtml(df, index, dirpath):
       task_id_map[elem['task']] = it
   targ_soln = paper_tasks[task_id_map[task]]['answer']
 
+  score_prompt = score_prompt.replace('\begin{equation}', '')
+  score_prompt = score_prompt.replace('\end{equation}', '')
+  
   render = f"""
   ### {index}: {paper}, {task}
   
   **SCORE PROMPT**: {score_prompt}
-  """ + """
   
-  $$
-  \begin{array}{|c|c|c|c|}
-  \hline \text {LM Score (Binary)} & \text {LM Score (Reason)} & \text {GT Score [0/1/2]} & \text {GT Score (Reason)} \\
-  """ + f"""
-  \hline {lm_score_binary} & {lm_score_reason} & {gt_score} & {gt_score_reason} \\
-  """ + """
-  \hline
-  \end{array}
-  $$
-  ===  
-  """ + f"""
+  
+  **LM Score (Binary)**: {lm_score_binary}
+
+  **LM Reason**: {lm_score_reason}
+
+  **GT Score (0/1/2)**: {gt_score}
+
+  **GT Reason**: {gt_score_reason} 
+
   **Target Solution**: {targ_soln}
   """
   return render
