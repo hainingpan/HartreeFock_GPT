@@ -278,3 +278,44 @@ def render_as_markdown_row(df, index, dirpath):
   **Target Solution**: {targ_soln} <br>
   """
   return render
+
+def render_as_markdown_row_nohtml(df, index, dirpath):
+  paper, task, score_prompt = df.loc[index, 'paper'], df.loc[index, 'task'], df.loc[index, 'score_prompt']
+  if paper not in ANNOTATED_PAPERS:
+    for ip, pname in enumerate(ANNOTATED_PAPERS):
+      if pname.startswith(paper):
+        print(f'Rename {paper} to {pname}')
+        paper=pname
+        break
+  lm_score_binary = df.loc[index, 'lm_score_with_reasoning_value']
+  lm_score_reason = df.loc[index, 'lm_score_with_reasoning_reason']
+  gt_score = df.loc[index, 'gt_score_final_answer_accuracy']
+  gt_score_reason = df.loc[index, 'Comment by Haining']
+  
+  # get GT Solution
+  fname = os.path.join(dirpath, paper, f'{paper}_auto.md')
+  paper_tasks = get_task_yaml_for_paper(paper, os.path.join(dirpath, paper))
+
+  task_id_map = {} #stores task_name -> index in paper_tasks yaml
+  for it, elem in enumerate(paper_tasks):
+    if 'task' in elem:
+      task_id_map[elem['task']] = it
+  targ_soln = paper_tasks[task_id_map[task]]['answer']
+
+  render = f"""
+  ### {index}: {paper}, {task}
+  
+  **SCORE PROMPT**: {score_prompt}
+  
+  $$
+  \begin{array}{|c|c|c|c|}
+  \hline \text {LM Score (Binary)} & \text {LM Score (Reason)} & \text {GT Score [0/1/2]} & \text {GT Score (Reason)} \\
+  \hline {lm_score_binary} & {lm_score_reason} & {gt_score} & {gt_score_reason} \\
+  \hline
+  \end{array}
+  $$
+  ===  
+
+  **Target Solution**: {targ_soln}
+  """
+  return render
