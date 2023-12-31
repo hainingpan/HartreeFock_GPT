@@ -1,0 +1,560 @@
+,arxiv_id,task,excerpt,blank_templates,gt_mapping,annotated_prompts,annotated,one-shot_annotated
+3,0812.2894,Convert interacting Hamiltonian in real space to momentum space (lattice version),"%
+\begin{eqnarray}\label{E.Hint}
+H_{\rm int} &=& U\sum_{{\bf i},\mu}n_{{\bf i},\mu,\uparrow}n_{{\bf i},\mu,\downarrow}
++(U'-{J\over{2}})\sum_{{\bf i},\mu\neq\nu} n_{{\bf i},\mu}n_{{\bf i},\nu}
+\nonumber \\
+& & -2J\sum_{{\bf i},\mu\neq\nu}\mathbf{S}_{{\bf i},\mu}\cdot\mathbf{S}_{{\bf i},\nu},
+\end{eqnarray}
+where $\mathbf{S}_{{\bf i},\mu}$ ($n_{{\bf i},\mu}$) is the spin (charge
+density) of orbital $\mu$ at site ${\bf i}$, and
+$n_{{\bf i},\mu}=n_{{\bf i},\mu,\uparrow}+n_{{\bf i},\mu,\downarrow}$. The first term
+is a Hubbard repulsion for the electrons in the same orbital. The
+second term describes an on-site inter-orbital repulsion, where the
+standard relation $U'=U-J/2$ caused by rotational invariance is used.\cite{RMP01} The last term in
+Eq.~(\ref{E.Hint}) is a Hund term with a ferromagnetic coupling $J$.
+A complete description would also require a
+pair-hopping interaction similar to the last term of
+Eq.~(\ref{eq:Hint2}), where the interaction term for the
+two-orbital model is shown. But
+ED was used to test its impact in the case of two orbitals,
+and it was not found to be important. Consequently, it was neglected in the
+mean field treatment.
+","You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the {single-particle|second-quantized} form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that {second_int_symbol} is {expression_int}.
+Express {second_int_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+",{},"You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the {single-particle|second-quantized} form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that {second_int_symbol} is {expression_int}.
+Express {second_int_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+",False,"COMPLETED TEMPLATE: You will be instructed to convert the interacting Hamiltonian, $H_{\rm int}$, in the second-quantized form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to $n_{{\bf i},\mu,\uparrow}$ and $n_{{\bf i},\mu,\downarrow}$ in the real space to the $n_{{\bf k},\mu,\uparrow}$ and $n_{{\bf k},\mu,\downarrow}$ in the momentum space, which is defined as $n_{{\bf k},\mu,\sigma}= \frac{1}{\sqrt{N}} \sum_i n_{{\bf R_i},\mu,\sigma} e^{i k \cdot R_i}$, where ${\bf R_i}$ is integrated over all sites in the entire real space, and k is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now: FALSE]
+You should recall that $H_{\rm int}$ is $U\sum_{{\bf i},\mu}n_{{\bf i},\mu,\uparrow}n_{{\bf i},\mu,\downarrow}
++(U'-{J\over{2}})\sum_{{\bf i},\mu\neq\nu} n_{{\bf i},\mu}n_{{\bf i},\nu}
+-2J\sum_{{\bf i},\mu\neq\nu}\mathbf{S}_{{\bf i},\mu}\cdot\mathbf{S}_{{\bf i},\nu}$.
+Express $H_{\rm int}$ in terms of $n_{{\bf k},\mu,\sigma}$. Simplify any summation index if possible."
+15,0902.1336,Convert interacting Hamiltonian in real space to momentum space (lattice version),"arrive at the following one-particle Hamiltonian:
+\begin{eqnarray}
+&& H(\vec{k}) = \left(\begin{array}{cc}
+H_{x} (\vec{k})& 0 \\
+0 & H_{y} (\vec{k})\end{array} \right) 
+\end{eqnarray} 
+where
+\begin{eqnarray}
+&& H_{a}(\vec{k}) =-2t \cos{k_a} \hat{1}_{4 \times 4}  \nonumber + \\ && \left( \begin{array}{cccc}
+\delta \mu_{a, \uparrow}^{(1)} - h& 0 & -t & 0  \\
+0 & \delta \mu_{a, \downarrow}^{(1)}+h& 0 & -t  \\
+-t & 0 & \delta \mu_{a, \uparrow}^{(-1)}-h& 0  \\
+0 & -t & 0 &\delta \mu_{a, \downarrow}^{(-1)} +h \end{array} \right) \nonumber 
+\end{eqnarray}
+and $a = x,y$.
+We have also defined the quantities
+\begin{eqnarray}
+\delta \mu_{x, \sigma}^{(\lambda)} &=& \frac{U}{4} \left( N_o^{\lambda} - \sigma M^{\lambda} - \sigma N_s^{\lambda} \right)
+ - \frac{V}{2}N_o^{\lambda}    \nonumber \\
+\delta \mu_{y ,\sigma}^{(\lambda)} &=&  \frac{U}{4} \left( -N_o^{\lambda} - \sigma M^{\lambda} + \sigma N_s^{\lambda} \right)
+ + \frac{V}{2}N_o^{\lambda}  
+\end{eqnarray}
+Thus, by neglecting the hybridization between the $x,y$ orbitals, the Mean-field Hamiltonian takes 
+the Block-diagonal form above and the quasiparticle bonding and anti-bonding energies are easily obtained:
+\begin{eqnarray}
+   \epsilon^{x}_{\pm \sigma} &=& -2t \cos k_x - \sigma h+ \frac{1}{2} \left(  \delta \mu^{(1)}_{x ,\sigma} + \delta \mu^{(-1)}_{x, \sigma} \right) \nonumber \\ && \pm \sqrt{t^2+ \frac{1}{4} \left( \delta \mu^{(1)}_{x ,\sigma} - \delta \mu^{(-1)}_{x, \sigma} \right)^2 } \nonumber \\
+ \epsilon^{y}_{\pm \sigma} &=& -2t \cos k_y - \sigma h+ \frac{1}{2} \left(  \delta \mu^{(1)}_{y ,\sigma} + \delta \mu^{(-1)}_{y, \sigma} \right)  \nonumber \\ && \pm \sqrt{t^2+ \frac{1}{4} \left( \delta \mu^{(1)}_{y ,\sigma} - \delta \mu^{(-1)}_{y, \sigma} \right)^2 } 
+\end{eqnarray}
+","You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the {single-particle|second-quantized} form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that {second_int_symbol} is {expression_int}.
+Express {second_int_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+",{},"You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the {single-particle|second-quantized} form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that {second_int_symbol} is {expression_int}.
+Express {second_int_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+",False,"COMPLETED TEMPLATE: You will be instructed to convert the interacting Hamiltonian, $H(\vec{k})$, in the single-particle form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to $H_{a}(\vec{k})$ in the real space to the $H_{a}(\vec{p})$ in the momentum space, which is defined as $H_{a}(\vec{p})= \frac{1}{\sqrt{N}} \sum_k H_{a}(\vec{k}) e^{i p \cdot k}$, where $\vec{k}$ is integrated over all sites in the entire real space, and p is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now: TRUE]
+You should recall that $H(\vec{k})$ is $H_{x} (\vec{k})$ and $H_{y} (\vec{k})$.
+Express $H(\vec{k})$ in terms of $H_{a}(\vec{p})$. Simplify any summation index if possible."
+27,1106.6060,Convert interacting Hamiltonian in real space to momentum space (lattice version),"\begin{equation}
+  \HH_{\rm MF} = \sum_{\kk, s} \hat{C}^{\dag}_{\kk s}\HH_{\kk s}\hat{C}^{\phantom{\dag}}_{\kk s} + f(n^{p}, \eta)
+  \label{eq:mfhamiltonian}
+\end{equation}
+with $\hat{C}^{\dag}_{\kk s} = (\hat{p}^{\dag}_{x\kk s}, \hat{p}^{\dag}_{y\kk s}, \hat{d}^{\dag}_{\kk s})$,
+\begin{equation}
+  \HH_{\kk s} = \left(\begin{array}{ccc} \xi_{x}& \gamma_2(\kk)& \gamma_1(k_x)\\ \gamma_2(\kk)&\xi_{y}& \gamma_1(k_y)\\ \gamma_1(k_x)& \gamma_1(k_y)&\xi_{d}\end{array}\right)
+  \label{eq:h0k}
+\end{equation}
+and
+\begin{equation}
+  \frac{f(n^{p}, \eta)}{N} = -\tilde{U}_{p} \frac{(n^{p})^2}{8} + \tilde{V}_{pp}\frac{\eta^{2}}{8} - \tilde{U}_{d}\frac{(n-n^{p})^2}{4}.
+  \label{eq:mutilde}
+\end{equation}
+Here, $n$ is the total
+density of holes, $n^p$ is the total
+density of holes on the oxygen sites, i.e., 
+\begin{equation}
+  n^p\equiv (n_{x\uparrow}^p+n_{x\downarrow}^{p}) + (n_{y\uparrow}^p + n_{y\downarrow}^p),
+  \label{eq:np}
+\end{equation}
+and the nematic order parameter $\eta$ is defined in Eq.\eqref{eq:eta}.
+The elements of the matrix~\eqref{eq:h0k} are given by
+\begin{eqnarray}
+  \gamma_1(k_i) &=& -2t_{pd}\cos\frac{k_i}{2}, \label{eq:gammas}\\
+  \gamma_2(\kk) &=& -4t_{pp}\cos\frac{k_x}{2}\cos\frac{k_y}{2},
+\end{eqnarray}
+and
+\begin{eqnarray}
+  \xi_{x} &=& \Delta + \tilde{U}_{p} \frac{n^{p}}{4} - \tilde{V}_{pp}\frac{\eta}{4} - \mu,\\
+  \xi_{y} &=& \Delta + \tilde{U}_{p} \frac{n^{p}}{4} + \tilde{V}_{pp}\frac{\eta}{4} - \mu,\\
+  \xi_{d} &=& \tilde{U}_{d} \frac{(n-n^p)}{2} - \mu,
+  \label{eqn:diag}
+\end{eqnarray}
+and also, we introduced the effective interaction parameters
+\begin{eqnarray}
+  \tilde{U}_{p} &=& U_{p} + 8V_{pp} - 8 V_{pd},\label{eq:Uptilde}\\
+  \tilde{V}_{pp} &=&  8V_{pp} - U_{p},\label{eq:Vptilde}\\
+  \tilde{U}_{d} &=& U_{d} - 4V_{pd}.
+  \label{eq:Udtilde}
+\end{eqnarray}
+In addition, we have put all the constant terms, i.e. $2V_{pd}n - V_{pd}n^2$, into the chemical potential $\mu$.
+%%%%%%%%%%%%%%%%%%%%%
+The mean-field Hamiltonian~\eqref{eq:mfhamiltonian} can be diagonalized to yield three bands
+each with mixed orbital character and dispersion $\xi_{\alpha\kk s}$, where $\alpha=1,2,3$ is the
+band index for the lowest lying and the two upper bands.
+","You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the {single-particle|second-quantized} form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that {second_int_symbol} is {expression_int}.
+Express {second_int_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+","{""second_int_symbol"": ""$\\HH_{\\rm MF}$"", ""single-particle|second-quantized"": ""second-quantized"", ""real_creation_op"": ""$c_{\\alpha,s}^\\dagger(R_i)$"", ""momentum_creation_op"": ""$c_{\\alpha,s}^\\dagger(k)$"", ""definition_of_Fourier_Transformation"": ""$c_{\\alpha,s}^\\dagger(k)= \\frac{1}{\\sqrt{N}} \\sum_i c_{\\alpha,s}^\\dagger(R_i) e^{i k \\cdot R_i}$"", ""real_variable"": ""$i$"", ""momentum_var"": ""$k$"", ""Note that interaction have no position dependence now"": true}","You will be instructed to convert the interacting Hamiltonian, $\HH_{\rm MF}$, in the second-quantized form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. True
+You should recall that $\HH_{\rm MF}$ is {expression_int}.
+Express $\HH_{\rm MF}$ in terms of $c_{\alpha,s}^\dagger(k)$. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+",True,"You will be instructed to convert the interacting Hamiltonian, $\HH_{\rm MF}$, in the second-quantized form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to $\hat{p}^{\dag}_{x\kk s}, \hat{p}^{\dag}_{y\kk s}, \hat{d}^{\dag}_{\kk s}$ in the real space to the $\hat{p}^{\dag}_{k s}, \hat{p}^{\dag}_{k s}, \hat{d}^{\dag}_{k s}$ in the momentum space, which is defined as $\hat{p}^{\dag}_{k s} = \frac{1}{\sqrt{N}} \sum_i \hat{p}^{\dag}_{R_\bm{i},s} e^{i k \cdot R_i}$, where $\bm{R}_i$ is integrated over all sites in the entire real space, and k is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now: TRUE]
+You should recall that $\HH_{\rm MF}$ is $\sum_{\kk, s} \hat{C}^{\dag}_{\kk s}\HH_{\kk s}\hat{C}^{\phantom{\dag}}_{\kk s} + f(n^{p}, \eta)$.
+Express $\HH_{\rm MF}$ in terms of $\hat{p}^{\dag}_{k s}, \hat{p}^{\dag}_{k s}, \hat{d}^{\dag}_{k s}$. Simplify any summation index if possible."
+36,1310.2674,Convert interacting Hamiltonian in real space to momentum space (lattice version),"Hamiltonian given in the main text.   
+Our treatment follows that of Ref. \onlinecite{MeanField}, which we 
+summarize here for completeness. We work in momentum space where the 
+microscopic Hamiltonian can be rewritten in the form 
+\begin{equation}
+H=\sum_{\bk,\alpha,\beta,\sigma} T_{\alpha,\beta}(\bk) d^\dagger_{\bk,\alpha,\sigma}
+d^{\phantom\dagger}_{\bk,\beta,\sigma} 
++ \sum_{\alpha,\alpha^\prime,\beta,\beta^\prime,\sigma,\sigma^\prime}\sum_{\bk,\bk^\prime,\bq} 
+U^{\sigma,\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}(\bq)  
+d^{\dagger}_{\bk,\alpha,\sigma}d^{\dagger}_{\bk^\prime,\alpha^\prime,\sigma^\prime}
+d^{\phantom\dagger}_{\bk^\prime-\bq,\beta^\prime,\sigma^\prime}
+d^{\phantom\dagger}_{\bk+\bq,\beta,\sigma}. 
+\end{equation}
+where the interaction on a Ni site is given by  
+\begin{eqnarray}
+U^{\sigma\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}&=& 
+ \frac{U}{2} \delta_{-\sigma,\sigma^\prime}\delta_{\alpha,\alpha^\prime}\delta_{\alpha\beta}\delta_{\alpha\beta^\prime}  
+ +\frac{U^\prime}{2}(1-\delta_{\alpha\alpha^\prime}) \delta_{\alpha\beta}\delta_{\alpha^\prime\beta^\prime} \\\nonumber
+ &+&\frac{J}{2}(1-\delta_{\alpha\alpha^\prime})\delta_{\alpha\beta^\prime}\delta_{\alpha^\prime\beta} + 
+ \frac{J^\prime}{2}\delta_{\alpha\alpha^\prime}\delta_{\beta\beta^\prime}(1-\delta_{\sigma\sigma^\prime})(1-\delta_{\alpha\beta}).
+\end{eqnarray} 
+The interaction on an O site is like the first term with $U$ replaced by $U_p$. 
+","You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the {single-particle|second-quantized} form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that {second_int_symbol} is {expression_int}.
+Express {second_int_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+","{""second_int_symbol"": ""\\hat{H}_{\\rm {int}}"", ""single-particle|second-quantized"": ""second-quantized"", ""real_creation_op"": ""d^\\dagger_{i,\\alpha,\\sigma}"", ""momentum_creation_op"": ""d^\\dagger_{\\bk,\\alpha,\\sigma}"", ""definition_of_Fourier_Transformation"": ""$d^\\dagger_{\\bk,\\alpha,\\sigma}= \\frac{1}{\\sqrt{N}} \\sum_i d^\\dagger_{i,\\alpha,\\sigma} e^{i k \\cdot R_i}$"", ""real_variable"": ""i"", ""momentum_var"": ""$k$"", ""Note that interaction have no position dependence now"": true}","You will be instructed to convert the interacting Hamiltonian, \hat{H}_{\rm {int}}, in the second-quantized form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to d^\dagger_{i,\alpha,\sigma} in the real space to the d^\dagger_{\bk,\alpha,\sigma} in the momentum space, which is defined as $d^\dagger_{\bk,\alpha,\sigma}= \frac{1}{\sqrt{N}} \sum_i d^\dagger_{i,\alpha,\sigma} e^{i k \cdot R_i}$, where i is integrated over all sites in the entire real space, and $k$ is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. True
+You should recall that \hat{H}_{\rm {int}} is {expression_int}.
+Express \hat{H}_{\rm {int}} in terms of d^\dagger_{\bk,\alpha,\sigma}. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+",True,"COMPLETED TEMPLATE: You will be instructed to convert the interacting Hamiltonian, $H$, in the second-quantized form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to $d^\dagger_{\bk,\alpha,\sigma}$ in the real space to the $d_{k,\alpha,\sigma}^\dagger$ in the momentum space, which is defined as $d_{k,\alpha,\sigma}^\dagger= \frac{1}{\sqrt{N}} \sum_i d_{R_\bm{i},\alpha,\sigma}^\dagger e^{i k \cdot R_i}$, where $\bm{R}_i$ is integrated over all sites in the entire real space, and k is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now: TRUE]
+You should recall that $H$ is $U^{\sigma\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}$.
+Express $H$ in terms of $d_{k,\alpha,\sigma}^\dagger$. Simplify any summation index if possible."
+59,2004.04168,Convert interacting Hamiltonian in real space to momentum space (lattice version),,"You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the {single-particle|second-quantized} form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that {second_int_symbol} is {expression_int}.
+Express {second_int_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+","{""single-particle|second-quantized"": ""second quantized"", ""real_creation_op"": ""$c_s^\\dagger(R_i)$"", ""momentum_creation_op"": ""$c_s^\\dagger(k)$"", ""definition_of_Fourier_Transformation"": ""c_s^\\dagger(k)= \\frac{1}{\\sqrt{N}} \\sum_i c_s^\\dagger(R_i) e^{i k \\cdot R_i}"", ""real_variable"": ""$i$"", ""momentum_var"": ""$k$""}","You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the second quantized form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to $c_s^\dagger(R_i)$ in the real space to the $c_s^\dagger(k)$ in the momentum space, which is defined as c_s^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_s^\dagger(R_i) e^{i k \cdot R_i}, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that {second_int_symbol} is {expression_int}.
+Express {second_int_symbol} in terms of $c_s^\dagger(k)$. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+",True,"Apologies, but the excerpt is missing. Please provide the excerpt so I can generate the completed template."
+66,2008.08998,Convert interacting Hamiltonian in real space to momentum space (lattice version),"\begin{equation}\label{eq:H1}
+	H_1=\frac{1}{2\mathcal{N}}\sum_{s,s'} \sum_{\bm{k}} U(\bm{k}_\alpha-\bm{k}_\delta)\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta} c_{\bm{k}_\alpha,s}^\dagger c_{\bm{k}_\beta,s'}^\dagger c_{\bm{k}_\gamma,s'} c_{\bm{k}_\delta,s},
+\end{equation}
+where $ \mathcal{N} $ is the number of total sites in the lattice, and  $ \bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma , \bm{k}_\delta $ are summed over the first $ \mathbb{BZ} $. Here, the interaction in the momentum space (as shown in Fig.~\ref{fig:tU}(d)) is
+\begin{equation}
+	U(\bm{q})=\sum_{\bm{R}}U(\bm{R})e^{i\bm{q}\cdot\bm{R}},
+\end{equation}
+and
+\begin{equation}
+	\delta_{\bm{k}_\alpha,\bm{k}_\beta,\bm{k}_\gamma,\bm{k}_\delta}=\sum_{\bm{G}}\delta(\bm{k}_\alpha+\bm{k}_\beta-\bm{k}_\gamma-\bm{k}_\delta,\bm{G}),
+\end{equation}
+where  $ \bm{G} $ is any moir\'e reciprocal lattice vector, and $ \delta(\dots) $ is the Kronecker delta function.
+","You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the {single-particle|second-quantized} form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that {second_int_symbol} is {expression_int}.
+Express {second_int_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+","{""second_int_symbol"": ""H_1"", ""single-particle|second-quantized"": ""second-quantized"", ""real_creation_op"": ""c_{R_\\bm{i},s}^\\dagger"", ""momentum_creation_op"": ""c_{\\bm{k}_\\alpha,s}^\\dagger"", ""definition_of_Fourier_Transformation"": ""$c_{\\bm{k},s}^\\dagger= \\frac{1}{\\sqrt{N}} \\sum_i c_{R_\\bm{i},s}^\\dagger e^{i k \\cdot R_i}$"", ""real_variable"": ""\\bm{R}"", ""momentum_var"": ""\\bm{q}""}","You will be instructed to convert the interacting Hamiltonian, H_1, in the second-quantized form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to c_{R_\bm{i},s}^\dagger in the real space to the c_{\bm{k}_\alpha,s}^\dagger in the momentum space, which is defined as $c_{\bm{k},s}^\dagger= \frac{1}{\sqrt{N}} \sum_i c_{R_\bm{i},s}^\dagger e^{i k \cdot R_i}$, where \bm{R} is integrated over all sites in the entire real space, and \bm{q} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that H_1 is {expression_int}.
+Express H_1 in terms of c_{\bm{k}_\alpha,s}^\dagger. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+",True,"COMPLETED TEMPLATE: You will be instructed to convert the interacting Hamiltonian, $H_1$, in the second-quantized form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to $c_{\bm{R},s}^\dagger$ in the real space to the $c_{\bm{k}_\alpha,s}^\dagger$ in the momentum space, which is defined as $c_{\bm{k}_\alpha,s}^\dagger= \frac{1}{\sqrt{\mathcal{N}}} \sum_{\bm{R}} c_{\bm{R},s}^\dagger e^{i \bm{k}_\alpha \cdot \bm{R}}$, where $\bm{R}$ is integrated over all sites in the entire real space, and $\bm{k}_\alpha$ is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now: TRUE]
+You should recall that $H_1$ is {expression_int}.
+Express $H_1$ in terms of $c_{\bm{k}_\alpha,s}^\dagger$. Simplify any summation index if possible."
+74,2012.04554,Convert interacting Hamiltonian in real space to momentum space (lattice version),"\begin{eqnarray}\label{eq:hubbard}
+	H&=&\sum_{s}\sum_{i,j}^{} t_{s}\left(\bm{R}_i-\bm{R}_j\right) c_{i,s}^\dagger c_{j,s}\nonumber\\
+	&+&\frac{1}{2}\sum_{s,s'}\sum_{i,j}U(\bm{R}_i-\bm{R}_j) c_{i,s}^\dagger c_{j,s'}^\dagger c_{j,s'} c_{i,s},
+\end{eqnarray}
+where {the hopping terms $t_s$ represent band structures (depending on $\theta$), and effective interparticle Coulomb interactions $ U $  represent the correlation effect (depending on $\epsilon$)}. Valley index $s$ , spin-up or down, is coupled with $+K$  or $-K$  valley, respectively, in the Brillouin zone~\cite{pan2020band}. {Both} $ t $ and $ U $ involve distant nearest neighbors ({i.e., our parametrization of Eq.~\eqref{eq:hubbard} includes hopping up to the third nearest neighbors and Coulomb coupling term $ U $ up to 1993 distant sites}), refer to Refs.~\onlinecite{pan2020band,pan2020quantum,wu2018hubbard,wu2019topological} for the motivation and derivation of Eq.~\eqref{eq:hubbard} as the basic description for the interacting moir\'e physics in TTMD systems.  Although the theory based on Eq.~\eqref{eq:hubbard} should apply to all TTMD systems, our specific numerical results are for the WSe${}_2$ based TTMD structures currently being studied at Columbia University~\cite{wang2020correlated}.  Details of the numerical model for Eq.~\eqref{eq:hubbard} {are available in Refs.}~\onlinecite{pan2020band,pan2020quantum}.  We emphasize that Eq.~\eqref{eq:hubbard} cannot be thought of as either a Hubbard (or extended Hubbard) model or a {WC} (or generalized WC) model. Equation~\eqref{eq:hubbard} is a semirealistic model for the actual interacting TTMD 2D moir\'e materials.
+","You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the {single-particle|second-quantized} form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that {second_int_symbol} is {expression_int}.
+Express {second_int_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+","{""second_int_symbol"": ""H_{int}"", ""single-particle|second-quantized"": ""second-quantized"", ""real_creation_op"": ""c_{i,s}^\\dagger"", ""momentum_creation_op"": ""c_{k,s}^\\dagger"", ""definition_of_Fourier_Transformation"": ""$c_{{k},s}^\\dagger= \\frac{1}{\\sqrt{N}} \\sum_i c_{i,s}^\\dagger e^{i k \\cdot R_i}$"", ""real_variable"": ""i"", ""momentum_var"": ""k""}","You will be instructed to convert the interacting Hamiltonian, H_{int}, in the second-quantized form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to c_{i,s}^\dagger in the real space to the c_{k,s}^\dagger in the momentum space, which is defined as $c_{{k},s}^\dagger= \frac{1}{\sqrt{N}} \sum_i c_{i,s}^\dagger e^{i k \cdot R_i}$, where i is integrated over all sites in the entire real space, and k is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that H_{int} is {expression_int}.
+Express H_{int} in terms of c_{k,s}^\dagger. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+",True,"COMPLETED TEMPLATE: You will be instructed to convert the interacting Hamiltonian, $H$, in the second-quantized form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to $c_{i,s}^\dagger$ in the real space to the $c_{k,s}^\dagger$ in the momentum space, which is defined as $c_{k,s}^\dagger= \frac{1}{\sqrt{N}} \sum_i c_{R_\bm{i},s}^\dagger e^{i k \cdot R_i}$, where $\bm{R}_i$ is integrated over all sites in the entire real space, and k is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now: FALSE]
+You should recall that $H$ is the sum of the hopping terms $t_s$ that represent band structures and effective interparticle Coulomb interactions $ U $ that represent the correlation effect.
+Express $H$ in terms of $c_{k,s}^\dagger$. Simplify any summation index if possible."
+97,2110.11330,Convert interacting Hamiltonian in real space to momentum space (lattice version),"\begin{equation}\label{eq:H}
+    \begin{split}
+        &H=\sum_{s}\sum_{i,j}^{} t_{s}\left(\bm{R}_i-\bm{R}_j\right) c_{i,s}^\dagger c_{j,s}\\
+        &+\frac{1}{2}\sum_{s,s'}\sum_{i,j}U(\bm{R}_i-\bm{R}_j) c_{i,s}^\dagger c_{j,s'}^\dagger c_{j,s'} c_{i,s},
+    \end{split}
+\end{equation}
+where $t_{s}\left(\bm{R}_i-\bm{R}_j\right)$ is the hopping between the moir\'e lattice site $i$ and $j$, fitted from the first moir\'e valence band of twisted WSe$_2$ at $\pm K$ valleys in the noninteracting picture, and $s=\uparrow$ and $ \downarrow$ are coupled with the $+K$ and $-K$ valleys~\cite{pan2020band}. $U(\bm{R}_i-\bm{R}_j)$ describes the Coulomb repulsion between site $i$ and $j$. We control the range of the Coulomb interactions by including a finite number of neighbors coupled in the theory. These neighbors are denoted by hexagonal ``shells''  (e.g., on-site interaction $U_0$ is 0-shell, 1-shell means six nearest-neighbor interactions $U_1$ plus $U_0$) in the following results. By comparing the results of short-range (few shells) and long-range (many shells) interactions, we investigate the role of the interaction range.
+","You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the {single-particle|second-quantized} form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that {second_int_symbol} is {expression_int}.
+Express {second_int_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+","{""second_int_symbol"": ""$H_{int}$"", ""single-particle|second-quantized"": ""second-quantized"", ""real_creation_op"": ""$c_{i,s}^\\dagger$"", ""momentum_creation_op"": ""$c_{k,s}^\\dagger$"", ""definition_of_Fourier_Transformation"": ""$c_{k,s}^\\dagger= \\frac{1}{\\sqrt{N}} \\sum_i c_{R_\\bm{i},s}^\\dagger e^{i k \\cdot R_i}$"", ""real_variable"": ""$\\bm{R}_i$"", ""momentum_var"": ""k""}","You will be instructed to convert the interacting Hamiltonian, $H_{int}$, in the second-quantized form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to $c_{i,s}^\dagger$ in the real space to the $c_{k,s}^\dagger$ in the momentum space, which is defined as $c_{k,s}^\dagger= \frac{1}{\sqrt{N}} \sum_i c_{R_\bm{i},s}^\dagger e^{i k \cdot R_i}$, where $\bm{R}_i$ is integrated over all sites in the entire real space, and k is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that $H_{int}$ is {expression_int}.
+Express $H_{int}$ in terms of $c_{k,s}^\dagger$. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+",True,"COMPLETED TEMPLATE: You will be instructed to convert the interacting Hamiltonian, $H$, in the second-quantized form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to $c_{i,s}^\dagger$ in the real space to the $c_{k,s}^\dagger$ in the momentum space, which is defined as $c_{k,s}^\dagger= \frac{1}{\sqrt{N}} \sum_i c_{R_\bm{i},s}^\dagger e^{i k \cdot R_i}$, where $\bm{R}_i$ is integrated over all sites in the entire real space, and k is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now: FALSE]
+You should recall that $H$ is $\sum_{s}\sum_{i,j}^{} t_{s}\left(\bm{R}_i-\bm{R}_j\right) c_{i,s}^\dagger c_{j,s} +\frac{1}{2}\sum_{s,s'}\sum_{i,j}U(\bm{R}_i-\bm{R}_j) c_{i,s}^\dagger c_{j,s'}^\dagger c_{j,s'} c_{i,s}$.
+Express $H$ in terms of $c_{k,s}^\dagger$. Simplify any summation index if possible."
+128,2308.03843,Convert interacting Hamiltonian in real space to momentum space (lattice version),"\begin{equation}
+\mathcal{H}_{\text{C}}=\frac{1}{2}\sum_{\alpha\beta}\sum_{\mathbf{q}}\hat{n}_{\alpha}(\mathbf{q})V_{\alpha\beta}(\mathbf{q})\hat{n}_{\beta}(-\mathbf{q}),\label{eq:HC2}
+\end{equation}
+with $V_{\alpha\beta}(\mathbf{q})$ being the Fourier transform of the Coulomb
+interaction in Eq.~\eqref{eq:Hc}. 
+","You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the {single-particle|second-quantized} form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that {second_int_symbol} is {expression_int}.
+Express {second_int_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+","{""second_int_symbol"": ""$\\mathcal{H}_{\\text{C}}$"", ""single-particle|second-quantized"": ""second-quantized"", ""real_creation_op"": ""d_{\\alpha,i,\\sigma}^{\\dagger}"", ""momentum_creation_op"": ""d_{\\alpha,\\mathbf{k},\\sigma}^{\\dagger}"", ""definition_of_Fourier_Transformation"": ""$d_{\\alpha,\\mathbf{k},\\sigma}^{\\dagger}= \\frac{1}{\\sqrt{N}} \\sum_i d_{\\alpha,i,\\sigma}^{\\dagger} e^{i k \\cdot R_i}$"", ""real_variable"": ""$i$"", ""momentum_var"": ""$\\mathbf{q}$""}","You will be instructed to convert the interacting Hamiltonian, $\mathcal{H}_{\text{C}}$, in the second-quantized form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to d_{\alpha,i,\sigma}^{\dagger} in the real space to the d_{\alpha,\mathbf{k},\sigma}^{\dagger} in the momentum space, which is defined as $d_{\alpha,\mathbf{k},\sigma}^{\dagger}= \frac{1}{\sqrt{N}} \sum_i d_{\alpha,i,\sigma}^{\dagger} e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $\mathbf{q}$ is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]
+You should recall that $\mathcal{H}_{\text{C}}$ is {expression_int}.
+Express $\mathcal{H}_{\text{C}}$ in terms of d_{\alpha,\mathbf{k},\sigma}^{\dagger}. Simplify any summation index if possible.  
+
+===  
+EXAMPLE:  
+Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
+Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
+$$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
+Now make a replacement by defining $n= R_i-R_j$  
+The Hamiltonian become  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N^2}} \sum_{{j,n}} \sum_{{s,s'}} \sum_{{k_1,k_2,k_3,k_4}} U(n) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot n}} e^{{-i(k_1-k_4+k_2-k_3)\cdot r_j }}$$
+Because $\frac{{1}}{{N}}\sum_{{i}} e^{{-i (k_1-k_4+k_2-k_3)\cdot R_i}} = \sum\delta(k_1-k_4+k_2-k_3,G)$, where $\delta(..,..)$ is the Kronecker delta function, and $G$ is the all reciprocal lattices in the momentum space.  
+Therefore,  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}} \sum_{{n}} U(n) e^{{-i (k_1-k_4) \cdot n}} c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+If we define interaction in the momentum space $U(k)=\sum_{{n}} U(n) e^{{-i k \cdot n}}$, where $n$ is the summation of all hopping pairs, the interacting Hamiltonian in the momentum space is  
+$$\hat{{H}}^{{int}}=\frac{{1}}{{N}}\sum_{{s,s'}}\sum_{{k_1,k_2,k_3,k_4}}  U(k_1-k_4) c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4) \sum_{{G}} \delta(k_1-k_4+k_2-k_3,G)$$
+
+",True,"COMPLETED TEMPLATE: You will be instructed to convert the interacting Hamiltonian, $\mathcal{H}_{\text{C}}$, in the second-quantized form the basis in real space to the basis in momentum space.
+To do that, you should apply the Fourier transformation to $\hat{n}_{\alpha}$ in the real space to the $\hat{n}_{\alpha}(\mathbf{q})$ in the momentum space, which is defined as $V_{\alpha\beta}(\mathbf{q})$, where $\alpha$ is integrated over all sites in the entire real space, and $\mathbf{q}$ is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now: TRUE]
+You should recall that $\mathcal{H}_{\text{C}}$ is {expression_int}.
+Express $\mathcal{H}_{\text{C}}$ in terms of $\hat{n}_{\alpha}(\mathbf{q})$. Simplify any summation index if possible."
