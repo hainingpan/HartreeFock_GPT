@@ -306,23 +306,19 @@ def render_as_markdown_row_nohtml(df, index, dirpath):
   ### {index}: {paper}, {task}
   
   **SCORE PROMPT**: {score_prompt}
-  """ +
-  """
+  """ + """
   
   $$
   \begin{array}{|c|c|c|c|}
   \hline \text {LM Score (Binary)} & \text {LM Score (Reason)} & \text {GT Score [0/1/2]} & \text {GT Score (Reason)} \\
-  """ +
-  f"""
+  """ + f"""
   \hline {lm_score_binary} & {lm_score_reason} & {gt_score} & {gt_score_reason} \\
-  """ +
-  """
+  """ + """
   \hline
   \end{array}
   $$
   ===  
-  """ +
-  f"""
+  """ + f"""
   **Target Solution**: {targ_soln}
   """
   return render
