@@ -430,7 +430,7 @@
         Yasaman: 2
     Unsummed_Indices:
       LLM: $\mathbf{k},\sigma$
-      human: nothing
+      human: Not neededded
       score: 
         Haining: 0
         Will: 
@@ -546,7 +546,7 @@
       #   Yasaman: 2
     swap_rule:
       LLM: 
-      human: Nothing
+      human: Not neededded
       # score: 
       #   Haining: 0
       #   Will: 

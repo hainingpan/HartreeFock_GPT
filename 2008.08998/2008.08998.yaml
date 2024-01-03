@@ -442,7 +442,7 @@
         Yasaman: 2
     Unsummed_Indices:
       LLM: $\bm{k}_\alpha, \bm{k}_\beta$
-      human: nothings in this case
+      human: Not neededdeds in this case
       score: 
         Haining: 0
         Will: 
@@ -543,7 +543,7 @@
       score: 
         Haining: 
     swap_rule:
-      human: Nothing
+      human: Not neededded
       score: 
         Haining: 
   answer:

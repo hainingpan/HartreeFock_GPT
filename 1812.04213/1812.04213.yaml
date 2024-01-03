@@ -228,7 +228,7 @@
         Will:
         Yasaman: 0
         # Again, seems challenging. Graded harshly.
-    interaction_degrees_of_freedom:
+    potential_degrees_of_freedom:
       LLM: $A1, \ B1,\ A2,\ B2$, $h_{T}(\bm{r})$
       human: $t$ and $b$
       score:
@@ -708,7 +708,7 @@
     Fock:
       human: $\hat{H}^{int,Fock,2} = -\frac{1}{N V} \sum_{\substack{s_1,s_2\\ \tau_1,\tau_2 \\ l_1,l_2 \\ \alpha_1, \alpha_2}} \sum_{\substack{b_1,b_2 \\ b_3,b_4}} \sum_{k_1,k_2} V(k_1+b_1-k_2-b_4) \times \delta_{b_1+b_2, b_3+b_4} \times \langle c^\dagger_{s_1,\tau_1,l_1,\alpha_1,b_1}(k_1) c_{s_2,\tau_2,l_2,\alpha_2,b_3}(k_1) \rangle c^\dagger_{s_2,\tau_2,l_2,\alpha_2,b_2}(k_2) c_{s_1,\tau_1,l_1,\alpha_1,b_4}(k_2)$.
     swap_rule:
-      human: Nothing
+      human: Not neededded
   answer:
   score: 
     in_paper: 2

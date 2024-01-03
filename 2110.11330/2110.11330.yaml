@@ -431,7 +431,7 @@
         Yasaman: 0
     Unsummed_Indices:
       LLM: $s$ and $s'$
-      human: nothing here
+      human: Not neededded here
       score: 
         Haining: 0
         Will: 
@@ -527,7 +527,7 @@
       # score: 
       #   Haining: 
     swap_rule:
-      human: Nothing
+      human: Not neededded
       # score: 
       #   Haining: 
   answer:
