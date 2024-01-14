@@ -501,13 +501,13 @@
       score: 
         Haining: 
     interaction: 
-      Q: What the type of the interaction should be used in the system? Remember the actual experimental device is usually dual-gated.
+      Q: What type of interaction should be used in the system? Remember the actual experimental device is usually dual-gated.
       LLM: dual-gated screened Coulomb interaction
       human: 
       score: 
         Haining: 2
     int_form: 
-      Q: What is the mathematical formula for this interaction used in the Hamiltonian?You write it in the momentum space. Remember the interaction is a dual-gated screened Coulomb interaction (i.e., like a two-slab capacitor). 
+      Q: What is the mathematical formula for this interaction used in the Hamiltonian? You write it in the momentum space. Remember the interaction is a dual-gated screened Coulomb interaction (i.e., like a two-slab capacitor). 
       LLM: \frac{2\pi e^2}{\epsilon q} \frac{\tanh(qd)}{qd}
       human: 2\pi e^2\tanh(|\bm{k}|d)/(\epsilon |\bm{k}|)
       score: 
