@@ -635,7 +635,7 @@
     physics_logic: 1
     math_derivation:  2
     final_answer_accuracy: 1
-    # Shounldn't swapped a and b in the last term
+    # Shounldn't have swapped a and b in the last term
 - task: Reduce momentum in Hartree term (momentum in BZ)
   source:
     1508.00296.tex:

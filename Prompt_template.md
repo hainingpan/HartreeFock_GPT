@@ -99,7 +99,7 @@ A dirac dispersion for electron/hole is a 2 by 2 matrix, i.e., $h_{{\theta}}(k)=
 You will be instructed to describe the potential term of Hamiltonian {potential_symbol} in the {real|momentum} space in the {single-particle|second-quantized} form.  
 The potential Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian.  
 The diagonal terms are {diagonal_potential}.  
-The off-diagonal terms are the coupling between {interaction_degrees_of_freedom}, {offdiagonal_potential}, which should be kept hermitian.  
+The off-diagonal terms are the coupling between {potential_degrees_of_freedom}, {offdiagonal_potential}, which should be kept hermitian.  
 All other terms are zero.
 Express the potential Hamiltonian {potential_symbol} using {diagonal_potential} and {offdiagonal_potential}.  
 

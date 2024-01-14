@@ -177,7 +177,7 @@
       score: 
         Haining: 
     expression_diag: 
-      Q: 
+      Q: What is the mathematical formula of the diagonal terms in the noninteracting moire potential term written in real space?
       LLM: $V(\mathbf{r}) = V_0 \left( \cos(\mathbf{b}_1 \cdot \mathbf{r}) + \cos(\mathbf{b}_2 \cdot \mathbf{r}) + \cos((\mathbf{b}_1 - \mathbf{b}_2) \cdot \mathbf{r}) \right)$, where $V_0$ is the amplitude, $\mathbf{r}$ is the position vector, and $\mathbf{b}_1$, $\mathbf{b}_2$ are the reciprocal lattice vectors of the moiré pattern.
       human: 
       score: 
