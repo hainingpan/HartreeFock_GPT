@@ -117,7 +117,7 @@ We present a theory on the quantum phase diagram of AB-stacked MoTe$_2$/WSe$_2$ 
 
 **Question**:
 1. What is the system to study?
-2. What are the independent degrees of freedom that should be included in the Hamiltonian, namely, the independent flavor of the creation/annihilation operator? Remember the system is spin-valley locked.
+2. What are the independent degrees of freedom that should be included in this system, namely, the independent flavor of creation and annihilation operators? Leave momentum and real space for now. Remember the system is spin-valley locked. 
 
 
 ## Execution--Core information
@@ -150,12 +150,11 @@ bottom layer ($\mathfrak{b}$) and top layer ($\mathfrak{t}$)
 ## Extraction
 ### 
 **Extraction**
-**Extraction**
 **Abstract**
 We present a theory on the quantum phase diagram of AB-stacked MoTe$_2$/WSe$_2$ using a self-consistent Hartree-Fock calculation performed in the plane-wave basis, motivated by the observation of topological states in this system. At filling factor $\nu=2$ (two holes per moir\'e unit cell), Coulomb interaction can stabilize a $\mathbb{Z}_2$ topological insulator by opening a charge gap. At $\nu=1$, the interaction induces three classes of competing states, spin density wave states, an in-plane ferromagnetic state, and a valley polarized state, which undergo first-order phase transitions tuned by an out-of-plane displacement field. The valley polarized state becomes a Chern insulator for certain displacement fields.  Moreover, we predict a topological charge density wave forming a honeycomb lattice with ferromagnetism at $\nu=2/3$. Future directions on this versatile system hosting a rich set of quantum phases are discussed.
 
 **Question**:
-1. What should the energy dispersion of the kinetic term be like in this system? Choose from parabolic, Dirac, or cos-like.
+1. What should the energy dispersion of the kinetic term be like in this system? Use your knowledge of this material and choose from massive parabolic, massless Dirac-like, or cos-like.
 2. Does the dispersion characterize electrons or holes in this system?
 
 
@@ -179,7 +178,7 @@ In addition, a shift of $+\kappa$ and $-\kappa$ in the momentum $\bm{k}$ for $E_
 
 You should follow the EXAMPLE below to obtain the correct energy dispersion, select the correct EXAMPLE by noticing the type of dispersion.
 
-Finally, in the real space, the momentum $\bm{k}=-i \partial_{\bm{r}}$. You should keep the form of $\bm{k}$ in the Hamiltonian for short notations but should remember $\bm{k}$ is an operator.
+Finally, the momentum $\bm{k}=-i \partial_{\bm{r}}$. You should keep the form of $\bm{k}$ in the Hamiltonian for short notations but should remember $\bm{k}$ is an operator.
 
 You should recall that $$H_T = \begin{pmatrix}
 E_{+K,b} & 0 & 0 & 0 \\
@@ -229,7 +228,7 @@ Is there a mixing between opposite layers?
 **Execution--Core information**
 You should fill in the specific information from above into the following template, and then repeat it. 
 
-The off-diagonal terms are the coupling between Mixing between {flavors}.
+The off-diagonal terms are the coupling between {flavors}.
 
 
 ## Execution-Notation
