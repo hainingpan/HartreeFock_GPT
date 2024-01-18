@@ -1,33 +1,33 @@
 # Preamble: 
 # Problemm-solver: 
 # Conversation summarizer: 
-Construct Kinetic Hamiltonian (continuum version, single-particle): Hamiltonian of QMB problem
-Construct Kinetic Hamiltonian (continuum version, second-quantized): Hamiltonian of QMB problem
-Construct Kinetic Hamiltonian (lattice version): Hamiltonian of QMB problem
-Define each term in Kinetic Hamiltonian (continuum version): Hamiltonian of QMB problem
-Construct Potential Hamiltonian (continuum version): Hamiltonian of QMB problem
-Define each term in Potential Hamiltonian (continuum version): Hamiltonian of QMB problem
-Construct interaction Hamiltonian (real space, lattice version): Hamiltonian of QMB problem
-Construct interaction Hamiltonian (momentum space): Hamiltonian of QMB problem
-Convert from single-particle to second-quantized form, return in matrix: Hamiltonian in momentum space
-Convert from single-particle to second-quantized form, return in summation (expand the matrix): Hamiltonian in momentum space
-Convert noninteracting Hamiltonian in real space to momentum space (continuum version): Hamiltonian in momentum space
-Convert noninteracting Hamiltonian in real space to momentum space (lattice version): Hamiltonian in momentum space
-Convert interacting Hamiltonian in real space to momentum space (lattice version): Hamiltonian in momentum space
-Particle-hole transformation: Hamiltonian in momentum space
-Simplify the Hamiltonian in the particle-hole basis: Hamiltonian in momentum space
-Wick's theorem: Mean field decomposition
-Extract quadratic term: Mean field decomposition
-Hartree term only: Hartree and Fock terms
-Fock term only: Hartree and Fock terms
-Expand interaction: Hartree and Fock terms
-Swap the index only: Hartree and Fock terms
-Swap the index to combine Hartree and Fock terms: Hartree and Fock terms
-Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice): Order parameter
-Reduce momentum in Hartree term (momentum in BZ): Order parameter
-Reduce momentum in Fock term (momentum in BZ + reciprocal lattice): Order parameter
-Reduce momentum in Fock term (momentum in BZ): Order parameter
-Combine the Hartree and Fock term: Order parameter
+Construct Kinetic Hamiltonian (continuum version, single-particle): $H=H_0+H_{\rm{int}}$
+Construct Kinetic Hamiltonian (continuum version, second-quantized): $H=H_0+H_{\rm{int}}$
+Construct Kinetic Hamiltonian (lattice version): $H=H_0+H_{\rm{int}}$
+Define each term in Kinetic Hamiltonian (continuum version): $H=H_0+H_{\rm{int}}$
+Construct Potential Hamiltonian (continuum version): $H=H_0+H_{\rm{int}}$
+Define each term in Potential Hamiltonian (continuum version): $H=H_0+H_{\rm{int}}$
+Construct interaction Hamiltonian (real space, lattice version): $H=H_0+H_{\rm{int}}$
+Construct interaction Hamiltonian (momentum space): $H=H_0+H_{\rm{int}}$
+Convert from single-particle to second-quantized form, return in matrix: FT
+Convert from single-particle to second-quantized form, return in summation (expand the matrix): FT
+Convert noninteracting Hamiltonian in real space to momentum space (continuum version): FT
+Convert noninteracting Hamiltonian in real space to momentum space (lattice version): FT
+Convert interacting Hamiltonian in real space to momentum space (lattice version): FT
+Particle-hole transformation: FT
+Simplify the Hamiltonian in the particle-hole basis: FT
+Wick's theorem: Wick's theorem
+Extract quadratic term: Wick's theorem
+Hartree term only: $H_{\rm{HF}}$
+Fock term only: $H_{\rm{HF}}$
+Expand interaction: $H_{\rm{HF}}$
+Swap the index only: $H_{\rm{HF}}$
+Swap the index to combine Hartree and Fock terms: $H_{\rm{HF}}$
+Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice): OP
+Reduce momentum in Hartree term (momentum in BZ): OP
+Reduce momentum in Fock term (momentum in BZ + reciprocal lattice): OP
+Reduce momentum in Fock term (momentum in BZ): OP
+Combine the Hartree and Fock term: OP
 # Construct full Hamiltonian after HF: 
 # Mathematical simplify:  inner product expansion: 
 # Mathematical simplify:  Euler's formula: 

@@ -545,7 +545,7 @@
     Fock:
       human: $\Sigma_F = -\frac{1}{S}\sum_{bb'ss'}\sum_{\bm kq} V_{bb'}(q) \langle a_{bs\bm k+\bm q}^{\dagger} a_{b's'\bm k+\bm q} \rangle a_{b's'\bm k}^{\dagger} a_{bs\bm k}$
     swap_rule: 
-      human: Nothing
+      human: Not neededded
   answer: 
   score: 
     in_paper: 2

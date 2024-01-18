@@ -226,7 +226,7 @@
         Will: 
         Yasaman: 2
         # impressive
-    interaction_degrees_of_freedom:
+    potential_degrees_of_freedom:
       LLM: the intralayer and interlayer moir\'e potentials
       human: layer index $l$ and valley index $\tau$
       score: 

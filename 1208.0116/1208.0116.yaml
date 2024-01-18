@@ -720,7 +720,7 @@
         # seems reasonable
     swap_rule:
       LLM: ${\bf k}^{\prime} \lambda^{\prime}$ with ${\bf k} \lambda$
-      human: Nothing
+      human: Not needed
       # score: 
       #   Haining: 2
       #   Will: 

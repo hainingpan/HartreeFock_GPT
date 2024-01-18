@@ -75,7 +75,7 @@ Use the following conventions for the symbols:
 You will be instructed to construct each term, namely {Energy_dispersion}.  
 For all energy dispersions, {Energy_dispersion}, it characterizes the {parabolic|Dirac|cos} dispersion for {electrons|holes}.   
 [In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.]  
-You should follow the EXAMPLE below to obtain correct energy dispersion, select the correct EXAMPLE by noticing the type of dispersion.  
+You should follow the EXAMPLE below to obtain the correct energy dispersion, select the correct EXAMPLE by noticing the type of dispersion.  
 Finally, in the real space, the momentum ${k_symbol}=-i \partial_{{{r_symbol}}}$. You should keep the form of ${k_symbol}$ in the Hamiltonian for short notations but should remember ${k_symbol}$ is an operator.  
 You should recall that {expression_kinetic}.    
 Return the expression for {Energy_dispersion} in the Kinetic Hamiltonian, and substitute it into the Kinetic Hamiltonian {kinetic_symbol}.  
@@ -99,8 +99,8 @@ A dirac dispersion for electron/hole is a 2 by 2 matrix, i.e., $h_{{\theta}}(k)=
 You will be instructed to describe the potential term of Hamiltonian {potential_symbol} in the {real|momentum} space in the {single-particle|second-quantized} form.  
 The potential Hamiltonian has the same degrees of freedom as the kinetic Hamiltonian.  
 The diagonal terms are {diagonal_potential}.  
-The off-diagonal terms are the coupling between {interaction_degrees_of_freedom}, {offdiagonal_potential}, which should be kept hermitian.  
-All others terms are zero.
+The off-diagonal terms are the coupling between {potential_degrees_of_freedom}, {offdiagonal_potential}, which should be kept hermitian.  
+All other terms are zero.
 Express the potential Hamiltonian {potential_symbol} using {diagonal_potential} and {offdiagonal_potential}.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
@@ -114,7 +114,7 @@ The expression for off-diagonal terms are: {expression_offdiag}.
 You should recall that {expression_Potential}.  
 Return the expressions for {Potential_variables}, and substitute it into the potential Hamiltonian {potential_symbol}.  
 
-Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or have conflicts in the conventions, you should stop and let me know):  
+Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
 {definition_of_variables}
 
 ## Construct interaction Hamiltonian (real space, lattice version)
@@ -283,7 +283,7 @@ Thus, we end up in $\hat{{H}}^{{0}}=\sum_{{i,j}} b_i H_{{i,j}} b_j^\dagger=\sum_
 ## Wick's theorem
 **Prompt:**  
 You will be instructed to perform a Hartree-Fock approximation to expand the interaction term, {second_int_symbol}.  
-You should use Wick's theorem to expand the four-fermion term in {second_int_symbol} into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four term product with and without ${{}}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
+You should use Wick's theorem to expand the four-fermion term in {second_int_symbol} into quadratic terms. You should strictly follow the EXAMPLE below to expand using Wick's theorem, select the correct EXAMPLE by noticing the order of four-term product with and without ${{}}^\dagger$, and be extremely cautious about the order of the index and sign before each term.  
 You should only preserve the normal terms. Here, the normal terms mean the product of a creation operator and an annihilation operator.  
 You should recall that {second_int_symbol} is {expression_int}.  
 Return the expanded interaction term after Hartree-Fock approximation as {Hartree_Fock_symbol}.

@@ -683,7 +683,7 @@
         # reasonable given excerpt
     swap_rule:
       LLM: 
-      human: Nothing
+      human: Not needed
       score: 
         Haining: 0
         Will: 

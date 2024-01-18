@@ -425,7 +425,7 @@
         Yasaman: 0
     Unsummed_Indices:
       LLM: $\bm{k}_\alpha, \bm{k}_\beta$
-      human: nothing
+      human: Not neededded
       score: 
         Haining: 0
         Will: 
@@ -522,7 +522,7 @@
       score: 
         Haining: 
     swap_rule:
-      human: Nothing
+      human: Not neededded
       score: 
         Haining: 
   answer: $H_{\text{Hartree+Fock}} = H_{\text{Hartree}} + H_{\text{Fock}}= \frac{1}{N} \sum_{s,s'} \sum_{k_1,k_3} U(0) \langle c_{k_1,s}^\dagger c_{k_1,s} \rangle c_{k_3,s'}^\dagger c_{k_3,s'} - \frac{1}{N} \sum_{s,s'} \sum_{k_1,k_2} U(k_2-k_1)  \langle c_{k_1,s}^\dagger c_{k_1,s'} \rangle c_{k_2,s'}^\dagger c_{k_2,s}$.

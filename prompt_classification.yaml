@@ -64,7 +64,7 @@
     real|momentum:
     single-particle|second-quantized: A
     diagonal_potential:
-    interaction_degrees_of_freedom:
+    potential_degrees_of_freedom:
     offdiagonal_potential:
     definition_of_variables:
     

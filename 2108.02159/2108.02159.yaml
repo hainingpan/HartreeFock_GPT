@@ -222,7 +222,7 @@
         Haining: 0
         Will:
         Yasaman: 0
-    interaction_degrees_of_freedom:
+    potential_degrees_of_freedom:
       LLM: orbitals centered on different sites
       human: $b$ and $b'$
       score:
@@ -623,7 +623,7 @@
     Fock:
       human: $-\frac{1}{N A} \sum_{\sigma_1, \sigma_2, b_1, b_2, b_3, b_4, k_1, k_2} V(k_1+b_1-k_2-b_4) \delta_{b_1+b_2,b_3+b_4}\langle c_{\sigma_1,b_1}^\dagger(k_1) c_{\sigma_2,b_3}(k_1) \rangle c_{\sigma_2,b_2}^\dagger(k_2) c_{\sigma_1,b_4}(k_2)$
     swap_rule:
-      human: Nothing
+      human: Not needed
   answer:
   score:
     in_paper: 2

@@ -1,0 +1,759 @@
+# Construct Kinetic Hamiltonian (continuum version, single-particle)
+- task: Construct Kinetic Hamiltonian (continuum version, single-particle)
+  placeholder:
+    system: 
+      Q: What is the system to study?
+      LLM: AB-stacked MoTe$_2$/WSe$_2$ heterostructure
+      human:
+      score:
+        Haining: 2
+    degrees_of_freedom:
+      Q: What are the independent degrees of freedom that should be included in the Hamiltonian, namely, the independent flavor of the creation/annihilation operator? Remember the system is spin-valley locked.
+      LLM: Layer (differentiating MoTe$_2$ and WSe$_2$) and the combined spin-valley degree.
+      human:
+      score:
+        Haining: 2
+    kinetic_symbol:  
+      human: $H_T$
+    variable:
+      human: $E_{+K,b}$, $E_{-K,t}$, $E_{-K,b}$, $E_{-K,t}$
+    real|momentum: 
+      human: real
+    single-particle|second-quantized: 
+      human: single-particle
+    order: 
+      human: (+K,bottom), (+K,top), (-K,bottom), (-K,top)
+    Note that the sublattice degrees of freedom is suppressed for now and will be stated later:
+      human: false
+    definition_of_variables:
+      human: |
+        $\tau=\pm 1$ represents $\pm K$ valleys, 
+        bottom layer ($\mathfrak{b}$) and top layer ($\mathfrak{t}$)
+
+# $\bm{\kappa}=\frac{4\pi}{3a_M}\left(1,0\right)$ is at a corner of the moiré Brillouin zone. The $2\times 2$ Hamiltonian hybridizes the bottom layer ($\mathfrak{b}$) and top layer ($\mathfrak{t}$), where the off diagonal terms describe the interlayer tunneling $\Delta_{\text{T},\tau}$,
+# and the diagonal terms describe the momentum-shifted kinetic energy with the
+# effective mass $(m_{\mathfrak{b}},m_{\mathfrak{t}})=(0.65,0.35)m_e$ ($m_e$
+# is the rest electron mass), plus the intralayer potential $\Delta_{\mathfrak{b}/\mathfrak{t}}$,
+# and a band offset $V_{z\mathfrak{t}}$.
+  
+# Define each term in Kinetic Hamiltonian (continuum version)
+- task: Define each term in Kinetic Hamiltonian (continuum version)
+  placeholder:
+    Energy_dispersion: 
+      Q: 
+      LLM: 
+      human: $E_{+K,b}$, $E_{-K,t}$, $E_{-K,b}$, $E_{-K,t}$
+      score:
+        Haining:
+    parabolic|Dirac|cos: 
+      Q: What should the energy dispersion of the kinetic term be like in this system, choose from parabolic, Dirac, or cos-like?
+      LLM: Parabolic dispersion.
+      human:
+      score:
+        Haining: 2
+    electrons|holes: 
+      Q: Does the dispersion characterize electrons or holes in this system?
+      LLM: Holes
+      human:
+      score:
+        Haining: 2
+    In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.: 
+      Q: 
+      LLM: 
+      human: true
+      score:
+        Haining:
+    momentum_shift: 
+      Q: 
+      LLM: 
+      human: $+\kappa$ and $-\kappa$
+      score:
+        Haining:
+    k_symbol: 
+      Q: 
+      LLM: 
+      human: \bm{k}
+      score:
+        Haining:
+    shifted_Ek: 
+      Q: 
+      LLM: 
+      human: $E_{t,+K}$ and $E_{t,-K}$
+      score: 
+        Haining:
+    r_symbol: 
+      Q: 
+      LLM: 
+      human: \bm{r}
+      score: 
+        Haining:
+    kinetic_symbol: 
+      Q: 
+      LLM: 
+      human: $H_T$
+      score: 
+        Haining:
+    definition_of_variables: 
+      Q: 
+      LLM: 
+      human: |
+          $\bm{\kappa}=\frac{4\pi}{3a_M}\left(1,0\right)$  is at a corner of the  moir\'e Brillouin zone, $(m_{\mathfrak{b}},m_{\mathfrak{t}})=(0.65,0.35)m_e$ ($m_e$ is the rest electron mass)
+      score: 
+        Haining: 
+    expression_kinetic: 
+      Q: 
+      LLM: 
+      human: |
+        $$H_T = \begin{pmatrix}
+        E_{+K,b} & 0 & 0 & 0 \\
+        0 & E_{+K,t} & 0 & 0 \\
+        0 & 0 & E_{-K,b} & 0 \\
+        0 & 0 & 0 & E_{-K,t}
+        \end{pmatrix}$$
+
+# Construct Potential Hamiltonian (continuum version)
+- task: Construct Potential Hamiltonian (continuum version)
+  placeholder:
+    potential_symbol: 
+      Q: 
+      LLM: 
+      human: $H_V$
+      score: 
+        Haining: 
+    real|momentum: 
+      Q: 
+      LLM: 
+      human: real
+      score: 
+        Haining: 
+    single-particle|second-quantized: 
+      Q: 
+      LLM: 
+      human: single-particle
+      score: 
+        Haining: 
+    diagonal_potential: 
+      Q: 
+      LLM: 
+      human: $\Delta_t(r)$ and $\Delta_b(r)$
+      score: 
+        Haining:
+    potential_degrees_of_freedom: 
+      Q: |
+        When constructing the potential term for such system, which two components of flavor can mix? Namely, 
+        Is there a mixing between opposite valleys? 
+        Is there a mixing between opposite layers?
+      LLM: Mixing between opposite layers $\mathfrak{t}$ and $\mathfrak{b}$
+      human: 
+      score: 
+        Haining: 2
+    offdiagonal_potential: 
+      Q: 
+      LLM: 
+      human: $\Delta_{\text{T},\tau}(\bm{r})$ and $\Delta_{\text{T},\tau}^\dag(\bm{r})$
+      score: 
+        Haining:
+    definition_of_variables: 
+      Q: 
+      LLM: 
+      human: |
+        the $2\times 2$ Hamiltonian hybridizes the bottom layer ($\mathfrak{b}$) and top layer ($\mathfrak{t}$), the off diagonal terms describe the interlayer tunneling $\Delta_{\text{T},\tau}$, intralayer potential $\Delta_{\mathfrak{b}/\mathfrak{t}}$
+      score: 
+        Haining:
+
+# Define each term in Potential Hamiltonian (continuum version)
+- task: Define each term in Potential Hamiltonian (continuum version)
+  placeholder:
+    potential_symbol: 
+      Q: 
+      LLM: 
+      human: $H_V$
+      score: 
+        Haining: 
+    Potential_variables: 
+      Q: 
+      LLM: 
+      human: $\Delta_t(r)$, $\Delta_b(r)$ , $\Delta_{\text{T},\tau}(\bm{r})$ and $\Delta_{\text{T},\tau}^\dag(\bm{r})$
+      score: 
+        Haining: 
+    expression_diag: 
+      Q: What is the mathematical formula of the diagonal terms in the noninteracting moire potential term written in real space?
+      LLM: $V(\mathbf{r}) = V_0 \left( \cos(\mathbf{b}_1 \cdot \mathbf{r}) + \cos(\mathbf{b}_2 \cdot \mathbf{r}) + \cos((\mathbf{b}_1 - \mathbf{b}_2) \cdot \mathbf{r}) \right)$, where $V_0$ is the amplitude, $\mathbf{r}$ is the position vector, and $\mathbf{b}_1$, $\mathbf{b}_2$ are the reciprocal lattice vectors of the moiré pattern.
+      human: 
+      score: 
+        Haining: 2
+    expression_offdiag: 
+      Q: What is the mathematical formula of the off-diagonal terms (which mixes the top and bottom layers) in the moire potential term written in real space? 
+      LLM: $T(\mathbf{r}) = T_0 \left( e^{i\phi_1} \cos(\mathbf{b}_1 \cdot \mathbf{r} + \theta_1) + e^{i\phi_2} \cos(\mathbf{b}_2 \cdot \mathbf{r} + \theta_2) + e^{i\phi_3} \cos((\mathbf{b}_1 - \mathbf{b}_2) \cdot \mathbf{r} + \theta_3) \right)$, with $T_0$ as the amplitude, $\theta_1$, $\theta_2$, $\theta_3$ as phase shifts, and $\phi_1$, $\phi_2$, $\phi_3$ as possible additional complex phase factors.
+      human: 
+      score: 
+        Haining: 2
+    definition_of_variables: 
+      Q: 
+      LLM: 
+      human: |
+        the off diagonal terms describe the interlayer tunneling $\Delta_{\text{T},\tau}$, intralayer potential $\Delta_{\mathfrak{b}/\mathfrak{t}}$
+# $V_0$ is the amplitude, $\mathbf{r}$ is the position vector, and $\mathbf{b}_1$, $\mathbf{b}_2$ are the reciprocal lattice vectors of the moiré pattern.
+# $T_0$ as the amplitude, $\theta_1$, $\theta_2$, $\theta_3$ as phase shifts, and $\phi_1$, $\phi_2$, $\phi_3$ as possible additional complex phase factors.
+      score: 
+        Haining: 
+    expression_Potential: 
+      Q: 
+      LLM: 
+      human: |
+        $$H_V = \begin{pmatrix}
+        \Delta_b(r) & \Delta_{\text{T},+K}(\bm{r}) & 0 & 0 \\
+        \Delta_{\text{T},+K}^\dag(\bm{r}) & \Delta_t(r) & 0 & 0 \\
+        0 & 0 & \Delta_b(r) & \Delta_{\text{T},-K}(\bm{r}) \\
+        0 & 0 & \Delta_{\text{T},-K}^\dag(\bm{r}) & \Delta_t(r)
+        \end{pmatrix}$$
+      score: 
+        Haining:
+
+# Convert from single-particle to second-quantized form, return in matrix
+- task: Convert from single-particle to second-quantized form, return in matrix
+  placeholder:
+    real|momentum: 
+      Q: 
+      LLM: 
+      human: real
+      score: 
+        Haining: 
+    nonint_symbol: 
+      Q: 
+      LLM: 
+      human: $H_0$
+      score: 
+        Haining: 
+    kinetic_symbol: 
+      Q: 
+      LLM: 
+      human: $H_T$
+      score: 
+        Haining: 
+    potential_symbol: 
+      Q: 
+      LLM: 
+      human: $H_V$
+      score: 
+        Haining: 
+    $r$|$k$: 
+      Q: 
+      LLM: 
+      human: $r$
+      score: 
+        Haining: 
+    second_nonint_symbol: 
+      Q: 
+      LLM: 
+      human: $\hat{H}^{0}$
+      score: 
+        Haining: 
+    definition_of_variables: 
+      Q: 
+      LLM: 
+      human: Note that the spin index of the fermion operators $\Psi_{\tau}$
+        is both layer and valley dependent.
+      score: 
+        Haining: 
+
+# Convert from single-particle to second-quantized form, return in summation (expand the matrix)
+- task: Convert from single-particle to second-quantized form, return in summation (expand the matrix)
+  placeholder:
+    second_nonint_symbol: 
+      Q: 
+      LLM: 
+      human: $\hat{H}^{0}$ 
+      score: 
+        Haining: 
+    matrix_element_symbol: 
+      Q: 
+      LLM: 
+      human: $H_{\tau}$
+      score: 
+        Haining: 
+    basis_symbol: 
+      Q: 
+      LLM: 
+      human: $\Psi_{\tau}$
+      score: 
+        Haining: 
+    definition_of_variables: 
+      Q: 
+      LLM: 
+      human: |
+        $\hat{\mathcal{H}}_0$ is the second-quantized form Hamiltonian, $H_{\tau}$
+        is the matrix element, and $\Psi_{\tau}$ is the basis. $\tau=\pm $ represents
+        $\pm K$ valleys.
+        The spin index of the fermion operators $\Psi_{\tau}$ is both layer and valley
+        dependent.
+      score: 
+        Haining: 
+    expression_second_nonint: 
+      Q: 
+      LLM: 
+      human: |
+        $$\hat{H}^{0} = \int d\mathbf{r} \, \Psi^\dagger(\mathbf{r}) \left( \begin{array}{cccc}
+        E_{+K,b}+V(\mathbf{r}) & T(\mathbf{r}) & 0 & 0 \\
+        T^\dag(\mathbf{r}) & E_{+K,t}+V(\mathbf{r}) & 0 & 0 \\
+        0 & 0 & E_{-K,b}+V(\mathbf{r}) & T(\mathbf{r}) \\
+        0 & 0 & T^\dag(\mathbf{r}) & E_{-K,t}+V(\mathbf{r})
+        \end{array} \right) \Psi(\mathbf{r})$$
+      score: 
+        Haining: 
+
+# Convert noninteracting Hamiltonian in real space to momentum space (continuum version)
+- task: Convert noninteracting Hamiltonian in real space to momentum space (continuum version)
+  placeholder:
+    real_creation_op: 
+      Q: 
+      LLM: 
+      human: $\psi_{\tau,l}^\dagger(r)$
+      score: 
+        Haining: 
+    momentum_creation_op: 
+      Q: 
+      LLM: 
+      human: $c_{\tau,l}^\dagger(k)$
+      score: 
+        Haining: 
+    definition_of_Fourier_Transformation: 
+      Q: 
+      LLM: 
+      human: $c_{\tau,l}^\dagger(k)= \frac{1}{\sqrt{V}} \int dr \psi_{\tau,l}^\dagger(r)
+        e^{i k \cdot r}$
+      score: 
+        Haining: 
+    real_variable: 
+      Q: 
+      LLM: 
+      human: $\bm{r}$
+      score: 
+        Haining: 
+    entire_real|first_Brillouin_Zone: 
+      Q: 
+      LLM: 
+      human: entire real space
+      score: 
+        Haining: 
+    second_nonint_symbol: 
+      Q: 
+      LLM: 
+      human: $\hat{H}^{0}$ 
+      score: 
+        Haining: 
+    definition_of_variables: 
+      Q: 
+      LLM: 
+      human: |
+        $\tau=\pm $ represents $\pm K$ valleys, $\hbar \bm{k} = -i \hbar \partial_{\bm{r}}$
+        is the momentum operator, $\bm{\kappa}=\frac{4\pi}{3a_M}\left(1,0\right)$  is
+        at a corner of the moir\'e Brillouin zone, and $a_M$ is the moir\'e lattice
+        constant. The spin index of the fermion operators $\Psi_{\tau}$ is both layer
+        and valley dependent. $h^{(\tau)}$ is the Hamiltonian $H_{\tau}$ expanded
+        in the plane-wave basis, and the momentum $\bm{k}$ is defined in the extended
+        Brillouin zone that spans the full momentum space, i.e., $\bm{k} \in \mathbb{R}^2$.
+        The subscripts $\alpha,\beta$ are index for momenta. Due to Bloch's theorem,
+        $h_{\bm{k}_{\alpha}l_{\alpha},\bm{k}_{\beta}l_{\beta}}^{(\tau)}$ is nonzero
+        only when $\bm{k}_{\alpha}-\bm{k}_{\beta}$ is equal to the linear combination
+        of any multiples of one of the moir\'e reciprocal lattice vectors (including
+        the zero vector).
+      score: 
+        Haining: 
+
+# Particle-hole transformation
+- task: Particle-hole transformation
+  placeholder:
+    hole_op: 
+      Q: 
+      LLM: 
+      human: $b_{\bm{k},l,\tau}$
+      score: 
+        Haining: 
+    particle_op: 
+      Q: 
+      LLM: 
+      human: $c_{\bm{k},l,\tau}^\dagger$
+      score: 
+        Haining: 
+    particle_creation_op: 
+      Q: 
+      LLM: 
+      human: $c_{\bm{k},l,\tau}^\dagger$
+      score: 
+        Haining: 
+    hole_creation_op: 
+      Q: 
+      LLM: 
+      human: $b_{\bm{k},l,\tau}$
+      score: 
+        Haining: 
+    particle_annihilation_op: 
+      Q: 
+      LLM: 
+      human: $c_{\bm{k},l,\tau}$
+      score: 
+        Haining: 
+    hole_annihilation_op: 
+      Q: 
+      LLM: 
+      human: $b_{\bm{k},l,\tau}^\dagger$
+      score: 
+        Haining: 
+    second_nonint_symbol: 
+      Q: 
+      LLM: 
+      human: $\hat{H}^{0}$ 
+      score: 
+        Haining: 
+    definition_of_variables: 
+      Q: 
+      LLM: 
+      human: The hole operator is defined as $b_{\bm{k},l,\tau}=c_{\bm{k},l,\tau}^\dagger$.
+        The Hamiltonian in the hole basis is represented as $\hat{\mathcal{H}}_0$.
+      score: 
+        Haining: 
+    expression_particle_Ham: 
+      Q: 
+      LLM: 
+      human: $\hat{H}^{0} = \sum_{\tau, k_{\alpha}, k_{\beta}} c_{\tau,l}^\dagger(k_{\alpha}) h_{\bm{k}_{\alpha}l_{\alpha},\bm{k}_{\beta}l_{\beta}}^{(\tau)} c_{\tau,l}(k_{\beta})$
+      # \tau is manually fixed here
+      score: 
+        Haining: 
+
+# Simplify the Hamiltonian in the particle-hole basis
+- task: Simplify the Hamiltonian in the particle-hole basis
+  placeholder:
+    second_nonint_symbol: 
+      Q: 
+      LLM: 
+      human: $\hat{H}^{0}$ 
+      score: 
+        Haining: 
+    hole_op: 
+      Q: 
+      LLM: 
+      human: $b_{\bm{k},l,\tau}$
+      score: 
+        Haining: 
+    index_1: 
+      Q: 
+      LLM: 
+      human: $\bm{k}_{\alpha}$
+      score: 
+        Haining: 
+    index_2: 
+      Q: 
+      LLM: 
+      human: $\bm{k}_{\beta}$
+      score: 
+        Haining: 
+    op: 
+      Q: 
+      LLM: 
+      human: $b_{\bm{k},l,\tau}$
+      score: 
+        Haining: 
+    Ham_op: 
+      Q: 
+      LLM: 
+      human: $[h^{(\tau)}]^{\intercal}_{\bm{k}_{\alpha}l_{\alpha},\bm{k}_{\beta}l_{\beta}}$
+      score: 
+        Haining: 
+    definition_of_variables: 
+      Q: 
+      LLM: 
+      human: $b_{\bm{k},l,\tau}=c_{\bm{k},l,\tau}^\dagger$
+      score: 
+        Haining: 
+    expression_hole_Ham: 
+      Q: 
+      LLM: 
+      human: $\hat{H}^{0} = \sum_{\tau, k_{\alpha}, k_{\beta}} b_{\bm{k}_{\alpha},l_{\alpha},\tau} h_{\bm{k}_{\alpha}l_{\alpha},\bm{k}_{\beta}l_{\beta}}^{(\tau)} b_{\bm{k}_{\beta},l_{\beta},\tau}^\dagger$
+      score: 
+        Haining: 
+
+# Construct interaction Hamiltonian (momentum space)
+- task: Construct interaction Hamiltonian (momentum space)
+  placeholder:
+    second_int_symbol: 
+      Q: 
+      LLM: 
+      human: $\hat{H}_{\text{int}}$
+      score: 
+        Haining: 
+    index_of_operator: 
+      Q: 
+      LLM: 
+      human: the valley index and layer index
+      score: 
+        Haining: 
+    momentum: 
+      Q: 
+      LLM: 
+      human: momentum
+      score: 
+        Haining: 
+    For each operator, the total momentum is the sum of moire reciprocal lattice $b_i$ and momentum with in the first BZ $k_i$: 
+      Q: 
+      LLM: 
+      human: false
+      score: 
+        Haining: 
+    interaction: 
+      Q: What type of interaction should be used in the system? Remember the actual experimental device is usually dual-gated.
+      LLM: dual-gated screened Coulomb interaction
+      human: 
+      score: 
+        Haining: 2
+    int_form: 
+      Q: What is the mathematical formula for this interaction used in the Hamiltonian? You write it in the momentum space. Remember the interaction is a dual-gated screened Coulomb interaction (i.e., like a two-slab capacitor). 
+      LLM: \frac{2\pi e^2}{\epsilon q} \frac{\tanh(qd)}{qd}
+      human: 2\pi e^2\tanh(|\bm{k}|d)/(\epsilon |\bm{k}|)
+      score: 
+        Haining: 1
+      # manually fixed it
+    normalization_factor: 
+      Q: 
+      LLM: 
+      human: $\frac{1}{2A}$
+      score: 
+        Haining: 
+    op: 
+      Q: 
+      LLM: 
+      human: $b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger$, $b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger$,
+        $b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}}$, $b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}$
+      score: 
+        Haining: 
+    definition_of_variables: 
+      Q: 
+      LLM: 
+      human: $\bm{k}_{\alpha},\bm{k}_{\beta},\bm{k}_{\gamma},\bm{k}_{\delta}$ are the
+        momenta, $l_{\alpha},l_{\beta}$ are the indices of operators, $\tau_{\alpha},\tau_{\beta}$
+        are the spin indices, $V(\bm{k})$ is the dual-gate screened Coulomb interaction,
+        $d$ is the sample-to-gate distance, and $\epsilon$ is the dielectric constant.
+      score: 
+        Haining: 
+
+# Wick's theorem
+- task: Wick's theorem
+  placeholder:
+    second_int_symbol: 
+      Q: 
+      LLM: 
+      human: $\hat{H}_{\text{int}}$
+      score: 
+        Haining: 
+    Hartree_Fock_symbol: 
+      Q: 
+      LLM: 
+      human: $\hat{H}^{\text{HF}}$
+      score: 
+        Haining: 
+    definition_of_variables: 
+      Q: 
+      LLM: 
+      human: $\hat{H}^{\text{HF}}$ is the Hartree-Fock Hamiltonian, $\hat{H}_{\text{int}}^{\text{HF}}$
+        is the interaction term in the Hartree-Fock Hamiltonian, $\bm{k}_{\alpha},\bm{k}_{\beta},\bm{k}_{\gamma},\bm{k}_{\delta}$
+        are the momentum vectors, $l_{\alpha},l_{\beta}$ are the orbital quantum numbers,
+        $\tau_{\alpha},\tau_{\beta}$ are the spin quantum numbers, $V(\bm{k}_{\alpha}-\bm{k}_{\delta})$
+        is the interaction potential, $b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger$
+        and $b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}$ are the creation and annihilation
+        operators, and $\langle{...}\rangle$ denotes the expectation value.
+      score: 
+        Haining: 
+    expression_int: 
+      Q: 
+      LLM: 
+      human: 
+        $\hat{H}_{\text{int}} = \frac{1}{2A} \sum_{\substack{\tau_{\alpha}, \tau_{\beta} \\ l_{\alpha}, l_{\beta}}} \sum_{\bm{k}_{\alpha}, \bm{k}_{\beta}, \bm{k}_{\gamma}, \bm{k}_{\delta}} b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}} b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}} V(\bm{k}_{\alpha} - \bm{k}_{\delta}) \delta_{\bm{k}_{\alpha} + \bm{k}_{\beta}, \bm{k}_{\gamma} + \bm{k}_{\delta}}$
+      score: 
+        Haining: 
+
+# # <!-- second_int_symbol: What is the symbol for the interaction term in the Hamiltonian that will be expanded using the Hartree-Fock approximation?
+# # Hartree_Fock_symbol: What is the symbol for the interaction term after it has been expanded using the Hartree-Fock approximation? -->
+
+# Extract quadratic term
+- task: Extract quadratic term
+  placeholder:
+    Hartree_Fock_term_symbol: 
+      Q: 
+      LLM: 
+      human: $\hat{H}^{\text{HF}}$
+      score: 
+        Haining: 
+    bilinear_op: 
+      Q: 
+      LLM: 
+      human: $b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}}$
+        and $b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}$
+      score: 
+        Haining: 
+    Hartree_Fock_second_quantized_symbol: 
+      Q: 
+      LLM: 
+      human: $\hat{H}_{\text{int}}^{\text{HF}}$
+      score: 
+        Haining: 
+    definition_of_variables: 
+      Q: 
+      LLM: 
+      human: None
+      score: 
+        Haining: 
+    expression_HF: 
+      Q: 
+      LLM: 
+      human: |
+        $$\hat{H}^{\text{HF}} = \frac{1}{2A} \sum_{\substack{\tau_{\alpha}, \tau_{\beta} \\ l_{\alpha}, l_{\beta}}} \sum_{\bm{k}_{\alpha}, \bm{k}_{\beta}, \bm{k}_{\gamma}, \bm{k}_{\delta}} \Bigg( \langle b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}} \rangle b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}}$$
+        $$+ \langle b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}} \rangle b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}} - \langle b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}} \rangle \langle b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}} \rangle $$
+        $$- \langle b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}} \rangle b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}} - \langle b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}} \rangle b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}} $$
+        $$+ \langle b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}} \rangle
+        \langle b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}} \rangle \Bigg) V(\bm{k}_{\alpha} - \bm{k}_{\delta}) \delta_{\bm{k}_{\alpha} + \bm{k}_{\beta}, \bm{k}_{\gamma} + \bm{k}_{\delta}}$$
+      score: 
+        Haining: 
+
+# Swap the index to combine Hartree and Fock terms
+- task: Swap the index to combine Hartree and Fock terms
+  placeholder:
+    Hartree_Fock_second_quantized_symbol: 
+      Q: 
+      LLM: 
+      human: $\hat{H}_{\text{int}}^{\text{HF}}$
+      score: 
+        Haining: 
+    expected_value: 
+      Q: 
+      LLM: 
+      human: $\langle{b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}}\rangle$
+      score: 
+        Haining: 
+    expression_Hartree_1: 
+      Q: 
+      LLM: 
+      human: $\langle b_{\tau_{\alpha},l_{\alpha}}^\dagger(k_{\alpha}) b_{\tau_{\alpha},l_{\alpha}}(k_{\delta}) \rangle b_{\tau_{\beta},l_{\beta}}^\dagger(k_{\beta})b_{\tau_{\beta},l_{\beta}}(k_3)$
+      score: 
+        Haining: 
+    expression_Hartree_2: 
+      Q: 
+      LLM: 
+      human: $\langle b_{\tau_{\beta},l_{\beta}}^\dagger(k_{\beta}) b_{\tau_{\beta},l_{\beta}}(k_{\gamma}) \rangle b_{\tau_{\alpha},l_{\alpha}}^\dagger(k_{\alpha})
+        b_{\tau_{\alpha},l_{\alpha}}(k_{\delta})$
+      score: 
+        Haining: 
+    expression_HF_2: 
+      Q: 
+      LLM: 
+      human: |
+        $$\hat{H}_{\text{int}}^{\text{HF}} = \frac{1}{2A} \sum_{\substack{\tau_{\alpha}, \tau_{\beta} \\ l_{\alpha}, l_{\beta}}} \sum_{\bm{k}_{\alpha}, \bm{k}_{\beta}, \bm{k}_{\gamma}, \bm{k}_{\delta}} \Bigg( \langle b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}} \rangle b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}}$$
+        $$+ \langle b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}} \rangle b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}} 
+        - \langle b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}} \rangle b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}$$
+        $$- \langle b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}} \rangle b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}} \Bigg) V(\bm{k}_{\alpha} - \bm{k}_{\delta}) \delta_{\bm{k}_{\alpha} + \bm{k}_{\beta}, \bm{k}_{\gamma} + \bm{k}_{\delta}}$$
+      score: 
+        Haining: 
+
+- task: Reduce momentum in Hartree term (momentum in BZ + reciprocal lattice)
+  placeholder:
+    Hartree_second_quantized_symbol: 
+      Q: 
+      LLM: 
+      human: $H_{\text{Hartree}}$
+      score: 
+        Haining: 
+    expected_value: 
+      Q: 
+      LLM: 
+      human: $\langle b_{l_{\alpha},\tau_{\alpha},q_{\alpha}}^\dagger(k_{\alpha}) b_{l_{\alpha},\tau_{\alpha},q_{\delta}}(k_{\delta}) \rangle$
+      score: 
+        Haining: 
+    expected_value_nonzero: 
+      Q: 
+      LLM: 
+      human: $\langle b_{l_{\alpha},\tau_{\alpha},q_{\alpha}}^\dagger(k_{\alpha}) b_{l_{\alpha},\tau_{\alpha},q_{\delta}}(k_{\delta}) \rangle = \langle b_{l_{\alpha},\tau_{\alpha},q_{\alpha}}^\dagger(k_{\alpha}) b_{l_{\alpha},\tau_{\alpha},q_{\delta}}(k_{\delta}) \rangle \delta_{k_{\alpha},k_{\delta}}$
+      score: 
+        Haining: 
+    expression_Hartree: 
+      Q: 
+      LLM: 
+      human: |
+        $$\hat{H}_{\text{int}}^{\text{HF}} = \frac{1}{A} \sum_{\substack{\tau_{\alpha}, \tau_{\beta} \\ l_{\alpha}, l_{\beta}}} \sum_{\bm{k}_{\alpha}, \bm{k}_{\beta}, \bm{k}_{\gamma}, \bm{k}_{\delta}} \langle b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}} \rangle b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}} V(\bm{k}_{\alpha} - \bm{k}_{\delta}) \delta_{\bm{k}_{\alpha} + \bm{k}_{\beta}, \bm{k}_{\gamma} + \bm{k}_{\delta}}$$
+      score: 
+        Haining:   
+  
+- task: Reduce momentum in Fock term (momentum in BZ + reciprocal lattice)
+  placeholder:
+    Fock_second_quantized_symbol: 
+      Q: 
+      LLM: 
+      human: $H_{\text{Fock}}$
+      score: 
+        Haining: 
+    expected_value: 
+      Q: 
+      LLM: 
+      human: $\langle b_{l_{\alpha},\tau_{\alpha},q_{\alpha}}^\dagger(k_{\alpha}) b_{l_{\beta},\tau_{\beta},q_{\gamma}}(k_{\gamma}) \rangle$
+      score: 
+        Haining: 
+    expected_value_nonzero: 
+      Q: 
+      LLM: 
+      human: $\langle b_{l_{\alpha},\tau_{\alpha},q_{\alpha}}^\dagger(k_{\alpha}) b_{l_{\beta},\tau_{\beta},q_{\gamma}}(k_{\gamma}) \rangle=\langle b_{l_{\alpha},\tau_{\alpha},q_{\alpha}}^\dagger(k_{\alpha}) b_{l_{\beta},\tau_{\beta},q_{\gamma}}(k_{\gamma}) \rangle \delta_{k_{\alpha},k_{\gamma}}$
+      score: 
+        Haining: 
+    expression_Fock: 
+      Q: 
+      LLM: 
+      human: |
+        $$\hat{H}_{\text{int}}^{\text{HF}} = -\frac{1}{A} \sum_{\substack{\tau_{\alpha}, \tau_{\beta} \\ l_{\alpha}, l_{\beta}}} \sum_{\bm{k}_{\alpha}, \bm{k}_{\beta}, \bm{k}_{\gamma}, \bm{k}_{\delta}} 
+        \langle b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\gamma},l_{\beta},\tau_{\beta}} \rangle b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\delta},l_{\alpha},\tau_{\alpha}}  V(\bm{k}_{\alpha} - \bm{k}_{\delta}) \delta_{\bm{k}_{\alpha} + \bm{k}_{\beta}, \bm{k}_{\gamma} + \bm{k}_{\delta}}$$
+      score: 
+        Haining:
+
+- task: Combine the Hartree and Fock term
+  placeholder:
+    Hartree_symbol: 
+      Q: 
+      LLM: 
+      human: $H_{\text{Hartree}}$
+      score: 
+        Haining: 
+    Fock_symbol: 
+      Q: 
+      LLM: 
+      human: $H_{\text{Fock}}$
+      score: 
+        Haining: 
+    Hartree: 
+      Q: 
+      LLM: 
+      human: |
+        $H_{\text{Hartree}} = \frac{1}{A} \sum_{\substack{\tau_{\alpha}, \tau_{\beta} \\ l_{\alpha}, l_{\beta}}} \sum_{\bm{k}_{\alpha}, \bm{k}_{\beta}} \langle b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}} \rangle b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}} V(0)$
+      score: 
+        Haining: 
+    Fock: 
+      Q: 
+      LLM: 
+      human: |
+        $H_{\text{Fock}} = -\frac{1}{A} \sum_{\substack{\tau_{\alpha}, \tau_{\beta} \\ l_{\alpha}, l_{\beta}}} \sum_{\bm{k}_{\alpha}, \bm{k}_{\beta}} \langle b_{\bm{k}_{\alpha},l_{\alpha},\tau_{\alpha}}^\dagger b_{\bm{k}_{\alpha},l_{\beta},\tau_{\beta}} \rangle b_{\bm{k}_{\beta},l_{\beta},\tau_{\beta}}^\dagger b_{\bm{k}_{\beta},l_{\alpha},\tau_{\alpha}}  V(\bm{k}_{\alpha} - \bm{k}_{\beta})$
+      score: 
+        Haining: 
+    swap_rule: 
+      Q: 
+      LLM: 
+      human: Not needed
+      score: 
+        Haining: 
+
+# Comments:
+# Accuracy is not high.
+# Sensitive to the way how it is aksed.
+# Good point: de-Hulluciation.
+# LLM realizes that it cannot infer the answer.  
+#     Q: [Is there a momentum shift, and if so, what is its value?]
+#     A: There could be a shift. However cause trouble in execution.
+
+# Answer too free. sometime cannot fit into template. Even in Michael's example, Fourier transformation is not a sentence.
+
+# Lack of information, most guesses are a high-level, with background knowledge. 
+# more detailed question, answer in a more high-level way.

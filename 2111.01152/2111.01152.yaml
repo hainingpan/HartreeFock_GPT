@@ -224,7 +224,7 @@
         Haining: 0
         Will: 1
         Yasaman: 0
-    interaction_degrees_of_freedom:
+    potential_degrees_of_freedom:
       LLM: the bottom layer ($\mathfrak{b}$) and top layer ($\mathfrak{t}$)
       human: $t$ and $b$
       score:
@@ -968,7 +968,7 @@
       # score: 
       #   Haining: 
     swap_rule:
-      human: Nothing
+      human: Not needed
       # score: 
       #   Haining: 
   answer:

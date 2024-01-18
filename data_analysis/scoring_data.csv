@@ -53,9 +53,9 @@ branch,arxiv,task,placeholder,scorer,score
 "continuum, first-quantized",1010.1819,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Haining,1
 "continuum, first-quantized",1010.1819,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Will,(TODO)
 "continuum, first-quantized",1010.1819,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Yasaman,0
-"continuum, first-quantized",1010.1819,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Haining,0
-"continuum, first-quantized",1010.1819,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Will,(TODO)
-"continuum, first-quantized",1010.1819,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Yasaman,2
+"continuum, first-quantized",1010.1819,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Haining,0
+"continuum, first-quantized",1010.1819,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Will,(TODO)
+"continuum, first-quantized",1010.1819,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Yasaman,2
 "continuum, first-quantized",1010.1819,"Convert from single-particle to second-quantized form, return in matrix",real|momentum,Haining,2
 "continuum, first-quantized",1010.1819,"Convert from single-particle to second-quantized form, return in matrix",real|momentum,Will,(TODO)
 "continuum, first-quantized",1010.1819,"Convert from single-particle to second-quantized form, return in matrix",real|momentum,Yasaman,2
@@ -257,9 +257,9 @@ branch,arxiv,task,placeholder,scorer,score
 "continuum, first-quantized",1208.0116,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Haining,0(?)
 "continuum, first-quantized",1208.0116,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Will,(TODO)
 "continuum, first-quantized",1208.0116,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Yasaman,0
-"continuum, first-quantized",1208.0116,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Haining,0
-"continuum, first-quantized",1208.0116,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Will,(TODO)
-"continuum, first-quantized",1208.0116,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Yasaman,2
+"continuum, first-quantized",1208.0116,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Haining,0
+"continuum, first-quantized",1208.0116,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Will,(TODO)
+"continuum, first-quantized",1208.0116,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Yasaman,2
 "continuum, first-quantized",1208.0116,"Convert from single-particle to second-quantized form, return in matrix",real|momentum,Haining,2
 "continuum, first-quantized",1208.0116,"Convert from single-particle to second-quantized form, return in matrix",real|momentum,Will,(TODO)
 "continuum, first-quantized",1208.0116,"Convert from single-particle to second-quantized form, return in matrix",real|momentum,Yasaman,2
@@ -437,9 +437,9 @@ branch,arxiv,task,placeholder,scorer,score
 "continuum, first-quantized",2111.01152,Define each term in Kinetic Hamiltonian (continuum version),electrons|holes,Haining,0
 "continuum, first-quantized",2111.01152,Define each term in Kinetic Hamiltonian (continuum version),electrons|holes,Will,0
 "continuum, first-quantized",2111.01152,Define each term in Kinetic Hamiltonian (continuum version),electrons|holes,Yasaman,0
-"continuum, first-quantized",2111.01152,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Haining,2
-"continuum, first-quantized",2111.01152,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Will,2
-"continuum, first-quantized",2111.01152,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Yasaman,2
+"continuum, first-quantized",2111.01152,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Haining,2
+"continuum, first-quantized",2111.01152,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Will,2
+"continuum, first-quantized",2111.01152,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Yasaman,2
 "continuum, first-quantized",2111.01152,Define each term in Kinetic Hamiltonian (continuum version),momentum_shift,Haining,1
 "continuum, first-quantized",2111.01152,Define each term in Kinetic Hamiltonian (continuum version),momentum_shift,Will,0
 "continuum, first-quantized",2111.01152,Define each term in Kinetic Hamiltonian (continuum version),momentum_shift,Yasaman,1
@@ -470,9 +470,9 @@ branch,arxiv,task,placeholder,scorer,score
 "continuum, first-quantized",2111.01152,Construct Potential Hamiltonian (continuum version),diagonal_potential,Haining,0
 "continuum, first-quantized",2111.01152,Construct Potential Hamiltonian (continuum version),diagonal_potential,Will,1
 "continuum, first-quantized",2111.01152,Construct Potential Hamiltonian (continuum version),diagonal_potential,Yasaman,0
-"continuum, first-quantized",2111.01152,Construct Potential Hamiltonian (continuum version),interaction_degrees_of_freedom,Haining,1
-"continuum, first-quantized",2111.01152,Construct Potential Hamiltonian (continuum version),interaction_degrees_of_freedom,Will,1
-"continuum, first-quantized",2111.01152,Construct Potential Hamiltonian (continuum version),interaction_degrees_of_freedom,Yasaman,2
+"continuum, first-quantized",2111.01152,Construct Potential Hamiltonian (continuum version),potential_degrees_of_freedom,Haining,1
+"continuum, first-quantized",2111.01152,Construct Potential Hamiltonian (continuum version),potential_degrees_of_freedom,Will,1
+"continuum, first-quantized",2111.01152,Construct Potential Hamiltonian (continuum version),potential_degrees_of_freedom,Yasaman,2
 "continuum, first-quantized",2111.01152,Construct Potential Hamiltonian (continuum version),offdiagonal_potential,Haining,2
 "continuum, first-quantized",2111.01152,Construct Potential Hamiltonian (continuum version),offdiagonal_potential,Will,2
 "continuum, first-quantized",2111.01152,Construct Potential Hamiltonian (continuum version),offdiagonal_potential,Yasaman,2
@@ -707,9 +707,9 @@ branch,arxiv,task,placeholder,scorer,score
 "continuum, first-quantized",2308.07488,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Haining,2
 "continuum, first-quantized",2308.07488,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Will,(TODO)
 "continuum, first-quantized",2308.07488,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Yasaman,2
-"continuum, first-quantized",2308.07488,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Haining,2
-"continuum, first-quantized",2308.07488,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Will,(TODO)
-"continuum, first-quantized",2308.07488,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Yasaman,2
+"continuum, first-quantized",2308.07488,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Haining,2
+"continuum, first-quantized",2308.07488,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Will,(TODO)
+"continuum, first-quantized",2308.07488,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Yasaman,2
 "continuum, first-quantized",2308.07488,Construct Potential Hamiltonian (continuum version),potential_symbol,Haining,1
 "continuum, first-quantized",2308.07488,Construct Potential Hamiltonian (continuum version),potential_symbol,Will,(TODO)
 "continuum, first-quantized",2308.07488,Construct Potential Hamiltonian (continuum version),potential_symbol,Yasaman,2
@@ -722,9 +722,9 @@ branch,arxiv,task,placeholder,scorer,score
 "continuum, first-quantized",2308.07488,Construct Potential Hamiltonian (continuum version),diagonal_potential,Haining,2
 "continuum, first-quantized",2308.07488,Construct Potential Hamiltonian (continuum version),diagonal_potential,Will,(TODO)
 "continuum, first-quantized",2308.07488,Construct Potential Hamiltonian (continuum version),diagonal_potential,Yasaman,2
-"continuum, first-quantized",2308.07488,Construct Potential Hamiltonian (continuum version),interaction_degrees_of_freedom,Haining,0
-"continuum, first-quantized",2308.07488,Construct Potential Hamiltonian (continuum version),interaction_degrees_of_freedom,Will,(TODO)
-"continuum, first-quantized",2308.07488,Construct Potential Hamiltonian (continuum version),interaction_degrees_of_freedom,Yasaman,0
+"continuum, first-quantized",2308.07488,Construct Potential Hamiltonian (continuum version),potential_degrees_of_freedom,Haining,0
+"continuum, first-quantized",2308.07488,Construct Potential Hamiltonian (continuum version),potential_degrees_of_freedom,Will,(TODO)
+"continuum, first-quantized",2308.07488,Construct Potential Hamiltonian (continuum version),potential_degrees_of_freedom,Yasaman,0
 "continuum, first-quantized",2308.07488,Construct Potential Hamiltonian (continuum version),offdiagonal_potential,Haining,2
 "continuum, first-quantized",2308.07488,Construct Potential Hamiltonian (continuum version),offdiagonal_potential,Will,(TODO)
 "continuum, first-quantized",2308.07488,Construct Potential Hamiltonian (continuum version),offdiagonal_potential,Yasaman,2
@@ -944,9 +944,9 @@ branch,arxiv,task,placeholder,scorer,score
 "continuum, second-quantized",2108.02159,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Haining,2
 "continuum, second-quantized",2108.02159,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Will,(TODO)
 "continuum, second-quantized",2108.02159,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Yasaman,2
-"continuum, second-quantized",2108.02159,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Haining,2
-"continuum, second-quantized",2108.02159,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Will,(TODO)
-"continuum, second-quantized",2108.02159,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Yasaman,2
+"continuum, second-quantized",2108.02159,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Haining,2
+"continuum, second-quantized",2108.02159,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Will,(TODO)
+"continuum, second-quantized",2108.02159,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Yasaman,2
 "continuum, second-quantized",2108.02159,Construct Potential Hamiltonian (continuum version),potential_symbol,Haining,2
 "continuum, second-quantized",2108.02159,Construct Potential Hamiltonian (continuum version),potential_symbol,Will,(TODO)
 "continuum, second-quantized",2108.02159,Construct Potential Hamiltonian (continuum version),potential_symbol,Yasaman,1
@@ -959,9 +959,9 @@ branch,arxiv,task,placeholder,scorer,score
 "continuum, second-quantized",2108.02159,Construct Potential Hamiltonian (continuum version),diagonal_potential,Haining,0
 "continuum, second-quantized",2108.02159,Construct Potential Hamiltonian (continuum version),diagonal_potential,Will,(TODO)
 "continuum, second-quantized",2108.02159,Construct Potential Hamiltonian (continuum version),diagonal_potential,Yasaman,0
-"continuum, second-quantized",2108.02159,Construct Potential Hamiltonian (continuum version),interaction_degrees_of_freedom,Haining,0
-"continuum, second-quantized",2108.02159,Construct Potential Hamiltonian (continuum version),interaction_degrees_of_freedom,Will,(TODO)
-"continuum, second-quantized",2108.02159,Construct Potential Hamiltonian (continuum version),interaction_degrees_of_freedom,Yasaman,0
+"continuum, second-quantized",2108.02159,Construct Potential Hamiltonian (continuum version),potential_degrees_of_freedom,Haining,0
+"continuum, second-quantized",2108.02159,Construct Potential Hamiltonian (continuum version),potential_degrees_of_freedom,Will,(TODO)
+"continuum, second-quantized",2108.02159,Construct Potential Hamiltonian (continuum version),potential_degrees_of_freedom,Yasaman,0
 "continuum, second-quantized",2108.02159,Construct Potential Hamiltonian (continuum version),offdiagonal_potential,Haining,0
 "continuum, second-quantized",2108.02159,Construct Potential Hamiltonian (continuum version),offdiagonal_potential,Will,(TODO)
 "continuum, second-quantized",2108.02159,Construct Potential Hamiltonian (continuum version),offdiagonal_potential,Yasaman,2
@@ -1127,9 +1127,9 @@ branch,arxiv,task,placeholder,scorer,score
 "continuum, second-quantized",2112.07523,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Haining,2
 "continuum, second-quantized",2112.07523,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Will,(TODO)
 "continuum, second-quantized",2112.07523,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Yasaman,2
-"continuum, second-quantized",2112.07523,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Haining,2
-"continuum, second-quantized",2112.07523,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Will,(TODO)
-"continuum, second-quantized",2112.07523,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Yasaman,2
+"continuum, second-quantized",2112.07523,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Haining,2
+"continuum, second-quantized",2112.07523,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Will,(TODO)
+"continuum, second-quantized",2112.07523,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Yasaman,2
 "continuum, second-quantized",2112.07523,Construct interaction Hamiltonian (momentum space),second_int_symbol,Haining,2
 "continuum, second-quantized",2112.07523,Construct interaction Hamiltonian (momentum space),second_int_symbol,Will,(TODO)
 "continuum, second-quantized",2112.07523,Construct interaction Hamiltonian (momentum space),second_int_symbol,Yasaman,2
@@ -1598,9 +1598,9 @@ branch,arxiv,task,placeholder,scorer,score
 "lattice, second-quantized",1812.04213,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Haining,2
 "lattice, second-quantized",1812.04213,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Will,(TODO)
 "lattice, second-quantized",1812.04213,Define each term in Kinetic Hamiltonian (continuum version),definition_of_variables,Yasaman,2
-"lattice, second-quantized",1812.04213,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Haining,2
-"lattice, second-quantized",1812.04213,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Will,(TODO)
-"lattice, second-quantized",1812.04213,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum {k_symbol} for {shifted_Ek}, respectively.",Yasaman,2
+"lattice, second-quantized",1812.04213,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Haining,2
+"lattice, second-quantized",1812.04213,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Will,(TODO)
+"lattice, second-quantized",1812.04213,Define each term in Kinetic Hamiltonian (continuum version),"In addition, a shift of {momentum_shift} in the momentum ${k_symbol}$ for {shifted_Ek}, respectively.",Yasaman,2
 "lattice, second-quantized",1812.04213,Construct Potential Hamiltonian (continuum version),potential_symbol,Haining,2
 "lattice, second-quantized",1812.04213,Construct Potential Hamiltonian (continuum version),potential_symbol,Will,(TODO)
 "lattice, second-quantized",1812.04213,Construct Potential Hamiltonian (continuum version),potential_symbol,Yasaman,2
@@ -1613,9 +1613,9 @@ branch,arxiv,task,placeholder,scorer,score
 "lattice, second-quantized",1812.04213,Construct Potential Hamiltonian (continuum version),diagonal_potential,Haining,0
 "lattice, second-quantized",1812.04213,Construct Potential Hamiltonian (continuum version),diagonal_potential,Will,(TODO)
 "lattice, second-quantized",1812.04213,Construct Potential Hamiltonian (continuum version),diagonal_potential,Yasaman,0
-"lattice, second-quantized",1812.04213,Construct Potential Hamiltonian (continuum version),interaction_degrees_of_freedom,Haining,1
-"lattice, second-quantized",1812.04213,Construct Potential Hamiltonian (continuum version),interaction_degrees_of_freedom,Will,(TODO)
-"lattice, second-quantized",1812.04213,Construct Potential Hamiltonian (continuum version),interaction_degrees_of_freedom,Yasaman,0
+"lattice, second-quantized",1812.04213,Construct Potential Hamiltonian (continuum version),potential_degrees_of_freedom,Haining,1
+"lattice, second-quantized",1812.04213,Construct Potential Hamiltonian (continuum version),potential_degrees_of_freedom,Will,(TODO)
+"lattice, second-quantized",1812.04213,Construct Potential Hamiltonian (continuum version),potential_degrees_of_freedom,Yasaman,0
 "lattice, second-quantized",1812.04213,Construct Potential Hamiltonian (continuum version),offdiagonal_potential,Haining,2
 "lattice, second-quantized",1812.04213,Construct Potential Hamiltonian (continuum version),offdiagonal_potential,Will,(TODO)
 "lattice, second-quantized",1812.04213,Construct Potential Hamiltonian (continuum version),offdiagonal_potential,Yasaman,2

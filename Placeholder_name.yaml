@@ -1,0 +1,26 @@
+site i and site j with the interaction strength : form of interaction
+site i and site j with the amplitude hopping : form of hopping
+int_form : interaction q-dependence
+system: system identity
+degrees_of_freedom: flavor
+definition_of_variables: definition of variables
+parabolic|Dirac|cos: type of dispersion
+
+Energy_dispersion: dispersion
+electrons|holes: type of particles
+
+$r$|$k$: Fourier transform from real or momentum space
+You should ensure the hermiticity of the Hamiltonian: hermiticity of the Hamiltonian
+entire_real|first_Brillouin_Zone: integration region of momentum
+
+bilinear_op : order parameter
+real_creation_op : position space creation operator
+momentum_creation_op : momentum space creation operator
+annihilation_op: annihilation operator
+definition_of_Fourier_Transformation : Fourier transform of second-quantized operator
+
+momentum_var: momentum
+real_variable: position
+single-particle|second-quantized : first or second quantization
+second_int_symbol: interacting term
+Note that interaction have no position dependence now: whether interaction has position dependence
