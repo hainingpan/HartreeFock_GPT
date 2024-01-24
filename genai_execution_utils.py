@@ -45,7 +45,7 @@ class StreamlinedExecution:
             execution_prompt = self.render_history() + prompt
             response = self.model.generate_content(execution_prompt, generation_config=self.generation_config, safety_settings=self.safety_settings, stream=False)
             try:
-                reply = reponse.text
+                reply = response.text
             except ValueError:
                 print("NON STANDARD OUTPUT?")
                 reply = str(response.parts)
