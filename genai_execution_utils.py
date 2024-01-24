@@ -8,6 +8,70 @@ import yaml
 from . import utils
 # from utils import load_prompt, generate_prompt, return_correct_prompt_template_for_task, assembly_message, extract_var
 
+class StreamlinedExecution:
+    def __init__(self, api_key_dict, prompt_template, arxiv_number, model_name='text-bison-001', temperature=0):
+        api_key = api_key_dict['API_KEY']
+        genai.configure(api_key = api_key)
+        self.prompt_template = prompt_template
+        self.arxiv_number = arxiv_number
+        self.model_name = model_name
+        self.generation_config = {'temperature': temperature, 'top_p': 1, 'top_k': 1, 'max_output_tokens': 2048, 'stop_sequences': []}
+        self.safety_settings = [{'category': 'HARM_CATEGORY_HARASSMENT',
+        'threshold': 'BLOCK_MEDIUM_AND_ABOVE'},
+        {'category': 'HARM_CATEGORY_HATE_SPEECH',
+        'threshold': 'BLOCK_MEDIUM_AND_ABOVE'},
+        {'category': 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+        'threshold': 'BLOCK_MEDIUM_AND_ABOVE'},
+        {'category': 'HARM_CATEGORY_DANGEROUS_CONTENT',
+        'threshold': 'BLOCK_MEDIUM_AND_ABOVE'}]
+        self.model = genai.GenerativeModel(model_name=model_name)
+        self.history = []
+    
+    def update_history(self, input, response):
+        self.history.append(("USER: "+input, "ASSISTANT: "+response))
+
+    def render_history(self):
+        chat = ''
+        for prompt, reponse in self.history:
+            chat += prompt
+            chat += ('\n'+response+'\n\n')
+        return chat
+
+    def run(self, prompt_template, arxiv_number, path='HartreeFock_GPT/'):
+        '''Load the prompt_template, and the descriptor file from arxiv number
+        Generate prompts, and feed into `solver`.
+        The response will be summarized by `summarizer`.
+        Write all responses to `{arxiv_number}_auto.md`
+
+        Should run from each directory 'arxiv_number'.'''
+        prompt_dict= utils.load_prompt_template(prompt_template)
+        with open(os.path.join(path, f'{arxiv_number}/{arxiv_number}.yaml'),'r') as f:
+            kwargs= yaml.safe_load(f)
+        kwargs=[kwarg for kwarg in kwargs if 'task' in kwarg]
+
+        prompts=[utils.generate_prompt(kwarg,prompt_dict=prompt_dict) for kwarg in kwargs]
+
+        answers=[]
+        summaries = []
+        for idx, prompt_i in enumerate(prompts):
+            print(f'Asking {idx}..')
+            prompt=prompt_i['content']
+            execution_prompt = self.render_history() + prompt
+            response = self.model.generate_content(execution_prompt, generation_config=self.generation_config, safety_settings=self.safety_settings, stream=False)
+            self.update_history(prompt, reponse.text)
+        
+        string=''
+        for kwarg,tup in zip(kwargs, self.history):
+            task=kwarg['task']
+            prompt = tup[0]
+            reply = tup[1]
+            added=f'## {task}  \n**Prompt:**  \n{prompt}\n\n**Completion:**  \n{reply}\n\n'
+            string+=added
+
+        with open(f'{arxiv_number}_auto_gemini.md','w') as f:
+            f.write(string)
+
+
 class PalmExecution:
     def __init__(self, api_key_dict, prompt_template, arxiv_number, model_name='text-bison-001', temperature=0):
         api_key = api_key_dict['API_KEY']
