@@ -44,9 +44,14 @@ class StreamlinedExecution:
             print('####')
             execution_prompt = self.render_history() + prompt
             response = self.model.generate_content(execution_prompt, generation_config=self.generation_config, safety_settings=self.safety_settings, stream=False)
-            print(response.text)
+            try:
+                reply = reponse.text
+            except ValueError:
+                print("NON STANDARD OUTPUT?")
+                reply = str(response.parts)
+            print(reply)
             print('===\n===')
-            self.update_history(prompt, response.text)
+            self.update_history(prompt, reply)
         
         string=''
         for kwarg,tup in zip(kwargs, self.history):
@@ -128,9 +133,9 @@ class PalmExecution:
             prompt=prompt_i['content']
             if idx==0:
                 summarization=''
-                response= self.solver(summarization=summarization, prompt=prompt,prompt_dict=prompt_dict)
+                response= self.solver(summarization=summarization, prompt=prompt, prompt_dict=prompt_dict)
             else:
-                summarization=self.summarizer(summarization=summarization, prompt=prompt, response=response,prompt_dict=prompt_dict)        
+                summarization=self.summarizer(summarization=summarization, prompt=prompt, response=response, prompt_dict=prompt_dict)        
                 response= self.solver(summarization=summarization, prompt=prompt,prompt_dict=prompt_dict)
             answers.append(response)
             summaries.append(summarization)
