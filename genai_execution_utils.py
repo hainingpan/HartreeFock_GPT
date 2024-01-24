@@ -38,7 +38,7 @@ class StreamlinedExecution:
     def run(self, prompt_dict):
         '''Concatenates the full list of past prompts and responses.'''
         
-        for key, prompt in prompt_dict:
+        for idx, (key, prompt) in enumerate(prompt_dict):
             print(f'Asking {idx}..', prompt)
             print('####')
             execution_prompt = self.render_history() + prompt
