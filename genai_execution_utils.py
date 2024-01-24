@@ -45,7 +45,7 @@ class StreamlinedExecution:
             response = self.model.generate_content(execution_prompt, generation_config=self.generation_config, safety_settings=self.safety_settings, stream=False)
             print(response.text)
             print('===\n===')
-            self.update_history(prompt, reponse.text)
+            self.update_history(prompt, response.text)
         
         string=''
         for kwarg,tup in zip(kwargs, self.history):
