@@ -30,7 +30,7 @@ class StreamlinedExecution:
 
     def render_history(self):
         chat = ''
-        for prompt, reponse in self.history:
+        for prompt, response in self.history:
             chat += prompt
             chat += ('\n'+response+'\n\n')
         return chat
