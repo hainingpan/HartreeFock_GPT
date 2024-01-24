@@ -37,27 +37,16 @@ class StreamlinedExecution:
             chat += ('\n'+response+'\n\n')
         return chat
 
-    def run(self, prompt_template, arxiv_number, path='HartreeFock_GPT/'):
-        '''Load the prompt_template, and the descriptor file from arxiv number
-        Generate prompts, and feed into `solver`.
-        The response will be summarized by `summarizer`.
-        Write all responses to `{arxiv_number}_auto.md`
-
-        Should run from each directory 'arxiv_number'.'''
-        prompt_dict= utils.load_prompt_template(prompt_template)
-        with open(os.path.join(path, f'{arxiv_number}/{arxiv_number}.yaml'),'r') as f:
-            kwargs= yaml.safe_load(f)
-        kwargs=[kwarg for kwarg in kwargs if 'task' in kwarg]
-
-        prompts=[utils.generate_prompt(kwarg,prompt_dict=prompt_dict) for kwarg in kwargs]
-
-        answers=[]
-        summaries = []
-        for idx, prompt_i in enumerate(prompts):
-            print(f'Asking {idx}..')
-            prompt=prompt_i['content']
+    def run(self, prompt_dict):
+        '''Concatenates the full list of past prompts and responses.'''
+        
+        for key, prompt in prompt_dict:
+            print(f'Asking {idx}..', prompt)
+            print('####')
             execution_prompt = self.render_history() + prompt
             response = self.model.generate_content(execution_prompt, generation_config=self.generation_config, safety_settings=self.safety_settings, stream=False)
+            print(response.text)
+            print('===\n===')
             self.update_history(prompt, reponse.text)
         
         string=''
