@@ -9,11 +9,9 @@ from . import utils
 # from utils import load_prompt, generate_prompt, return_correct_prompt_template_for_task, assembly_message, extract_var
 
 class StreamlinedExecution:
-    def __init__(self, api_key_dict, prompt_template, arxiv_number, model_name='text-bison-001', temperature=0):
+    def __init__(self, api_key_dict, model_name='gemini-pro', temperature=0):
         api_key = api_key_dict['API_KEY']
         genai.configure(api_key = api_key)
-        self.prompt_template = prompt_template
-        self.arxiv_number = arxiv_number
         self.model_name = model_name
         self.generation_config = {'temperature': temperature, 'top_p': 1, 'top_k': 1, 'max_output_tokens': 2048, 'stop_sequences': []}
         self.safety_settings = [{'category': 'HARM_CATEGORY_HARASSMENT',
