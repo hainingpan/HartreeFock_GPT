@@ -498,7 +498,7 @@
         Yasaman: 0
   answer: |
     $\hat{H}_0=\sum_{i,j=\{+K,b; +K,t; -K,b; -K,t\}}\sum_{k_1,k_2} \psi_{i}^\dagger(k_1) H_{0_{i,j}}(k_1,k_2) \psi_{j}(k_2)$
-    where we define the Fourier transformation of $H_{0_{i,j}}(r)$ as $H_{0_{i,j}}(k_1,k_2)=\frac{1}{A} \int dr e^{-i (k_1-k_2)\cdot r} H_{0_{i,j}}(r)$.
+    where we define the Fourier transform of $H_{0_{i,j}}(r)$ as $H_{0_{i,j}}(k_1,k_2)=\frac{1}{A} \int dr e^{-i (k_1-k_2)\cdot r} H_{0_{i,j}}(r)$.
   score:
     in_paper: 0
     prompt_quality: 2

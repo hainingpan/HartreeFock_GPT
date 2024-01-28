@@ -180,7 +180,7 @@
         Will: 
         Yasaman: 0
     definition_of_variables:
-      LLM: $H$ is the Hamiltonian, $\bf k$ is the momentum, $\alpha$ and $\beta$ are the indices for the basis in momentum space, $\sigma$ is the spin index, $T_{\alpha,\beta}(\bf k)$ is the Fourier transformation, and $d^\dagger_{\bf k,\alpha,\sigma}$ and $d^{\phantom\dagger}_{\bf k,\beta,\sigma}$ are the creation and annihilation operators in momentum space respectively.
+      LLM: $H$ is the Hamiltonian, $\bf k$ is the momentum, $\alpha$ and $\beta$ are the indices for the basis in momentum space, $\sigma$ is the spin index, $T_{\alpha,\beta}(\bf k)$ is the Fourier transform, and $d^\dagger_{\bf k,\alpha,\sigma}$ and $d^{\phantom\dagger}_{\bf k,\beta,\sigma}$ are the creation and annihilation operators in momentum space respectively.
       human: 
       score: 
         Haining: 2

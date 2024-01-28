@@ -90,7 +90,7 @@ In the above expression, the sums over $i$ are taken over all positions in real 
 ## Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
 **Prompt:**  
 You will be instructed to convert the Kinetic Hamiltonian $H_0$ in the second quantized form from the basis in real space to the basis in momentum space.  
-To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space. You should follow the EXAMPLE below to apply the Fourier transformation. Note that $t_1$ and $t_2$ have no position dependence now.  
+To do that, you should apply the Fourier transform to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space. You should follow the EXAMPLE below to apply the Fourier transform. Note that $t_1$ and $t_2$ have no position dependence now.  
 Recall that  
 $$H_0 = -t_1\sum_{i,s} [c_{A,s}^\dagger(R_i) c_{B,s}(R_i) + c_{A,s}^\dagger(R_i) c_{B,s}(R_i + a_1) + c_{A,s}^\dagger(R_i) c_{B,s}(R_i + a_2) + h.c.] -t_2\sum_{i,s} [c_{A,s}^\dagger(R_i) c_{A,s}(R_i + a_1) + c_{A,s}^\dagger(R_i) c_{A,s}(R_i + a_2) + c_{A,s}^\dagger(R_i) c_{A,s}(R_i - a_1) + c_{A,s}^\dagger(R_i) c_{A,s}(R_i - a_2) + c_{A,s}^\dagger(R_i) c_{A,s}(R_i + a_1 - a_2) + c_{A,s}^\dagger(R_i) c_{A,s}(R_i - a_1 + a_2) + h.c.]-t_2\sum_{i,s} [c_{B,s}^\dagger(R_i) c_{B,s}(R_i + a_1) + c_{B,s}^\dagger(R_i) c_{B,s}(R_i + a_2) + c_{B,s}^\dagger(R_i) c_{B,s}(R_i - a_1) + c_{B,s}^\dagger(R_i) c_{B,s}(R_i - a_2) + c_{B,s}^\dagger(R_i) c_{B,s}(R_i + a_1 - a_2) + c_{B,s}^\dagger(R_i) c_{B,s}(R_i - a_1 + a_2) + h.c.]+ h_x\sum_{i} [c_{A,\uparrow}^\dagger(R_i) c_{A,\uparrow}(R_i) - c_{A,\downarrow}^\dagger(R_i) c_{A,\downarrow}(R_i) + c_{B,\uparrow}^\dagger(R_i) c_{B,\uparrow}(R_i) - c_{B,\downarrow}^\dagger(R_i) c_{B,\downarrow}(R_i)]$$
 Express the Kinetic Hamiltonian $H_0$ in terms of $c_{\alpha,s}(k)$ and $c_{\alpha,s}^\dagger(k)$.   
@@ -103,8 +103,8 @@ $N$ : number of the unit cells in the real space
 ===
 EXAMPLE:  
 Write a Kinetic Hamiltonian $\hat{H}$ in the second quantized form in the real space, $\hat{H}=\sum_{i,j} t(R_i-R_j) c^\dagger(R_i) c(R_j)$, where $i,j$ are summed over the entire real space.  
-Define the Fourier transformation $c^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
-This leads to the inverse Fourier transformation $c^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is first Brillouin zone.  
+Define the Fourier transform $c^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transform $c^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is first Brillouin zone.  
 Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{H}$, we get  
 $$\hat{H} = \sum_{i,j} t(R_i-R_j) \frac{1}{\sqrt{N}} \sum_{k_1} c^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{\sqrt{N}} \sum_{k_2} c(k_2) e^{i k_2 \cdot R_j} =\frac{1}{N} \sum_{i,j}\sum_{k_1,k_2} c^\dagger(k_1)  c(k_2)  e^{-i k_1\cdot R_i} e^{i k_2 \cdot R_j} t(R_i-R_j) $$
 Now make a replacement by defining $n= R_i-R_j$  
@@ -138,7 +138,7 @@ where $k$ is summed over the first Brillouin zone and $s$ is summed over the spi
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version) [first term] 
 **Prompt:**  
 You will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the first term with $U_0$.
-To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. Note that the interaction $U_0$ is onsite.  
+To do that, you should apply the Fourier transform to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transform. Note that the interaction $U_0$ is onsite.  
 You should recall that the first term in $\hat{H}^{int}$ is
 $U_0\sum_{i} n_{A,\uparrow}(R_i) n_{A,\downarrow}(R_i) $
 Express the first term in interacting Hamiltonian $\hat{H}^{int}$ with $U_0$ in terms of $c_{\alpha,s}(k)$ and $c_{\alpha,s}^\dagger(k)$. Simplify any summation index if possible.  
@@ -146,8 +146,8 @@ Express the first term in interacting Hamiltonian $\hat{H}^{int}$ with $U_0$ in 
 ===  
 EXAMPLE:  
 Write an interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form in the real space, $\hat{H}^{int}=\sum_{s,s'}\sum_{i,j} U(R_i-R_j) c_s^\dagger(R_i) c_{s'}^\dagger(R_j) c_{s'}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
-Define the Fourier transformation $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
-This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
+Define the Fourier transform $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transform $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
 Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{H}^{int}$, we get  
 $$\hat{H}^{int} = \sum_{s,s'}\sum_{i,j} U(R_i-R_j) \frac{1}{\sqrt{N}} \sum_{k_1} c_s^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{\sqrt{N}} \sum_{k_2} c_{s'}^\dagger(k_2) e^{-i k_2 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_3} c_{s'}(k_3) e^{i k_3 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_4} c_s(k_4) e^{i k_4 \cdot R_i}=\sum_{s,s'}\sum_{i,j}\frac{1}{N^2}\sum_{k_1,k_2,k_3,k_4}U(R_i-R_j)c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot R_i} e^{-i(k_2-k_3)\cdot R_j}$$
 Now make a replacement by defining $n= R_i-R_j$  
@@ -198,7 +198,7 @@ Here, the delta function enforces the momentum conservation. Therefore, the firs
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version) [second term] 
 **Prompt:**  
 You will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the second term with $U_0$.
-To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the second Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. Note that the interaction $U_0$ is onsite.  
+To do that, you should apply the Fourier transform to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the second Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transform. Note that the interaction $U_0$ is onsite.  
 You should recall that the second term in $\hat{H}^{int}$ is
 $U_0\sum_{i} n_{B,\uparrow}(R_i) n_{B,\downarrow}(R_i)$
 Express the second term in interacting Hamiltonian $\hat{H}^{int}$ with $U_0$ in terms of $c_{\alpha,s}(k)$ and $c_{\alpha,s}^\dagger(k)$. Simplify any summation index if possible.  
@@ -206,8 +206,8 @@ Express the second term in interacting Hamiltonian $\hat{H}^{int}$ with $U_0$ in
 ===  
 EXAMPLE:  
 Write an interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form in the real space, $\hat{H}^{int}=\sum_{s,s'}\sum_{i,j} U(R_i-R_j) c_s^\dagger(R_i) c_{s'}^\dagger(R_j) c_{s'}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
-Define the Fourier transformation $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
-This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
+Define the Fourier transform $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transform $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
 Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{H}^{int}$, we get  
 $$\hat{H}^{int} = \sum_{s,s'}\sum_{i,j} U(R_i-R_j) \frac{1}{\sqrt{N}} \sum_{k_1} c_s^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{\sqrt{N}} \sum_{k_2} c_{s'}^\dagger(k_2) e^{-i k_2 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_3} c_{s'}(k_3) e^{i k_3 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_4} c_s(k_4) e^{i k_4 \cdot R_i}=\sum_{s,s'}\sum_{i,j}\frac{1}{N^2}\sum_{k_1,k_2,k_3,k_4}U(R_i-R_j)c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot R_i} e^{-i(k_2-k_3)\cdot R_j}$$
 Now make a replacement by defining $n= R_i-R_j$  
@@ -256,7 +256,7 @@ Here, the delta function enforces the momentum conservation. Therefore, the seco
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version) [third term] 
 **Prompt:**  
 You will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the third quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the third term with $U_1$.
-To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the third Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. 
+To do that, you should apply the Fourier transform to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the third Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transform. 
 You should recall that the third term in $\hat{H}^{int}$ is
 $U_1\sum_{i,s,s'} n_{A,s}(R_i) n_{B,s'}(R_i)$   
 Express the third term in interacting Hamiltonian $\hat{H}^{int}$ with $U_1$ in terms of $c_{\alpha,s}(k)$ and $c_{\alpha,s}^\dagger(k)$. Simplify any summation index if possible.  
@@ -264,8 +264,8 @@ Express the third term in interacting Hamiltonian $\hat{H}^{int}$ with $U_1$ in 
 ===  
 EXAMPLE:  
 Write an interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form in the real space, $\hat{H}^{int}=\sum_{s,s'}\sum_{i,j} U(R_i-R_j) c_s^\dagger(R_i) c_{s'}^\dagger(R_j) c_{s'}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
-Define the Fourier transformation $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
-This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
+Define the Fourier transform $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transform $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
 Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{H}^{int}$, we get  
 $$\hat{H}^{int} = \sum_{s,s'}\sum_{i,j} U(R_i-R_j) \frac{1}{\sqrt{N}} \sum_{k_1} c_s^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{\sqrt{N}} \sum_{k_2} c_{s'}^\dagger(k_2) e^{-i k_2 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_3} c_{s'}(k_3) e^{i k_3 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_4} c_s(k_4) e^{i k_4 \cdot R_i}=\sum_{s,s'}\sum_{i,j}\frac{1}{N^2}\sum_{k_1,k_2,k_3,k_4}U(R_i-R_j)c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot R_i} e^{-i(k_2-k_3)\cdot R_j}$$
 Now make a replacement by defining $n= R_i-R_j$  
@@ -313,7 +313,7 @@ Here, the delta function enforces the momentum conservation. Therefore, the thir
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version) [fourth term] 
 **Prompt:**  
 You will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the fourth quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the fourth term with $U_1$.
-To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the fourth Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. 
+To do that, you should apply the Fourier transform to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the fourth Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transform. 
 You should recall that the fourth term in $\hat{H}^{int}$ is
 $U_1\sum_{i,s,s'} n_{A,s}(R_i) n_{B,s'}(R_i + a_1)$   
 Express the fourth term in interacting Hamiltonian $\hat{H}^{int}$ with $U_1$ in terms of $c_{\alpha,s}(k)$ and $c_{\alpha,s}^\dagger(k)$. Simplify any summation index if possible.  
@@ -321,8 +321,8 @@ Express the fourth term in interacting Hamiltonian $\hat{H}^{int}$ with $U_1$ in
 ===  
 EXAMPLE:  
 Write an interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form in the real space, $\hat{H}^{int}=\sum_{s,s'}\sum_{i,j} U(R_i-R_j) c_s^\dagger(R_i) c_{s'}^\dagger(R_j) c_{s'}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
-Define the Fourier transformation $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
-This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
+Define the Fourier transform $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transform $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
 Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{H}^{int}$, we get  
 $$\hat{H}^{int} = \sum_{s,s'}\sum_{i,j} U(R_i-R_j) \frac{1}{\sqrt{N}} \sum_{k_1} c_s^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{\sqrt{N}} \sum_{k_2} c_{s'}^\dagger(k_2) e^{-i k_2 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_3} c_{s'}(k_3) e^{i k_3 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_4} c_s(k_4) e^{i k_4 \cdot R_i}=\sum_{s,s'}\sum_{i,j}\frac{1}{N^2}\sum_{k_1,k_2,k_3,k_4}U(R_i-R_j)c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot R_i} e^{-i(k_2-k_3)\cdot R_j}$$
 Now make a replacement by defining $n= R_i-R_j$  
@@ -345,7 +345,7 @@ Therefore, we can rewrite the fourth term as:
 
 $$U_1\sum_{i,s,s'} c_{A,s}^\dagger(R_i)c_{A,s}(R_i) c_{B,s'}^\dagger(R_i+a_1)c_{B,s'}(R_i+a_1)$$
 
-Now we will apply the Fourier transformation:
+Now we will apply the Fourier transform:
 
 $c_{\alpha,s}^\dagger(k) = \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$
 
@@ -353,7 +353,7 @@ and its inverse:
 
 $c_{\alpha,s}^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_{\alpha,s}^\dagger(k) e^{-i k \cdot R_i}$.
 
-After substituting the Fourier transformations for the creation and annihilation operators, we obtain:
+After substituting the Fourier transforms for the creation and annihilation operators, we obtain:
 
 $$\hat{H}^{int} = \frac{U_1}{N^2} \sum_{i,s,s'} \sum_{k_1,k_2,k_3,k_4} c_{A,s}^\dagger(k_1)e^{-i k_1 \cdot R_i} c_{A,s}(k_2)e^{i k_2 \cdot R_i} c_{B,s'}^\dagger(k_3)e^{-i k_3 \cdot (R_i + a_1)} c_{B,s'}(k_4)e^{i k_4 \cdot (R_i + a_1)}.$$
 
@@ -367,7 +367,7 @@ where $G$ runs over the fourth Brillouin zone. Note that the phase factor $e^{-i
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version) [fifth term] 
 **Prompt:**  
 You will be instructed to convert the interacting Hamiltonian $\hat{H}^{int}$ in the fifth quantized form the basis in real space to the basis in momentum space. You will be instructed to perform the transformation to the fifth term with $U_1$.
-To do that, you should apply the Fourier transformation to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the fifth Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. 
+To do that, you should apply the Fourier transform to $c_{\alpha,s}^\dagger(R_i)$ in the real space to the $c_{\alpha,s}^\dagger(k)$ in the momentum space, which is defined as $c_{\alpha,s}^\dagger(k)= \frac{1}{\sqrt{N}} \sum_i c_{\alpha,s}^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over all sites in the entire real space, and $k$ is defined within the fifth Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transform. 
 You should recall that the fifth term in $\hat{H}^{int}$ is
 $U_1\sum_{i,s,s'} n_{A,s}(R_i) n_{B,s'}(R_i + a_2)$   
 Express the fifth term in interacting Hamiltonian $\hat{H}^{int}$ with $U_1$ in terms of $c_{\alpha,s}(k)$ and $c_{\alpha,s}^\dagger(k)$. Simplify any summation index if possible.  
@@ -375,8 +375,8 @@ Express the fifth term in interacting Hamiltonian $\hat{H}^{int}$ with $U_1$ in 
 ===  
 EXAMPLE:  
 Write an interacting Hamiltonian $\hat{H}^{int}$ in the second quantized form in the real space, $\hat{H}^{int}=\sum_{s,s'}\sum_{i,j} U(R_i-R_j) c_s^\dagger(R_i) c_{s'}^\dagger(R_j) c_{s'}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
-Define the Fourier transformation $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
-This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
+Define the Fourier transform $c_s^\dagger(k)=\frac{1}{\sqrt{N}} \sum_{i}c_s^\dagger(R_i) e^{i k \cdot R_i}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transform $c_s^\dagger(R_i) = \frac{1}{\sqrt{N}} \sum_k c_s^\dagger(k) e^{-i k \cdot R_i}$, where $k$ is summed over the first Brillouin zone.  
 Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{H}^{int}$, we get  
 $$\hat{H}^{int} = \sum_{s,s'}\sum_{i,j} U(R_i-R_j) \frac{1}{\sqrt{N}} \sum_{k_1} c_s^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{\sqrt{N}} \sum_{k_2} c_{s'}^\dagger(k_2) e^{-i k_2 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_3} c_{s'}(k_3) e^{i k_3 \cdot R_j} \frac{1}{\sqrt{N}} \sum_{k_4} c_s(k_4) e^{i k_4 \cdot R_i}=\sum_{s,s'}\sum_{i,j}\frac{1}{N^2}\sum_{k_1,k_2,k_3,k_4}U(R_i-R_j)c_s^\dagger(k_1)c_{s'}^\dagger(k_2)c_{s'}(k_3)c_s(k_4)e^{-i(k_1-k_4)\cdot R_i} e^{-i(k_2-k_3)\cdot R_j}$$
 Now make a replacement by defining $n= R_i-R_j$  
@@ -399,7 +399,7 @@ and
 
 $$n_{B,s'}(R_i + a_2) = c_{B,s'}^\dagger(R_i + a_2) c_{B,s'}(R_i + a_2)$$
 
-Substituting these expressions and using the Fourier transformations for the creation and annihilation operators, we obtain
+Substituting these expressions and using the Fourier transforms for the creation and annihilation operators, we obtain
 
 $$\hat{H}^{int} = U_1\sum_{i,s,s'} \left( \frac{1}{N} \sum_{k_1} c_{A,s}^\dagger(k_1) e^{-i k_1 \cdot R_i} \frac{1}{N} \sum_{k_2} c_{A,s}(k_2) e^{i k_2 \cdot R_i} \right) \left( \frac{1}{N} \sum_{k_3} c_{B,s'}^\dagger(k_3) e^{-i k_3 \cdot (R_i + a_2)} \frac{1}{N} \sum_{k_4} c_{B,s'}(k_4) e^{i k_4 \cdot (R_i + a_2)} \right)$$
 
@@ -407,7 +407,7 @@ Now, rearranging the terms:
 
 $$\hat{H}^{int} = \frac{U_1}{N^2} \sum_{i,s,s'}\sum_{k_1,k_2,k_3,k_4} e^{-i (k_1 - k_2 + k_3 - k_4) \cdot R_i} e^{-i (k_3 - k_4) \cdot a_2} c_{A,s}^\dagger(k_1) c_{A,s}(k_2) c_{B,s'}^\dagger(k_3) c_{B,s'}(k_4)$$
 
-We can again use the property of the Fourier transformation for the periodic lattice system:
+We can again use the property of the Fourier transform for the periodic lattice system:
 
 $$\frac{1}{N}\sum_{i} e^{-i (k_1 - k_2 + k_3 - k_4)\cdot R_i} = \sum_{G}\delta(k_1 - k_2 + k_3 - k_4, G)$$
 

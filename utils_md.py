@@ -176,7 +176,7 @@ def run(prompt_template,prompt_file,interactive):
         with open(writepath,'a') as f:
             f.write(string)
 
-        if interactive:
+        if interactive and idx>1:
             input('Press Enter to continue...')
 
 def main():

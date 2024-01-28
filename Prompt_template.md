@@ -176,7 +176,7 @@ For a $\hat{{H}}=\vec{{\psi}}^\dagger H \vec{{\psi}}$, where $\vec{{\psi}}=\begi
 ## Convert noninteracting Hamiltonian in real space to momentum space (continuum version)
 **Prompt:**  
 You will be instructed to convert the total noninteracting Hamiltonian in the second quantized form from the basis in real space to the basis by momentum space.  
-To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over the {entire_real|first_Brillouin_Zone}. You should follow the EXAMPLE below to apply the Fourier transformation.  
+To do that, you should apply the Fourier transform to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over the {entire_real|first_Brillouin_Zone}. You should follow the EXAMPLE below to apply the Fourier transform.  
 Express the total noninteracting Hamiltonian {second_nonint_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
@@ -185,16 +185,16 @@ Use the following conventions for the symbols (You should also obey the conventi
 ===  
 EXAMPLE:  
 Write a Hamiltonian $\hat{{H}}$ in the second quantized form, $\hat{{H}}=\int dr \psi(r)^\dagger H(r) \psi(r)$, where $r$ is integrated over the entire real space.  
-Define the Fourier transformation $c^\dagger(k)=\frac{{1}}{{\sqrt{{V}}}} \int \psi^\dagger(r) e^{{i k \cdot r}} dr$, where $r$ is integrated over the entire real space, and $V$ is the area of the unit cell in the real space.  
-This leads to the inverse Fourier transformation $\psi^\dagger(r) = \frac{{1}}{{\sqrt{{V}}}} \sum_k c^\dagger(k) e^{{-i k \cdot r}}$, where $k$ is summed over the extended Brillouin zone (i.e., the entire momentum space), $\Omega$ is the area of Brillouin zone in the momentum space.  
+Define the Fourier transform $c^\dagger(k)=\frac{{1}}{{\sqrt{{V}}}} \int \psi^\dagger(r) e^{{i k \cdot r}} dr$, where $r$ is integrated over the entire real space, and $V$ is the area of the unit cell in the real space.  
+This leads to the inverse Fourier transform $\psi^\dagger(r) = \frac{{1}}{{\sqrt{{V}}}} \sum_k c^\dagger(k) e^{{-i k \cdot r}}$, where $k$ is summed over the extended Brillouin zone (i.e., the entire momentum space), $\Omega$ is the area of Brillouin zone in the momentum space.  
 Thus, substitute $\psi^\dagger(r)$ and $\psi(r)$ into $\hat{{H}}$, we get  
 $$\hat{{H}} = \int dr \frac{{1}}{{\sqrt{{V}}}} \sum_{{k_1}} c^\dagger(k_1) e^{{-i k_1 \cdot r}} H(r) \frac{{1}}{{\sqrt{{V}}}} \sum_{{k_2}} c(k_2) e^{{i k_2 \cdot r}} =\sum_{{k_1,k_2}} c^\dagger(k_1) \frac{{1}}{{V}} \int dr e^{{-i (k_1-k_2)\cdot r}} H(r) c(k_2) = \sum_{{k_1,k_2}} c^\dagger(k_1) H(k_1,k_2) c(k_2)$$  
-, where we define the Fourier transformation of $H(r)$ as $H(k_1,k_2)=\frac{{1}}{{V}} \int dr e^{{-i (k_1-k_2)\cdot r}} H(r)$.
+, where we define the Fourier transform of $H(r)$ as $H(k_1,k_2)=\frac{{1}}{{V}} \int dr e^{{-i (k_1-k_2)\cdot r}} H(r)$.
 
 ## Convert noninteracting Hamiltonian in real space to momentum space (lattice version)
 **Prompt:**  
 You will be instructed to convert the noninteracting Hamiltonian {nonint_symbol} in the second quantized form from the basis in real space to the basis in momentum space. 
-To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that hopping have no position dependence now.]
+To do that, you should apply the Fourier transform to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space. You should follow the EXAMPLE below to apply the Fourier transform. [Note that hopping have no position dependence now.]
 You should recall that {nonint_symbol} is {expression_nonint}
 Express the total noninteracting Hamiltonian {nonint_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.
 
@@ -204,8 +204,8 @@ Use the following conventions for the symbols (You should also obey the conventi
 ===
 EXAMPLE:  
 Write a Kinetic Hamiltonian $\hat{{H}}$ in the second quantized form in the real space, $\hat{{H}}=\sum_{{i,j}} t(R_i-R_j) c^\dagger(R_i) c(R_j)$, where $i,j$ are summed over the entire real space.  
-Define the Fourier transformation $c^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
-This leads to the inverse Fourier transformation $c^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is first Brillouin zone.  
+Define the Fourier transform $c^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transform $c^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is first Brillouin zone.  
 Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}$, we get  
 $$\hat{{H}} = \sum_{{i,j}} t(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c(k_2) e^{{i k_2 \cdot R_j}} =\frac{{1}}{{N}} \sum_{{i,j}}\sum_{{k_1,k_2}} c^\dagger(k_1)  c(k_2)  e^{{-i k_1\cdot R_i}} e^{{i k_2 \cdot R_j}} t(R_i-R_j) $$
 Now make a replacement by defining $n= R_i-R_j$  
@@ -224,15 +224,15 @@ $$\hat{{H}}=\sum_{{k}} E(k) c^\dagger(k)  c(k)$$
 ## Convert interacting Hamiltonian in real space to momentum space (lattice version)
 **Prompt:**  
 You will be instructed to convert the interacting Hamiltonian, {second_int_symbol}, in the {single-particle|second-quantized} form the basis in real space to the basis in momentum space.
-To do that, you should apply the Fourier transformation to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transformation. [Note that interaction have no position dependence now]  
+To do that, you should apply the Fourier transform to {real_creation_op} in the real space to the {momentum_creation_op} in the momentum space, which is defined as {definition_of_Fourier_Transformation}, where {real_variable} is integrated over all sites in the entire real space, and {momentum_var} is defined within the first Brillouin zone. You should follow the EXAMPLE below to apply the Fourier transform. [Note that interaction have no position dependence now]  
 You should recall that {second_int_symbol} is {expression_int}.
 Express {second_int_symbol} in terms of {momentum_creation_op}. Simplify any summation index if possible.  
 
 ===  
 EXAMPLE:  
 Write an interacting Hamiltonian $\hat{{H}}^{{int}}$ in the second quantized form in the real space, $\hat{{H}}^{{int}}=\sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) c_s^\dagger(R_i) c_{{s'}}^\dagger(R_j) c_{{s'}}(R_j) c_s(R_i)$, where $i,j$ are summed over the entire real space.  
-Define the Fourier transformation $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
-This leads to the inverse Fourier transformation $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
+Define the Fourier transform $c_s^\dagger(k)=\frac{{1}}{{\sqrt{{N}}}} \sum_{{i}}c_s^\dagger(R_i) e^{{i k \cdot R_i}}$, where $i$ is integrated over the entire real space containing $N$ unit cells, $N$ is the number of unit cells.  
+This leads to the inverse Fourier transform $c_s^\dagger(R_i) = \frac{{1}}{{\sqrt{{N}}}} \sum_k c_s^\dagger(k) e^{{-i k \cdot R_i}}$, where $k$ is summed over the first Brillouin zone.  
 Thus, substitute $c^\dagger(R_i)$ and $c(R_j)$ into $\hat{{H}}^{{int}}$, we get  
 $$\hat{{H}}^{{int}} = \sum_{{s,s'}}\sum_{{i,j}} U(R_i-R_j) \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_1}} c_s^\dagger(k_1) e^{{-i k_1 \cdot R_i}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_2}} c_{{s'}}^\dagger(k_2) e^{{-i k_2 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_3}} c_{{s'}}(k_3) e^{{i k_3 \cdot R_j}} \frac{{1}}{{\sqrt{{N}}}} \sum_{{k_4}} c_s(k_4) e^{{i k_4 \cdot R_i}}=\sum_{{s,s'}}\sum_{{i,j}}\frac{{1}}{{N^2}}\sum_{{k_1,k_2,k_3,k_4}}U(R_i-R_j)c_s^\dagger(k_1)c_{{s'}}^\dagger(k_2)c_{{s'}}(k_3)c_s(k_4)e^{{-i(k_1-k_4)\cdot R_i}} e^{{-i(k_2-k_3)\cdot R_j}}$$
 Now make a replacement by defining $n= R_i-R_j$  

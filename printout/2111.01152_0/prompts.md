@@ -352,7 +352,7 @@ Here I provide the notation you should use for this task. You should combine it 
 In the response, you will first repeat the instruction for execution and then proceed with the calculation.
 '''
 You will be instructed to convert the total noninteracting Hamiltonian in the second quantized form from the basis in real space to the basis by momentum space.  
-To do that, you should apply the Fourier transformation to $\psi_{\tau,l}^\dagger(r)$ in the real space to the $c_{\tau,l}^\dagger(k)$ in the momentum space, which is defined as $c_{\tau,l}^\dagger(k)= \frac{1}{\sqrt{V}} \int dr \psi_{\tau,l}^\dagger(r) e^{i k \cdot r}$, where $\bm{r}$ is integrated over the entire real space. You should follow the EXAMPLE below to apply the Fourier transformation.  
+To do that, you should apply the Fourier transform to $\psi_{\tau,l}^\dagger(r)$ in the real space to the $c_{\tau,l}^\dagger(k)$ in the momentum space, which is defined as $c_{\tau,l}^\dagger(k)= \frac{1}{\sqrt{V}} \int dr \psi_{\tau,l}^\dagger(r) e^{i k \cdot r}$, where $\bm{r}$ is integrated over the entire real space. You should follow the EXAMPLE below to apply the Fourier transform.  
 Express the total noninteracting Hamiltonian $\hat{H}^{0}$ in terms of $c_{\tau,l}^\dagger(k)$. Simplify any summation index if possible.  
 
 Use the following conventions for the symbols (You should also obey the conventions in all my previous prompts if you encounter undefined symbols. If you find it is never defined or has conflicts in the conventions, you should stop and let me know):  
@@ -373,11 +373,11 @@ the zero vector).
 ===  
 EXAMPLE:  
 Write a Hamiltonian $\hat{H}$ in the second quantized form, $\hat{H}=\int dr \psi(r)^\dagger H(r) \psi(r)$, where $r$ is integrated over the entire real space.  
-Define the Fourier transformation $c^\dagger(k)=\frac{1}{\sqrt{V}} \int \psi^\dagger(r) e^{i k \cdot r} dr$, where $r$ is integrated over the entire real space, and $V$ is the area of the unit cell in the real space.  
-This leads to the inverse Fourier transformation $\psi^\dagger(r) = \frac{1}{\sqrt{V}} \sum_k c^\dagger(k) e^{-i k \cdot r}$, where $k$ is summed over the extended Brillouin zone (i.e., the entire momentum space), $\Omega$ is the area of Brillouin zone in the momentum space.  
+Define the Fourier transform $c^\dagger(k)=\frac{1}{\sqrt{V}} \int \psi^\dagger(r) e^{i k \cdot r} dr$, where $r$ is integrated over the entire real space, and $V$ is the area of the unit cell in the real space.  
+This leads to the inverse Fourier transform $\psi^\dagger(r) = \frac{1}{\sqrt{V}} \sum_k c^\dagger(k) e^{-i k \cdot r}$, where $k$ is summed over the extended Brillouin zone (i.e., the entire momentum space), $\Omega$ is the area of Brillouin zone in the momentum space.  
 Thus, substitute $\psi^\dagger(r)$ and $\psi(r)$ into $\hat{H}$, we get  
 $$\hat{H} = \int dr \frac{1}{\sqrt{V}} \sum_{k_1} c^\dagger(k_1) e^{-i k_1 \cdot r} H(r) \frac{1}{\sqrt{V}} \sum_{k_2} c(k_2) e^{i k_2 \cdot r} =\sum_{k_1,k_2} c^\dagger(k_1) \frac{1}{V} \int dr e^{-i (k_1-k_2)\cdot r} H(r) c(k_2) = \sum_{k_1,k_2} c^\dagger(k_1) H(k_1,k_2) c(k_2)$$  
-, where we define the Fourier transformation of $H(r)$ as $H(k_1,k_2)=\frac{1}{V} \int dr e^{-i (k_1-k_2)\cdot r} H(r)$.
+, where we define the Fourier transform of $H(r)$ as $H(k_1,k_2)=\frac{1}{V} \int dr e^{-i (k_1-k_2)\cdot r} H(r)$.
 '''
 
 # Particle-hole transformation
