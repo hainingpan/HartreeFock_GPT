@@ -195,7 +195,7 @@
   answer: |
       $$h_{\uparrow} = \left( \begin{array}{cc} E_g/2 + \frac{(\bm k - \bm Q)^2}{2m_e} & A(\bm k ) \\ A(\bm k ) & -E_g/2 - \frac{(\bm k + \bm Q)^2}{2m_h} \end{array} \right)$$
       and
-      $$h_{\downarrow} = \left( \begin{array}{cc} E_g/2 + \frac{(\bm k + \bm Q)^2}{2m_e} & A(\bm k ) \\ A(\bm k ) & -E_g/2 - \frac{(\bm k + \bm Q)^2}{2m_h} \end{array} \right)$$
+      $$h_{\downarrow} = \left( \begin{array}{cc} E_g/2 + \frac{(\bm k - \bm Q)^2}{2m_e} & -A(\bm k ) \\ -A(\bm k ) & -E_g/2 - \frac{(\bm k + \bm Q)^2}{2m_h} \end{array} \right)$$
   score: 
     in_paper: 2
     prompt_quality: 1
@@ -203,6 +203,7 @@
     physics_logic: 1
     math_derivation: 2
     final_answer_accuracy: 0
+    # diagonal terms should have opposite momentum shift
 - task: Construct interaction Hamiltonian (momentum space)
   source:
     2112.07523.tex:
