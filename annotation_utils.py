@@ -306,7 +306,7 @@ def render_as_markdown_row_nohtml(df, index, dirpath):
   score_prompt = score_prompt.replace('\end{equation}', '')
   
   render = f"""
-  ### {index}: {paper}, {task}
+  ### arXiv:{paper}, {task}
   
   **SCORE PROMPT**: {score_prompt}
   
