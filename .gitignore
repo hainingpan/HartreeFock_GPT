@@ -9,3 +9,11 @@ replace.sh
 __pycache__/
 legacy.md
 replace.sh
+*.svg
+3?.pdf
+4?.pdf
+SM_?.pdf
+obs-del
+schematic.pdf
+*.bak
+*.code-workspace
