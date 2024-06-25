@@ -1,0 +1,380 @@
+# Logic: if H0 + HF is well documented in the paper, then just use the original equation. Otherwise, use the equation derived by GPT
+- arxiv: 1010.1819
+  gt: |
+    \begin{equation}
+    \label{hamil}
+    {H}_0= 
+    \begin{pmatrix}
+        0 & \gamma_0 f & \gamma_4 f & \gamma_3 f^*   \\
+    \gamma_0 f^*    & 0 & \gamma_1 & \gamma_4 f  \\
+    \gamma_4 f^*   & \gamma_1 & 0 &  \gamma_0 f  \\
+    \gamma_3 f & \gamma_4 f^* & \gamma_0 f^* & 0
+    \end{pmatrix}
+    \end{equation}
+    where
+    \begin{eqnarray}
+    f\left( {\bf k} \right) &=&   e^{ i k_y a / \sqrt{3} } \left( 1 + 2 e^{-i 3 k_{y} a / 2\sqrt{3}}  
+                                          \cos \left(  \frac{k_x a}{2} \right)    \right)  
+    \end{eqnarray}
+    $V^{HF}_{quadratic} = \frac{1}{A} \sum_{\lambda, \lambda^{\prime}, k_1, k_2}  \langle c_{k_1,\lambda}^\dagger c_{k_1,\lambda} \rangle c_{k_2,\lambda^{\prime}}^\dagger c_{k_2,\lambda^{\prime}}  \times V(0) - \frac{1}{A} \sum_{\lambda, \lambda^{\prime}, k_1, k_2}  \langle c_{k_1,\lambda}^\dagger c_{k_1,\lambda^{\prime}} \rangle c_{k_2,\lambda^{\prime}}^\dagger c_{k_2,\lambda}  \times V(k_1-k_2)$
+
+
+- arxiv: 1106.6060
+  gt: |
+    \begin{equation}
+      \HH_{\rm MF} = \sum_{\kk, s} \hat{C}^{\dag}_{\kk s}\HH_{\kk s}\hat{C}^{\phantom{\dag}}_{\kk s} + f(n^{p}, \eta)
+      \label{eq:mfhamiltonian}
+    \end{equation}
+    with $\hat{C}^{\dag}_{\kk s} = (\hat{p}^{\dag}_{x\kk s}, \hat{p}^{\dag}_{y\kk s}, \hat{d}^{\dag}_{\kk s})$,
+    \begin{equation}
+      \HH_{\kk s} = \left(\begin{array}{ccc} \xi_{x}& \gamma_2(\kk)& \gamma_1(k_x)\\ \gamma_2(\kk)&\xi_{y}& \gamma_1(k_y)\\ \gamma_1(k_x)& \gamma_1(k_y)&\xi_{d}\end{array}\right)
+      \label{eq:h0k}
+    \end{equation}
+    and
+    \begin{equation}
+      \frac{f(n^{p}, \eta)}{N} = -\tilde{U}_{p} \frac{(n^{p})^2}{8} + \tilde{V}_{pp}\frac{\eta^{2}}{8} - \tilde{U}_{d}\frac{(n-n^{p})^2}{4}.
+      \label{eq:mutilde}
+    \end{equation}
+    Here, $n$ is the total
+    density of holes, $n^p$ is the total
+    density of holes on the oxygen sites, i.e., 
+    \begin{equation}
+      n^p\equiv (n_{x\uparrow}^p+n_{x\downarrow}^{p}) + (n_{y\uparrow}^p + n_{y\downarrow}^p),
+      \label{eq:np}
+    \end{equation}
+    and the nematic order parameter $\eta$ is defined in Eq.\eqref{eq:eta}.
+    The elements of the matrix~\eqref{eq:h0k} are given by
+    \begin{eqnarray}
+      \gamma_1(k_i) &=& -2t_{pd}\cos\frac{k_i}{2}, \label{eq:gammas}\\
+      \gamma_2(\kk) &=& -4t_{pp}\cos\frac{k_x}{2}\cos\frac{k_y}{2},
+    \end{eqnarray}
+    and
+    \begin{eqnarray}
+      \xi_{x} &=& \Delta + \tilde{U}_{p} \frac{n^{p}}{4} - \tilde{V}_{pp}\frac{\eta}{4} - \mu,\\
+      \xi_{y} &=& \Delta + \tilde{U}_{p} \frac{n^{p}}{4} + \tilde{V}_{pp}\frac{\eta}{4} - \mu,\\
+      \xi_{d} &=& \tilde{U}_{d} \frac{(n-n^p)}{2} - \mu,
+      \label{eqn:diag}
+    \end{eqnarray}
+    and also, we introduced the effective interaction parameters
+    \begin{eqnarray}
+      \tilde{U}_{p} &=& U_{p} + 8V_{pp} - 8 V_{pd},\label{eq:Uptilde}\\
+      \tilde{V}_{pp} &=&  8V_{pp} - U_{p},\label{eq:Vptilde}\\
+      \tilde{U}_{d} &=& U_{d} - 4V_{pd}.
+      \label{eq:Udtilde}
+    \end{eqnarray}
+    In addition, we have put all the constant terms, i.e. $2V_{pd}n - V_{pd}n^2$, into the chemical potential $\mu$.
+    The mean-field Hamiltonian~\eqref{eq:mfhamiltonian} can be diagonalized to yield three bands
+    each with mixed orbital character and dispersion $\xi_{\alpha\kk s}$, where $\alpha=1,2,3$ is the
+    band index for the lowest lying and the two upper bands.  
+
+- arxiv: 1208.0116
+  gt: |
+    \begin{equation}
+    \label{hamil}
+    {H}_0=  -
+    \begin{pmatrix}
+        0                    &    \gamma_0 f         &   0 %\gamma_4 f   
+          &   \gamma_3 f^* + \gamma_N  &  0    &   \gamma_2   \\
+    \gamma_0 f^*    &      0                        &   \gamma_1      &   %\gamma_4 f      
+    &  0    &   0 \\
+    %\gamma_4 f^*
+    0 &       \gamma_1        &                     0   &   \gamma_0 f      &  0 %\gamma_4 f    
+    &   \gamma_3 f^* \\
+    \gamma_3 f   + \gamma_N^*    &   0 %\gamma_4 f^*       
+    & \gamma_0 f^*   &    0    &      \gamma_1    &   0   \\
+    0                        &   0                           &  0  %\gamma_4 f^{*}             
+    &   \gamma_1     &     0    &   \gamma_0 f   \\
+    \gamma_2                        &   0                           & \gamma_3 f                       &    0    &     \gamma_0 f^*    &   0   \\
+    \end{pmatrix}
+    \end{equation}
+    where
+    \begin{eqnarray}
+    f\left( {\bf k} \right) &=&    e^{ i k_y a / \sqrt{3} } \left( 1 + 2 e^{-i 3 k_{y} a / 2\sqrt{3}}  
+                                          \cos \left(  \frac{k_x a}{2} \right)    \right)  
+    \end{eqnarray}
+    with $a = 2.46 \AA$ using the same triangular lattice vector convention as in Ref. [\onlinecite{dirachf,jeilbilayer}].
+    \begin{eqnarray}
+    \label{hfgen}
+    V_{HF} &=& \sum_{{\bf k} \lambda \lambda^{\prime}} U_H^{\lambda \lambda^{\prime}}
+    \left[ \sum_{{\bf k}^{\prime}}
+    \left<  c^{\dag}_{{\bf k}^{\prime} \lambda^{\prime}} c_{{\bf k}^{\prime} \lambda^{\prime}} \right>  \right]
+    c^{\dag}_{{\bf k} \lambda} c_{{\bf k} \lambda}   \nonumber  \\  %
+    &-& \sum_{{\bf k}^{\prime}\lambda \lambda^{\prime}} U_{X}^{\lambda \lambda'}
+    \left({\bf k}^{\prime} - {\bf k} \right)
+    \left<  c^{\dag}_{{\bf k}^{\prime} \lambda^{\prime}} c_{{\bf k}^{\prime} \lambda} \right>
+    c^{\dag}_{{\bf k} \lambda} c_{{\bf k} \lambda^{\prime}} 
+    \end{eqnarray}
+    where $c^{\dag}_{{\bf k} \lambda}$, $c_{{\bf k} \lambda}$ are Bloch state creation and 
+    annihilation operators, and $\lambda = (l,\sigma)$ lumps lattice and spin indices. 
+    The Hartree and Exchange Coulomb integrals in Eq.(~\ref{hfgen}), 
+    \begin{eqnarray}
+    U_H^{l l^{\prime}} &=&  \frac{1}{A} \sum_{\bf G} e^{ i {\bf G} \cdot \left({\bf s}_{l} - {\bf s}_{l^{\prime}} \right) } 
+    \left| \widetilde{f}\left( \left| {\bf G}   \right|\right) \right|^2 \,\, \widetilde{V}^{l l^{\prime}} \left( \left|  {\bf G}   \right|  \right)  \label{mom1}
+    \\
+    U_X^{l \, l^{\prime}} \left( {\bf q} \right)    
+    &=& \frac{1}{A} \sum_{\bf G} \; e^{  i {\bf G} \cdot \left({\bf s}_{l} - {\bf s}_{l^{\prime}} \right) } 
+    \left| \widetilde{f} \left( \left| {\bf q}  -  {\bf G}  \right|\right) \right|^2 \,\, \widetilde{V}^{l l^{\prime}}
+    \left( \left|  {\bf q} - {\bf G}  \right|  \right), \quad \quad   \label{mom2}
+    \end{eqnarray}
+
+- arxiv: 1310.2674
+  gt: |
+    $\hat{H}_{\mathrm 0} = \sum_{\bf k,\alpha,\sigma} \epsilon_{\alpha} d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k,\alpha,\sigma} - \sum_{\bf k,\alpha,\beta,\sigma} t^{\alpha\beta}_{\bf k} d^{\dagger}_{\bf k,\alpha,\sigma} d^{\phantom\dagger}_{\bf k,\beta,\sigma}$ where $t^{\alpha\beta}_{\bf k} = \sum_{\langle i,j \rangle} t^{\alpha\beta}_{ij} e^{-i k \cdot (R_i - R_j)}$ is the Fourier transform of the hopping term. 
+    $\hat{H}_{\rm {int}}^{HF,2} = \sum_{\alpha,\alpha^\prime,\beta,\beta^\prime,\sigma,\sigma^\prime}\sum_{\bm k} 
+    U^{\sigma,\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}(0)  
+    \left[ \langle d^{\dagger}_{\bm k,\alpha,\sigma} d^{\phantom\dagger}_{\bm k,\beta,\sigma} \rangle d^{\dagger}_{\bm k,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bm k,\beta^\prime,\sigma^\prime} - \langle d^{\dagger}_{\bm k,\alpha,\sigma} d^{\phantom\dagger}_{\bm k,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bm k,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bm k,\beta,\sigma} \right]$
+
+- arxiv: 1508.00296
+  gt: |
+    $T = 
+    t_{\rm N} \sum_{k, \sigma} a^{\dagger}_{k \sigma} a_{k \sigma} \sum_n e^{-ik\cdot n} + 
+    t_{\rm B} \sum_{k, \sigma} b^{\dagger}_{k \sigma} b_{k \sigma} \sum_n e^{-ik\cdot n} +
+    t_{\rm BN} \sum_{k, \sigma} (a^{\dagger}_{k \sigma} b_{k \sigma} \sum_{n'} \exp{-ik\cdot n'} + b^{\dagger}_{k \sigma} a_{k \sigma} \sum_{n'} \exp{ik\cdot n'}) + 
+    \Delta \sum_{k, \sigma} a^{\dagger}_{k \sigma} a_{k \sigma} $
+    $\hat{H}^{int,Hartree} = \frac{U_{\rm B}}{N} \sum_{k, \sigma \neq \sigma'}  
+    \langle b^{\dagger}_{k, \sigma} b_{k, \sigma} \rangle b^{\dagger}_{k, \sigma'} b_{k, \sigma'} + 
+    \frac{U_{\rm N}}{N} \sum_{k, \sigma \neq \sigma'}  
+    \langle a^{\dagger}_{k, \sigma} a_{k, \sigma} \rangle a^{\dagger}_{k, \sigma'} a_{k, \sigma'} + 
+    \frac{2V_{\rm B} }{N} \sum_{k, \sigma, \sigma'}  
+    \langle b^{\dagger}_{k, \sigma} b_{k, \sigma} \rangle b^{\dagger}_{k, \sigma'} b_{k, \sigma'} + 
+    \frac{V_{\rm BN}}{N} \sum_{k, \sigma, \sigma'}  
+    \langle b^{\dagger}_{k, \sigma} b_{k, \sigma} \rangle a^{\dagger}_{k, \sigma'} a_{k, \sigma'}+ \langle a^{\dagger}_{k, \sigma} a_{k, \sigma} \rangle b^{\dagger}_{k, \sigma'} b_{k, \sigma'}$
+
+- arxiv: 1812.04213
+  gt: |
+    The spinless single particle Hamiltonian projected onto valley K takes the form:
+    \begin{align}
+    \mathcal{\hat{H}}^{\rm{K}}_{0} = 
+    \begin{pmatrix}
+    h_{\theta/2}(\bm{k}) & h_{T}(\bm{r})\\
+    h^\dagger_{T}(\bm{r})  & h_{-\theta/2}(\bm{k}')
+    \end{pmatrix} \label{ham}
+    \end{align}
+    where $\hat{h}_{\pm \theta/2}$ are the Dirac Hamiltonians for isolated rotated graphene layers,
+    \begin{align}
+    h_{\theta}(\bm{k}) = -\hbar v_D |\bar{\bm{k}}| 
+    \begin{pmatrix}
+    0 & e^{i (\theta_{\bar{\bm{k}}}- \theta)} \\
+    e^{-i  (\theta_{\bar{\bm{k}}}- \theta)}  & 0
+    \end{pmatrix},
+    \end{align}
+    $\theta_{\bar{\bm{k}}}$ is the orientation angle of momentum measured from the Dirac point 
+    $\bar{\bm{k}}=\bm{k}-\bm{K}_{\theta}$.  ($\bm{K}_{\pm\theta/2}$ is the Dirac momentum of top(bottom) layer.)
+    Due to the moir\'{e} periodic modulation, interlayer tunneling is accompanied by momentum boosts 
+    $\bm{q}_j=\bm{0}$, $\bm{b}_1$ or $\bm{b}_2$ for $j=0, 1, 2$ respectively.
+    $\bm{b}_{1,2}=(\pm 1/2,\sqrt{3}/2)4\pi/(\sqrt{3}a_M)$
+    are the basis vectors of moir\'{e} reciprocal lattice, where $a_M=a/(2\sin(\theta/2))$ is the lattice constant of moire pattern 
+    and $a$ the lattice constant of monolayer graphene.
+    The spatial modulation of the tunneling Hamiltonian takes the form:
+    \begin{align}
+    h_T(\bm{r}) = \sum_{j=0}^3 T_j e^{-i\bm{q}_j\cdot \bm{r}}
+    \end{align}
+    where
+    \begin{align}
+    T_j = \omega_0\sigma_0 + \omega_1\cos(j\phi)\sigma_x + \omega_1\sin(j\phi)\sigma_y
+    \end{align}
+    \begin{align}
+    \Sigma^{H}_{\alpha, \bm{G}; \beta, \bm{G}'}(\bm{k}) 
+    = \frac{1}{A} \sum_{\alpha'}
+    V_{\alpha'\alpha}(\bm{G}'-\bm{G}) 
+    \delta \rho_{\alpha'\alpha'}(\bm{G}-\bm{G}')  \delta_{\alpha\beta}
+    \label{hartreese}
+    \end{align}
+    and
+    \begin{align}
+    \Sigma^{F}_{\alpha, \bm{G}; \beta, \bm{G}'}(\bm{k}) 
+    =-\frac{1}{A}\sum_{\bm{G}'', \bm{k}'}&
+    V_{\alpha\beta}(\bm{G}''+\bm{k}'-\bm{k}) \notag\\
+    &\times\delta \rho_{\alpha, \bm{G}+\bm{G}'';\beta, \bm{G}'+\bm{G}''} (\bm{k}')
+    %\rho_{\beta, \bm{G}'+\bm{G}'';\alpha, \bm{G}+\bm{G}''} (\bm{k}')
+    \label{fockse}
+    \end{align}
+    where $\delta\rho = \rho -\rho_{\rm{iso}}$ is the density matrix defined relative to that
+    of isolated rotated graphene layers each filled up to the charge neutrality point.
+    The density-matrix $\rho$ is defined in a plane wave basis as:
+    \begin{align}
+    %\rho_{\alpha,\bm{G};\beta,\bm{G}'}(\bm{k}) = \sum_{n} \; z^{n*}_{\alpha,\bm{G},\bm{k}}z^n_{\beta,\bm{G}',\bm{k}} --> change to standard convention
+    \rho_{\alpha,\bm{G};\beta,\bm{G}'}(\bm{k}) = \sum_{n} \; z^{n*}_{\beta,\bm{G}',\bm{k}}z^n_{\alpha,\bm{G},\bm{k}}
+    \end{align}
+    where the summation is over filled bands.
+    We have also used
+    $\delta \rho_{\alpha\beta}(\bm{G})\equiv\sum_{\bm{k},\bm{G}_1}\delta \rho_{\alpha,\bm{G}_1+\bm{G}; \beta, \bm{G}_1}(\bm{k})$
+    in Eq.~\ref{hartreese}.
+    $z_{\alpha, \bm{G},\bm{k}}^n$ is a numerical 
+    eigenvector in the  plane-wave expansion,
+    \begin{align}
+    |\psi_{n,\bm{k}} \rangle = \sum_{\alpha, \bm{G}} z_{\alpha, \bm{G},\bm{k}}^n |\psi_{\alpha, \bm{G}+\bm{k}}\rangle,
+    \end{align}
+    obtained by diagonalizing the total Hamiltonian
+    \begin{align}
+    \mathcal{H} = \mathcal{H}^{\rm{K}}_0 +  \Sigma^{\rm{H}} + \Sigma^{\rm{F}}.
+    \end{align}
+
+- arxiv: 2004.04168
+  gt: |
+    $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$
+    $\hat{H}_{Kinetic} = \sum_{s, k} E_s(k) c^\dagger_s(k)  c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$
+    $H_{\text{Hartree}} = \frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(0) \langle c_s^\dagger(k_1) c_s(k_1) \rangle c_{s'}^\dagger(k_2) c_{s'}(k_2)$
+    $H_{\text{Fock}} = -\frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(k_1 - k_2) \langle c_s^\dagger(k_1) c_{s'}(k_1) \rangle c_{s'}^\dagger(k_2) c_s(k_2)$
+    $U(k) = \sum_{n} U(n) e^{-i k \cdot n}$
+
+- arxiv: 2008.08998
+  gt: |
+    $$H_0 = -\sum_{s}\sum_{\bm{k}}\sum_{\bm{n}} t_{s}(\bm{n}) e^{-i \bm{k} \cdot \bm{n}} c_{\bm{k},s}^\dagger c_{\bm{k},s}$$
+    $H_{\text{Hartree}} = \frac{1}{\mathcal{N}}\sum_{s,s'} \sum_{\bm{p},\bm{q}} U(\bm{q}_\alpha-\bm{q}_\delta)\delta_{\bm{q}_\alpha+\bm{q}_\beta,\bm{q}_\gamma+\bm{q}_\delta} \langle c_{\bm{q}_\alpha,s}^\dagger(\bm{p}_\alpha) c_{\bm{q}_\delta,s}(\bm{p}_\alpha) \rangle c_{\bm{q}_\beta,s'}^\dagger(\bm{p}_\beta) c_{\bm{q}_\gamma,s'}(\bm{p}_\beta)$
+    $H_{\text{Fock}} = -\frac{1}{\mathcal{N}}\sum_{s,s'} \sum_{\bm{p},\bm{q}} U(\bm{p}_\alpha+\bm{q}_\alpha-\bm{p}_\beta-\bm{q}_\delta)\delta_{\bm{q}_\alpha+\bm{q}_\beta,\bm{q}_\gamma+\bm{q}_\delta} \langle c_{\bm{q}_\alpha,s}^\dagger(\bm{p}_\alpha) c_{\bm{q}_\gamma,s'}(\bm{p}_\alpha) \rangle c_{\bm{q}_\beta,s'}^\dagger(\bm{p}_\beta) c_{\bm{q}_\delta,s}(\bm{p}_\beta)$
+    $U(k) = \sum_{n} U(n) e^{-i k \cdot n}$
+
+- arxiv: 2012.04554
+  gt: |
+    $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$
+    $H = -\sum_{s}\sum_{k} E_s(k) c_{k,s}^\dagger c_{k,s}$
+    $H_{\text{Hartree}} = \frac{1}{N} \sum_{s,s'} \sum_{k_1,k_3} U(0) \langle c_{k_1,s}^\dagger c_{k_1,s} \rangle c_{k_3,s'}^\dagger c_{k_3,s'}$
+    $H_{Fock} = -\frac{1}{N} \sum_{s,s'} \sum_{k_1,k_2} U(k_2-k_1)  \langle c_{k_1,s}^\dagger c_{k_1,s'} \rangle c_{k_2,s'}^\dagger c_{k_2,s}$
+
+- arxiv: 2108.02159
+  gt: |
+    \begin{equation}
+    \Delta(\mathbf{r}) = \sum_{j=1}^6 V_j \exp\[i\mathbf{b}_j\cdot\mathbf{r}\],
+    \end{equation}
+    where $V_j = V_M\exp\[(-1)^{j-1}i\phi\]$.  $V_j$ and $\phi$ are material-dependent parameters, with 
+    $V_M$ characterizing the moir\'e modulation strength and $\phi$ its shape.
+    The single-particle Hamiltonian of the moir\'e continuum model 
+    \begin{align}
+        H_{0} = T + \Delta(\mathbf{r}),\label{eq:model}
+    \end{align}
+    where $T$ is the single-particle kinetic energy operator for electrons with effective mass $m^*$,
+    is spin-independent.  In a plane-wave representation
+    \begin{align}
+        {H_{0}}_{\b{b},\b{b}'}(\b{k}) 
+        = -\frac{\hbar^2}{2m^*}\(\b{k}+\b{b}\)^2 \, \delta_{\b{b},\b{b}'} + \sum_{j=1}^6 V_j\delta_{\b{b}_j,\b{b}-\b{b}'},
+    \end{align}
+    where momentum $\b{k}$ is in the first moir\'e Brillouin zone and the $\b{b}$'s are moir\'e reciprocal lattice vectors.
+    The mean-field electronic structure of moir\'e superlattices is best 
+    evaluated using a plane-wave representation in which the Hartree-Fock self energy $\Sigma^{HF}$ at each 
+    $\b{k}$ in the Brillouin-zone is a matrix in reciprocal lattice vectors $\b{b}$:
+    \begin{widetext}
+    \begin{equation}
+        \Sigma^{HF}_{\alpha,\b{b};\beta,\b{b}'}(\b{k}) = \frac{\delta_{\alpha,\beta}}{A}\sum_{\alpha'}V_{\alpha'\alpha}(\b{b}'-\b{b})\sum_{\b{k}',\b{b}''}\rho_{\alpha',\b{b}+\b{b}'';\alpha',\b{b}'+\b{b}''}(\b{k}')  -\frac{1}{A}\sum_{\b{b}'',k'}V_{\alpha\beta}(\b{b}''+\b{k}'-\b{k})\rho_{\alpha,\b{b}+\b{b}'';\beta,\b{b}'+\b{b}''}(\b{k}').
+    \label{eq:self-energy}
+    \end{equation}
+    \end{widetext}
+
+
+- arxiv: 2110.11330
+  gt: |
+    If we define the energy dispersion $E_{s}(\bm{k})=\sum_{\bm{n}} t_{s}(\bm{n}) e^{-i \bm{k} \cdot \bm{n}}$, where $\bm{n}$ is the summation of all hopping pairs, the Hamiltonian in the momentum space is:
+    $$H = -\sum_{s}\sum_{\bm{k}} E_{s}(\bm{k}) c_{\bm{k},s}^\dagger c_{\bm{k},s}$$
+    $U_{s,s'}(\bm{k})=\sum_{\bm{n}} U(\bm{n}) e^{-i \bm{k} \cdot \bm{n}}$, where $\bm{n}$ is the summation of all hopping pairs
+    $H_{\text{Hartree}} = \frac{1}{N}\sum_{s,s'}\sum_{k,k'} U(0) \langle c_{k,s}^\dagger c_{k,s}\rangle c_{k',s'}^\dagger c_{k',s'}$
+    $H_{\text{Fock}} = -\frac{1}{N}\sum_{s,s'}\sum_{k,q} U(k-q)  \langle c_{k,s}^\dagger c_{k,s'} \rangle c_{q,s'}^\dagger c_{q,s} $
+
+- arxiv: 2111.01152
+  gt: |
+    $H_{Kinetic}(r) = \begin{pmatrix} -\frac{\hbar^2 k^2}{2 m_b} & 0 & 0 & 0 \\ 0 & -\frac{\hbar^2 (k-\kappa)^2}{2 m_t} & 0 & 0 \\ 0 & 0 & -\frac{\hbar^2 k^2}{2 m_b} & 0 \\ 0 & 0 & 0 & -\frac{\hbar^2 (k+\kappa)^2}{2 m_t} \end{pmatrix}$
+    $H_{Potential}(r) = \begin{pmatrix} \Delta_b(r) & \Delta_{T,+K}(r) & 0 & 0 \\ \Delta_{T,+K}^*(r) & \Delta_t(r) & 0 & 0 \\ 0 & 0 & \Delta_b(r) & \Delta_{T,-K}(r) \\ 0 & 0 & \Delta_{T,-K}^*(r) & \Delta_t(r) \end{pmatrix}$
+    $V(\bm{k}_{\alpha}-\bm{k}_{\delta})=2\pi e^2\tanh(|\bm{k}_{\alpha}-\bm{k}_{\delta}|d)/(\epsilon |\bm{k}_{\alpha}-\bm{k}_{\delta}|)$
+    $H_{\text{Hartree}} = \frac{1}{V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,q_1,q_2,q_3,q_4} \langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_1,\tau_1,q_4}(k_1) \rangle b_{l_2,\tau_2,q_2}^\dagger(k_2) b_{l_2,\tau_2,q_3}(k_2)  V(|q_1-q_4|)\delta_{q_1+q_2,q_3+q_4}$
+    $H_{\text{Fock}} = -\frac{1}{V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,q_1,q_2,q_3,q_4} \langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_2,\tau_2,q_3}(k_1) \rangle b_{l_2,\tau_2,q_2}^\dagger(k_2) b_{l_1,\tau_1,q_4}(k_2) V(|k_1+q_1-k_2-q_4|)\delta_{q_1+q_2,q_3+q_4}$
+
+- arxiv: 2112.07523
+  gt: |
+    \begin{equation} \label{eq:H_BHZ}
+    H_{\rm{BHZ}} = \sum_{\bm k} \psi_{\bm k}^{\dagger} \left(\begin{array}{cc}
+    h_{\uparrow}(\bm k) & 0 \\
+    0 & h_{\downarrow}(\bm k)
+    \end{array}\right) \psi_{\bm k},
+    \end{equation}
+    where the two $2\times 2$ matrices $h_{\uparrow}$ and $h_{\downarrow}$ can be explicitly expressed as
+    \begin{equation} \label{eq:h}
+    \begin{split}
+    h_{\uparrow}(\bm k) &= \left(\begin{array}{cc}
+    \frac{\hbar^2}{2m_e}(\bm k-\frac{\bm Q}{2})^2+\frac{E_g}{2} & A(k_x+ik_y) \\
+    A(k_x-ik_y) & -\frac{\hbar^2}{2m_h}(\bm k+\frac{\bm Q}{2})^2-\frac{E_g}{2}
+    \end{array}\right), \\
+    h_{\downarrow}(\bm k) &= \left(\begin{array}{cc}
+    \frac{\hbar^2}{2m_e}(\bm k-\frac{\bm Q}{2})^2+\frac{E_g}{2} & -A(k_x-ik_y) \\
+    -A(k_x+ik_y) & -\frac{\hbar^2}{2m_h}(\bm k+\frac{\bm Q}{2})^2-\frac{E_g}{2}
+    \end{array}\right).
+    \end{split}
+    \end{equation}
+    \begin{equation}
+    \begin{split}
+    \Sigma_H = \frac{1}{S}\sum_{bb'\atop ss'}\sum_{nn'n''\atop \bm k\bm k'} &V_{bb'}((n'-n)\bm Q) \\
+    \times&\rho_{b's'\,n''}^{b's'\,n''+n'-n}(\bm k') \; a_{bsn'\bm k}^{\dagger} a_{bsn\bm k},
+    \end{split}
+    \end{equation}
+    where the density matrix $\rho$ is defined relative to the density matrix with valence bands filled and conduction bands empty:
+    \begin{equation} \label{eq:rho}
+    \rho_{b's'n'}^{bsn}(\bm k) = \langle a_{b's'n'\bm k}^{\dagger} a_{bsn\bm k} \rangle - \delta_{bb'}\delta_{bv}\delta_{ss'}\delta_{nn'}.
+    \end{equation}
+    For $n'=n$, the Hartree term accounts for the electrostatic potential energy difference $4\pi e^2 n_x d/\epsilon$ between the electron and hole layers, where
+    \begin{equation}
+    n_x = \frac{1}{S} \sum_{sn\bm k} \rho_{csn}^{csn}(\bm k) = -\frac{1}{S} \sum_{sn\bm k} \rho_{vsn}^{vsn}(\bm k)
+    \end{equation}
+    is the exciton density. The Fock term
+    \begin{equation}
+    \begin{split}
+    \Sigma_F = -\frac{1}{S}\sum_{bb'\atop ss'}\sum_{nn'n''\atop \bm k\bm k'} &V_{bb'}((n''-n)\bm Q+\bm k'-\bm k) \\
+    \times&\rho_{bs\,n''}^{b's'\,n''+n'-n}(\bm k') a_{b's'n'\bm k}^{\dagger} a_{bsn\bm k}.
+    \end{split}
+    \end{equation}
+    accounts for the exchange interaction. 
+
+- arxiv: 2308.03843
+  gt: |
+    define $h_{\alpha\beta}(\mathbf{R}_{i}-\mathbf{R}_{j})\equiv t(\mathbf{r}_{\alpha}-\mathbf{r}_{\beta})-\mu\delta_{\alpha\beta}\delta_{ij}$,
+    with $\mathbf{r}_{\alpha}=\tau_{\alpha}+\mathbf{R}_{i}$ the position
+    of the lattice sites and $\mu$ the chemical potential.
+    A HF decomposition of the Hamiltonian reduces the problem to one of diagonalizing the effective Hamiltonian 
+    \begin{equation}
+    \mathcal{H}_{\text{HF}}=\sum_{\mathbf{k},\sigma}\sum_{\alpha\beta}\bar{h}_{\alpha\beta}(\mathbf{k},\sigma)d_{\alpha,\mathbf{k},\sigma}^{\dagger}d_{\beta,\mathbf{k},\sigma}.\label{eq:H_HF}
+    \end{equation}
+    Here $\bar{h}_{\alpha\beta}(\mathbf{k},\sigma)=h_{\alpha\beta}(\mathbf{k})+h_{\alpha\beta}^{\text{H}}(\mathbf{k},\sigma)+h_{\alpha\beta}^{\text{F}}(\mathbf{k},\sigma)$
+    is the renormalized matrix elements due to both Hartree, 
+    \begin{equation}
+    h_{\alpha\beta}^{\text{H}}(\mathbf{k},\sigma)=\delta_{\alpha\beta}\sum_{\gamma,\mathbf{k}^{\prime},\sigma^{\prime}}V_{\beta\gamma}(0)\rho_{\gamma\gamma}(\mathbf{k}^{\prime},\sigma^{\prime}),\label{eq:H_H}
+    \end{equation}
+    and Fock contributions, 
+    \begin{equation}
+    h_{\alpha\beta}^{\text{F}}(\mathbf{k},\sigma)=-\sum_{\mathbf{k}^{\prime}}V_{\alpha\beta}(\mathbf{k}-\mathbf{k}^{\prime})\rho_{\alpha\beta}(\mathbf{k}^{\prime},\sigma).\label{eq:H_F}
+    \end{equation}
+    Each contribution can be cast in terms of the $N_{b}\times N_{b}$
+    zero-temperature density matrix for a given momentum and spin,
+    \begin{equation}
+    \rho_{\alpha\beta}(\mathbf{k},\sigma)=\sum_{n}^{\text{occupied}}\phi_{\alpha,\mathbf{k}}^{(n)}(\sigma)\phi_{\beta,\mathbf{k}}^{(n)*}(\sigma),\label{eq:rho}
+    \end{equation}
+    which is defined as a sum over all occupied bands, with $n=1,\ldots,N_{b}$.
+    The $N_{b}$-component spinors $\phi_{\alpha,\mathbf{k}}^{(n)}(\sigma)$
+    describe the exact eigenvectors of Eq.~\eqref{eq:H_HF}, which need to
+    be calculated self-consistently while enforcing a fixed total number of
+    particles per unit cell. 
+
+- arxiv: 2308.07488
+  gt: |
+    For $K$ valley, the continuum model Hamiltonian reads \cite{wu2019topological,yu2020giant}:
+    \begin{equation}\label{eq:continuum_ham}
+    \begin{aligned}
+    H_K = & \left(
+        \begin{matrix}
+            -\frac{\hbar^2(\bm{k}-\bm{\kappa}_+)^2}{2m^*} + \Delta_b(\bm{r})  & \Delta_T(\bm{r}) \\
+            \Delta_T^{\dagger}(\bm{r}) & -\frac{\hbar^2(\bm{k}-\bm{\kappa}_-)^2}{2m^*} + \Delta_t(\bm{r})
+        \end{matrix}
+    \right) \\ 
+    & + \frac{1}{2}\left(\begin{matrix}
+        \Delta_D & 0 \\
+            0 & -\Delta_D
+        \end{matrix}\right),
+    \end{aligned}
+    \end{equation}
+    where the intralayer and interlayer moir\'e potentials are $\Delta_{b/t}=2V\sum_{i=1,3,5}\cos(\bm{G}_i\cdot\bm{r}\pm\phi)$ and $\Delta_T = w(1+e^{-i \bm{G}_2 \cdot \bm{r}} + e^{-i \bm{G}_3 \cdot \bm{r}})$, respectively.
+    The Coulomb interaction takes the form \cite{chatterjee2020symmetry}
+    \begin{equation}\label{eq:coulomb}
+        V_{ll'}(\bm{q}) = \frac{e^2}{2\epsilon\epsilon_0 |\bm{q}|} \left[\tanh(d_{\rm gate}|\bm{q}|) + (1-\delta_{ll'})(e^{-d |\bm{q}|}-1)\right],
+    \end{equation}
+    $$H_{\rm int}^{MF} = \frac{1}{A} \sum_{l,\tau} \sum_{l',\tau'} \sum_{\bm{k},\bm{k}',\bm{q}} V_{ll'}(\bm{q}) \left[ \langle c_{l \tau \bm{k}+\bm{q}}^{\dagger} c_{l \tau\bm{k}} \rangle c_{l' \tau' \bm{k}' -\bm{q}}^{\dagger} c_{l' \tau' \bm{k}'} - \langle c_{l \tau \bm{k}+\bm{q}}^{\dagger} c_{l' \tau' \bm{k}'} \rangle c_{l' \tau' \bm{k}' -\bm{q}}^{\dagger} c_{l \tau\bm{k}} \right]$$
+
+
+
+
+
