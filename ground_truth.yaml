@@ -17,7 +17,7 @@
                                           \cos \left(  \frac{k_x a}{2} \right)    \right)  
     \end{eqnarray}
     $V^{HF}_{quadratic} = \frac{1}{A} \sum_{\lambda, \lambda^{\prime}, k_1, k_2}  \langle c_{k_1,\lambda}^\dagger c_{k_1,\lambda} \rangle c_{k_2,\lambda^{\prime}}^\dagger c_{k_2,\lambda^{\prime}}  \times V(0) - \frac{1}{A} \sum_{\lambda, \lambda^{\prime}, k_1, k_2}  \langle c_{k_1,\lambda}^\dagger c_{k_1,\lambda^{\prime}} \rangle c_{k_2,\lambda^{\prime}}^\dagger c_{k_2,\lambda}  \times V(k_1-k_2)$
-
+  symmetry: triangular
 
 - arxiv: 1106.6060
   gt: |
@@ -66,6 +66,7 @@
     The mean-field Hamiltonian~\eqref{eq:mfhamiltonian} can be diagonalized to yield three bands
     each with mixed orbital character and dispersion $\xi_{\alpha\kk s}$, where $\alpha=1,2,3$ is the
     band index for the lowest lying and the two upper bands.  
+  symmetry: square
 
 - arxiv: 1208.0116
   gt: |
@@ -116,6 +117,7 @@
     \left| \widetilde{f} \left( \left| {\bf q}  -  {\bf G}  \right|\right) \right|^2 \,\, \widetilde{V}^{l l^{\prime}}
     \left( \left|  {\bf q} - {\bf G}  \right|  \right), \quad \quad   \label{mom2}
     \end{eqnarray}
+  symmetry: triangular
 
 - arxiv: 1310.2674
   gt: |
@@ -123,6 +125,7 @@
     $\hat{H}_{\rm {int}}^{HF,2} = \sum_{\alpha,\alpha^\prime,\beta,\beta^\prime,\sigma,\sigma^\prime}\sum_{\bm k} 
     U^{\sigma,\sigma^\prime}_{\alpha,\alpha^\prime,\beta,\beta^\prime}(0)  
     \left[ \langle d^{\dagger}_{\bm k,\alpha,\sigma} d^{\phantom\dagger}_{\bm k,\beta,\sigma} \rangle d^{\dagger}_{\bm k,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bm k,\beta^\prime,\sigma^\prime} - \langle d^{\dagger}_{\bm k,\alpha,\sigma} d^{\phantom\dagger}_{\bm k,\beta^\prime,\sigma^\prime} \rangle d^{\dagger}_{\bm k,\alpha^\prime,\sigma^\prime} d^{\phantom\dagger}_{\bm k,\beta,\sigma} \right]$
+  symmetry: 3D cubic
 
 - arxiv: 1508.00296
   gt: |
@@ -139,6 +142,7 @@
     \langle b^{\dagger}_{k, \sigma} b_{k, \sigma} \rangle b^{\dagger}_{k, \sigma'} b_{k, \sigma'} + 
     \frac{V_{\rm BN}}{N} \sum_{k, \sigma, \sigma'}  
     \langle b^{\dagger}_{k, \sigma} b_{k, \sigma} \rangle a^{\dagger}_{k, \sigma'} a_{k, \sigma'}+ \langle a^{\dagger}_{k, \sigma} a_{k, \sigma} \rangle b^{\dagger}_{k, \sigma'} b_{k, \sigma'}$
+  symmetry: square
 
 - arxiv: 1812.04213
   gt: |
@@ -209,6 +213,7 @@
     \begin{align}
     \mathcal{H} = \mathcal{H}^{\rm{K}}_0 +  \Sigma^{\rm{H}} + \Sigma^{\rm{F}}.
     \end{align}
+  symmetry: triangular
 
 - arxiv: 2004.04168
   gt: |
@@ -217,6 +222,7 @@
     $H_{\text{Hartree}} = \frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(0) \langle c_s^\dagger(k_1) c_s(k_1) \rangle c_{s'}^\dagger(k_2) c_{s'}(k_2)$
     $H_{\text{Fock}} = -\frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(k_1 - k_2) \langle c_s^\dagger(k_1) c_{s'}(k_1) \rangle c_{s'}^\dagger(k_2) c_s(k_2)$
     $U(k) = \sum_{n} U(n) e^{-i k \cdot n}$
+  symmetry: triangular
 
 - arxiv: 2008.08998
   gt: |
@@ -224,6 +230,7 @@
     $H_{\text{Hartree}} = \frac{1}{\mathcal{N}}\sum_{s,s'} \sum_{\bm{p},\bm{q}} U(\bm{q}_\alpha-\bm{q}_\delta)\delta_{\bm{q}_\alpha+\bm{q}_\beta,\bm{q}_\gamma+\bm{q}_\delta} \langle c_{\bm{q}_\alpha,s}^\dagger(\bm{p}_\alpha) c_{\bm{q}_\delta,s}(\bm{p}_\alpha) \rangle c_{\bm{q}_\beta,s'}^\dagger(\bm{p}_\beta) c_{\bm{q}_\gamma,s'}(\bm{p}_\beta)$
     $H_{\text{Fock}} = -\frac{1}{\mathcal{N}}\sum_{s,s'} \sum_{\bm{p},\bm{q}} U(\bm{p}_\alpha+\bm{q}_\alpha-\bm{p}_\beta-\bm{q}_\delta)\delta_{\bm{q}_\alpha+\bm{q}_\beta,\bm{q}_\gamma+\bm{q}_\delta} \langle c_{\bm{q}_\alpha,s}^\dagger(\bm{p}_\alpha) c_{\bm{q}_\gamma,s'}(\bm{p}_\alpha) \rangle c_{\bm{q}_\beta,s'}^\dagger(\bm{p}_\beta) c_{\bm{q}_\delta,s}(\bm{p}_\beta)$
     $U(k) = \sum_{n} U(n) e^{-i k \cdot n}$
+  symmetry: triangular
 
 - arxiv: 2012.04554
   gt: |
@@ -231,6 +238,7 @@
     $H = -\sum_{s}\sum_{k} E_s(k) c_{k,s}^\dagger c_{k,s}$
     $H_{\text{Hartree}} = \frac{1}{N} \sum_{s,s'} \sum_{k_1,k_3} U(0) \langle c_{k_1,s}^\dagger c_{k_1,s} \rangle c_{k_3,s'}^\dagger c_{k_3,s'}$
     $H_{Fock} = -\frac{1}{N} \sum_{s,s'} \sum_{k_1,k_2} U(k_2-k_1)  \langle c_{k_1,s}^\dagger c_{k_1,s'} \rangle c_{k_2,s'}^\dagger c_{k_2,s}$
+  symmetry: triangular
 
 - arxiv: 2108.02159
   gt: |
@@ -259,6 +267,7 @@
     \label{eq:self-energy}
     \end{equation}
     \end{widetext}
+  symmetry: triangular
 
 
 - arxiv: 2110.11330
@@ -268,6 +277,7 @@
     $U_{s,s'}(\bm{k})=\sum_{\bm{n}} U(\bm{n}) e^{-i \bm{k} \cdot \bm{n}}$, where $\bm{n}$ is the summation of all hopping pairs
     $H_{\text{Hartree}} = \frac{1}{N}\sum_{s,s'}\sum_{k,k'} U(0) \langle c_{k,s}^\dagger c_{k,s}\rangle c_{k',s'}^\dagger c_{k',s'}$
     $H_{\text{Fock}} = -\frac{1}{N}\sum_{s,s'}\sum_{k,q} U(k-q)  \langle c_{k,s}^\dagger c_{k,s'} \rangle c_{q,s'}^\dagger c_{q,s} $
+  symmetry: triangular
 
 - arxiv: 2111.01152
   gt: |
@@ -276,6 +286,7 @@
     $V(\bm{k}_{\alpha}-\bm{k}_{\delta})=2\pi e^2\tanh(|\bm{k}_{\alpha}-\bm{k}_{\delta}|d)/(\epsilon |\bm{k}_{\alpha}-\bm{k}_{\delta}|)$
     $H_{\text{Hartree}} = \frac{1}{V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,q_1,q_2,q_3,q_4} \langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_1,\tau_1,q_4}(k_1) \rangle b_{l_2,\tau_2,q_2}^\dagger(k_2) b_{l_2,\tau_2,q_3}(k_2)  V(|q_1-q_4|)\delta_{q_1+q_2,q_3+q_4}$
     $H_{\text{Fock}} = -\frac{1}{V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,q_1,q_2,q_3,q_4} \langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_2,\tau_2,q_3}(k_1) \rangle b_{l_2,\tau_2,q_2}^\dagger(k_2) b_{l_1,\tau_1,q_4}(k_2) V(|k_1+q_1-k_2-q_4|)\delta_{q_1+q_2,q_3+q_4}$
+  symmetry: triangular
 
 - arxiv: 2112.07523
   gt: |
@@ -320,6 +331,7 @@
     \end{split}
     \end{equation}
     accounts for the exchange interaction. 
+  symmetry: square
 
 - arxiv: 2308.03843
   gt: |
@@ -349,6 +361,7 @@
     describe the exact eigenvectors of Eq.~\eqref{eq:H_HF}, which need to
     be calculated self-consistently while enforcing a fixed total number of
     particles per unit cell. 
+  symmetry: triangular
 
 - arxiv: 2308.07488
   gt: |
@@ -373,6 +386,7 @@
         V_{ll'}(\bm{q}) = \frac{e^2}{2\epsilon\epsilon_0 |\bm{q}|} \left[\tanh(d_{\rm gate}|\bm{q}|) + (1-\delta_{ll'})(e^{-d |\bm{q}|}-1)\right],
     \end{equation}
     $$H_{\rm int}^{MF} = \frac{1}{A} \sum_{l,\tau} \sum_{l',\tau'} \sum_{\bm{k},\bm{k}',\bm{q}} V_{ll'}(\bm{q}) \left[ \langle c_{l \tau \bm{k}+\bm{q}}^{\dagger} c_{l \tau\bm{k}} \rangle c_{l' \tau' \bm{k}' -\bm{q}}^{\dagger} c_{l' \tau' \bm{k}'} - \langle c_{l \tau \bm{k}+\bm{q}}^{\dagger} c_{l' \tau' \bm{k}'} \rangle c_{l' \tau' \bm{k}' -\bm{q}}^{\dagger} c_{l \tau\bm{k}} \right]$$
+  symmetry: triangular
 
 
 
