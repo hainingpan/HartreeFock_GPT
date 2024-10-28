@@ -223,9 +223,12 @@ def get_shell_index(n_shell):
 def get_reciprocal_vectors():
   return np.array([[np.cos(np.radians(60)), np.sin(np.radians(60))],[np.cos(np.radians(-60)), np.sin(np.radians(-60))]])
 
+# def rotation_mat(theta_deg):
+#   return np.array([[np.cos(np.radians(theta)), -np.sin(np.radians(theta))],
+#                     [np.sin(np.radians(theta)), np.cos(np.radians(theta))]])
 def rotation_mat(theta_deg):
-  return np.array([[np.cos(np.radians(theta)), -np.sin(np.radians(theta))],
-                    [np.sin(np.radians(theta)), np.cos(np.radians(theta))]])
+  return np.array([[np.cos(np.radians(theta_deg)), -np.sin(np.radians(theta_deg))],
+                    [np.sin(np.radians(theta_deg)), np.cos(np.radians(theta_deg))]])
 
 
 def generate_k_space(lattice: str, n_shell: int):

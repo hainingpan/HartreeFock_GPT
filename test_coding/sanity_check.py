@@ -1,5 +1,8 @@
 import numpy as np
+import copy
 
+class PhysicsError(Exception):
+  pass
 def map_lattice_geom_to_valid_symmetries(model):
   if model.lattice == 'square':
     valid_sym_rot = ['C4', 'C2']
@@ -10,7 +13,7 @@ def map_lattice_geom_to_valid_symmetries(model):
   else:
     raise ValueError('Invalid symmetry: %s' % model.lattice)
   return valid_sym_rot, valid_sym_mirror
-  
+
 rot_mat = lambda theta: np.array(
     [[np.cos(theta), -np.sin(theta)], [np.sin(theta), np.cos(theta)]]
 )
