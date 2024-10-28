@@ -1,4 +1,4 @@
-"""Generate using GPT4-o1"""
+"""Generate using GPT4-o1, https://chatgpt.com/share/67201579-da74-8011-9b41-8c72c6bb0440"""
 from HF import *
 
 import numpy as np
