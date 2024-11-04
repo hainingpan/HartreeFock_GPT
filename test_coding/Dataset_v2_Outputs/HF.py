@@ -7,14 +7,21 @@ from scipy import optimize
 def fermi_dbn(energy, T):
   return 1/(np.exp((energy)/T)+1)
 
-def flattened_hamiltonian(ham):
-  if ham.shape==3:
-    return ham
-  else:
-    un_flattened = list(ham.shape) #l1, s1...l2, s2..., k
+# def flattened_hamiltonian(ham):
+#   if ham.shape==3:
+#     return ham
+#   else:
+#     un_flattened = list(ham.shape) #l1, s1...l2, s2..., k
+
+def flattened_hamiltonian(ham,N_flavor,N_k):
+  return ham.reshape((np.prod(N_flavor), np.prod(N_flavor), N_k))
+
+def unflatten_exp_val(exp_val, N_flavor,N_k):
+  return exp_val.reshape(N_flavor+ N_flavor+(N_k,))
+
 
 #TODO: Haining tthinks the T!=0 way rn is a bit unstable.
-def compute_mu(en: np.ndarray, nu: float, T: float, n):
+def compute_mu(en: np.ndarray, nu: float, T: float):
   """Compute the chemical potential."""
   flat_en = en.flatten()
 
@@ -32,6 +39,7 @@ def compute_mu(en: np.ndarray, nu: float, T: float, n):
 
   else:
     raise NotImplementedError("T!=0 needs to be checked.")
+    # This is incorrect, should not have "n"
     def func(x):
       return n - 2*np.sum(fermi_dbn(flat_en[:]-x, T))/en.size
 
@@ -125,7 +133,7 @@ def diagonalize(h_total: np.ndarray):
   return wf, en
 
 
-def get_exp_val(wf, en, nu, T, n):
+def get_exp_val(wf, en, nu, T):
   """Computes the expected values from the wavefunction, eigenenergies, and filling factor.
   TODO: This assumes the exp val is diagonal..
   Args:
@@ -139,7 +147,7 @@ def get_exp_val(wf, en, nu, T, n):
   - numpy.ndarray: Expected values with shape (N_flavor, N^2).
   """
   # 1. Compute the chemical potential
-  mu = compute_mu(en, nu, T, n)
+  mu = compute_mu(en, nu, T)
   # 2. Compute the occupancy based on energies and chemical potential
   occ = get_occupancy(en, T, mu)
   # 3. Compute the expected value from wavefunction and occupancy
@@ -163,12 +171,12 @@ def solve(hamiltonian, exp_val_0, N_iterations):
       exp_val (numpy array): Expected value with shape (N_flavor, N_flavor, N_k).
     """
     exp_val = exp_val_0.copy()
-    assert len(exp_val.shape)==3
+    # assert len(exp_val.shape)==3
     wf, en = None, None
 
     nu = hamiltonian.nu
     T = hamiltonian.T
-    n = hamiltonian.n
+    # n = hamiltonian.n
     conv = 100
     for iteration in range(N_iterations):
       # 1. `get_energy`
@@ -176,7 +184,8 @@ def solve(hamiltonian, exp_val_0, N_iterations):
       wf, en = diagonalize(htotal)
 
       # 2. Update exp val from diagonalized Htotal
-      new_exp_val = get_exp_val(wf, en, nu, T, n)
+      new_exp_val = get_exp_val(wf, en, nu, T)
+      new_exp_val = unflatten_exp_val(new_exp_val, hamiltonian.D, hamiltonian.N_k)
 
       # 3. Check for convergence (optional improvement could involve
       # setting a tolerance)
@@ -187,9 +196,9 @@ def solve(hamiltonian, exp_val_0, N_iterations):
         print(f'Convergence reached at iteration {iteration}')
         break
 
-      if iteration > 2 and np.abs(conv-prev_conv) < 1e-20:
-        print(f"Did not converge")
-        break
+      # if iteration > 2 and np.abs(conv-prev_conv) < 1e-20:
+      #   print(f"Did not converge")
+      #   break
 
       # Update the expected value for the next iteration
       exp_val = new_exp_val

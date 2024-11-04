@@ -37,7 +37,7 @@ class HartreeFockHamiltonian:
         self.U_d = parameters.get('U_d', 0.0)        # On-site interaction on d orbital
         self.V_pp = parameters.get('V_pp', 0.0)      # Interaction between p orbitals
         self.V_pd = parameters.get('V_pd', 0.0)      # Interaction between p and d orbitals
-        self.mu = parameters.get('mu', 0.0)          # Chemical potential
+        # self.mu = parameters.get('mu', 0.0)          # Chemical potential
 
         # Effective interaction parameters
         self.U_p_tilde = self.U_p + 8 * self.V_pp - 8 * self.V_pd
@@ -110,11 +110,14 @@ class HartreeFockHamiltonian:
 
         # Nematic order parameter η
         eta = n_px - n_py
+        # print(n,n_p,n_d,eta)
+
+        mu = 2* self.V_pd * n - self.V_pd * n**2 # manual fix
 
         # Compute ξ_x, ξ_y, ξ_d
-        xi_x = self.Delta + (self.U_p_tilde * n_p) / 4 - (self.V_pp_tilde * eta) / 4 - self.mu
-        xi_y = self.Delta + (self.U_p_tilde * n_p) / 4 + (self.V_pp_tilde * eta) / 4 - self.mu
-        xi_d = (self.U_d_tilde * (n - n_p)) / 2 - self.mu
+        xi_x = self.Delta + (self.U_p_tilde * n_p) / 4 - (self.V_pp_tilde * eta) / 4 - mu
+        xi_y = self.Delta + (self.U_p_tilde * n_p) / 4 + (self.V_pp_tilde * eta) / 4 - mu
+        xi_d = (self.U_d_tilde * (n - n_p)) / 2 - mu
 
         # Interacting diagonal terms
         for s in range(2):  # Spin index: 0 (up), 1 (down)
