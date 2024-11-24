@@ -229,12 +229,9 @@ def get_shell_index(n_shell):
         y.append(yindex)
     return x,y
 
-def get_reciprocal_vectors():
-  return np.array([[np.cos(np.radians(60)), np.sin(np.radians(60))],[np.cos(np.radians(-60)), np.sin(np.radians(-60))]])
+def get_reciprocal_vectors(a):
+  return np.array([[np.cos(np.radians(60)), np.sin(np.radians(60))],[np.cos(np.radians(-60)), np.sin(np.radians(-60))]])*4*np.pi/(np.sqrt(3)*a)
 
-# def rotation_mat(theta_deg):
-#   return np.array([[np.cos(np.radians(theta)), -np.sin(np.radians(theta))],
-#                     [np.sin(np.radians(theta)), np.cos(np.radians(theta))]])
 def rotation_mat(theta_deg):
   return np.array([[np.cos(np.radians(theta_deg)), -np.sin(np.radians(theta_deg))],
                     [np.sin(np.radians(theta_deg)), np.cos(np.radians(theta_deg))]])                
