@@ -1,4 +1,4 @@
-Prompt_9-20 = You are a condensed matter physicist working on the numerical calculation for the Hamiltonian of a system using the Hartree Fock method. I will provide you with the physical Hamitonian written in second quantized form as an equation in LaTeX. You should convert it into a class for the HartreeFockHamiltonian using Python and necessary packages, such as numpy and scipy.
+You are a condensed matter physicist working on the numerical calculation for the Hamiltonian of a system using the Hartree Fock method. I will provide you with the physical Hamitonian written in second quantized form as an equation in LaTeX. You should convert it into a class for the HartreeFockHamiltonian using Python and necessary packages, such as numpy and scipy.
 This is a multiple-step problem, and you will execute this process by analyzing the equation and answering smaller questions sequentially in order to finally generate the class. The class has the following structure:
 
 CLASS DOCSTRING: 
@@ -222,48 +222,49 @@ class HartreeFockHamiltonian:
 ===
 Now generate the code, following the same format as the example, for the following Hamiltonian:
 HAMILTONIAN EQUATION: 
+Our Hamiltonian is given by $H = H_0 + H_C$, where $H_0$ is the free Hamiltonian and $H_C$ is a gate-screened Coulomb interaction.
 
-The continuum Hamiltonian for rhombohedral-stacked pentalayer graphene for a given spin and valley ($\pm$) is given by 
-    \begin{equation}
-      \begin{aligned}
-        \begin{pmatrix} 
-          2 u_d & v_0^\dagger & v_4^\dagger & v_3 & 0 & \frac{\gamma_2}{2} & 0 & 0 & 0 & 0 
-          \\
-          v_0 &  2 u_d + \delta & \gamma_1 & v_4^\dagger & 0 & 0 & 0 & 0 & 0 & 0
-          \\
-          v_4 & \gamma_1 & u_d + u_a & v_0^\dagger & v_4^\dagger & v_3 & 0 & \frac{\gamma_2}{2} & 0 & 0
-          \\
-          v_3^\dagger & v_4 & v_0 & u_d + u_a & \gamma_1 & v_4^\dagger & 0 & 0 & 0 & 0
-          \\
-          0 & 0 & v_4 & \gamma_1 & u_a & v_0^\dagger & v_4^\dagger & v_3 & 0 & \frac{\gamma_2}{2}
-          \\
-          \frac{\gamma_2}{2} & 0 & v_3^\dagger & v_4 & v_0 & u_a & \gamma_1 & v_4^\dagger & 0 & 0
-          \\
-          0 & 0 & 0 & 0 & v_4 & \gamma_1 & - u_d + u_a & v_0^\dagger & v_4^\dagger & v_3
-          \\
-          0 & 0 & \frac{\gamma_2}{2} & 0 & v_3^\dagger & v_4 & v_0 & - u_d + u_a & \gamma_1 & v_4^\dagger
-          \\
-          0 & 0 & 0 & 0 & 0 & 0 & v_4 & \gamma_1 & - 2 u_d + \delta & v_0^\dagger 
-          \\
-          0 & 0 & 0 & 0 & \frac{\gamma_2}{2} & 0 & v_3^\dagger & v_4 & v_0 & - 2 u_d
-        \end{pmatrix} 
-      \end{aligned}
-    \end{equation}
-    We use the notation $v_i \equiv \frac{\sqrt{3}}{2} \gamma_i (\pm k_x + i k_y)$, where $k_x\,, k_y$ are the momenta expanded around the $K\,, K'$ valley. The Hamiltonian is in the basis of $(A_1\,, B_1\,, \ldots A_5\,,B_5)$, where $A_i$ and $B_i$ labels sublattice and layer. The tight-binding parameters are given in Table~\ref{tab:tbParams}.
-    \begin{table}[htpb]
-      \centering
-      \label{tab:tbParams}
-      \begin{tabular}{|c|c|c|c|c|c|c|}
-        %\hline
-        $\gamma_0$ & $\gamma_1$ & $\gamma_2$ & $\gamma_3$ & $\gamma_4$ & $\delta$ & $u_a$ \\
-        \hline
-        2600 & 356.1 & -15 & -293 & -144 & 12.2 & 16.4
+The continuum free Hamiltonian $H_0$ for rhombohedral-stacked pentalayer graphene for a fixed spin and valley ($\pm$) is given by 
+\begin{equation}
+    \begin{aligned}
+    H_0(\vb{k}) =
+    \begin{pmatrix} 
+        2 u_d & v_0^\dagger & v_4^\dagger & v_3 & 0 & \frac{\gamma_2}{2} & 0 & 0 & 0 & 0 
         \\
+        v_0 &  2 u_d + \delta & \gamma_1 & v_4^\dagger & 0 & 0 & 0 & 0 & 0 & 0
+        \\
+        v_4 & \gamma_1 & u_d + u_a & v_0^\dagger & v_4^\dagger & v_3 & 0 & \frac{\gamma_2}{2} & 0 & 0
+        \\
+        v_3^\dagger & v_4 & v_0 & u_d + u_a & \gamma_1 & v_4^\dagger & 0 & 0 & 0 & 0
+        \\
+        0 & 0 & v_4 & \gamma_1 & u_a & v_0^\dagger & v_4^\dagger & v_3 & 0 & \frac{\gamma_2}{2}
+        \\
+        \frac{\gamma_2}{2} & 0 & v_3^\dagger & v_4 & v_0 & u_a & \gamma_1 & v_4^\dagger & 0 & 0
+        \\
+        0 & 0 & 0 & 0 & v_4 & \gamma_1 & - u_d + u_a & v_0^\dagger & v_4^\dagger & v_3
+        \\
+        0 & 0 & \frac{\gamma_2}{2} & 0 & v_3^\dagger & v_4 & v_0 & - u_d + u_a & \gamma_1 & v_4^\dagger
+        \\
+        0 & 0 & 0 & 0 & 0 & 0 & v_4 & \gamma_1 & - 2 u_d + \delta & v_0^\dagger 
+        \\
+        0 & 0 & 0 & 0 & \frac{\gamma_2}{2} & 0 & v_3^\dagger & v_4 & v_0 & - 2 u_d
+    \end{pmatrix} 
+    \end{aligned}
+\end{equation}
+We use the notation $v_i \equiv \frac{\sqrt{3}}{2} \gamma_i (\pm k_x + i k_y)$, where $k_x\,, k_y$ are the momenta expanded around the $K\,, K'$ valley. The Hamiltonian is in the basis of $(A_1\,, B_1\,, \ldots A_5\,,B_5)$, where $A_i$ and $B_i$ labels sublattice and layer. The tight-binding parameters are given in Table~\ref{tab:tbParams}.
+\begin{table}[htpb]
+    \centering
+    \label{tab:tbParams}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
         %\hline
-      \end{tabular}
-      \caption{Tight-binding parameters (in meV) for rhombohedral-stacked pentalayer graphene.}
-    \end{table}
-    Within this Hamiltonian, the primary tuning parameter is the displacement field $u_d$, which can rougly be in the range of $-40$ to $40$ meV. 
+     $\gamma_0$ & $\gamma_1$ & $\gamma_2$ & $\gamma_3$ & $\gamma_4$ & $\delta$ & $u_a$ \\
+    \hline
+    2600 & 356.1 & -15 & -293 & -144 & 12.2 & 16.4
+    \\
+        %\hline
+    \end{tabular}
+    \caption{Tight-binding parameters (in meV) for rhombohedral-stacked pentalayer graphene.}
+\end{table}
 
 From this free Hamiltonian, a dual gate-screened Coulomb interaction is introduced 
 \begin{equation}
@@ -271,13 +272,18 @@ From this free Hamiltonian, a dual gate-screened Coulomb interaction is introduc
     H_C = \frac{1}{2A} \sum_{\vb{k}, \vb{k}', \vb{q}} \sum_{\mu, \nu} V_C(\vb{q}) c^\dagger_{\vb{k} + \vb{q}, \mu}c^\dagger_{\vb{k}' - \vb{q}, \nu}c_{\vb{k}', \nu} c_{\vb{k}, \mu}\,,
   \end{aligned}
 \end{equation}
-where $V_C(\vb{q}) = \frac{e^2}{2\epsilon_0 \epsilon q} \tanh(q d_s)$, $\mu$ labels sublattice/valley/flavor, $A$ is the area of the system, $d_s$ is the distance from the gates to the top/bottom layers, and $\epsilon$ is the effective dielectric constant. The dielectric constant is also not known accurately. Typical values used in the literature are in the range $5-10$. A value of $d_s$ is given in Table~\ref{tab:moireParams}, and the dielectric constant $\epsilon$ is taken to be an additional tuning parameter.
-
-
-In summary, the relevant parameters to scan over are: the electron filling, displacment field $u_d$, moir\'e angle $\theta$, and relative dielectric constant $\epsilon$. The most interesting phenomena - the integer/fractional quantum anomalous Hall effect - happen at high displacement field, and when the electron filling is between roughly a $1/2$ and $1$. Of course the Hartree-Fock cannot capture the fractional effect.
-\subsection{Symmetries}
-The Hamiltonian above possesses $C_3$ rotation symmetry as well as lattice translation symmetry. In the presence of a moir\`e potential, the lattice constant is given by the moir\`e lattice $a_m$. When the moir\`e potential is turned off, we recover a continuous translation symmetry - this enlarged symmetry is an artifact of expanding around the $K\,, K'$ points , and can be reduced to the lattice translation symmetry of bare graphene if a full microscopic dispersion is considered. 
-If we do not assume spin/valley polarization, then we have an additional $\UU(2) \times \UU(2)$ symmetry which consists of independent spin rotations/charge conservation in each valley as well as a spinless time-reversal $\mathcal{T}$ which exchanges the two valleys. Within the $\UU(2) \times \UU(2)$ symmetry, we have a global spin rotation $\SU(2)_s$ and a rotation by opposite phases in each valley $\UU(1)_v$.
+where $V_C(\vb{q}) = \frac{e^2}{2\epsilon_0 \epsilon q} \tanh(q d_s)$, $\mu$ labels sublattice/valley/flavor, $A$ is the area of the system, $d_s$ is the distance from the gates to the top/bottom layers, and $\epsilon$ is the effective dielectric constant. The dielectric constant is also not known accurately. Typical values used in the literature are in the range $5-10$, and $d_s = 30$ nm. The mean-field decoupling of this yields
+\begin{equation}
+    H_C = \frac{1}{A} \sum_{\vb{k}, \vb{k'} } \sum_{\mu, \nu} V_C(0)  \langle c^\dagger_{\vb{k}', \nu} c_{\vb{k}', \nu} \rangle  c^\dagger_{\vb{k}, \mu} c_{\vb{k}, \mu} - \frac{1}{A} \sum_{\vb{k}, \vb{k'} } \sum_{\mu, \nu} V_C(\vb{k}' - \vb{k}) \langle c^\dagger_{\vb{k}', \mu} c_{\vb{k}', \nu} \rangle  c^\dagger_{\vb{k}, \nu} c_{\vb{k}, \mu} \,.
+\end{equation}
+Our resulting Hamiltonian is
+\begin{equation}
+\begin{aligned}
+    H &= \sum_{\vb{k}, \mu, \nu} c^\dagger_{\vb{k}, \mu} H_{0, \mu \nu}(\vb{k}) c_{\vb{k}, \nu} \frac{1}{A} \sum_{\vb{k}, \vb{k'} } \sum_{\mu, \nu} V_C(0)  \langle c^\dagger_{\vb{k}', \nu} c_{\vb{k}', \nu} \rangle  c^\dagger_{\vb{k}, \mu} c_{\vb{k}, \mu}
+    \\
+    &- \frac{1}{A} \sum_{\vb{k}, \vb{k'} } \sum_{\mu, \nu} V_C(\vb{k}' - \vb{k}) \langle c^\dagger_{\vb{k}', \mu} c_{\vb{k}', \nu} \rangle  c^\dagger_{\vb{k}, \nu} c_{\vb{k}, \mu} \,.
+    \end{aligned}
+\end{equation}
 
 LATTICE: Triangular
 
