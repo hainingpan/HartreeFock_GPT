@@ -240,34 +240,40 @@ def rotation_mat(theta_deg):
                     [np.sin(np.radians(theta_deg)), np.cos(np.radians(theta_deg))]])                
 
 
-def generate_k_space(lattice: str, N_shell: int):
+def generate_k_space(lattice: str, n_shell: int, a: float = 1.0):
+  """Returns the k-space grid.
+
+  Args:
+    lattice: square | triangular
+    n_shell: Number of "shells" or layers of the square/ triangular lattice. For
+      the square lattice, the number of k points on each edge is (2 * n_shell) +
+      1.
+    a: Lattice constant. Default is 1.0.
+
+  Returns:
+    An N_k * 2 array
   """
-    Args:
-      lattice: square | triangular
-      N_shell: Number of "shells" or layers of the square/ tirangular lattice.
-      # Edit: N_k will be a "resolution" for the BZ zone.
-      Symmetry:
-    Returns:
-      An N_k * 2 array
-  """
-  if lattice == 'square':
-    N_kx = (2*N_shell)+1
-    k_range = np.linspace(-np.pi, np.pi, N_kx, endpoint=False)
-    kx, ky = np.meshgrid(k_range, k_range)
-    k_space = np.vstack([kx.ravel(), ky.ravel()]).T
+  if lattice == "square":
+    N_kx = N_ky = (2 * n_shell) + 1
+    vec = np.array([[2 * np.pi / a, 0], [0, 2 * np.pi / a]])
+    kx_range = np.linspace(-0.5, 0.5, N_kx, endpoint=False)
+    ky_range = np.linspace(-0.5, 0.5, N_ky, endpoint=False)
+    kx, ky = np.meshgrid(kx_range, ky_range)
+    k_space = np.vstack([kx.ravel(), ky.ravel()]).T @ vec
     return k_space
 
-  if lattice == 'triangular':
-    reciprocal_vects = get_reciprocal_vectors()
-    x,y = get_shell_index(N_shell)
-    x=[x_el/(2*N_shell) for x_el in x]
-    y=[y_el/(2*N_shell) for y_el in y]
+  elif lattice == "triangular":
+    reciprocal_vects = get_reciprocal_vectors(a)
+    x, y = get_shell_index(n_shell)
+    x = [x_el / (2 * n_shell) for x_el in x]
+    y = [y_el / (2 * n_shell) for y_el in y]
 
     k_space = np.column_stack((x, y)) @ reciprocal_vects
 
     return k_space @ rotation_mat(90)
 
-    # this returns integer coordinates n, m such that \vec{r} = n \vec{A_1} + m \vec{A_2}.
+    # this returns integer coordinates n, m such that \vec{r} = n \vec{A_1} +
+    # m \vec{A_2}.
     # Lattice vectors in real space A1 = (1,0), A2 = (-sqrt(3)/2, 1/2)
     # Reciprocal lattice vectors are G1 and G2 for k-space
     # k = n \vec{G_1} + m \vec{G_2}
@@ -276,9 +282,8 @@ def generate_k_space(lattice: str, N_shell: int):
     # np.array([G1_x, G2_x], [G1_y, G2_y])
     # k_space = np.matmul(BZ_coord_space, reciprocal_vects)
     # return k_space
-  # TODO: add other symmetries
   else:
-    raise ValueError(f'Unsupported lattice: {lattice}')
+    raise ValueError(f"Unsupported lattice: {lattice}")
 
 def get_q(n_shell):
     x,y = get_shell_index(n_shell)
