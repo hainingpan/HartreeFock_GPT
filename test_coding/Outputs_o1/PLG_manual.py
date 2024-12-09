@@ -26,7 +26,7 @@ class HartreeFockHamiltonian:
         self.T = 0  # Temperature
         self.a = 1  # Lattice constant (can be adjusted as needed)
         self.a_G = 2.46/10
-        self.epsilon = 1.698/1000
+        self.epsilon = 1.698/100
         self.theta = np.deg2rad(0.77)
         self.a_M = self.a_G/np.sqrt(self.epsilon**2 + self.theta**2)
 
