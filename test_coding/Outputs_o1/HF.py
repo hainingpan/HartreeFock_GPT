@@ -115,7 +115,7 @@ def diagonalize(h_total: np.ndarray):
   en = np.zeros((D, N_k))  # Eigenvalues (energies)
 
   # Ensure H_total is Hermitian by symmetrizing it. # Doubt: Is this a step for all problems?
-  h_total_sym = (h_total + h_total.transpose((1, 0, 2))) / 2
+  h_total_sym = (h_total + h_total.transpose((1, 0, 2)).conj()) / 2
 
   # Loop over each k point
   for i in range(N_k):
@@ -230,7 +230,8 @@ def get_shell_index(n_shell):
     return x,y
 
 def get_reciprocal_vectors(a):
-  return np.array([[np.cos(np.radians(60)), np.sin(np.radians(60))],[np.cos(np.radians(-60)), np.sin(np.radians(-60))]])*4*np.pi/(np.sqrt(3)*a)
+  return np.array([[np.cos(np.radians(60)), np.sin(np.radians(60))],[np.cos(np.radians(-60)), np.sin(np.radians(-60))]])*4*np.pi/(3*a)
+  # 1 unit = distance from Gamma to K, 4pi/3a
 
 def rotation_mat(theta_deg):
   return np.array([[np.cos(np.radians(theta_deg)), -np.sin(np.radians(theta_deg))],
@@ -262,8 +263,8 @@ def generate_k_space(lattice: str, n_shell: int, a: float = 1.0):
   elif lattice == "triangular":
     reciprocal_vects = get_reciprocal_vectors(a)
     x, y = get_shell_index(n_shell)
-    x = [x_el / (2 * n_shell) for x_el in x]
-    y = [y_el / (2 * n_shell) for y_el in y]
+    x=np.array(x)/(n_shell)
+    y=np.array(y)/(n_shell)
 
     k_space = np.column_stack((x, y)) @ reciprocal_vects
 
