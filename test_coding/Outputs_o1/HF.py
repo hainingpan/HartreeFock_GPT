@@ -293,3 +293,25 @@ def get_A(aM, lattice):
     return aM**2 * np.sin(np.deg2rad(60))
   else:
     return aM**2
+
+def generate_high_symmtry_points(lattice, a_M):
+      if lattice == 'triangular':
+          high_symm = {
+          'Gamma': np.array([0,0]),
+          "Gamma'":4*np.pi/(np.sqrt(3)*a_M)*np.array([1,0]),
+          'M':2*np.pi/(np.sqrt(3)*a_M)*np.array([1,0]),
+          "M'":2*np.pi/(np.sqrt(3)*a_M)*np.array([1/2,np.sqrt(3)/2]),
+          'K':4*np.pi/(3*a_M)*np.array([np.sqrt(3)/2,1/2]),
+          "K'":4*np.pi/(3*a_M)*np.array([np.sqrt(3)/2,-1/2]),
+          }
+      elif lattice == 'square':
+            high_symm = {
+          'Gamma': np.array([0,0]),
+          "Gamma'":2*np.pi/(a_M)*np.array([1,0]),
+          'M':2*np.pi/(a_M)*np.array([1/2,0]),
+          "M'":2*np.pi/(a_M)*np.array([0,1/2]),
+          'K':2*np.pi/(a_M)*np.array([1/2,1/2]),
+          "K'":2*np.pi/(a_M)*np.array([1/2,-1/2]),
+          }
+
+      return high_symm

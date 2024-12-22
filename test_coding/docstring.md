@@ -24,7 +24,7 @@ class HartreeFockHamiltonian:
     return
 
   def generate_non_interacting(self) -> np.ndarray:
-    H_nonint = np.zeros((self.D+ self.D+ (self.N_k,)), dtype=np.float32)
+    H_nonint = np.zeros((self.D+ self.D+ (self.N_k,)), dtype=np.complex)
     #H_nonint[0, 0, :] = `code expression corresponding to all terms that contribute to H_nonint[0, 0]`
     #...
     #H_nonint[d, d, :] = `code expression corresponding to all terms that contribute to H_nonint[d, d]`
@@ -32,7 +32,7 @@ class HartreeFockHamiltonian:
 
   def generate_interacting(self, exp_val: np.ndarray) -> np.ndarray:
     exp_val = expand(exp_val, self.D)
-    H_int = np.zeros(self.D + self.D + (self.N_k,), dtype=np.float32)
+    H_int = np.zeros(self.D + self.D + (self.N_k,), dtype=np.complex)
 
     # If more complicated functions of `exp_val` occur in multiple places,
     # one may add additional functions to the class of the form `func(self, exp_val)`.
