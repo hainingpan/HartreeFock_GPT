@@ -283,10 +283,10 @@ def generate_k_space(lattice: str, n_shell: int, a: float = 1.0):
   else:
     raise ValueError(f"Unsupported lattice: {lattice}")
 
-def get_q(n_shell):
+def get_q(n_shell,a):
     x,y = get_shell_index(n_shell)
     xy=np.column_stack((x, y))
-    return xy, xy @ get_reciprocal_vectors()
+    return xy, xy @ get_reciprocal_vectors(a)
 
 def get_A(aM, lattice):
   if lattice == 'triangular':

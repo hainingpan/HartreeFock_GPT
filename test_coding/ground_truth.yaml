@@ -283,6 +283,17 @@
   gt: |
     $H_{Kinetic}(r) = \begin{pmatrix} -\frac{\hbar^2 k^2}{2 m_b} & 0 & 0 & 0 \\ 0 & -\frac{\hbar^2 (k-\kappa)^2}{2 m_t} & 0 & 0 \\ 0 & 0 & -\frac{\hbar^2 k^2}{2 m_b} & 0 \\ 0 & 0 & 0 & -\frac{\hbar^2 (k+\kappa)^2}{2 m_t} \end{pmatrix}$
     $H_{Potential}(r) = \begin{pmatrix} \Delta_b(r) & \Delta_{T,+K}(r) & 0 & 0 \\ \Delta_{T,+K}^*(r) & \Delta_t(r) & 0 & 0 \\ 0 & 0 & \Delta_b(r) & \Delta_{T,-K}(r) \\ 0 & 0 & \Delta_{T,-K}^*(r) & \Delta_t(r) \end{pmatrix}$
+    The periodic potential  $\Delta_{\mathfrak{b}}(\bm{r})$ is parametrized as 
+    \begin{equation}\label{eq:Delta_b}
+        \Delta_{\mathfrak{b}}(\bm{r})=2V_{\mathfrak{b}}\sum_{j=1,3,5} \cos(\bm{g}_j \cdot \bm{r}+\psi_{\mathfrak{b}}),
+    \end{equation}
+    where $V_{\mathfrak{b}}$ and $\psi_{\mathfrak{b}}$ respectively characterize the amplitude and spatial pattern of the potential, and $\bm{g}_j=\frac{4\pi}{\sqrt{3} a_M} \left(- \sin \frac{\pi (j-1)}{3}, \cos \frac{\pi (j-1)}{3}\right)$ are the moir\'e reciprocal lattice vectors in the first shell. We set $\Delta_{\mathfrak{t}}(\bm{r})=0$, since the low-energy physics only involves the band maximum of WSe$_2$ \cite{zhang2021spintextured}.  The interlayer tunneling term is
+    \begin{equation}\label{eq:Delta_T}
+        \Delta_{\text{T},\tau}(\bm{r})=\tau w \left(1+\omega^{\tau} e^{i\tau\bm{g}_2\cdot\bm{r}}+\omega^{2\tau} e^{i\tau\bm{g}_3\cdot\bm{r}} \right),
+    \end{equation}
+    where $w$ describes the tunneling strength, and $\omega=e^{i\frac{2\pi}{3}} $ following the $C_{3z}$ symmetry \cite{zhang2021spintextured}. The valley dependence of $ \Delta_{\text{T},\tau}$ is constrained by $\mathcal{T}$ symmetry. 
+    Here $ \Delta_{\text{T},\tau}$ couples states with opposite spins, which is symmetry allowed because the heterobilayer breaks the $z \rightarrow -z$  mirror symmetry. For parameters in $H_\tau$, we take $\psi_{\mathfrak{b}}=-14^{\circ}$ such that the potential maximum of $\Delta_{\mathfrak{b}}(\bm{r})$ is at the MM site \cite{zhang2021spintextured}; $V_{z\mathfrak{t}}$ is a parameter that is experimentally controllable by an applied out-of-plane displacement field; $V_{\mathfrak{b}}$ and $w$ are taken as theoretical parameters that can be adjusted to study different phases. We note that the interlayer tunneling 
+    strength $w$ can be modified by pressure. 
     $V(\bm{k}_{\alpha}-\bm{k}_{\delta})=2\pi e^2\tanh(|\bm{k}_{\alpha}-\bm{k}_{\delta}|d)/(\epsilon |\bm{k}_{\alpha}-\bm{k}_{\delta}|)$
     $H_{\text{Hartree}} = \frac{1}{V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,q_1,q_2,q_3,q_4} \langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_1,\tau_1,q_4}(k_1) \rangle b_{l_2,\tau_2,q_2}^\dagger(k_2) b_{l_2,\tau_2,q_3}(k_2)  V(|q_1-q_4|)\delta_{q_1+q_2,q_3+q_4}$
     $H_{\text{Fock}} = -\frac{1}{V}\sum_{\tau_1,\tau_2,l_1,l_2,k_1,k_2,q_1,q_2,q_3,q_4} \langle b_{l_1,\tau_1,q_1}^\dagger(k_1) b_{l_2,\tau_2,q_3}(k_1) \rangle b_{l_2,\tau_2,q_2}^\dagger(k_2) b_{l_1,\tau_1,q_4}(k_2) V(|k_1+q_1-k_2-q_4|)\delta_{q_1+q_2,q_3+q_4}$
