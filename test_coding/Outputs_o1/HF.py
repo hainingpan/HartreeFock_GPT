@@ -17,6 +17,7 @@ def flattened_hamiltonian(ham,N_flavor,N_k):
   return ham.reshape((np.prod(N_flavor), np.prod(N_flavor), N_k))
 
 def unflatten_exp_val(exp_val, N_flavor,N_k):
+  """Unflattens the expected value from (np.prod(N_flavor), np.prod(N_flavor), N_k) to N_flavor+ N_flavor+(N_k,)"""
   return exp_val.reshape(N_flavor+ N_flavor+(N_k,))
 
 
@@ -185,7 +186,7 @@ def solve(hamiltonian, exp_val_0, N_iterations):
 
       # 2. Update exp val from diagonalized Htotal
       new_exp_val = get_exp_val(wf, en, nu, T)
-      new_exp_val = unflatten_exp_val(new_exp_val, hamiltonian.D, hamiltonian.N_k)
+      new_exp_val = unflatten_exp_val(new_exp_val, hamiltonian.D, hamiltonian.Nk)
 
       # 3. Check for convergence (optional improvement could involve
       # setting a tolerance)

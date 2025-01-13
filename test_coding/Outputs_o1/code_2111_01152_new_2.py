@@ -11,7 +11,7 @@ class HartreeFockHamiltonian:
           Defaults are provided below.
         N_shell (int): Number of k-space shells for the Brillouin-zone sampling.
         Nq_shell (int): Number of reciprocal lattice shells for the q vectors.
-        filling_factor (float): Band filling fraction, default=0.5.
+        nu (float): Band filling fraction, default=0.5.
     """
 
     # ------------------------------------------------------------------------
@@ -22,7 +22,8 @@ class HartreeFockHamiltonian:
         parameters: dict[str, Any] | None = None,
         N_shell: int = 1,
         Nq_shell: int = 1,
-        filling_factor: float = 0.5
+        # filling_factor: float = 0.5
+        nu: float = 0.5
     ):
         if parameters is None:
             parameters = {}
@@ -57,7 +58,7 @@ class HartreeFockHamiltonian:
         # Save geometry parameters
         self.N_shell = N_shell
         self.Nq_shell = Nq_shell
-        self.filling_factor = filling_factor
+        self.nu = nu
         self.T = 0.0  # Temperature = 0 by default
 
         # moire lattice constant:
@@ -239,7 +240,7 @@ class HartreeFockHamiltonian:
           2) Fock:     - (1/V) * <b^\dagger b> * b^\dagger b * ...
         """
         # Expand exp_val to shape (2,2,Nq,2,2,Nq,N_k)
-        exp_val = expand(exp_val, self.D)
+        # exp_val = expand(exp_val, self.D)
         H_int = np.zeros(self.D + self.D + (self.Nk,), dtype=np.complex128)
 
         # We must sum over <b_{l1,t1,q1}^\dagger b_{l1,t1,q4}> or <b_{l1,t1,q1}^\dagger b_{l2,t2,q3}> etc.
@@ -258,7 +259,6 @@ class HartreeFockHamiltonian:
                             mean_val = exp_val[l1, t1, q1i, l1, t1, q4i, k1]
                             if abs(mean_val) < 1e-14:
                                 continue
-
                             V_q = self._compute_Coulomb_factor(abs(q1i - q4i))
 
                             # The corresponding matrix element is:
