@@ -53,7 +53,7 @@ class HartreeFockHamiltonian:
     H_int = self.generate_interacting(exp_val)
     H_total = H_nonint + H_int
     if return_flat:
-      return flatten(H_total, self.D)
+      return flattened_hamiltonian(H_total,self.D,N_k)
     else:
       return H_total #l1, s1, q1, ....k
 `

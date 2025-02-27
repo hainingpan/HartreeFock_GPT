@@ -78,7 +78,107 @@ class HartreeFockHamiltonian:
     H_int = self.generate_interacting(exp_val)
     H_total = H_nonint + H_int
     if return_flat:
-      return flatten(H_total, self.D)
+      return flattened_hamiltonian(H_total,self.D,N_k)
     else:
       return H_total #l1, s1, q1, ....k
 `
+
+The following function is already defined in the library HF.py. So you don't need to defined them if you need them.
+`
+def flattened_hamiltonian(ham,N_flavor,N_k):
+  """Flattens the Hamiltonian from N_flavor+ N_flavor+(N_k,) to (np.prod(N_flavor), np.prod(N_flavor), N_k)"""
+  
+def unflatten_exp_val(exp_val, N_flavor,N_k):
+  """Unflattens the expected value from (np.prod(N_flavor), np.prod(N_flavor), N_k) to N_flavor+ N_flavor+(N_k,)"""
+
+
+def compute_mu(en: np.ndarray, nu: float, T: float):
+  """Compute the chemical potential."""
+
+def get_occupancy(en: np.ndarray, T: float, mu: float):
+  """Compute the occupancy of each state at each k point.
+
+  Args:
+    en: Energies with shape (N_level, N_k), level index first, then total k pts.
+    T: Temperature.
+    mu: Chemical potential, at T=0, fermi energy.
+
+  Returns:
+    occupancy: Occupancy with the same shape as `en`.
+  """
+
+def contract_indices(wf: np.ndarray, occupancy: np.ndarray):
+  """Computes the expected value using the wavefunction and occupancy.
+
+  Args:
+    wf: Wavefunction with shape (N_flavor, N_level, N_k), where the first
+      index is the flavor index, the second index is the level index, and the
+      third index is for different k points.
+    occupancy: Occupancy of each state at each k point, with shape (N_level,
+      N_k), where the first index is the level index, and the second index is
+      for different k points.
+
+  Returns:
+    exp_val: The expected value with shape (N_flavor, N_k), where the first
+    index is for the flavor,
+            and the second index is for different k points.
+  """
+
+def diagonalize(h_total: np.ndarray):
+  """Diagonalizes the total Hamiltonian for each k point, sorts the eigenvalues and eigenvectors.
+
+  Args:
+    h_total: The total Hamiltonian with shape (N_flavor, N_flavor, N_k).
+
+  Returns:
+    wf: Eigenvectors (wavefunctions) with shape (N_flavor, N_flavor, N_k).
+    en: Eigenvalues (energies) with shape (N_flavor, N_k).
+  """
+
+def get_exp_val(wf, en, nu, T):
+  """Computes the expected values from the wavefunction, eigenenergies, and filling factor.
+  TODO: This assumes the exp val is diagonal..
+  Args:
+    wf: Wavefunctions with shape (N_flavor, N_level, N^2).
+    en: Eigenenergies with shape (N_flavor, N^2).
+    nu: Filling factor.
+    T: Temperature
+    n:
+
+  Returns:
+  - numpy.ndarray: Expected values with shape (N_flavor, N^2).
+  """
+
+def solve(hamiltonian, exp_val_0, N_iterations):
+    """
+    Self-consistently solve for the wavefunction, eigenvalues, and expected value.
+
+    Args:
+      hamiltonian (Hamiltonian): The initialized Hamiltonian.
+      exp_val_0 (numpy array): Initial ansatz for the expected value.
+      N_iterations: Maximum number of iterations to run the self-consistent
+      solver.
+
+    Returns:
+      wf (numpy array): Wavefunction with shape (N_flavor, N_level, N_k).
+      en (numpy array): Energies with shape (N_level, N_k).
+      exp_val (numpy array): Expected value with shape (N_flavor, N_flavor, N_k).
+    """
+
+def generate_k_space(lattice: str, n_shell: int, a: float = 1.0):
+  """Returns the k-space grid.
+
+  Args:
+    lattice: square | triangular
+    n_shell: Number of "shells" or layers of the square/ triangular lattice. For
+      the square lattice, the number of k points on each edge is (2 * n_shell) +
+      1.
+    a: Lattice constant. Default is 1.0.
+
+  Returns:
+    An N_k * 2 array
+  """
+
+def generate_high_symmtry_points(lattice, a_M):
+      """Returns the high symmetry points in the Brillouin zone, given the lattice constant"""
+  `
