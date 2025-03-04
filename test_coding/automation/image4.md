@@ -1,0 +1,1 @@
+the false color plot for interacting-renormalized band structure in the first Brillouin zone for all bands in the problem of interest, after the self-consistent Hartree-Fock calculation, with the large interaction limit.

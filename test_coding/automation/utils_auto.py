@@ -73,7 +73,7 @@ def code_generate(prompt,  client=client, model='claude-3-7-sonnet-20250219', ma
 
 import re
 def extract_code(code_response):
-    # get python code. WARNING! make sure code is surrounded by ```
+    # get python code. code should be surrounded by ```
     matches = re.findall(r'```(.*?)```', code_response, re.DOTALL)
     proc_codes = []
     for match in matches:
@@ -106,6 +106,7 @@ def plot_kspace(kspace):
     ax.set_aspect('equal')
     ax.set_xlabel('$k_x$')
     ax.set_ylabel('$k_y$')
+    return fig
 def plot_matele(mat):
     fig, ax = plt.subplots(figsize=(3,3))
     ax.spy((mat))
@@ -135,11 +136,13 @@ def plot_2d_false_color_map(ham,en,kmax=4,width= 3):
     fig, ax = plt.subplots(1,kmax,figsize=(3*kmax,3),tight_layout=True)
     for idx in range(kmax):
         im=ax[idx].tripcolor(ham.k_space[:,0],ham.k_space[:,1],en[idx],shading='gouraud')
+        ax[idx].tricontour(ham.k_space[:,0], ham.k_space[:,1], en[idx], levels=20, colors='k', linewidths=1)
         ax[idx].set_title(f'Band {idx+1}')
         ax[idx].set_xlabel('$k_x$')
         ax[idx].set_ylabel('$k_y$')
         ax[idx].set_aspect('equal')
         plt.colorbar(im, ax=ax[idx],)
+    return fig
     
     
 
@@ -151,3 +154,95 @@ def print_gap(ham_int,exp_val,en_int):
     print(f'Gap is {gap:.2f}')
     print(f'U/T is {mean_U/mean_T:.2f}')
     print(f'mean_U is {mean_U:.2f}')    
+
+### Evaluate code
+import base64
+import io
+def get_gt(paper,directory='../', ):    
+    with open(directory+'ground_truth.yaml', 'r') as f:
+        gt = yaml.load(f, Loader=yaml.FullLoader)
+    for val in gt:
+        if val['arxiv'] == float(paper):
+            hamiltonian = val['gt']
+            symmetry = val['symmetry']
+            break
+    return val
+
+def generate_evalution_prompt(rubric, image, paper,prompt_template='evaluation_prompt.md', **kwargs):
+    
+    with open(prompt_template,'r') as f:
+        template = f.read()
+    with open(rubric,'r') as f:
+        rubric = f.read()
+    with open(image,'r') as f:
+        image = f.read()
+    val = get_gt(paper)
+    hamiltonian = f"HAMILTONIAN EQUATION: \n{val['gt']} \nLATTICE: {val['symmetry']}"
+    return template.format(rubric=rubric.format(lattice=val['symmetry'],**kwargs), hamiltonian=hamiltonian, image_description=image)
+
+def extract_result_content(string):
+    result_tags = re.findall(r"<result>(.*?)</result>", string, re.DOTALL)
+    if result_tags:
+        result_tags = result_tags[0].strip()
+    return result_tags
+
+
+def vision_eval(fig, prompt_text, budget_tokens=2000,max_tokens=4000,model='claude-3-7-sonnet-20250219',verbose=True):
+    buffer = io.BytesIO()
+    fig.savefig(buffer, format='png')
+    buffer.seek(0)
+    image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+
+
+    thinking={
+        "type": "enabled",
+        "budget_tokens": budget_tokens
+    }
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "image",
+                    "source": {
+                        "type": "base64",
+                        "media_type": "image/png",
+                        "data": image_base64,
+                    },
+                },
+                {
+                    "type": "text",
+                    "text": prompt_text
+                }
+            ],
+        }
+    ]
+
+    results = {"thinking": "", "text": ""}
+    with client.messages.stream(model = model,max_tokens=max_tokens, thinking=thinking, messages=messages) as stream:
+        current_block_type = None 
+        thinking_flag = True
+        text_flag = True
+        for event in stream:
+            if event.type == "content_block_start":
+                current_block_type = event.content_block.type
+            elif event.type == "content_block_delta":
+                if event.delta.type == "thinking_delta":
+                    results["thinking"] += event.delta.thinking
+                    if thinking_flag and verbose:
+                        print()
+                        print("#"*20,'THINKING','#'*20,  flush=True)
+                        print()
+                        thinking_flag = False
+                    print(event.delta.thinking, end='', flush=True)
+                elif event.delta.type == "text_delta":
+                    results["text"] += event.delta.text   
+                    if text_flag and verbose:
+                        print('\n')
+                        print("#"*20,'TEXT','#'*20,  flush=True)
+                        print()
+                        text_flag = False   
+                    print(event.delta.text,end='', flush=True)     
+            elif event.type == "message_stop":
+                break
+    return results

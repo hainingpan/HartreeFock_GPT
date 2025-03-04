@@ -1,0 +1,1 @@
+the false color plot with contour lines for non-interacting band structure in the first Brillouin zone for all bands in the problem of interest.
