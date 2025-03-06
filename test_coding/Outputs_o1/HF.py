@@ -14,6 +14,7 @@ def fermi_dbn(energy, T):
 #     un_flattened = list(ham.shape) #l1, s1...l2, s2..., k
 
 def flattened_hamiltonian(ham,N_flavor,N_k):
+  """Flattens the Hamiltonian from N_flavor+ N_flavor+(N_k,) to (np.prod(N_flavor), np.prod(N_flavor), N_k)"""
   return ham.reshape((np.prod(N_flavor), np.prod(N_flavor), N_k))
 
 def unflatten_exp_val(exp_val, N_flavor,N_k):
@@ -302,6 +303,7 @@ def get_A(aM, lattice):
     return aM**2
 
 def generate_high_symmtry_points(lattice, a_M):
+      """Returns the high symmetry points in the Brillouin zone, given the lattice constant"""
       if lattice == 'triangular':
           high_symm = {
           'Gamma': np.array([0,0]),

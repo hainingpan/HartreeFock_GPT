@@ -122,7 +122,7 @@ class HartreeFockHamiltonian:
     Returns:
       np.ndarray: The interacting Hamiltonian with shape (D, D, N_k).
     \"""
-    exp_val = self.expand(exp_val) # 2, 2, N_k
+    exp_val = self.unflatten_exp_val(exp_val) # 2, 2, N_k
     N_k = exp_val.shape[-1]
     H_int = np.zeros(self.D + self.D + (N_k,), dtype=np.float32)
 
