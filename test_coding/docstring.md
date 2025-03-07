@@ -1,14 +1,13 @@
 ```
 class HartreeFockHamiltonian:
-  def __init__(self, N_shell, parameters:dict[str, Any], filling_factor: float=0.5):
+  def __init__(self, N_shell, parameters:dict[str, Any], ):
     self.lattice = 'square' | 'triangular'
-    self.D = # LM Task: has to define this tuple.
+    self.D = # LLM Task: has to define this tuple.
     self.basis_order = {'0': 'flavor_type_0', '1': 'flavor_type_1', ... 'D-1': 'flavor_type_D-1'}
     # this is the basis order that the Hamiltonian will follow
 
     # Occupancy relevant parameters
-    self.nu = filling_factor
-    self.T = temperature
+    self.T = parameters['T'] # temperature, default to 0
     self.a = parameters['a'] # Lattice constant (or aM for a Moire' lattice)
     self.k_space = generate_k_space(self.lattice, N_shell, self.a)
     self.N_k = self.k_space.shape[0]
@@ -23,15 +22,15 @@ class HartreeFockHamiltonian:
     return
 
   def generate_non_interacting(self) -> np.ndarray:
-    H_nonint = np.zeros((self.D+ self.D+ (self.N_k,)), dtype=complex)
+    H_nonint = np.zeros((*self.D,*self.D,self.N_k), dtype=complex)
     #H_nonint[0, 0, :] = `code expression corresponding to all terms that contribute to H_nonint[0, 0]`
     #...
     #H_nonint[d, d, :] = `code expression corresponding to all terms that contribute to H_nonint[d, d]`
     return H_nonint
 
   def generate_interacting(self, exp_val: np.ndarray) -> np.ndarray:
-    exp_val = unflatten(exp_val, self.D)
-    H_int = np.zeros(self.D + self.D + (self.N_k,), dtype=complex)
+    exp_val = unflatten(exp_val, self.D, self.N_k)
+    H_int = np.zeros((*self.D,*self.D,self.N_k), dtype=complex)
 
     # If more complicated functions of `exp_val` occur in multiple places,
     # one may add additional functions to the class of the form `func(self, exp_val)`.

@@ -74,13 +74,13 @@ from HF import *
 class HartreeFockHamiltonian:
   \"""
   Args:
-    N_kx (int): Number of k-points in the x-direction.
+    N_shell (int): Number shell in the first Broullouin zone.
     parameters (dict): Dictionary containing model parameters 't' and 'U'.
     filling_factor (float, optional): Filling factor. Defaults to 0.5.
     temperature (float, optional): Temperature. Defaults to 0.0.
     n (str | None, optional): Parameter used in chemical potential calculation. Defaults to None.
   \"""
-  def __init__(self, N_kx: int=10, parameters: dict={'t':1.0, 'U':1.0}, filling_factor: float=0.5):
+  def __init__(self, N_shell: int, parameters: dict={'t':1.0, 'U':1.0}, filling_factor: float=0.5):
     self.lattice = 'square'   # Lattice symmetry ('square' or 'triangular'). Defaults to 'square'.
     self.D = (2,) # Number of flavors identified.
     self.basis_order = {'0': 'spin'}
@@ -92,7 +92,7 @@ class HartreeFockHamiltonian:
     self.T = 0
     self.n = n # Number of particles in the system.
     self.k_space = generate_k_space(self.lattice, N_shell)
-    # N_kx = 2*(N_shell+1) for a square lattice
+    # N_k = 2*(N_shell+1) for a square lattice
 
     # Model parameters
     self.t = parameters['t'] # Hopping parameter

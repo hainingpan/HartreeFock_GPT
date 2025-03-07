@@ -30,7 +30,7 @@ def unflatten(ham: np.ndarray, N_flavor, N_k: int):
     return ham.reshape(N_flavor + N_flavor + (N_k,))
 
 
-def compute_mu(en: np.ndarray, nu: float, T: float):
+def compute_mu(en: np.ndarray, nu: float, T: float =0):
     """Compute the chemical potential based on energy levels and filling factor.
     This function calculates the chemical potential (mu) for a given energy array
     and filling factor. For zero temperature (T=0), it uses a sorting approach
@@ -64,7 +64,7 @@ def compute_mu(en: np.ndarray, nu: float, T: float):
 
     return mu
 
-def get_occupancy(en: np.ndarray, T: float, mu: float):
+def get_occupancy(en: np.ndarray, mu: float, T: float=0):
     """Compute the occupancy of each state at each k point.
 
     Args:
@@ -163,7 +163,7 @@ def get_exp_val(wf, en, nu, T):
     # 1. Compute the chemical potential
     mu = compute_mu(en, nu, T)
     # 2. Compute the occupancy based on energies and chemical potential
-    occ = get_occupancy(en, T, mu)
+    occ = get_occupancy(en, mu,T)
     # 3. Compute the expected value from wavefunction and occupancy
     exp_val = contract_indices(wf, occ)
     return exp_val
@@ -260,10 +260,18 @@ def get_reciprocal_vectors_triangle(a):
                 [np.cos(np.radians(-60)), np.sin(np.radians(-60))],
             ]
         )
-        * 4
-        * np.pi
-        / (3 * a)
+        * 4* np.pi/ (3 * a)
     )
+
+def get_primitive_vectors_triangle(a):
+  """
+  Calculate the primitive (Bravais) lattice vectors for a 2D triangular lattice: They are separated by 120°
+  Parameters:
+  a (float): Lattice constant.
+  Returns:
+  numpy.ndarray: 2x2 array of primitive vectors.
+  """
+  return a * np.array([[0,1],[np.sqrt(3)/2,-1/2]])
 
 
 def rotation_mat(theta_deg):
