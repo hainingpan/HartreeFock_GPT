@@ -1,7 +1,10 @@
 You are a condensed matter physicist working on the numerical calculation for the Hamiltonian of a system using the Hartree Fock method. I will provide you with the physical Hamitonian written in second quantized form as an equation in LaTeX. You should convert it into a class for the HartreeFockHamiltonian using Python and necessary packages, such as numpy and scipy.
 This is a multiple-step problem, and you will execute this process by analyzing the equation and answering smaller questions sequentially in order to finally generate the class. The class has the following structure:
 
-CLASS DOCSTRING: {{docstring}}
+CLASS DOCSTRING: {{DOCSTRING}}
+
+The following function is already defined in the library HF.py. So you don't need to defined them if you need them.
+{{HF_DOCSTRING}}
 
 The INPUT provided to you is the equation for the Hamiltonian, `HAMILTONIAN EQUATION`.
 
@@ -122,7 +125,7 @@ class HartreeFockHamiltonian:
     Returns:
       np.ndarray: The interacting Hamiltonian with shape (D, D, N_k).
     \"""
-    exp_val = self.unflatten_exp_val(exp_val) # 2, 2, N_k
+    exp_val = self.unflatten(exp_val) # 2, 2, N_k
     N_k = exp_val.shape[-1]
     H_int = np.zeros(self.D + self.D + (N_k,), dtype=np.float32)
 
@@ -150,7 +153,7 @@ class HartreeFockHamiltonian:
     H_int = self.generate_interacting(exp_val)
     H_total = H_nonint + H_int
     if flatten:
-      return flattened_hamiltonian(H_total,self.D,N_k)
+      return flattened(H_total,self.D,N_k)
     else:
       return H_total
 
@@ -158,7 +161,7 @@ class HartreeFockHamiltonian:
 
 ===
 Now generate the code, following the same format as the example, for the following Hamiltonian:
-HAMILTONIAN EQUATION: {{hamiltonian}}
-LATTICE: {{symmetry}}
+HAMILTONIAN EQUATION: {{HAMILTONIAN}}
+LATTICE: {{SYMMETRY}}
 ANSWER:
 """

@@ -1,4 +1,4 @@
-`
+```
 class HartreeFockHamiltonian:
   def __init__(self, N_shell, parameters:dict[str, Any], filling_factor: float=0.5):
     self.lattice = 'square' | 'triangular'
@@ -12,7 +12,6 @@ class HartreeFockHamiltonian:
     self.a = parameters['a'] # Lattice constant (or aM for a Moire' lattice)
     self.k_space = generate_k_space(self.lattice, N_shell, self.a)
     self.N_k = self.k_space.shape[0]
-    # self.area = get_area(a, self.lattice)  # For Moire' lattice
 
     # All other parameters such as interaction strengths
     #self.param_0 = parameters['param_0'] # Brief phrase explaining physical significance of `param_0`
@@ -31,7 +30,7 @@ class HartreeFockHamiltonian:
     return H_nonint
 
   def generate_interacting(self, exp_val: np.ndarray) -> np.ndarray:
-    exp_val = expand(exp_val, self.D)
+    exp_val = unflatten(exp_val, self.D)
     H_int = np.zeros(self.D + self.D + (self.N_k,), dtype=np.complex)
 
     # If more complicated functions of `exp_val` occur in multiple places,
@@ -53,7 +52,7 @@ class HartreeFockHamiltonian:
     H_int = self.generate_interacting(exp_val)
     H_total = H_nonint + H_int
     if return_flat:
-      return flattened_hamiltonian(H_total,self.D,N_k)
+      return flattened(H_total,self.D,N_k)
     else:
       return H_total #l1, s1, q1, ....k
-`
+```

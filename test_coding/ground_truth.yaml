@@ -53,7 +53,6 @@
       \xi_{x} &=& \Delta + \tilde{U}_{p} \frac{n^{p}}{4} - \tilde{V}_{pp}\frac{\eta}{4} - \mu,\\
       \xi_{y} &=& \Delta + \tilde{U}_{p} \frac{n^{p}}{4} + \tilde{V}_{pp}\frac{\eta}{4} - \mu,\\
       \xi_{d} &=& \tilde{U}_{d} \frac{(n-n^p)}{2} - \mu,
-      \label{eqn:diag}
     \end{eqnarray}
     and also, we introduced the effective interaction parameters
     \begin{eqnarray}
@@ -62,7 +61,7 @@
       \tilde{U}_{d} &=& U_{d} - 4V_{pd}.
       \label{eq:Udtilde}
     \end{eqnarray}
-    In addition, we have put all the constant terms, i.e. $2V_{pd}n - V_{pd}n^2$, into the chemical potential $\mu$.
+    In addition, we have put all the constant terms into chemical potential $\mu = 2V_{pd}n - V_{pd}n^2$. (namely, the chemical potential is not an independent variable)
     The mean-field Hamiltonian~\eqref{eq:mfhamiltonian} can be diagonalized to yield three bands
     each with mixed orbital character and dispersion $\xi_{\alpha\kk s}$, where $\alpha=1,2,3$ is the
     band index for the lowest lying and the two upper bands.  

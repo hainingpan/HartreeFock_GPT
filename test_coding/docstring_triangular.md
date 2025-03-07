@@ -78,12 +78,12 @@ class HartreeFockHamiltonian:
     H_int = self.generate_interacting(exp_val)
     H_total = H_nonint + H_int
     if return_flat:
-      return flattened_hamiltonian(H_total,self.D,N_k)
+      return flattened(H_total,self.D,N_k)
     else:
       return H_total #l1, s1, q1, ....k
 `
 
-The following function is already defined in the library HF.py. So you don't need to defined them if you need them.
+
 `
 def flattened_hamiltonian(ham,N_flavor,N_k):
   """Flattens the Hamiltonian from N_flavor+ N_flavor+(N_k,) to (np.prod(N_flavor), np.prod(N_flavor), N_k)"""
