@@ -1,7 +1,6 @@
 import yaml
 
-directory='../'
-def generate_prompt(template,docstring,paper,trial_idx=0,directory=directory,save=True):
+def generate_prompt(template,docstring,paper,trial_idx=0,directory='../../',save=True):
     with open(directory+template, 'r') as f:
         prompt = f.read()
     
@@ -83,8 +82,9 @@ def extract_code(code_response):
         else:
             code = '\n'.join(a)
         proc_codes.append(code)
-    python_code = '\n'.join(proc_codes)
-    return python_code
+    #assume that the actual code is the longest one
+    proc_codes = sorted(proc_codes, key=len, reverse=True)
+    return proc_codes[0]
 
 def save_code(code,paper,trial_idx):
     output_fn= 'code_{int}_{decimal}_{trial_idx}'.format(int=paper.split('.')[0],decimal=paper.split('.')[1],trial_idx=trial_idx) + '.py'
@@ -119,6 +119,7 @@ def plot_2d_bandstructure(ham,en):
     ax.set_xlabel('$k_x$')
     ax.set_ylabel('$k_y$')
     ax.set_zlabel('E')
+
 def plot_high_symm_bandstructure(k_list,en,ax=None): # DROP
     if ax is None:
         fig, ax = plt.subplots()
@@ -130,7 +131,10 @@ def plot_high_symm_bandstructure(k_list,en,ax=None): # DROP
     for i in range(5):
         ax.axvline(k_abs[Nk*i],ls='--',color='r')
     ax.set_xticks([k_abs[Nk*i] for i in range(5)],['$\Gamma$','K','M','$\Gamma$',"K'"])
-def plot_2d_false_color_map(ham,en,kmax=4,width= 3):
+
+def plot_2d_false_color_map(ham,en,kmax=6,width= 3):
+    from matplotlib.ticker import ScalarFormatter
+
     kmax = min(len(en),kmax)   # number of bands
     
     fig, ax = plt.subplots(1,kmax,figsize=(3*kmax,3),tight_layout=True)
@@ -141,7 +145,11 @@ def plot_2d_false_color_map(ham,en,kmax=4,width= 3):
         ax[idx].set_xlabel('$k_x$')
         ax[idx].set_ylabel('$k_y$')
         ax[idx].set_aspect('equal')
-        plt.colorbar(im, ax=ax[idx],)
+        cbar=plt.colorbar(im, ax=ax[idx],)
+        cbar.formatter = ScalarFormatter(useOffset=False, useMathText=False)
+        cbar.formatter.set_scientific(False)
+        cbar.update_ticks()
+
     return fig
     
     
@@ -158,7 +166,7 @@ def print_gap(ham_int,exp_val,en_int):
 ### Evaluate code
 import base64
 import io
-def get_gt(paper,directory='../', ):    
+def get_gt(paper,directory='../../', ):    
     with open(directory+'ground_truth.yaml', 'r') as f:
         gt = yaml.load(f, Loader=yaml.FullLoader)
     for val in gt:
@@ -168,13 +176,13 @@ def get_gt(paper,directory='../', ):
             break
     return val
 
-def generate_evalution_prompt(rubric, image, paper,prompt_template='evaluation_prompt.md', **kwargs):
+def generate_evalution_prompt(rubric, image, paper,prompt_template='evaluation_prompt.md',directory='../', **kwargs):
     
-    with open(prompt_template,'r') as f:
+    with open(directory+prompt_template,'r') as f:
         template = f.read()
-    with open(rubric,'r') as f:
+    with open(directory+rubric,'r') as f:
         rubric = f.read()
-    with open(image,'r') as f:
+    with open(directory+image,'r') as f:
         image = f.read()
     val = get_gt(paper)
     hamiltonian = f"HAMILTONIAN EQUATION: \n{val['gt']} \nLATTICE: {val['symmetry']}"
@@ -246,3 +254,35 @@ def vision_eval(fig, prompt_text, budget_tokens=2000,max_tokens=4000,model='clau
             elif event.type == "message_stop":
                 break
     return results
+
+import os
+def save_final_answer(paper, trial_idx, answer1, answer2, answer3, answer4, final_answer_file='final_answer.yaml'):
+    # Create the record to be stored for this (paper, trial_idx)
+    record_key = f"{trial_idx}"
+    record = {
+        'paper': paper,
+        'trial_idx': trial_idx,
+        'answer1': answer1,
+        'answer2': answer2,
+        'answer3': answer3,
+        'answer4': answer4
+    }
+    
+    # Load the existing database if it exists, otherwise create an empty dict
+    if os.path.exists(final_answer_file):
+        with open(final_answer_file, 'r') as f:
+            try:
+                database = yaml.safe_load(f) or {}
+            except yaml.YAMLError:
+                database = {}
+    else:
+        database = {}
+        
+    # Replace the existing record or add a new one
+    database[record_key] = record
+    
+    # Save the updated database back to the file
+    with open(final_answer_file, 'w') as f:
+        yaml.safe_dump(database, f)
+        
+    print(f"Final answer record for '{record_key}' saved to {final_answer_file}")

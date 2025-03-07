@@ -105,12 +105,16 @@ def diagonalize(h_total: np.ndarray):
   """Diagonalizes the total Hamiltonian for each k point, sorts the eigenvalues and eigenvectors.
 
   Args:
-    h_total: The total Hamiltonian with shape (N_flavor, N_flavor, N_k).
+    h_total: The total Hamiltonian with shape (N_flavor, N_flavor, N_k). If 
 
   Returns:
     wf: Eigenvectors (wavefunctions) with shape (N_flavor, N_flavor, N_k).
     en: Eigenvalues (energies) with shape (N_flavor, N_k).
   """
+  if h_total.ndim != 3:
+      N_flavor = h_total.shape[:(h_total.ndim-1)//2]
+      h_total = flattened_hamiltonian(h_total, N_flavor, h_total.shape[-1])
+
   N_k = h_total.shape[-1]
   D = h_total.shape[0]
   wf = np.zeros_like(h_total)  # Wavefunctions (eigenvectors).

@@ -221,7 +221,7 @@
     $\hat{H}_{Kinetic} = \sum_{s, k} E_s(k) c^\dagger_s(k)  c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$
     $H_{\text{Hartree}} = \frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(0) \langle c_s^\dagger(k_1) c_s(k_1) \rangle c_{s'}^\dagger(k_2) c_{s'}(k_2)$
     $H_{\text{Fock}} = -\frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(k_1 - k_2) \langle c_s^\dagger(k_1) c_{s'}(k_1) \rangle c_{s'}^\dagger(k_2) c_s(k_2)$
-    $U(k) = \sum_{n} U(n) e^{-i k \cdot n}$
+    $U(k) = \sum_{n} U(n) e^{-i k \cdot n}$, where U_0 is the on-site interaction, U_1 is the nearest neighbor interaction, and U_k is the k-th shell neighbor interaction
   symmetry: triangular
 
 - arxiv: 2008.08998

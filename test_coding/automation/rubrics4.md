@@ -10,4 +10,4 @@ You need to analyze the band structure plots with particular attention to symmet
 
 3. Compare the symmetry you observe in the energy distribution with what would be expected for an isotropic triangular lattice (D6h symmetry).
 4. Based on your analysis, determine whether the band structure displays the full symmetry of the triangular lattice or a reduced symmetry.
-5. Band gap evaluation: Since the interaction is very large, the band gap should be almost the same as the interaction strength, U={U_int}. 
+5. Band gap evaluation: Since the interaction is very large, the band gap should be roughly the same as the interaction strength, U={U_int}. 

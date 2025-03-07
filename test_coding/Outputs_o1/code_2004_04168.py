@@ -1,6 +1,7 @@
 # https://chatgpt.com/share/6738bfef-25e8-8011-a372-1da8563660a0
 import numpy as np
 from typing import Any
+from HF import *
 
 class HartreeFockHamiltonian:
     """
@@ -69,17 +70,17 @@ class HartreeFockHamiltonian:
         # Compute E_s(k) = sum_n t_s(n) * exp(-i k . n)
         E_s_k = {}
         for s in ['up', 'down']:
-            E_k = np.zeros(self.N_k, dtype=np.float64)
+            E_k = np.zeros(self.N_k, dtype=complex)
             for n, t in self.t_s_n[s].items():
-                n_vector = np.array(n)
+                n_vector = np.array(n)@np.array([[0,1],[np.sqrt(3)/2,1/2]])
                 phase = np.exp(-1j * np.dot(self.k_space, n_vector))
-                E_k += t * phase.real  # Assuming t is real
-            E_s_k[s] = E_k
+                E_k += t * phase  # Assuming t is real
+            E_s_k[s] = E_k.real
         return E_s_k
 
     def compute_U_k(self):
         # Compute U(k) = sum_n U(n) * exp(-i k . n)
-        U_k = np.zeros(self.N_k, dtype=np.float64)
+        U_k = np.zeros(self.N_k, dtype=complex)
         for n, U in self.U_n.items():
             n_vector = np.array(n)
             phase = np.exp(-1j * np.dot(self.k_space, n_vector))
@@ -93,7 +94,7 @@ class HartreeFockHamiltonian:
         Returns:
             np.ndarray: The non-interacting Hamiltonian with shape (D, D, N_k).
         """
-        H_nonint = np.zeros((self.D[0], self.D[0], self.N_k), dtype=np.float64)
+        H_nonint = np.zeros((self.D[0], self.D[0], self.N_k), dtype=complex)
         # Kinetic energy for spin up
         H_nonint[0, 0, :] = self.E_s_k['up']  # H[up, up, k]
         # Kinetic energy for spin down
@@ -111,7 +112,7 @@ class HartreeFockHamiltonian:
             np.ndarray: The interacting Hamiltonian with shape (D, D, N_k).
         """
         exp_val = self.expand(exp_val)  # Shape (D, D, N_k)
-        H_int = np.zeros((self.D[0], self.D[0], self.N_k), dtype=np.float64)
+        H_int = np.zeros((self.D[0], self.D[0], self.N_k), dtype=complex)
 
         # Hartree term: Adds to diagonal elements
         for s in range(self.D[0]):
