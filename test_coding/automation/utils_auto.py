@@ -86,7 +86,7 @@ def generate_prompt(
     #     HAMILTONIAN=hamiltonian,
     #     SYMMETRY=symmetry,
     # )
-    prompt = prompt.replace("{{DOCSTRING}}", '\n'+docstring).replace("{{HF_DOCSTRING}}", '\n'+HF_docstring).replace("{{HAMILTONIAN}}", '\n'+hamiltonian).replace("{{SYMMETRY}}", symmetry)
+    prompt = prompt.replace("{{DOCSTRIprint_gapNG}}", '\n'+docstring).replace("{{HF_DOCSTRING}}", '\n'+HF_docstring).replace("{{HAMILTONIAN}}", '\n'+hamiltonian).replace("{{SYMMETRY}}", symmetry)
 
     output_fn = (
         "prompt_{int}_{decimal}_{trial_idx}".format(
@@ -267,11 +267,13 @@ def plot_2d_false_color_map(ham, en, kmax=6, width=3):
     return fig
 
 
-def print_gap(ham_int, exp_val, en_int):
+def print_gap(ham_int, exp_val, en_int,level=None):
     mean_U = np.abs(ham_int.generate_interacting(exp_val)).mean()
     mean_T = np.abs(ham_int.generate_non_interacting()).mean()
     levels = len(en_int)
-    gap = en_int[levels // 2].min() - en_int[levels // 2 - 1].max()
+    if level is None:
+        level = levels // 2
+    gap = en_int[level].min() - en_int[level - 1].max()
     print(f"Gap is {gap:.2f}")
     print(f"U/T is {mean_U/mean_T:.2f}")
     print(f"mean_U is {mean_U:.2f}")
