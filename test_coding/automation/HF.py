@@ -307,8 +307,8 @@ def generate_k_space(lattice: str, n_shell: int, a: float = 1.0):
     if lattice == "square":
         N_kx = N_ky = (2 * n_shell) + 1
         vec = np.array([[2 * np.pi / a, 0], [0, 2 * np.pi / a]])
-        kx_range = np.linspace(-0.5, 0.5, N_kx, endpoint=False)
-        ky_range = np.linspace(-0.5, 0.5, N_ky, endpoint=False)
+        kx_range = np.linspace(-0.5, 0.5, N_kx, endpoint=False) + .5/N_kx
+        ky_range = np.linspace(-0.5, 0.5, N_ky, endpoint=False) + .5/N_ky
         kx, ky = np.meshgrid(kx_range, ky_range)
         k_space = np.vstack([kx.ravel(), ky.ravel()]).T @ vec
         return k_space

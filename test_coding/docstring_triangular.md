@@ -8,17 +8,17 @@ class HartreeFockHamiltonian:
 
     # Occupancy relevant parameters
     self.nu = filling_factor
-    self.T = parameters['T'] # temperature, default to 0
-    self.a = parameters['a'] # Lattice constant
+    self.T = parameters.get('T', 0.0)  # temperature, default to 0
+    self.a = parameters.get('a', 1.0)  # Lattice constant
     self.primitive_vectors = get_primitive_vectors_triangle(a)
     self.k_space = generate_k_space(self.lattice, N_shell, self.a)
     self.N_k = self.k_space.shape[0]
 
     # All other parameters such as interaction strengths
-    #self.param_0 = parameters['param_0'] # Brief phrase explaining physical significance of `param_0`
-    #self.param_1 = parameters['param_1'] # Brief phrase explaining physical significance of `param_1`
+    #self.param_0 = parameters.get('param_0', val_param_0)  # Brief phrase explaining physical significance of `param_0`
+    #self.param_1 = parameters.get('param_1', val_param_1)  # Brief phrase explaining physical significance of `param_1`
     
-    #self.param_p = parameters['param_p'] # Brief phrase explaining physical significance of `param_p`
+    #self.param_p = parameters.get('param_p', val_param_p)  # Brief phrase explaining physical significance of `param_p`
     # Any other problem specific parameters.
 
     return

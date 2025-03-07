@@ -244,25 +244,28 @@ def plot_2d_false_color_map(ham, en, kmax=6, width=3):
         im = ax[idx].tripcolor(
             ham.k_space[:, 0], ham.k_space[:, 1], en[idx], shading="gouraud"
         )
+        axins = ax[idx].inset_axes([1.03, 0., 0.05, 0.99])  
         ax[idx].tricontour(
             ham.k_space[:, 0],
             ham.k_space[:, 1],
             en[idx],
-            levels=20,
+            levels=10,
             colors="k",
             linewidths=1,
         )
         ax[idx].set_title(f"Band {idx+1}")
         ax[idx].set_xlabel("$k_x$")
         ax[idx].set_ylabel("$k_y$")
-        ax[idx].set_aspect("equal")
+        
         cbar = plt.colorbar(
             im,
+            cax=axins,
             ax=ax[idx],
         )
         cbar.formatter = ScalarFormatter(useOffset=False, useMathText=False)
         cbar.formatter.set_scientific(False)
         cbar.update_ticks()
+        ax[idx].set_aspect("equal")
 
     return fig
 

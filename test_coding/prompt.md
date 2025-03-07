@@ -86,14 +86,14 @@ class HartreeFockHamiltonian:
 
     # Occupancy relevant parameters
     self.nu = filling_factor
-    self.T = parameters['T'] # temperature, default to 0
-    self.a = parameters['a'] # Lattice constant
+    self.T = parameters.get('T', 0) # temperature, default to 0
+    self.a = parameters.get('a', 1.0) # Lattice constant
     self.k_space = generate_k_space(self.lattice, N_shell, self.a)
     self.N_k = self.k_space.shape[0]
 
     # Model parameters
-    self.t = parameters['t'] # Hopping parameter
-    self.U = parameters['U'] # Interaction strength
+    self.t = parameters.get('t', 1.0) # Hopping parameter
+    self.U = parameters.get('U', 1.0) # Interaction strength
 
     return
 

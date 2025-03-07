@@ -62,9 +62,6 @@
       \label{eq:Udtilde}
     \end{eqnarray}
     In addition, we have put all the constant terms into chemical potential $\mu = 2V_{pd}n - V_{pd}n^2$. (namely, the chemical potential is not an independent variable)
-    The mean-field Hamiltonian~\eqref{eq:mfhamiltonian} can be diagonalized to yield three bands
-    each with mixed orbital character and dispersion $\xi_{\alpha\kk s}$, where $\alpha=1,2,3$ is the
-    band index for the lowest lying and the two upper bands.  
   symmetry: square
 
 - arxiv: 1208.0116
