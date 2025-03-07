@@ -1,12 +1,13 @@
 ```
 class HartreeFockHamiltonian:
-  def __init__(self, N_shell, parameters:dict[str, Any], ):
+  def __init__(self, N_shell, parameters:dict[str, Any], filling_factor: float=0.5):
     self.lattice = 'square' | 'triangular'
     self.D = # LLM Task: has to define this tuple.
     self.basis_order = {'0': 'flavor_type_0', '1': 'flavor_type_1', ... 'D-1': 'flavor_type_D-1'}
     # this is the basis order that the Hamiltonian will follow
 
     # Occupancy relevant parameters
+    self.nu = filling_factor
     self.T = parameters['T'] # temperature, default to 0
     self.a = parameters['a'] # Lattice constant
     self.primitive_vectors = get_primitive_vectors_triangle(a)

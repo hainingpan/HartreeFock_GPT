@@ -77,7 +77,7 @@ class HartreeFockHamiltonian:
     N_shell (int): Number shell in the first Broullouin zone.
     parameters (dict): Dictionary containing model parameters 't' and 'U'.
   \"""
-  def __init__(self, N_shell: int, parameters: dict[str, Any]={'t':1.0, 'U':1.0, 'T':0, 'a':1.0},):
+  def __init__(self, N_shell: int, parameters: dict[str, Any]={'t':1.0, 'U':1.0, 'T':0, 'a':1.0},filling_factor: float=0.5):
     self.lattice = 'square'   # Lattice symmetry ('square' or 'triangular'). Defaults to 'square'.
     self.D = (2,) # Number of flavors identified.
     self.basis_order = {'0': 'spin'}
@@ -85,6 +85,7 @@ class HartreeFockHamiltonian:
     # 0: spin up, spin down
 
     # Occupancy relevant parameters
+    self.nu = filling_factor
     self.T = parameters['T'] # temperature, default to 0
     self.a = parameters['a'] # Lattice constant
     self.k_space = generate_k_space(self.lattice, N_shell, self.a)
