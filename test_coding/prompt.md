@@ -76,11 +76,8 @@ class HartreeFockHamiltonian:
   Args:
     N_shell (int): Number shell in the first Broullouin zone.
     parameters (dict): Dictionary containing model parameters 't' and 'U'.
-    filling_factor (float, optional): Filling factor. Defaults to 0.5.
-    temperature (float, optional): Temperature. Defaults to 0.0.
-    n (str | None, optional): Parameter used in chemical potential calculation. Defaults to None.
   \"""
-  def __init__(self, N_shell: int, parameters: dict={'t':1.0, 'U':1.0}, filling_factor: float=0.5):
+  def __init__(self, N_shell: int, parameters: dict[str, Any]={'t':1.0, 'U':1.0, 'T':0, 'a':1.0},):
     self.lattice = 'square'   # Lattice symmetry ('square' or 'triangular'). Defaults to 'square'.
     self.D = (2,) # Number of flavors identified.
     self.basis_order = {'0': 'spin'}
@@ -88,11 +85,10 @@ class HartreeFockHamiltonian:
     # 0: spin up, spin down
 
     # Occupancy relevant parameters
-    self.nu = filling_factor
-    self.T = 0
-    self.n = n # Number of particles in the system.
-    self.k_space = generate_k_space(self.lattice, N_shell)
-    # N_k = 2*(N_shell+1) for a square lattice
+    self.T = parameters['T'] # temperature, default to 0
+    self.a = parameters['a'] # Lattice constant
+    self.k_space = generate_k_space(self.lattice, N_shell, self.a)
+    self.N_k = self.k_space.shape[0]
 
     # Model parameters
     self.t = parameters['t'] # Hopping parameter
@@ -107,8 +103,7 @@ class HartreeFockHamiltonian:
       Returns:
         np.ndarray: The non-interacting Hamiltonian with shape (D, D, N_k).
     \"""
-    N_k = self.k_space.shape[0]
-    H_nonint = np.zeros((self.D, self.D, N_k), dtype=np.float32)
+    H_nonint = np.zeros((*self.D,*self.D,self.N_k), dtype=complex)
     # Kinetic energy for spin up and spin down.
     # They are identical in this case, but we keep them separate for clarity
     H_nonint[0, 0, :] = -2 * self.t * (np.cos(self.k_space[:, 0]) + np.cos(self.k_space[:, 1]))  
@@ -120,14 +115,13 @@ class HartreeFockHamiltonian:
     Generates the interacting part of the Hamiltonian.
 
     Args:
-      exp_val (np.ndarray): Expectation value array with shape (D_flattened, N_k).
+      exp_val (np.ndarray): Expectation value array with shape (D_flattened, D_flattened, N_k).
 
     Returns:
       np.ndarray: The interacting Hamiltonian with shape (D, D, N_k).
     \"""
-    exp_val = self.unflatten(exp_val) # 2, 2, N_k
-    N_k = exp_val.shape[-1]
-    H_int = np.zeros(self.D + self.D + (N_k,), dtype=np.float32)
+    exp_val = unflatten(exp_val, self.D, self.N_k)
+    H_int = np.zeros((*self.D,*self.D,self.N_k), dtype=complex)
 
     # Calculate the mean densities for spin up and spin down
     n_up = np.mean(exp_val[0, 0, :]) # <c_{k',up}^\dagger c_{k',up}>
@@ -138,25 +132,23 @@ class HartreeFockHamiltonian:
     H_int[1, 1, :] = self.U * n_up # Interaction of spin down with average spin up density
     return H_int
 
-  def generate_Htotal(self, exp_val: np.ndarray, flatten: bool=True) ->np.ndarray:
+  def generate_Htotal(self, exp_val: np.ndarray, return_flat: bool=True) ->np.ndarray:
     \"""
       Generates the total Hartree-Fock Hamiltonian.
 
       Args:
-          exp_val (np.ndarray): Expectation value array with shape (D_flattened, N_k).
+          exp_val (np.ndarray): Expectation value array with shape (D_flattened, D_flattened, N_k).
 
       Returns:
           np.ndarray: The total Hamiltonian with shape (D, D, N_k).
     \"""
-    N_k = exp_val.shape[-1]
     H_nonint = self.generate_non_interacting()
     H_int = self.generate_interacting(exp_val)
     H_total = H_nonint + H_int
-    if flatten:
-      return flattened(H_total,self.D,N_k)
+    if return_flat:
+      return flattened(H_total,self.D,self.N_k)
     else:
       return H_total
-
 ```
 
 ===

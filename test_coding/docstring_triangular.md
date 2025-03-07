@@ -43,7 +43,7 @@ class HartreeFockHamiltonian:
             (-1, -1),
         ]
         return n_vectors
-        # For further neighbors, ones should call `get_shell_index_triangle(nshell)` in `HF.py` for "all neighbors within that nshell"
+        # For further neighbors, ones should obtain from calling `get_shell_index_triangle(nshell)` in `HF.py`, which returns "all neighbors within that nshell", and then perform postprocess to filter out the undesired neighbors in the inner region.  
     
 
   def generate_non_interacting(self) -> np.ndarray:
