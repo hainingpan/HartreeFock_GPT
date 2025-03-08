@@ -22,7 +22,7 @@
 '3':
   answer1: correct
   answer2: correct
-  answer3: incorrect
+  answer3: incorrect, F
   answer4: incorrect
   paper: '1508.00296'
   trial_idx: 3
@@ -37,34 +37,34 @@
   answer1: correct
   answer2: correct
   answer3: correct
-  answer4: uncertain
+  answer4: correct
   paper: '1508.00296'
   trial_idx: 5
 '6':
   answer1: uncertain
   answer2: correct
-  answer3: incorrect
+  answer3: incorrect, F
   answer4: incorrect
   paper: '1508.00296'
   trial_idx: 6
 '7':
   answer1: correct
   answer2: correct
-  answer3: incorrect
+  answer3: incorrect, F
   answer4: incorrect
   paper: '1508.00296'
   trial_idx: 7
 '8':
   answer1: correct
   answer2: correct
-  answer3: uncertain
+  answer3: incorrect, F
   answer4: incorrect
   paper: '1508.00296'
   trial_idx: 8
 '9':
   answer1: correct
   answer2: correct
-  answer3: uncertain
+  answer3: incorrect, F
   answer4: incorrect
   paper: '1508.00296'
   trial_idx: 9
