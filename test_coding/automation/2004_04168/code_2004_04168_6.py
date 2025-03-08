@@ -3,57 +3,42 @@ from typing import Any
 from HF import *
 
 class HartreeFockHamiltonian:
-    """
-    Hartree-Fock Hamiltonian for a system with spin-1/2 fermions on a triangular lattice.
+    """HartreeFock Hamiltonian for a two-band system on a triangular lattice with
+    nearest-neighbor and next-nearest-neighbor hopping, and on-site and 
+    nearest-neighbor interactions.
     
     Args:
-        N_shell (int): Number of shells in k-space.
-        parameters (dict): Dictionary containing model parameters.
-        filling_factor (float, optional): Filling factor. Defaults to 0.5.
+      N_shell (int): Number of shells in the first Brillouin zone.
+      parameters (dict): Dictionary containing model parameters such as 't_1', 't_2', 'U_0', 'U_1'.
+      filling_factor (float): Filling factor, default is 0.5.
     """
-    def __init__(self, N_shell: int = 10, parameters: dict = None, filling_factor: float = 0.5):
+    def __init__(self, N_shell: int, parameters: dict[str, Any]={'t_1': 6.0, 't_2': 1.0, 'U_0': 1.0, 'U_1': 0.5}, filling_factor: float=0.5):
         self.lattice = 'triangular'
-        self.D = (2,)  # LM Task: has to define this tuple - we have 2 spin flavors
+        self.D = (2,) # 2 spin flavors
         self.basis_order = {'0': 'spin'}
-        # Order for spin:
+        # Order for each flavor:
         # 0: spin up
         # 1: spin down
-        
+
         # Occupancy relevant parameters
         self.nu = filling_factor
-        self.T = 0  # Temperature, assuming T=0 as specified
-        
-        # Set default parameters if none are provided
-        if parameters is None:
-            parameters = {
-                'a': 1.0,
-                't_0': 1.0,  # On-site hopping
-                't_1': 0.1,  # First-shell hopping
-                'U_0': 1.0,  # On-site interaction
-                'U_1': 0.5,  # First-shell interaction
-            }
-        
+        self.T = parameters.get('T', 0.0)  # temperature, default to 0
         self.a = parameters.get('a', 1.0)  # Lattice constant
-        # Define the primitive vectors for a 2D triangular lattice
-        self.primitive_vectors = self.a * np.array([[1, 0], [0.5, np.sqrt(3)/2]])
-        
-        # Generate k-space
+        self.primitive_vectors = get_primitive_vectors_triangle(self.a)
         self.k_space = generate_k_space(self.lattice, N_shell, self.a)
         self.N_k = self.k_space.shape[0]
-        
-        # Hopping parameters
-        self.t_0 = parameters.get('t_0', 1.0)  # On-site hopping
-        self.t_1 = parameters.get('t_1', 0.1)  # First-shell hopping
-        
-        # Interaction parameters
-        self.U_0 = parameters.get('U_0', 1.0)  # On-site interaction
-        self.U_1 = parameters.get('U_1', 0.5)  # First-shell interaction
-        
+
+        # Model parameters
+        self.t_1 = parameters.get('t_1', 6.0) # Nearest-neighbor hopping in meV
+        self.t_2 = parameters.get('t_2', 1.0) # Next-nearest-neighbor hopping in meV
+        self.U_0 = parameters.get('U_0', 1.0) # On-site interaction
+        self.U_1 = parameters.get('U_1', 0.5) # Nearest-neighbor interaction
+
         return
-    
+
     def get_nearest_neighbor_vectors(self):
         """
-        Returns the integer coordinate offsets (n1, n2) corresponding to the 
+        # Returns the integer coordinate offsets (n1, n2) corresponding to the 
         nearest neighbors in a 2D triangular Bravais lattice. These offsets are ONLY
         valid for a lattice whose two primitive vectors are separated by 120°.
 
@@ -64,93 +49,154 @@ class HartreeFockHamiltonian:
         For a 2D triangular lattice, there are six nearest neighbors, given by:
         """
         n_vectors = [
-            (1, 0),   # +a1
-            (0, 1),   # +a2
-            (-1, 1),  # -a1 + a2
-            (-1, 0),  # -a1
-            (0, -1),  # -a2
-            (1, -1)   # a1 - a2
+            (1, 0),
+            (0, 1),
+            (1, 1),
+            (-1, 0),
+            (0, -1),
+            (-1, -1),
         ]
         return n_vectors
-    
+        
+    def get_next_nearest_neighbor_vectors(self):
+        """
+        Returns the integer coordinate offsets (n1, n2) corresponding to the 
+        next-nearest neighbors in a 2D triangular Bravais lattice.
+        """
+        nn_vectors = [
+            (2, 0),
+            (0, 2),
+            (2, 2),
+            (-2, 0),
+            (0, -2),
+            (-2, -2),
+            (1, -1),
+            (-1, 1),
+            (2, 1),
+            (1, 2),
+            (-2, -1),
+            (-1, -2)
+        ]
+        return nn_vectors
+
     def generate_non_interacting(self) -> np.ndarray:
         """
-        Generate the non-interacting part of the Hamiltonian.
-        
+        Generates the non-interacting part of the Hamiltonian.
+
         Returns:
-            np.ndarray: The non-interacting Hamiltonian with shape (D, D, N_k).
+          np.ndarray: The non-interacting Hamiltonian with shape (D, D, N_k).
         """
-        H_nonint = np.zeros(self.D + self.D + (self.N_k,), dtype=complex)
+        H_nonint = np.zeros((*self.D,*self.D,self.N_k), dtype=complex)
         
-        # Get the nearest neighbor vectors
+        # Get nearest and next-nearest neighbor vectors
         nn_vectors = self.get_nearest_neighbor_vectors()
+        nnn_vectors = self.get_next_nearest_neighbor_vectors()
         
-        # Compute E_s(k) for each spin and k-point
-        for s in range(self.D[0]):
-            for i, k in enumerate(self.k_space):
-                # On-site term
-                E_s_k = self.t_0
-                
-                # Nearest-neighbor hopping - calculating E_s(k) = sum_n t_s(n) * exp(-i*k*n)
-                for n in nn_vectors:
-                    # Convert lattice coordinates to cartesian
-                    n_cart = n[0] * self.primitive_vectors[0] + n[1] * self.primitive_vectors[1]
-                    phase = np.exp(-1j * np.dot(k, n_cart))
-                    E_s_k += self.t_1 * phase
-                
-                # Assign to diagonal elements (kinetic terms)
-                H_nonint[s, s, i] = E_s_k
+        # Compute dispersion E_s(k) using the hopping parameters
+        # E_s(k) = sum_n t_s(n) * exp(-i * k . n)
+        E_k = np.zeros(self.N_k, dtype=complex)
+        
+        # Contribution from nearest neighbors
+        for nn in nn_vectors:
+            # Convert neighbor vector to real space
+            r = nn[0] * self.primitive_vectors[0] + nn[1] * self.primitive_vectors[1]
+            # Compute k . r for all k points
+            k_dot_r = np.sum(self.k_space * r, axis=1)
+            # Add contribution to dispersion
+            E_k += self.t_1 * np.exp(-1j * k_dot_r)
+        
+        # Contribution from next-nearest neighbors
+        for nnn in nnn_vectors:
+            # Convert neighbor vector to real space
+            r = nnn[0] * self.primitive_vectors[0] + nnn[1] * self.primitive_vectors[1]
+            # Compute k . r for all k points
+            k_dot_r = np.sum(self.k_space * r, axis=1)
+            # Add contribution to dispersion
+            E_k += self.t_2 * np.exp(-1j * k_dot_r)
+        
+        # Set diagonal elements for both spin up and spin down (assuming they have the same dispersion)
+        H_nonint[0, 0, :] = E_k  # Spin up
+        H_nonint[1, 1, :] = E_k  # Spin down
         
         return H_nonint
-    
+
+    def compute_U_k(self, k):
+        """
+        Compute the momentum-dependent interaction potential.
+        
+        Args:
+            k (np.ndarray): Momentum vector.
+            
+        Returns:
+            complex: Interaction potential U(k).
+        """
+        U_k = self.U_0  # On-site interaction
+        
+        # Add contribution from nearest-neighbor interaction
+        nn_vectors = self.get_nearest_neighbor_vectors()
+        for nn in nn_vectors:
+            r = nn[0] * self.primitive_vectors[0] + nn[1] * self.primitive_vectors[1]
+            k_dot_r = np.sum(k * r)
+            U_k += self.U_1 * np.exp(-1j * k_dot_r)
+            
+        return U_k
+
     def generate_interacting(self, exp_val: np.ndarray) -> np.ndarray:
         """
-        Generate the interacting part of the Hamiltonian.
-        
+        Generates the interacting part of the Hamiltonian.
+
         Args:
-            exp_val: The expectation value with shape (D_flattened, D_flattened, N_k).
-            
+          exp_val (np.ndarray): Expectation value array with shape (D_flattened, D_flattened, N_k).
+
         Returns:
-            np.ndarray: The interacting Hamiltonian with shape (D, D, N_k).
+          np.ndarray: The interacting Hamiltonian with shape (D, D, N_k).
         """
-        exp_val = unflatten_exp_val(exp_val, self.D, self.N_k)  # Unflatten exp_val to match Hamiltonian shape
-        H_int = np.zeros(self.D + self.D + (self.N_k,), dtype=complex)
+        exp_val = unflatten(exp_val, self.D, self.N_k)
+        H_int = np.zeros((*self.D,*self.D,self.N_k), dtype=complex)
+
+        # Compute average occupation for each flavor
+        n_up = np.mean(exp_val[0, 0, :])  # Average occupation of spin up
+        n_down = np.mean(exp_val[1, 1, :])  # Average occupation of spin down
         
-        # Hartree term: (1/N) * sum_s,s',k1,k2 U(0) * <c_s^†(k1) c_s(k1)> * c_s'^†(k2) c_s'(k2)
-        for s_prime in range(self.D[0]):
-            for s in range(self.D[0]):
-                # Calculate average density for spin s across all k-points
-                avg_density_s = np.mean(exp_val[s, s, :])
-                # Add Hartree contribution to H_int[s_prime, s_prime, :]
-                H_int[s_prime, s_prime, :] += (self.U_0 / self.N_k) * avg_density_s
+        # Hartree term: H_Hartree = (1/N) * sum_{s,s',k1,k2} U(0) * <c_s^dag(k1) c_s(k1)> * c_s'^dag(k2) c_s'(k2)
+        # For each spin s', this contributes to H[s',s',k2]
+        H_int[0, 0, :] += self.U_0 * (n_up + n_down)  # Spin up interaction with average density
+        H_int[1, 1, :] += self.U_0 * (n_up + n_down)  # Spin down interaction with average density
         
-        # Fock term: -(1/N) * sum_s,s',k1,k2 U(k1-k2) * <c_s^†(k1) c_s'(k1)> * c_s'^†(k2) c_s(k2)
-        # For simplicity, we approximate U(k1-k2) with U(0) for all k1,k2
-        for s in range(self.D[0]):
-            for s_prime in range(self.D[0]):
-                # Calculate average correlation between spin s and s_prime
-                avg_correlation = np.mean(exp_val[s, s_prime, :])
-                # Add Fock contribution to H_int[s_prime, s, :]
-                H_int[s_prime, s, :] -= (self.U_0 / self.N_k) * avg_correlation
+        # Fock term: H_Fock = -(1/N) * sum_{s,s',k1,k2} U(k1-k2) * <c_s^dag(k1) c_s'(k1)> * c_s'^dag(k2) c_s(k2)
+        # This contributes to H[s',s,k2]
+        
+        # For each k2 and each pair of flavors (s,s')
+        for k2_idx in range(self.N_k):
+            for s in range(2):
+                for s_prime in range(2):
+                    # Compute \sum_{k1} U(k1-k2) * <c_s^dag(k1) c_s'(k1)>
+                    fock_sum = 0.0
+                    for k1_idx in range(self.N_k):
+                        k_diff = self.k_space[k1_idx] - self.k_space[k2_idx]
+                        U_k1_minus_k2 = self.compute_U_k(k_diff)
+                        fock_sum += U_k1_minus_k2 * exp_val[s, s_prime, k1_idx]
+                    
+                    # Contribute to H[s',s,k2]
+                    H_int[s_prime, s, k2_idx] -= fock_sum / self.N_k
         
         return H_int
-    
-    def generate_Htotal(self, exp_val: np.ndarray, return_flat: bool = True) -> np.ndarray:
+
+    def generate_Htotal(self, exp_val: np.ndarray, return_flat: bool=True) -> np.ndarray:
         """
-        Generate the total Hamiltonian.
-        
+        Generates the total Hartree-Fock Hamiltonian.
+
         Args:
-            exp_val: The expectation value.
-            return_flat: Whether to return the flattened Hamiltonian.
-            
+            exp_val (np.ndarray): Expectation value array with shape (D_flattened, D_flattened, N_k).
+            return_flat (bool): If True, returns a flattened version of the Hamiltonian.
+
         Returns:
-            np.ndarray: The total Hamiltonian.
+            np.ndarray: The total Hamiltonian, either flattened or with shape (D, D, N_k).
         """
         H_nonint = self.generate_non_interacting()
         H_int = self.generate_interacting(exp_val)
         H_total = H_nonint + H_int
-        
         if return_flat:
-            return flattened_hamiltonian(H_total, self.D, self.N_k)
+            return flattened(H_total, self.D, self.N_k)
         else:
             return H_total
