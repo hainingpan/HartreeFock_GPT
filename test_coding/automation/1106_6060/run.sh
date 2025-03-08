@@ -14,7 +14,7 @@
 # Step 2: Execute all notebooks with error handling
 declare -a failed_notebooks=()
 echo "Starting notebook execution..."
-for i in {1..2} {4..10}; do
+for i in {8..9}; do
     echo "Running 1106_6060_${i}.ipynb..."
     if jupyter nbconvert --to notebook --inplace --execute 1106_6060_${i}.ipynb; then
         echo "✓ Successfully executed 1106_6060_${i}.ipynb"

@@ -222,10 +222,13 @@
 
 - arxiv: 2008.08998
   gt: |
-    $$H_0 = -\sum_{s}\sum_{\bm{k}}\sum_{\bm{n}} t_{s}(\bm{n}) e^{-i \bm{k} \cdot \bm{n}} c_{\bm{k},s}^\dagger c_{\bm{k},s}$$
+    $H_0 = -\sum_{s}\sum_{\bm{p},\bm{q}}\sum_{R_\bm{n}} t_{s}(\bm{n}) e^{-i (\bm{p}+\bm{q}) \cdot R_\bm{n}} c_{\bm{p}+\bm{q},s}^\dagger c_{\bm{p},s}$
     $H_{\text{Hartree}} = \frac{1}{\mathcal{N}}\sum_{s,s'} \sum_{\bm{p},\bm{q}} U(\bm{q}_\alpha-\bm{q}_\delta)\delta_{\bm{q}_\alpha+\bm{q}_\beta,\bm{q}_\gamma+\bm{q}_\delta} \langle c_{\bm{q}_\alpha,s}^\dagger(\bm{p}_\alpha) c_{\bm{q}_\delta,s}(\bm{p}_\alpha) \rangle c_{\bm{q}_\beta,s'}^\dagger(\bm{p}_\beta) c_{\bm{q}_\gamma,s'}(\bm{p}_\beta)$
     $H_{\text{Fock}} = -\frac{1}{\mathcal{N}}\sum_{s,s'} \sum_{\bm{p},\bm{q}} U(\bm{p}_\alpha+\bm{q}_\alpha-\bm{p}_\beta-\bm{q}_\delta)\delta_{\bm{q}_\alpha+\bm{q}_\beta,\bm{q}_\gamma+\bm{q}_\delta} \langle c_{\bm{q}_\alpha,s}^\dagger(\bm{p}_\alpha) c_{\bm{q}_\gamma,s'}(\bm{p}_\alpha) \rangle c_{\bm{q}_\beta,s'}^\dagger(\bm{p}_\beta) c_{\bm{q}_\delta,s}(\bm{p}_\beta)$
-    $U(k) = \sum_{n} U(n) e^{-i k \cdot n}$
+    where $\delta_{\bm{q}_\alpha+\bm{q}_\beta,\bm{q}_\gamma+\bm{q}_\delta}=\sum_{G} \delta(\bm{q}_\alpha+\bm{q}_\beta-\bm{q}_\gamma-\bm{q}_\delta,G )$, namely the transfer of momentum is conserved upto a reciprocal lattice vector $G$.
+    Here, $\bm{q}$ are reciprocal lattice vectors of the "folded Brillouin zone" corresponding to the $\sqrt{3} \times \sqrt{3}$ superlattice in real space.  Therefore, $\bm{q}$ should be taken as the three high-symmetry points: 1. $\Gamma$ point, 2. $K$ point, and 3. $K'$ point (where $K' = -K$) in the original Brillouin zone. The crystal momentum $\bm{p}$ is defined within the folded Brillouin zone (BZ) of the triangular lattice. This folded BZ has the reciprocal lattice vector length as 1/sqrt(3) of the original reciprocal lattice vector length, and the Brillouin zone is rotated by 90 degrees.
+    The interaction potential in momentum space is given by $U(\bm{p}) = \sum_{\bm{R}_n} U(\bm{R}_n) e^{i\bm{p} \cdot \bm{R}_n}$, where the real-space potential $U(r) = \frac{e^2}{\epsilon_0 \epsilon_r} \left(\frac{1}{r} - \frac{1}{\sqrt{r^2+d^2}}\right)$ for $r > 0$, and $U(r=0) = 1000/\epsilon_r$ meV. The screening length $d$ can be taken as 10 nm, and the Coulomb constant $e^2/\epsilon_0 = 1440$ meV·nm. Here, $\epsilon_r$ is the dimensionless relative dielectric constant.
+    For the tight-binding Hamiltonian, use hopping parameters $t_1 = 6$ meV for nearest-neighbor hopping and $t_2 = 1$ meV for next-nearest-neighbor hopping.
   symmetry: triangular
 
 - arxiv: 2012.04554
@@ -272,7 +275,7 @@
     $$H = -\sum_{s}\sum_{\bm{k}} E_{s}(\bm{k}) c_{\bm{k},s}^\dagger c_{\bm{k},s}$$
     $U_{s,s'}(\bm{k})=\sum_{\bm{n}} U(\bm{n}) e^{-i \bm{k} \cdot \bm{n}}$, where $\bm{n}$ is the summation of all hopping pairs
     $H_{\text{Hartree}} = \frac{1}{N}\sum_{s,s'}\sum_{k,k'} U(0) \langle c_{k,s}^\dagger c_{k,s}\rangle c_{k',s'}^\dagger c_{k',s'}$
-    $H_{\text{Fock}} = -\frac{1}{N}\sum_{s,s'}\sum_{k,q} U(k-q)  \langle c_{k,s}^\dagger c_{k,s'} \rangle c_{q,s'}^\dagger c_{q,s} $
+    $H_{\text{Fock}} = -\frac{1}{N}\sum_{s,s'}\sum_{k,q} U(k-q)  \langle c_{k,s}^\dagger c_{k,s'} \rangle c_{q,s'}^\dagger c_{q,s} $, where U_0 is the on-site interaction, U_1 is the nearest neighbor interaction, and U_k is the k-th shell neighbor interaction
   symmetry: triangular
 
 - arxiv: 2111.01152

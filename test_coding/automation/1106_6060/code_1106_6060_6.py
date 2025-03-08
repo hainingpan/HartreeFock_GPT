@@ -3,157 +3,162 @@ from typing import Any
 from HF import *
 
 class HartreeFockHamiltonian:
-    """
-    Hartree-Fock Hamiltonian for a three-orbital (p_x, p_y, d) model on a square lattice.
-    
-    This implements the mean-field Hamiltonian:
-    H_MF = sum_{k,s} C^dag_{k,s} H_{k,s} C_{k,s} + f(n^p, eta)
-    
-    where C^dag_{k,s} = (p^dag_{x,k,s}, p^dag_{y,k,s}, d^dag_{k,s})
+    """Hartree-Fock Hamiltonian for the Emery model describing copper-oxide planes in high-Tc superconductors.
     
     Args:
         N_shell (int): Number of shells in the first Brillouin zone.
         parameters (dict): Dictionary containing model parameters.
-        filling_factor (float): Filling factor of the system.
+        filling_factor (float): Filling factor for the system. Default is 0.5.
     """
-    def __init__(self, N_shell: int, parameters: dict[str, Any]={}, filling_factor: float=0.5):
-        self.lattice = 'square'   # Lattice symmetry ('square' or 'triangular')
-        self.D = (2, 3)  # Number of flavors: (spin, orbital)
+    def __init__(self, N_shell: int, parameters: dict[str, Any]={'t_pd': 1.0, 't_pp': 0.5, 'Delta': 3.0, 'U_p': 4.0, 'V_pp': 1.0, 'V_pd': 1.0, 'U_d': 8.0, 'n': 1.0, 'T': 0, 'a': 1.0}, filling_factor: float=0.5):
+        self.lattice = 'square'  # Lattice symmetry
+        self.D = (2, 3)  # Number of flavors (spin, orbital)
         self.basis_order = {'0': 'spin', '1': 'orbital'}
         # Order for each flavor:
         # 0: spin up, spin down
-        # 1: orbital p_x, p_y, d
-
+        # 1: p_x, p_y, d
+        
         # Occupancy relevant parameters
         self.nu = filling_factor
         self.T = parameters.get('T', 0)  # temperature, default to 0
         self.a = parameters.get('a', 1.0)  # Lattice constant
         self.k_space = generate_k_space(self.lattice, N_shell, self.a)
         self.N_k = self.k_space.shape[0]
-
+        
         # Model parameters
-        self.t_pd = parameters.get('t_pd', 1.0)  # p-d hopping
-        self.t_pp = parameters.get('t_pp', 0.5)  # p-p hopping
-        self.Delta = parameters.get('Delta', 3.0)  # On-site energy difference
+        self.t_pd = parameters.get('t_pd', 1.0)  # Hopping between p and d orbitals
+        self.t_pp = parameters.get('t_pp', 0.5)  # Hopping between p orbitals
+        self.Delta = parameters.get('Delta', 3.0)  # Energy difference between p and d orbitals
+        self.U_p = parameters.get('U_p', 4.0)  # On-site Coulomb repulsion for p orbitals
+        self.V_pp = parameters.get('V_pp', 1.0)  # Coulomb repulsion between neighboring p orbitals
+        self.V_pd = parameters.get('V_pd', 1.0)  # Coulomb repulsion between p and d orbitals
+        self.U_d = parameters.get('U_d', 8.0)  # On-site Coulomb repulsion for d orbitals
+        self.n = parameters.get('n', 1.0)  # Total density of holes
         
-        # Interaction parameters
-        self.U_p = parameters.get('U_p', 4.0)  # On-site Coulomb repulsion at oxygen sites
-        self.U_d = parameters.get('U_d', 8.0)  # On-site Coulomb repulsion at copper sites
-        self.V_pp = parameters.get('V_pp', 1.0)  # Nearest-neighbor interaction between oxygen sites
-        self.V_pd = parameters.get('V_pd', 1.0)  # Nearest-neighbor interaction between p and d orbitals
+        # Effective interaction parameters
+        self.U_p_tilde = self.U_p + 8 * self.V_pp - 8 * self.V_pd  # Effective U_p
+        self.V_pp_tilde = 8 * self.V_pp - self.U_p  # Effective V_pp
+        self.U_d_tilde = self.U_d - 4 * self.V_pd  # Effective U_d
         
-        # Derived interaction parameters (from Eq. Uptilde, Vptilde, Udtilde)
-        self.U_p_tilde = self.U_p + 8 * self.V_pp - 8 * self.V_pd
-        self.V_pp_tilde = 8 * self.V_pp - self.U_p
-        self.U_d_tilde = self.U_d - 4 * self.V_pd
+        # Chemical potential
+        self.mu = 2 * self.V_pd * self.n - self.V_pd * self.n**2  # Chemical potential
         
         return
-
-    def generate_non_interacting(self) -> np.ndarray:
-        """
-        Generates the non-interacting part of the Hamiltonian.
-
+        
+    def compute_order_parameters(self, exp_val: np.ndarray):
+        """Compute order parameters from expectation values.
+        
+        Args:
+            exp_val (np.ndarray): Expectation value tensor.
+            
         Returns:
-            np.ndarray: The non-interacting Hamiltonian with shape (D, D, N_k).
+            tuple: Tuple containing n_p (total density of holes on oxygen sites) and eta (nematic order parameter).
+        """
+        # Unpack spin and orbital indices
+        spin_up, spin_down = 0, 1
+        p_x, p_y, d = 0, 1, 2
+        
+        # Compute n_p: total density of holes on oxygen sites (p_x and p_y)
+        n_p_x_up = np.mean(exp_val[spin_up, p_x, spin_up, p_x, :])
+        n_p_x_down = np.mean(exp_val[spin_down, p_x, spin_down, p_x, :])
+        n_p_y_up = np.mean(exp_val[spin_up, p_y, spin_up, p_y, :])
+        n_p_y_down = np.mean(exp_val[spin_down, p_y, spin_down, p_y, :])
+        
+        n_p = (n_p_x_up + n_p_x_down) + (n_p_y_up + n_p_y_down)
+        
+        # Compute eta: nematic order parameter (difference between p_x and p_y hole densities)
+        eta = (n_p_x_up + n_p_x_down) - (n_p_y_up + n_p_y_down)
+        
+        return n_p, eta
+        
+    def compute_energy_constant(self, n_p, eta):
+        """Compute the constant energy term f(n^p, eta) / N.
+        
+        This term is part of the total energy calculation but is not included
+        in the Hamiltonian matrix elements.
+        
+        Args:
+            n_p (float): Total density of holes on oxygen sites.
+            eta (float): Nematic order parameter.
+            
+        Returns:
+            float: Constant energy term per k-point.
+        """
+        f_const = -self.U_p_tilde * (n_p**2) / 8 + self.V_pp_tilde * (eta**2) / 8 - self.U_d_tilde * (self.n - n_p)**2 / 4
+        
+        return f_const / self.N_k  # Distribute the constant term over all k points
+        
+    def generate_non_interacting(self) -> np.ndarray:
+        """Generate the non-interacting part of the Hamiltonian.
+        
+        Returns:
+            np.ndarray: Non-interacting Hamiltonian tensor.
         """
         H_nonint = np.zeros((*self.D, *self.D, self.N_k), dtype=complex)
         
-        # Calculate the k-dependent hopping terms
-        gamma_1_kx = -2 * self.t_pd * np.cos(self.k_space[:, 0] / 2)  # p_x-d hopping
-        gamma_1_ky = -2 * self.t_pd * np.cos(self.k_space[:, 1] / 2)  # p_y-d hopping
-        gamma_2_k = -4 * self.t_pp * np.cos(self.k_space[:, 0] / 2) * np.cos(self.k_space[:, 1] / 2)  # p_x-p_y hopping
+        # Unpack spin and orbital indices
+        spin_up, spin_down = 0, 1
+        p_x, p_y, d = 0, 1, 2
         
-        # Fill the Hamiltonian matrix for each spin
-        for s in range(2):  # Loop over spin (up, down)
-            # Non-interacting on-site energy terms (Delta term)
-            H_nonint[s, 0, s, 0, :] = self.Delta  # p_x orbital on-site energy
-            H_nonint[s, 1, s, 1, :] = self.Delta  # p_y orbital on-site energy
-            # d orbital on-site energy is 0
+        for s in [spin_up, spin_down]:
+            # Gamma_1 terms (hopping between p and d orbitals)
+            gamma_1_x = -2 * self.t_pd * np.cos(self.k_space[:, 0] / 2)
+            gamma_1_y = -2 * self.t_pd * np.cos(self.k_space[:, 1] / 2)
             
-            # Off-diagonal hopping terms
-            # p_x-p_y hopping
-            H_nonint[s, 0, s, 1, :] = gamma_2_k
-            H_nonint[s, 1, s, 0, :] = gamma_2_k
+            # Gamma_2 term (hopping between p_x and p_y orbitals)
+            gamma_2 = -4 * self.t_pp * np.cos(self.k_space[:, 0] / 2) * np.cos(self.k_space[:, 1] / 2)
             
-            # p_x-d hopping
-            H_nonint[s, 0, s, 2, :] = gamma_1_kx
-            H_nonint[s, 2, s, 0, :] = gamma_1_kx
-            
-            # p_y-d hopping
-            H_nonint[s, 1, s, 2, :] = gamma_1_ky
-            H_nonint[s, 2, s, 1, :] = gamma_1_ky
+            # Off-diagonal elements of the Hamiltonian (within the same spin block)
+            H_nonint[s, p_x, s, p_y, :] = gamma_2  # Hopping between p_x and p_y orbitals
+            H_nonint[s, p_y, s, p_x, :] = gamma_2  # Hermitian conjugate
+            H_nonint[s, p_x, s, d, :] = gamma_1_x  # Hopping between p_x and d orbitals
+            H_nonint[s, d, s, p_x, :] = gamma_1_x  # Hermitian conjugate
+            H_nonint[s, p_y, s, d, :] = gamma_1_y  # Hopping between p_y and d orbitals
+            H_nonint[s, d, s, p_y, :] = gamma_1_y  # Hermitian conjugate
         
         return H_nonint
-
+        
     def generate_interacting(self, exp_val: np.ndarray) -> np.ndarray:
-        """
-        Generates the interacting part of the Hamiltonian.
-
+        """Generate the interacting part of the Hamiltonian.
+        
         Args:
-            exp_val (np.ndarray): Expectation value array with shape (D_flattened, D_flattened, N_k).
-
+            exp_val (np.ndarray): Expectation value tensor.
+            
         Returns:
-            np.ndarray: The interacting Hamiltonian with shape (D, D, N_k).
+            np.ndarray: Interacting Hamiltonian tensor.
         """
         exp_val = unflatten(exp_val, self.D, self.N_k)
         H_int = np.zeros((*self.D, *self.D, self.N_k), dtype=complex)
         
-        # Calculate expectation values for hole densities
-        n_p_x_up = np.mean(exp_val[0, 0, 0, 0, :])    # <p^dag_{x,up} p_{x,up}>
-        n_p_x_down = np.mean(exp_val[1, 0, 1, 0, :])  # <p^dag_{x,down} p_{x,down}>
-        n_p_y_up = np.mean(exp_val[0, 1, 0, 1, :])    # <p^dag_{y,up} p_{y,up}>
-        n_p_y_down = np.mean(exp_val[1, 1, 1, 1, :])  # <p^dag_{y,down} p_{y,down}>
-        n_d_up = np.mean(exp_val[0, 2, 0, 2, :])      # <d^dag_{up} d_{up}>
-        n_d_down = np.mean(exp_val[1, 2, 1, 2, :])    # <d^dag_{down} d_{down}>
+        # Compute order parameters
+        n_p, eta = self.compute_order_parameters(exp_val)
         
-        # Calculate derived quantities
-        n_p = n_p_x_up + n_p_x_down + n_p_y_up + n_p_y_down  # Total hole density on oxygen sites
-        n = n_p + n_d_up + n_d_down  # Total hole density
-        eta = (n_p_x_up + n_p_x_down) - (n_p_y_up + n_p_y_down)  # Nematic order parameter
+        # Unpack spin and orbital indices
+        spin_up, spin_down = 0, 1
+        p_x, p_y, d = 0, 1, 2
         
-        # Calculate the chemical potential
-        mu = 2 * self.V_pd * n - self.V_pd * n**2
-        
-        # Calculate the interacting on-site energies
-        xi_x = self.Delta + self.U_p_tilde * n_p / 4 - self.V_pp_tilde * eta / 4 - mu
-        xi_y = self.Delta + self.U_p_tilde * n_p / 4 + self.V_pp_tilde * eta / 4 - mu
-        xi_d = self.U_d_tilde * (n - n_p) / 2 - mu
-        
-        # Calculate f(n^p, eta) constant term
-        f_const = -self.U_p_tilde * (n_p**2) / 8 + self.V_pp_tilde * (eta**2) / 8 - self.U_d_tilde * ((n - n_p)**2) / 4
-        
-        # Update the diagonal elements of the Hamiltonian
-        for s in range(2):  # Loop over spin
-            # p_x orbital interaction term
-            H_int[s, 0, s, 0, :] = xi_x
+        for s in [spin_up, spin_down]:
+            # Diagonal elements of the Hamiltonian (within the same spin block)
+            # p_x orbital energy with interaction effects
+            H_int[s, p_x, s, p_x, :] = self.Delta + self.U_p_tilde * n_p / 4 - self.V_pp_tilde * eta / 4 - self.mu
             
-            # p_y orbital interaction term
-            H_int[s, 1, s, 1, :] = xi_y
+            # p_y orbital energy with interaction effects
+            H_int[s, p_y, s, p_y, :] = self.Delta + self.U_p_tilde * n_p / 4 + self.V_pp_tilde * eta / 4 - self.mu
             
-            # d orbital interaction term
-            H_int[s, 2, s, 2, :] = xi_d
-        
-        # Add constant term f(n^p, eta) distributed evenly across all states
-        # This is a constant energy shift that doesn't affect the eigenstates
-        # We distribute it evenly across diagonal elements to maintain total energy
-        f_per_state = f_const / (2 * 3 * self.N_k)  # Divide by total number of states
-        for s in range(2):
-            for o in range(3):
-                H_int[s, o, s, o, :] += f_per_state
+            # d orbital energy with interaction effects
+            H_int[s, d, s, d, :] = self.U_d_tilde * (self.n - n_p) / 2 - self.mu
         
         return H_int
-
+        
     def generate_Htotal(self, exp_val: np.ndarray, return_flat: bool=True) -> np.ndarray:
-        """
-        Generates the total Hartree-Fock Hamiltonian.
-
+        """Generate the total Hartree-Fock Hamiltonian.
+        
         Args:
-            exp_val (np.ndarray): Expectation value array with shape (D_flattened, D_flattened, N_k).
-            return_flat (bool): If True, returns the flattened Hamiltonian.
-
+            exp_val (np.ndarray): Expectation value tensor.
+            return_flat (bool): Whether to return the flattened Hamiltonian.
+            
         Returns:
-            np.ndarray: The total Hamiltonian with shape (D_flattened, D_flattened, N_k) if return_flat is True,
-                      otherwise with shape (D, D, N_k).
+            np.ndarray: Total Hamiltonian tensor.
         """
         H_nonint = self.generate_non_interacting()
         H_int = self.generate_interacting(exp_val)

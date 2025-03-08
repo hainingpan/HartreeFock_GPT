@@ -1,6 +1,6 @@
 '1':
   answer1: correct
-  answer2: correct
+  answer2: incorrect
   answer3: correct
   answer4: correct
   paper: '1106.6060'
@@ -8,27 +8,27 @@
 '10':
   answer1: correct
   answer2: correct
-  answer3: incorrect [FN]
-  answer4: correct
+  answer3: correct
+  answer4: incorrect
   paper: '1106.6060'
   trial_idx: 10
 '2':
-  answer1: correct
+  answer1: incorrect
   answer2: correct
   answer3: correct
-  answer4: correct
+  answer4: incorrect
   paper: '1106.6060'
   trial_idx: 2
 '3':
   answer1: correct
   answer2: correct
-  answer3: correct
+  answer3: incorrect
   answer4: correct
   paper: '1106.6060'
   trial_idx: 3
 '4':
   answer1: correct
-  answer2: correct
+  answer2: incorrect
   answer3: correct
   answer4: correct
   paper: '1106.6060'
@@ -36,14 +36,14 @@
 '5':
   answer1: correct
   answer2: correct
-  answer3: incorrect [FN]
-  answer4: correct
+  answer3: correct
+  answer4: incorrect
   paper: '1106.6060'
   trial_idx: 5
 '6':
   answer1: correct
   answer2: correct
-  answer3: incorrect [FN]
+  answer3: correct
   answer4: correct
   paper: '1106.6060'
   trial_idx: 6
@@ -64,7 +64,7 @@
 '9':
   answer1: correct
   answer2: correct
-  answer3: correct
-  answer4: correct
+  answer3: incorrect
+  answer4: incorrect
   paper: '1106.6060'
   trial_idx: 9

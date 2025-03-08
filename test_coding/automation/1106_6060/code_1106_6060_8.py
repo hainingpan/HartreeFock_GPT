@@ -4,148 +4,161 @@ from HF import *
 
 class HartreeFockHamiltonian:
     """
-    Hartree-Fock Hamiltonian for a three-orbital model (px, py, d) with spin.
+    Hartree-Fock Hamiltonian for the three-band Emery model with p-d hybridization.
     
-    The Hamiltonian describes a system with px, py, and d orbitals on a square lattice
-    with both on-site and inter-site interactions.
+    The model includes p_x, p_y orbitals (oxygen) and d orbital (copper) with spin.
     
     Args:
         N_shell (int): Number of shells in the first Brillouin zone.
         parameters (dict): Dictionary containing model parameters.
-        filling_factor (float): Filling factor for the system.
+        filling_factor (float): Filling factor of the system. Default is 0.5.
     """
-    def __init__(self, N_shell: int, parameters: dict[str, Any]={'Delta': 0.0, 't_pd': 1.0, 't_pp': 0.5, 'U_p': 1.0, 'V_pp': 0.5, 'V_pd': 0.5, 'U_d': 1.0, 'T': 0, 'a': 1.0}, filling_factor: float=0.5):
-        self.lattice = 'square'   # Lattice symmetry
-        self.D = (2, 3)  # Number of flavors: (spin, orbital)
-        self.basis_order = {'0': 'spin', '1': 'orbital_flavor'}
+    def __init__(self, N_shell: int, parameters: dict[str, Any]={}, filling_factor: float=0.5):
+        self.lattice = 'square'
+        self.D = (2, 3)  # (spin, orbital)
+        self.basis_order = {'0': 'spin', '1': 'orbital'}
         # Order for each flavor:
-        # 0: spin up, spin down
-        # 1: orbital_flavor: px, py, d
-        
+        # spin: up, down
+        # orbital: p_x, p_y, d
+
         # Occupancy relevant parameters
         self.nu = filling_factor
-        self.T = parameters.get('T', 0)  # Temperature, default to 0
+        self.T = parameters.get('T', 0)  # temperature, default to 0
         self.a = parameters.get('a', 1.0)  # Lattice constant
         self.k_space = generate_k_space(self.lattice, N_shell, self.a)
         self.N_k = self.k_space.shape[0]
-        
+
         # Model parameters
-        self.Delta = parameters.get('Delta', 0.0)  # Energy difference between p and d orbitals
-        self.t_pd = parameters.get('t_pd', 1.0)  # Hopping between p and d orbitals
-        self.t_pp = parameters.get('t_pp', 0.5)  # Hopping between p orbitals
-        self.U_p = parameters.get('U_p', 1.0)  # On-site interaction for p orbitals
-        self.V_pp = parameters.get('V_pp', 0.5)  # Inter-site interaction between p orbitals
-        self.V_pd = parameters.get('V_pd', 0.5)  # Inter-site interaction between p and d orbitals
-        self.U_d = parameters.get('U_d', 1.0)  # On-site interaction for d orbitals
+        self.Delta = parameters.get('Delta', 1.0)  # Energy offset for p orbitals
+        self.t_pd = parameters.get('t_pd', 1.0)  # p-d hopping
+        self.t_pp = parameters.get('t_pp', 0.5)  # p-p hopping
+        self.U_p = parameters.get('U_p', 3.0)  # On-site interaction for p orbitals
+        self.U_d = parameters.get('U_d', 8.0)  # On-site interaction for d orbitals
+        self.V_pp = parameters.get('V_pp', 1.0)  # Nearest-neighbor interaction between p orbitals
+        self.V_pd = parameters.get('V_pd', 1.0)  # Nearest-neighbor interaction between p and d orbitals
         
-        # Derived interaction parameters
+        # Effective interaction parameters
         self.U_p_tilde = self.U_p + 8 * self.V_pp - 8 * self.V_pd
         self.V_pp_tilde = 8 * self.V_pp - self.U_p
         self.U_d_tilde = self.U_d - 4 * self.V_pd
         
         return
 
+    def compute_order_parameters(self, exp_val):
+        """
+        Compute the order parameters from the expectation values.
+        
+        Args:
+            exp_val: Expectation values, shape (2, 3, 2, 3, N_k).
+            
+        Returns:
+            tuple: (n_p, n, eta) order parameters.
+        """
+        # Calculate densities for each orbital and spin
+        n_px_up = np.mean(exp_val[0, 0, 0, 0, :])
+        n_px_down = np.mean(exp_val[1, 0, 1, 0, :])
+        n_py_up = np.mean(exp_val[0, 1, 0, 1, :])
+        n_py_down = np.mean(exp_val[1, 1, 1, 1, :])
+        n_d_up = np.mean(exp_val[0, 2, 0, 2, :])
+        n_d_down = np.mean(exp_val[1, 2, 1, 2, :])
+        
+        # Total p and d densities
+        n_px = n_px_up + n_px_down
+        n_py = n_py_up + n_py_down
+        n_p = n_px + n_py
+        n_d = n_d_up + n_d_down
+        n = n_p + n_d
+        
+        # Nematic order parameter
+        eta = n_px - n_py
+        
+        return n_p, n, eta
+
     def generate_non_interacting(self) -> np.ndarray:
         """
         Generates the non-interacting part of the Hamiltonian.
-
+        
         Returns:
-            np.ndarray: The non-interacting Hamiltonian with shape (D, D, N_k).
+            np.ndarray: The non-interacting Hamiltonian with shape (2, 3, 2, 3, N_k).
         """
         H_nonint = np.zeros((*self.D, *self.D, self.N_k), dtype=complex)
         
-        # Loop over spin (interactions are diagonal in spin)
-        for s in range(self.D[0]):
-            # Diagonal elements (constant parts)
-            H_nonint[s, 0, s, 0, :] = self.Delta  # ξ_x (constant part)
-            H_nonint[s, 1, s, 1, :] = self.Delta  # ξ_y (constant part)
-            # ξ_d (constant part) is 0.0, already initialized to zero
+        # Calculate hopping terms gamma_1 and gamma_2
+        k_x = self.k_space[:, 0]
+        k_y = self.k_space[:, 1]
+        gamma_1_x = -2 * self.t_pd * np.cos(k_x/2)
+        gamma_1_y = -2 * self.t_pd * np.cos(k_y/2)
+        gamma_2 = -4 * self.t_pp * np.cos(k_x/2) * np.cos(k_y/2)
+        
+        # Assign hopping terms to Hamiltonian for both spin channels
+        for s in range(2):
+            # p_x - p_y hopping
+            H_nonint[s, 0, s, 1, :] = gamma_2  # p_x to p_y
+            H_nonint[s, 1, s, 0, :] = gamma_2  # p_y to p_x
             
-            # Off-diagonal elements
-            for k_idx in range(self.N_k):
-                kx, ky = self.k_space[k_idx]
-                
-                # γ_1(k_x) for p_x-d interaction
-                gamma_1_kx = -2 * self.t_pd * np.cos(kx / 2)
-                H_nonint[s, 0, s, 2, k_idx] = gamma_1_kx
-                H_nonint[s, 2, s, 0, k_idx] = gamma_1_kx  # Hermitian conjugate
-                
-                # γ_1(k_y) for p_y-d interaction
-                gamma_1_ky = -2 * self.t_pd * np.cos(ky / 2)
-                H_nonint[s, 1, s, 2, k_idx] = gamma_1_ky
-                H_nonint[s, 2, s, 1, k_idx] = gamma_1_ky  # Hermitian conjugate
-                
-                # γ_2(k) for p_x-p_y interaction
-                gamma_2_k = -4 * self.t_pp * np.cos(kx / 2) * np.cos(ky / 2)
-                H_nonint[s, 0, s, 1, k_idx] = gamma_2_k
-                H_nonint[s, 1, s, 0, k_idx] = gamma_2_k  # Hermitian conjugate
+            # p_x - d hopping
+            H_nonint[s, 0, s, 2, :] = gamma_1_x  # p_x to d
+            H_nonint[s, 2, s, 0, :] = gamma_1_x  # d to p_x
+            
+            # p_y - d hopping
+            H_nonint[s, 1, s, 2, :] = gamma_1_y  # p_y to d
+            H_nonint[s, 2, s, 1, :] = gamma_1_y  # d to p_y
         
         return H_nonint
 
     def generate_interacting(self, exp_val: np.ndarray) -> np.ndarray:
         """
         Generates the interacting part of the Hamiltonian.
-
+        
         Args:
             exp_val (np.ndarray): Expectation value array with shape (D_flattened, D_flattened, N_k).
-
+            
         Returns:
-            np.ndarray: The interacting Hamiltonian with shape (D, D, N_k).
+            np.ndarray: The interacting Hamiltonian with shape (2, 3, 2, 3, N_k).
         """
         exp_val = unflatten(exp_val, self.D, self.N_k)
         H_int = np.zeros((*self.D, *self.D, self.N_k), dtype=complex)
         
-        # Calculate expectation values
-        n_p = 0.0  # Total density of holes on oxygen sites (px, py)
-        eta = 0.0  # Nematic order parameter (px-py asymmetry)
-        n = 0.0    # Total density of holes
+        # Compute order parameters
+        n_p, n, eta = self.compute_order_parameters(exp_val)
         
-        for s in range(self.D[0]):
-            # Sum over all k points for each expectation value
-            n_x = np.mean(exp_val[s, 0, s, 0, :]).real
-            n_y = np.mean(exp_val[s, 1, s, 1, :]).real
-            n_d = np.mean(exp_val[s, 2, s, 2, :]).real
+        # Calculate chemical potential (not an independent variable)
+        mu = 2 * self.V_pd * n - self.V_pd * n**2
+        
+        # Calculate orbital energies
+        xi_x = self.Delta + self.U_p_tilde * n_p/4 - self.V_pp_tilde * eta/4 - mu
+        xi_y = self.Delta + self.U_p_tilde * n_p/4 + self.V_pp_tilde * eta/4 - mu
+        xi_d = self.U_d_tilde * (n - n_p)/2 - mu
+        
+        # Assign diagonal terms to Hamiltonian for both spin channels
+        for s in range(2):
+            H_int[s, 0, s, 0, :] = xi_x  # p_x orbital energy
+            H_int[s, 1, s, 1, :] = xi_y  # p_y orbital energy
+            H_int[s, 2, s, 2, :] = xi_d  # d orbital energy
             
-            n_p += n_x + n_y  # Sum px and py densities for both spins
-            eta += n_x - n_y  # Difference between px and py densities
-            n += n_x + n_y + n_d  # Total density including d orbitals
+        # Add the f(n_p, eta) term
+        # This is a constant energy contribution, but we distribute it evenly across k-points
+        f_term = -self.U_p_tilde * (n_p**2)/8 + self.V_pp_tilde * (eta**2)/8 - self.U_d_tilde * ((n - n_p)**2)/4
         
-        # Calculate chemical potential based on total density
-        mu = 2 * self.V_pd * n - self.V_pd * n * n
-        
-        # Loop over spin (interactions are diagonal in spin)
-        for s in range(self.D[0]):
-            # Diagonal elements (interaction parts)
-            xi_x = self.U_p_tilde * n_p / 4 - self.V_pp_tilde * eta / 4 - mu
-            xi_y = self.U_p_tilde * n_p / 4 + self.V_pp_tilde * eta / 4 - mu
-            xi_d = self.U_d_tilde * (n - n_p) / 2 - mu
-            
-            H_int[s, 0, s, 0, :] = xi_x  # px-px interaction
-            H_int[s, 1, s, 1, :] = xi_y  # py-py interaction
-            H_int[s, 2, s, 2, :] = xi_d  # d-d interaction
-        
-        # Add the constant term f(n^p, η)/N to the total energy
-        # This is a constant energy shift that doesn't affect the eigenstates
-        f_term = -self.U_p_tilde * n_p**2 / 8 + self.V_pp_tilde * eta**2 / 8 - self.U_d_tilde * (n - n_p)**2 / 4
-        
-        # Distribute the constant energy shift equally among all diagonal elements
-        for s in range(self.D[0]):
-            for o in range(self.D[1]):
-                H_int[s, o, s, o, :] += f_term / (self.D[0] * self.D[1])
+        # Since f_term is a global energy shift, we can add it to any diagonal element
+        # Here we distribute it evenly to all diagonal elements
+        constant_shift = f_term / (2 * 3 * self.N_k)  # Divide by number of diagonal elements
+        for s in range(2):
+            for o in range(3):
+                H_int[s, o, s, o, :] += constant_shift
         
         return H_int
 
     def generate_Htotal(self, exp_val: np.ndarray, return_flat: bool=True) -> np.ndarray:
         """
         Generates the total Hartree-Fock Hamiltonian.
-
+        
         Args:
             exp_val (np.ndarray): Expectation value array with shape (D_flattened, D_flattened, N_k).
-            return_flat (bool): If True, returns the flattened Hamiltonian.
-
+            return_flat (bool): Whether to return a flattened array. Default is True.
+            
         Returns:
-            np.ndarray: The total Hamiltonian with shape (D_flattened, D_flattened, N_k) if return_flat=True,
-                        else with shape (D, D, N_k).
+            np.ndarray: The total Hamiltonian, either flattened or not.
         """
         H_nonint = self.generate_non_interacting()
         H_int = self.generate_interacting(exp_val)

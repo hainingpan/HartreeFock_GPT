@@ -129,7 +129,7 @@ class HartreeFockHamiltonian:
         Returns:
             np.ndarray: The interacting Hamiltonian with shape (D + D + (N_k,)).
         """
-        exp_val = unflatten_exp_val(exp_val, self.D, self.N_k)
+        exp_val = unflatten(exp_val, self.D, self.N_k)
         H_int = np.zeros(self.D + self.D + (self.N_k,), dtype=complex)
         
         # Hartree term: (1/N) ∑_{s,s'} ∑_{k1,k2} U(0) <c_s^†(k1) c_s(k1)> c_s'^†(k2) c_s'(k2)
@@ -169,6 +169,6 @@ class HartreeFockHamiltonian:
         H_int = self.generate_interacting(exp_val)
         H_total = H_nonint + H_int
         if return_flat:
-            return flattened_hamiltonian(H_total, self.D, self.N_k)
+            return flattened(H_total, self.D, self.N_k)
         else:
             return H_total

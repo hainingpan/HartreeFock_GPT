@@ -86,7 +86,7 @@ def generate_prompt(
     #     HAMILTONIAN=hamiltonian,
     #     SYMMETRY=symmetry,
     # )
-    prompt = prompt.replace("{{DOCSTRIprint_gapNG}}", '\n'+docstring).replace("{{HF_DOCSTRING}}", '\n'+HF_docstring).replace("{{HAMILTONIAN}}", '\n'+hamiltonian).replace("{{SYMMETRY}}", symmetry)
+    prompt = prompt.replace("{{DOCSTRING}}", '\n'+docstring).replace("{{HF_DOCSTRING}}", '\n'+HF_docstring).replace("{{HAMILTONIAN}}", '\n'+hamiltonian).replace("{{SYMMETRY}}", symmetry)
 
     output_fn = (
         "prompt_{int}_{decimal}_{trial_idx}".format(
@@ -335,8 +335,8 @@ def extract_result_content(string):
 def vision_eval(
     fig,
     prompt_text,
-    budget_tokens=2000,
-    max_tokens=4000,
+    budget_tokens=12800,
+    max_tokens=25600,
     model="claude-3-7-sonnet-20250219",
     verbose=True,
 ):

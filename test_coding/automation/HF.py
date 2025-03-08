@@ -34,18 +34,18 @@ def compute_mu(en: np.ndarray, nu: float, T: float =0):
     """Compute the chemical potential based on energy levels and filling factor.
     This function calculates the chemical potential (mu) for a given energy array
     and filling factor. For zero temperature (T=0), it uses a sorting approach
-    to find the Fermi level. For non-zero temperature, the implementation is
-    not yet complete.
+    to find the Fermi level. For finite temperature (T>0), it numerically solves
+    for the chemical potential that gives the desired filling factor using the
+    Fermi-Dirac distribution.
+    
     Args:
       en (np.ndarray): All energy levels with shape (N_level, N_k), where N_level is the number of energy levels
       nu (float): Filling factor, typically between 0 and 1.
-      T (float): Temperature. Currently only T=0 is implemented.
+      T (float, optional): Temperature. Default is 0.
+    
     Returns:
       float: Chemical potential (mu) corresponding to the given filling factor.
-    Raises:
-      NotImplementedError: If temperature is not zero.
     """
-    flat_en = en.flatten()
 
     if T == 0:
         flattened_en = en.flatten()
@@ -60,7 +60,17 @@ def compute_mu(en: np.ndarray, nu: float, T: float =0):
         mu = sorted_en[fermi_index]
 
     else:
-        raise NotImplementedError("T>0 not implemented yet.")
+        # For finite temperature, we need to solve for mu numerically
+        flattened_en = en.flatten()
+        # Define a function to solve for mu
+        def fermi_distribution_diff(mu_guess):
+            occupancies = 1.0 / (1.0 + np.exp((flattened_en - mu_guess) / T))
+            return occupancies.mean() - nu
+        
+        # Find the mu value that gives the target filling
+        mu = optimize.brentq(fermi_distribution_diff, 
+                np.min(flattened_en) - 10*T, 
+                np.max(flattened_en) + 10*T)
 
     return mu
 
@@ -69,8 +79,8 @@ def get_occupancy(en: np.ndarray, mu: float, T: float=0):
 
     Args:
       en: Energies with shape (N_level, N_k), level index first, then total k pts.
-      T: Temperature.
       mu: Chemical potential, at T=0, fermi energy.
+      T: Temperature. For T=0, uses step function. For T>0, uses Fermi-Dirac distribution.
 
     Returns:
       occupancy: Occupancy with the same shape as `en`.
@@ -80,7 +90,8 @@ def get_occupancy(en: np.ndarray, mu: float, T: float=0):
         # Compute occupancy: 1 if energy <= Fermi level, 0 otherwise
         occupancy = (en <= mu).astype(int)
     else:
-        raise NotImplementedError("T>0 not implemented yet.")
+        # Fermi-Dirac distribution for finite temperature
+        occupancy = 1.0 / (1.0 + np.exp((en - mu) / T))
     return occupancy
 
 
@@ -364,8 +375,24 @@ def generate_high_symmtry_points(lattice, a_M):
     """Returns high symmetry points in the 2D Brillouin zone.
     Calculates the coordinates of special k-points in the Brillouin zone for
     triangular or square lattices using the provided lattice constant.
-    For triangular lattices, the high symmetry points are Gamma, Gamma', M, K, M', K';
+    For triangular lattices, the high symmetry points are Gamma, Gamma', M, K, M', K'; 
+    {
+            "Gamma": np.array([0, 0]),
+            "Gamma'": 4 * np.pi / (np.sqrt(3) * a_M) * np.array([1, 0]),
+            "M": 2 * np.pi / (np.sqrt(3) * a_M) * np.array([1, 0]),
+            "M'": 2 * np.pi / (np.sqrt(3) * a_M) * np.array([1 / 2, np.sqrt(3) / 2]),
+            "K": 4 * np.pi / (3 * a_M) * np.array([np.sqrt(3) / 2, 1 / 2]),
+            "K'": 4 * np.pi / (3 * a_M) * np.array([np.sqrt(3) / 2, -1 / 2]),
+        }
     For square lattices, the points are Gamma, Gamma', M, K, M', K';
+    {
+            "Gamma": np.array([0, 0]),
+            "Gamma'": 2 * np.pi / (a_M) * np.array([1, 0]),
+            "M": 2 * np.pi / (a_M) * np.array([1 / 2, 0]),
+            "M'": 2 * np.pi / (a_M) * np.array([0, 1 / 2]),
+            "K": 2 * np.pi / (a_M) * np.array([1 / 2, 1 / 2]),
+            "K'": 2 * np.pi / (a_M) * np.array([1 / 2, -1 / 2]),
+        }
     Args:
       lattice: str, the lattice type ('triangular' or 'square')
       a_M: float, the lattice constant

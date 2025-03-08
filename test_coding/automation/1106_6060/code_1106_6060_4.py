@@ -4,45 +4,49 @@ from HF import *
 
 class HartreeFockHamiltonian:
   """
-  Three-orbital (px, py, d) model on a square lattice with spin.
-  
-  This class implements a mean-field Hamiltonian for a three-orbital model
-  with interactions between p and d orbitals. The model includes nematic 
-  ordering between px and py orbitals.
+  Hartree-Fock Hamiltonian for a system with p_x, p_y, and d orbitals.
   
   Args:
     N_shell (int): Number of shells in the first Brillouin zone.
     parameters (dict): Dictionary containing model parameters.
-    filling_factor (float): Filling factor of the system.
+      - t_pd (float): Hopping parameter between p and d orbitals.
+      - t_pp (float): Hopping parameter between p orbitals.
+      - Delta (float): Energy difference between p and d orbitals.
+      - U_p (float): Coulomb repulsion on p orbitals.
+      - V_pp (float): Inter-site Coulomb repulsion between p orbitals.
+      - U_d (float): Coulomb repulsion on d orbital.
+      - V_pd (float): Inter-site Coulomb repulsion between p and d orbitals.
+      - T (float): Temperature (default: 0).
+      - a (float): Lattice constant (default: 1.0).
+    filling_factor (float): Filling factor (default: 0.5).
   """
-  def __init__(self, N_shell: int, parameters: dict[str, Any]={}, filling_factor: float=0.5):
-    self.lattice = 'square'   # Lattice symmetry
-    self.D = (2, 3) # Number of flavors (spin, orbital)
+  def __init__(self, N_shell: int, parameters: dict[str, Any]={'t_pd':1.0, 't_pp':1.0, 'Delta':0.0, 'U_p':0.0, 'V_pp':0.0, 'U_d':0.0, 'V_pd':0.0, 'T':0, 'a':1.0}, filling_factor: float=0.5):
+    self.lattice = 'square'   # Lattice type
+    self.D = (2, 3)           # (spin, orbital)
     self.basis_order = {'0': 'spin', '1': 'orbital'}
     # Order for each flavor:
-    # 0: spin up, spin down
-    # 1: px, py, d
+    # spin: up (0), down (1)
+    # orbital: p_x (0), p_y (1), d (2)
 
     # Occupancy relevant parameters
     self.nu = filling_factor
-    self.T = parameters.get('T', 0) # temperature, default to 0
-    self.a = parameters.get('a', 1.0) # Lattice constant
+    self.T = parameters.get('T', 0)      # Temperature
+    self.a = parameters.get('a', 1.0)    # Lattice constant
     self.k_space = generate_k_space(self.lattice, N_shell, self.a)
     self.N_k = self.k_space.shape[0]
 
-    # Model parameters
-    self.t_pd = parameters.get('t_pd', 1.0) # p-d hopping parameter
-    self.t_pp = parameters.get('t_pp', 0.5) # p-p hopping parameter
-    self.Delta = parameters.get('Delta', 1.0) # Energy difference between p and d orbitals
-    self.U_p = parameters.get('U_p', 1.0) # On-site Coulomb repulsion for p-orbitals
-    self.U_d = parameters.get('U_d', 2.0) # On-site Coulomb repulsion for d-orbitals
-    self.V_pp = parameters.get('V_pp', 0.5) # Inter-site Coulomb repulsion between p-orbitals
-    self.V_pd = parameters.get('V_pd', 0.75) # Inter-site Coulomb repulsion between p and d orbitals
+    # Hopping parameters
+    self.t_pd = parameters.get('t_pd', 1.0)  # Hopping between p and d orbitals
+    self.t_pp = parameters.get('t_pp', 1.0)  # Hopping between p orbitals
     
-    # Compute effective interaction parameters
-    self.U_p_tilde = self.U_p + 8 * self.V_pp - 8 * self.V_pd
-    self.V_pp_tilde = 8 * self.V_pp - self.U_p
-    self.U_d_tilde = self.U_d - 4 * self.V_pd
+    # Energy parameters
+    self.Delta = parameters.get('Delta', 0.0)  # Energy difference between p and d orbitals
+    
+    # Interaction parameters
+    self.U_p = parameters.get('U_p', 0.0)    # Coulomb repulsion on p orbitals
+    self.V_pp = parameters.get('V_pp', 0.0)  # Inter-site Coulomb repulsion between p orbitals
+    self.U_d = parameters.get('U_d', 0.0)    # Coulomb repulsion on d orbital
+    self.V_pd = parameters.get('V_pd', 0.0)  # Inter-site Coulomb repulsion between p and d orbitals
 
     return
 
@@ -55,27 +59,19 @@ class HartreeFockHamiltonian:
     """
     H_nonint = np.zeros((*self.D, *self.D, self.N_k), dtype=complex)
     
-    # For each k-point and spin
-    for s in range(2):  # spin loop
-      for k_idx in range(self.N_k):
-        kx, ky = self.k_space[k_idx]
-        
-        # Calculate hopping parameters
-        gamma_1_x = -2 * self.t_pd * np.cos(kx / 2)  # px-d hopping
-        gamma_1_y = -2 * self.t_pd * np.cos(ky / 2)  # py-d hopping
-        gamma_2 = -4 * self.t_pp * np.cos(kx / 2) * np.cos(ky / 2)  # px-py hopping
-        
-        # Hopping between px and py
-        H_nonint[s, 0, s, 1, k_idx] = gamma_2
-        H_nonint[s, 1, s, 0, k_idx] = gamma_2
-        
-        # Hopping between px and d
-        H_nonint[s, 0, s, 2, k_idx] = gamma_1_x
-        H_nonint[s, 2, s, 0, k_idx] = gamma_1_x
-        
-        # Hopping between py and d
-        H_nonint[s, 1, s, 2, k_idx] = gamma_1_y
-        H_nonint[s, 2, s, 1, k_idx] = gamma_1_y
+    # Hopping terms (off-diagonal in orbital space)
+    for s in range(2):  # Iterate over spin
+      # Hopping between p_x and d orbitals: γ1(kx) term
+      H_nonint[s, 0, s, 2, :] = -2 * self.t_pd * np.cos(self.k_space[:, 0] / 2)
+      H_nonint[s, 2, s, 0, :] = -2 * self.t_pd * np.cos(self.k_space[:, 0] / 2)
+      
+      # Hopping between p_y and d orbitals: γ1(ky) term
+      H_nonint[s, 1, s, 2, :] = -2 * self.t_pd * np.cos(self.k_space[:, 1] / 2)
+      H_nonint[s, 2, s, 1, :] = -2 * self.t_pd * np.cos(self.k_space[:, 1] / 2)
+      
+      # Hopping between p_x and p_y orbitals: γ2(k) term
+      H_nonint[s, 0, s, 1, :] = -4 * self.t_pp * np.cos(self.k_space[:, 0] / 2) * np.cos(self.k_space[:, 1] / 2)
+      H_nonint[s, 1, s, 0, :] = -4 * self.t_pp * np.cos(self.k_space[:, 0] / 2) * np.cos(self.k_space[:, 1] / 2)
     
     return H_nonint
 
@@ -91,48 +87,38 @@ class HartreeFockHamiltonian:
     """
     exp_val = unflatten(exp_val, self.D, self.N_k)
     H_int = np.zeros((*self.D, *self.D, self.N_k), dtype=complex)
+
+    # Calculate expectation values for each orbital and spin
+    n_px_up = np.real(exp_val[0, 0, 0, 0, :].mean())
+    n_px_down = np.real(exp_val[1, 0, 1, 0, :].mean())
+    n_py_up = np.real(exp_val[0, 1, 0, 1, :].mean())
+    n_py_down = np.real(exp_val[1, 1, 1, 1, :].mean())
+    n_d_up = np.real(exp_val[0, 2, 0, 2, :].mean())
+    n_d_down = np.real(exp_val[1, 2, 1, 2, :].mean())
     
-    # Compute expectation values
-    # Total density of holes (n)
-    n = 0
-    for s in range(2):  # spin loop
-      for o in range(3):  # orbital loop
-        n += np.mean(exp_val[s, o, s, o, :])
+    # Calculate derived quantities
+    n_p = n_px_up + n_px_down + n_py_up + n_py_down  # Total density on p orbitals
+    eta = (n_px_up + n_px_down) - (n_py_up + n_py_down)  # Nematic order parameter
+    n = self.nu  # Total density of holes, equal to the filling factor
     
-    # Density of holes on oxygen sites (n_p)
-    n_p = 0
-    for s in range(2):  # spin loop
-      for o in range(2):  # p_x and p_y orbitals
-        n_p += np.mean(exp_val[s, o, s, o, :])
+    # Calculate effective interaction parameters using equations (12)-(14)
+    U_p_tilde = self.U_p + 8 * self.V_pp - 8 * self.V_pd
+    V_pp_tilde = 8 * self.V_pp - self.U_p
+    U_d_tilde = self.U_d - 4 * self.V_pd
     
-    # Nematic order parameter (eta)
-    eta = 0
-    for s in range(2):  # spin loop
-      eta += np.mean(exp_val[s, 0, s, 0, :]) - np.mean(exp_val[s, 1, s, 1, :])
-    
-    # Calculate chemical potential (mu)
+    # Calculate chemical potential
     mu = 2 * self.V_pd * n - self.V_pd * n**2
     
-    # Calculate on-site energies
-    xi_x = self.Delta + self.U_p_tilde * n_p / 4 - self.V_pp_tilde * eta / 4 - mu
-    xi_y = self.Delta + self.U_p_tilde * n_p / 4 + self.V_pp_tilde * eta / 4 - mu
-    xi_d = self.U_d_tilde * (n - n_p) / 2 - mu
-    
-    # Apply on-site energies
-    for s in range(2):  # spin loop
-      for k_idx in range(self.N_k):
-        H_int[s, 0, s, 0, k_idx] = xi_x  # px orbital
-        H_int[s, 1, s, 1, k_idx] = xi_y  # py orbital
-        H_int[s, 2, s, 2, k_idx] = xi_d  # d orbital
-    
-    # Calculate f(n_p, eta)/N - the energy offset term
-    f_term = -self.U_p_tilde * (n_p**2) / 8 + self.V_pp_tilde * (eta**2) / 8 - self.U_d_tilde * ((n - n_p)**2) / 4
-    
-    # Add constant energy term to diagonal elements
-    for s in range(2):  # spin loop
-      for o in range(3):  # orbital loop
-        for k_idx in range(self.N_k):
-          H_int[s, o, s, o, k_idx] += f_term / self.N_k  # Normalized by number of k-points
+    # Diagonal elements of the matrix (interacting terms)
+    for s in range(2):  # Iterate over spin
+      # p_x orbital: ξx term
+      H_int[s, 0, s, 0, :] = self.Delta + U_p_tilde * n_p / 4 - V_pp_tilde * eta / 4 - mu
+      
+      # p_y orbital: ξy term
+      H_int[s, 1, s, 1, :] = self.Delta + U_p_tilde * n_p / 4 + V_pp_tilde * eta / 4 - mu
+      
+      # d orbital: ξd term
+      H_int[s, 2, s, 2, :] = U_d_tilde * (n - n_p) / 2 - mu
     
     return H_int
 
@@ -142,15 +128,14 @@ class HartreeFockHamiltonian:
 
     Args:
       exp_val (np.ndarray): Expectation value array with shape (D_flattened, D_flattened, N_k).
-      return_flat (bool): Whether to return the Hamiltonian in flattened form.
+      return_flat (bool): If True, returns a flattened Hamiltonian (default: True).
 
     Returns:
-      np.ndarray: The total Hamiltonian with appropriate shape based on return_flat.
+      np.ndarray: The total Hamiltonian, flattened if return_flat is True.
     """
     H_nonint = self.generate_non_interacting()
     H_int = self.generate_interacting(exp_val)
     H_total = H_nonint + H_int
-    
     if return_flat:
       return flattened(H_total, self.D, self.N_k)
     else:
