@@ -37,7 +37,7 @@
   answer1: correct
   answer2: correct
   answer3: correct
-  answer4: correct
+  answer4: correct, F
   paper: '2008.08998'
   trial_idx: 5
 '6':
@@ -48,7 +48,7 @@
   paper: '2008.08998'
   trial_idx: 6
 '7':
-  answer1: incorrect
+  answer1: correct
   answer2: correct
   answer3: correct
   answer4: incorrect
