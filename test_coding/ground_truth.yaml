@@ -138,7 +138,8 @@
     \langle b^{\dagger}_{k, \sigma} b_{k, \sigma} \rangle b^{\dagger}_{k, \sigma'} b_{k, \sigma'} + 
     \frac{V_{\rm BN}}{N} \sum_{k, \sigma, \sigma'}  
     \langle b^{\dagger}_{k, \sigma} b_{k, \sigma} \rangle a^{\dagger}_{k, \sigma'} a_{k, \sigma'}+ \langle a^{\dagger}_{k, \sigma} a_{k, \sigma} \rangle b^{\dagger}_{k, \sigma'} b_{k, \sigma'}$
-  symmetry: square
+    The default value of hopping parameters are t_N=1, t_B=1, t_BN=0.5, Delta=0; and the default interaction parameters are U_N=3, V_B=0.65, V_BN=1.
+  symmetry: square-centered lattice (N atom is at the vertices of the square lattice, B atom is at the center of the square lattice)
 
 - arxiv: 1812.04213
   gt: |
@@ -217,7 +218,8 @@
     $\hat{H}_{Kinetic} = \sum_{s, k} E_s(k) c^\dagger_s(k)  c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$
     $H_{\text{Hartree}} = \frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(0) \langle c_s^\dagger(k_1) c_s(k_1) \rangle c_{s'}^\dagger(k_2) c_{s'}(k_2)$
     $H_{\text{Fock}} = -\frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(k_1 - k_2) \langle c_s^\dagger(k_1) c_{s'}(k_1) \rangle c_{s'}^\dagger(k_2) c_s(k_2)$
-    $U(k) = \sum_{n} U(n) e^{-i k \cdot n}$, where U_0 is the on-site interaction, U_1 is the nearest neighbor interaction, and U_k is the k-th shell neighbor interaction
+    $U(k) = \sum_{n} U(n) e^{-i k \cdot n}$, where U_0 is the on-site interaction, U_1 is the nearest neighbor interaction, and U_k is the k-th shell neighbor interaction. Here, we consider only the on-site interaction and the nearest neighbor interaction.
+    Hopping parameters are t_1 = 6 meV for nearest-neighbor hopping and t_2 = 1 meV for next-nearest-neighbor hopping.
   symmetry: triangular
 
 - arxiv: 2008.08998

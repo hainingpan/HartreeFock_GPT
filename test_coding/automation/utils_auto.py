@@ -335,8 +335,8 @@ def extract_result_content(string):
 def vision_eval(
     fig,
     prompt_text,
-    budget_tokens=12800,
-    max_tokens=25600,
+    budget_tokens=6400,
+    max_tokens=12800,
     model="claude-3-7-sonnet-20250219",
     verbose=True,
 ):
