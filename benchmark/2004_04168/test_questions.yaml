@@ -1,95 +1,92 @@
 - Question: |
     For the following mean-field Hamiltonian, if we want to code and numerically solve the self-consistent equation, what is the dimension of the mean-field Hamiltonian matrix at a given momentum $k$?
 
-    Consider the mean-field Hamiltonian: $H = H_{Kinetic} + H_{\text{Hartree}} +H_{\text{Fock}}$, with each term defined below:
-    $H_{Kinetic} = \sum_{s, k} E_s(k) c^\dagger_s(k) c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$ 
+    Consider the mean-field Hamiltonian: $H = H_{\text{Kinetic}} + H_{\text{Hartree}} +H_{\text{Fock}}$, with each term defined below:
+    $H_{\text{Kinetic}} = \sum_{s, k} E_s(k) c^\dagger_s(k) c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$ 
     $H_{\text{Hartree}} = \frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(0) \langle c_s^\dagger(k_1) c_s(k_1) \rangle c_{s'}^\dagger(k_2) c_{s'}(k_2)$
     $H_{\text{Fock}} = -\frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(k_1 - k_2) \langle c_s^\dagger(k_1) c_{s'}(k_1) \rangle c_{s'}^\dagger(k_2) c_s(k_2)$
     $U(k) = \sum_{n} U_n e^{-i k \cdot n}$, where $U_0$ is the on-site interaction, $U_1$ is the nearest neighbor interaction, and $U_n$ is the n-th shell neighbor interaction. Here, we consider only the on-site interaction and the nearest neighbor interaction.
     Hopping parameters are $t_1 = 6$ meV for nearest-neighbor hopping and $t_2 = 1$ meV for next-nearest-neighbor hopping, which correspond to $t_s(n)$ in the kinetic energy term. $s = \{\uparrow, \downarrow\}$ is the spin index.
     The lattice is a two-dimensional triangular lattice.
   Answer: |
-    2 x 2 matrix.
+    2 $\times$ 2 matrix.
 
 - Question: |
-    Consider the mean-field Hamiltonian: $H = H_{Kinetic} + H_{\text{Hartree}} +H_{\text{Fock}}$, with each term defined below:
-    $H_{Kinetic} = \sum_{s, k} E_s(k) c^\dagger_s(k) c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$ 
+    For the following mean-field Hamiltonian, what do you think is the possible order parameter we can write down for the system without breaking the translational symmetry?
+
+    Consider the mean-field Hamiltonian: $H = H_{\text{Kinetic}} + H_{\text{Hartree}} +H_{\text{Fock}}$, with each term defined below:
+    $H_{\text{Kinetic}} = \sum_{s, k} E_s(k) c^\dagger_s(k) c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$ 
     $H_{\text{Hartree}} = \frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(0) \langle c_s^\dagger(k_1) c_s(k_1) \rangle c_{s'}^\dagger(k_2) c_{s'}(k_2)$
     $H_{\text{Fock}} = -\frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(k_1 - k_2) \langle c_s^\dagger(k_1) c_{s'}(k_1) \rangle c_{s'}^\dagger(k_2) c_s(k_2)$
     $U(k) = \sum_{n} U_n e^{-i k \cdot n}$, where $U_0$ is the on-site interaction, $U_1$ is the nearest neighbor interaction, and $U_n$ is the n-th shell neighbor interaction. Here, we consider only the on-site interaction and the nearest neighbor interaction.
     Hopping parameters are $t_1 = 6$ meV for nearest-neighbor hopping and $t_2 = 1$ meV for next-nearest-neighbor hopping, which correspond to $t_s(n)$ in the kinetic energy term. $s = \{\uparrow, \downarrow\}$ is the spin index.
     The lattice is a two-dimensional triangular lattice.
-    <Question>
-    For the above mean-field Hamiltonian, what do you think is the possible order parameter we can write down for the system without breaking the translational symmetry?
-    </Question>
   Answer: |
     $\langle c^\dagger_{s} c_{s'} \rangle$ with $s,s'=\uparrow,\downarrow$.
 
 - Question: |
-    Consider the mean-field Hamiltonian: $H = H_{Kinetic} + H_{\text{Hartree}} +H_{\text{Fock}}$, with each term defined below:
-    $H_{Kinetic} = \sum_{s, k} E_s(k) c^\dagger_s(k) c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$ 
+    For the following mean-field Hamiltonian, if we want to code and solve the problem in the momentum space, what are the coordinates of the 6 Brillouin zone corners, $K$ point? Round to 2 decimal places.
+
+    Consider the mean-field Hamiltonian: $H = H_{\text{Kinetic}} + H_{\text{Hartree}} +H_{\text{Fock}}$, with each term defined below:
+    $H_{\text{Kinetic}} = \sum_{s, k} E_s(k) c^\dagger_s(k) c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$ 
     $H_{\text{Hartree}} = \frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(0) \langle c_s^\dagger(k_1) c_s(k_1) \rangle c_{s'}^\dagger(k_2) c_{s'}(k_2)$
     $H_{\text{Fock}} = -\frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(k_1 - k_2) \langle c_s^\dagger(k_1) c_{s'}(k_1) \rangle c_{s'}^\dagger(k_2) c_s(k_2)$
     $U(k) = \sum_{n} U_n e^{-i k \cdot n}$, where $U_0$ is the on-site interaction, $U_1$ is the nearest neighbor interaction, and $U_n$ is the n-th shell neighbor interaction. Here, we consider only the on-site interaction and the nearest neighbor interaction.
     Hopping parameters are $t_1 = 6$ meV for nearest-neighbor hopping and $t_2 = 1$ meV for next-nearest-neighbor hopping, which correspond to $t_s(n)$ in the kinetic energy term. $s = \{\uparrow, \downarrow\}$ is the spin index.
     The lattice is a two-dimensional triangular lattice.
-    <Question>
-    For the above mean-field Hamiltonian, if we want to code and solve the problem in the momentum space, what are the coordinates of the 6 Brillouin zone corners, $K$ point? Round to 2 decimal places.
-    </Question>
   Answer: |
-    [0,  4.19]
-    [0, -4.19]
-    [3.62, 2.09]
-    [-3.62, 2.09]
-    [3.62, -2.09]
-    [-3.62, -2.09]
+    (0,  4.19)
+    (0, -4.19)
+    (3.62, 2.09)
+    (-3.62, 2.09)
+    (3.62, -2.09)
+    (-3.62, -2.09)
   # 4*Pi/3 rotate 60 degree repeatedly. 
 
 - Question: |
-    Consider the mean-field Hamiltonian: $H = H_{Kinetic} + H_{\text{Hartree}} +H_{\text{Fock}}$, with each term defined below:
-    $H_{Kinetic} = \sum_{s, k} E_s(k) c^\dagger_s(k) c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$ 
+    For the following mean-field Hamiltonian, if we want to code and solve the problem in the momentum space, what are the coordinates of the center of Brillouin zone, $\Gamma$ point? Round to 2 decimal places.
+
+    Consider the mean-field Hamiltonian: $H = H_{\text{Kinetic}} + H_{\text{Hartree}} +H_{\text{Fock}}$, with each term defined below:
+    $H_{\text{Kinetic}} = \sum_{s, k} E_s(k) c^\dagger_s(k) c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$ 
     $H_{\text{Hartree}} = \frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(0) \langle c_s^\dagger(k_1) c_s(k_1) \rangle c_{s'}^\dagger(k_2) c_{s'}(k_2)$
     $H_{\text{Fock}} = -\frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(k_1 - k_2) \langle c_s^\dagger(k_1) c_{s'}(k_1) \rangle c_{s'}^\dagger(k_2) c_s(k_2)$
     $U(k) = \sum_{n} U_n e^{-i k \cdot n}$, where $U_0$ is the on-site interaction, $U_1$ is the nearest neighbor interaction, and $U_n$ is the n-th shell neighbor interaction. Here, we consider only the on-site interaction and the nearest neighbor interaction.
     Hopping parameters are $t_1 = 6$ meV for nearest-neighbor hopping and $t_2 = 1$ meV for next-nearest-neighbor hopping, which correspond to $t_s(n)$ in the kinetic energy term. $s = \{\uparrow, \downarrow\}$ is the spin index.
     The lattice is a two-dimensional triangular lattice.
-    <Question>
-    For the above mean-field Hamiltonian, if we want to code and solve the problem in the momentum space, what are the coordinates of the center of Brillouin zone, $\Gamma$ point? Round to 2 decimal places.
-    </Question>
   Answer: |
-    [0, 0]
+    (0,0)
     
 - Question: |
-    Consider the mean-field Hamiltonian: $H = H_{Kinetic} + H_{\text{Hartree}} +H_{\text{Fock}}$, with each term defined below:
-    $H_{Kinetic} = \sum_{s, k} E_s(k) c^\dagger_s(k) c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$ 
+    For the following mean-field Hamiltonian, if we want to code and solve the noninteracting band structure, what are the energies at the center of Brillouin zone, $\Gamma$ point, for all bands?
+
+    Consider the mean-field Hamiltonian: $H = H_{\text{Kinetic}} + H_{\text{Hartree}} +H_{\text{Fock}}$, with each term defined below:
+    $H_{\text{Kinetic}} = \sum_{s, k} E_s(k) c^\dagger_s(k) c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$ 
     $H_{\text{Hartree}} = \frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(0) \langle c_s^\dagger(k_1) c_s(k_1) \rangle c_{s'}^\dagger(k_2) c_{s'}(k_2)$
     $H_{\text{Fock}} = -\frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(k_1 - k_2) \langle c_s^\dagger(k_1) c_{s'}(k_1) \rangle c_{s'}^\dagger(k_2) c_s(k_2)$
     $U(k) = \sum_{n} U_n e^{-i k \cdot n}$, where $U_0$ is the on-site interaction, $U_1$ is the nearest neighbor interaction, and $U_n$ is the n-th shell neighbor interaction. Here, we consider only the on-site interaction and the nearest neighbor interaction.
     Hopping parameters are $t_1 = 6$ meV for nearest-neighbor hopping and $t_2 = 1$ meV for next-nearest-neighbor hopping, which correspond to $t_s(n)$ in the kinetic energy term. $s = \{\uparrow, \downarrow\}$ is the spin index.
     The lattice is a two-dimensional triangular lattice.
-    <Question>
-    For the above mean-field Hamiltonian, if we want to code and solve the noninteracting band structure, what are the energies at the center of Brillouin zone, $\Gamma$ point, for all bands?
-    </Question>
   Answer: |
-    [48 meV, 48 meV]
+    (48 meV, 48 meV)
   # 6t_1 + 12t_2.
     
 - Question: |
-    Consider the mean-field Hamiltonian: $H = H_{Kinetic} + H_{\text{Hartree}} +H_{\text{Fock}}$, with each term defined below:
-    $H_{Kinetic} = \sum_{s, k} E_s(k) c^\dagger_s(k) c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$ 
+    For the following mean-field Hamiltonian, if we want to code and solve the noninteracting band structure, what are the energies at the first Brillouin zone corners, $K$ point, for all bands?
+
+    Consider the mean-field Hamiltonian: $H = H_{\text{Kinetic}} + H_{\text{Hartree}} +H_{\text{Fock}}$, with each term defined below:
+    $H_{\text{Kinetic}} = \sum_{s, k} E_s(k) c^\dagger_s(k) c_s(k)$, where $E_s(k)=\sum_{n} t_s(n) e^{-i k \cdot n}$ 
     $H_{\text{Hartree}} = \frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(0) \langle c_s^\dagger(k_1) c_s(k_1) \rangle c_{s'}^\dagger(k_2) c_{s'}(k_2)$
     $H_{\text{Fock}} = -\frac{1}{N} \sum_{s, s'} \sum_{k_1, k_2} U(k_1 - k_2) \langle c_s^\dagger(k_1) c_{s'}(k_1) \rangle c_{s'}^\dagger(k_2) c_s(k_2)$
     $U(k) = \sum_{n} U_n e^{-i k \cdot n}$, where $U_0$ is the on-site interaction, $U_1$ is the nearest neighbor interaction, and $U_n$ is the n-th shell neighbor interaction. Here, we consider only the on-site interaction and the nearest neighbor interaction.
     Hopping parameters are $t_1 = 6$ meV for nearest-neighbor hopping and $t_2 = 1$ meV for next-nearest-neighbor hopping, which correspond to $t_s(n)$ in the kinetic energy term. $s = \{\uparrow, \downarrow\}$ is the spin index.
     The lattice is a two-dimensional triangular lattice.
-    <Question>
-    For the above mean-field Hamiltonian, if we want to code and solve the noninteracting band structure, what are the energies at the first Brillouin zone corners, $K$ point, for all bands?
-    </Question>
   Answer: |
-    [-15 meV, -15 meV]
+    (-15 meV, -15 meV)
   # -3*t1+3*t2
 
 - Question: |
+    For the following problem, derive the kinetic term of the Hamiltonian in second-quantized form ($H_{TB}$) for this triangular lattice system. Express your final answer as the complete tight-binding Hamiltonian, clearly showing the summations and indices.
+
     Consider a triangular lattice system where the degrees of freedom are spin states associated with $+K$ and $-K$ valleys. The kinetic term of the Hamiltonian can be described by a tight-binding model with the following properties:
     Electrons hop between sites with amplitude $t_s(R_i - R_j)$.
     $s = \uparrow,\downarrow$ represents spin states associated with $+K$ and $-K$ valleys respectively.
@@ -98,14 +95,12 @@
     $c^{\dagger}_{R_i,s}$ is the electron creation operator at site with position $R_i$ with spin $s$.
     The hopping process occurs between sites at positions $R_i$ and $R_j$.
     The summation should be taken over all spin states and all real space positions.
-
-    <Question>
-    Derive the kinetic term of the Hamiltonian in second-quantized form ($H_{TB}$) for this triangular lattice system. Express your final answer as the complete tight-binding Hamiltonian, clearly showing the summations and indices.
-    </Question>
   Answer: |
     $H_{TB} = -\sum_{R_i,R_j,s} t_s(R_i - R_j)c^\dagger_{R_i,s}c_{R_j,s}$
 
 - Question: |
+    For the following problem, derive the interaction part of the Hamiltonian $H^{\text{int}}$ in the second-quantized form for this triangular lattice system. Express your final answer in terms of the number operators $n_s(R_i)$.
+
     Consider a triangular lattice system with spin degrees of freedom associated with $+K$ and $-K$ valleys. We want to examine the interaction term of the Hamiltonian in the second-quantized form, which complements the kinetic term.
     The system has a density-density interaction between sites with the following properties:
     The interaction occurs between sites at positions $R_i$ and $R_j$ with interaction strength $U(R_i - R_j)$.
@@ -113,38 +108,33 @@
     $c_{R_i,s}$ and $c^{\dagger}_{R_i,s}$ are the electron annihilation and creation operators.
     The summation should be taken over all spin states $s, s'$ and all real space positions.
     The number operator for electrons with spin $s$ at site position $R_i$ is defined as $n_s(R_i) = c^{\dagger}_{R_i,s}c_{R_i,s}$.
-
-    <Question>
-    Derive the interaction part of the Hamiltonian $H^{int}$ in the second-quantized form for this triangular lattice system. Express your final answer in terms of the number operators $n_s(R_i)$.
-    </Question>
   Answer: |
-    $H^{int} = \frac{1}{2} \sum_{s,s'=\uparrow,\downarrow} \sum_{R_i,R_j} U(R_i - R_j)n_s(R_i)n_{s'}(R_j)$
+    $H^{\text{int}} = \frac{1}{2} \sum_{s,s'=\uparrow,\downarrow} \sum_{R_i,R_j} U(R_i - R_j)n_s(R_i)n_{s'}(R_j)$
 
 - Question: |
+    For the following problem, express the noninteracting Hamiltonian $\hat{H}_{\text{Kinetic}}$ in terms of the second quantized operators $c_s^\dagger(k)$ and $c_s(k)$ in the momentum space. Simplify any summation indices if possible.
+
     Consider a triangular lattice system with spin degrees of freedom associated with $+K$ and $-K$ valleys. We have a noninteracting Hamiltonian in the second-quantized form expressed in the real space basis as:
-    $\hat{H}_{Kinetic} = \sum_{R_i,R_j} \sum_{s=\uparrow,\downarrow} t_s(R_i - R_j) c_s^\dagger(R_i)c_s(R_j)$
-    Where:
+    $\hat{H}_{\text{Kinetic}} = \sum_{R_i,R_j} \sum_{s=\uparrow,\downarrow} t_s(R_i - R_j) c_s^\dagger(R_i)c_s(R_j)$
+    where:
     $c_s^\dagger(R_i)$ and $c_s(R_j)$ are creation and annihilation operators in real space
     $t_s(R_i - R_j)$ is the hopping parameter
     The summation is over all sites and spin states
 
     The Fourier transformation from real space to momentum space is defined as:
     $c_s^\dagger(k) = \frac{1}{\sqrt{N}} \sum_i c_s^\dagger(R_i)e^{ik \cdot R_i}$
-    Where $N$ is the number of unit cells in the real space.
-
-    <Question>
-    Express the noninteracting Hamiltonian $\hat{H}_{Kinetic}$ in terms of momentum space operators $c_s^\dagger(k)$ and $c_s(k)$. Simplify any summation indices if possible.
-    </Question>
-
+    where $N$ is the number of unit cells in the real space.
   Answer: |
-    $\hat{H}_{Kinetic} = \sum_{s=\uparrow,\downarrow} \sum_k E_s(k)c_s^\dagger(k)c_s(k)$
-    Where $E_s(k) = \sum_n t_s(n)e^{-ik \cdot n}$
+    $\hat{H}_{\text{Kinetic}} = \sum_{s=\uparrow,\downarrow} \sum_k E_s(k)c_s^\dagger(k)c_s(k)$
+    where $E_s(k) = \sum_n t_s(n)e^{-ik \cdot n}$
   
 - Question: |
-    Consider a triangular lattice system with spin degrees of freedom associated with $+K$ and $-K$ valleys. We have an interaction Hamiltonian in the second-quantized form expressed in the real space basis as:
-    $\hat{H}^{int} = \frac{1}{2} \sum_{R_i,R_j} \sum_{s,s'=\uparrow,\downarrow} U(R_i - R_j)n_s(R_i)n_{s'}(R_j)$
+    For the following problem, express the interaction Hamiltonian $\hat{H}^{\text{int}}$ in terms of second quantized operators $c_s^\dagger(k)$ and $c_s(k)$ in the momentum space. Simplify any summation indices if possible.
 
-    Where:
+    Consider a triangular lattice system with spin degrees of freedom associated with $+K$ and $-K$ valleys. We have an interaction Hamiltonian in the second-quantized form expressed in the real space basis as:
+    $\hat{H}^{\text{int}} = \frac{1}{2} \sum_{R_i,R_j} \sum_{s,s'=\uparrow,\downarrow} U(R_i - R_j)n_s(R_i)n_{s'}(R_j)$
+
+    where:
     $n_s(R_i) = c_s^\dagger(R_i)c_s(R_i)$ is the number operator at site $R_i$ with spin $s$
     $U(R_i - R_j)$ is the interaction strength between sites $i$ and $j$
     The summation is over all sites and spin states
@@ -152,15 +142,11 @@
     The Fourier transformation from real space to momentum space is defined as:
     $c_s^\dagger(k) = \frac{1}{\sqrt{N}} \sum_i c_s^\dagger(R_i)e^{ik \cdot R_i}$
 
-    Where $k$ is defined within the first Brillouin zone and $N$ is the number of unit cells in the real space.
-
-    <Question>
-    Express the interaction Hamiltonian $\hat{H}^{int}$ in terms of momentum space operators $c_s^\dagger(k)$ and $c_s(k)$. Simplify any summation indices if possible.
-    </Question>
-
+    where $k$ is defined within the first Brillouin zone and $N$ is the number of unit cells in the real space.
   Answer: |
-    $\hat{H}^{int} = \frac{1}{2N} \sum_{s,s'=\uparrow,\downarrow} \sum_{k,k',k'',k'''} U(k - k')c_s^\dagger(k)c_s(k')c_{s'}^\dagger(k'')c_{s'}(k''') \sum_G \delta(k-k'+k''-k''',G)$, where $G$ is a reciprocal lattice vector.
-    Where $U(k) = \sum_n U(n)e^{-ik \cdot n}$
+    $\hat{H}^{\text{int}} = \frac{1}{2N} \sum_{s,s'=\uparrow,\downarrow} \sum_{k,k',k'',k'''} U(k - k')c_s^\dagger(k)c_s(k')c_{s'}^\dagger(k'')c_{s'}(k''') \sum_G \delta(k-k'+k''-k''',G)$
+    
+    where $U(k) = \sum_n U(n)e^{-ik \cdot n}$ and $G$ is a reciprocal lattice vector.
 
 # - Question: |
 
