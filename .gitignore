@@ -17,3 +17,9 @@ obs-del
 schematic.pdf
 *.bak
 *.code-workspace
+benchmark/useful_prompt.md
+*.aux
+*.fdb_latex
+*.fls
+*.log
+*.synctex.gz
