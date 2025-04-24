@@ -371,7 +371,7 @@ def get_area(a, lattice):
         return a**2
 
 
-def generate_high_symmtry_points(lattice, a_M):
+def generate_high_symmetry_points(lattice, a_M):
     """Returns high symmetry points in the 2D Brillouin zone.
     Calculates the coordinates of special k-points in the Brillouin zone for
     triangular or square lattices using the provided lattice constant.

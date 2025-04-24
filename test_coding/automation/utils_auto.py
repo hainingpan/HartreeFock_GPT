@@ -436,3 +436,17 @@ def save_final_answer(
         yaml.safe_dump(database, f)
 
     print(f"Final answer record for '{record_key}' saved to {final_answer_file}")
+
+def yaml_to_df(yaml_file):
+    """Convert YAML file to pandas DataFrame."""
+    import pandas as pd
+    # Load YAML data from file
+    with open(yaml_file, 'r') as f:
+        data = yaml.safe_load(f)
+    
+    # Create dataframe from dictionary
+    df = pd.DataFrame.from_dict(data, orient='index')
+    df.index = pd.to_numeric(df.index)
+    df = df.sort_index()
+    
+    return df
