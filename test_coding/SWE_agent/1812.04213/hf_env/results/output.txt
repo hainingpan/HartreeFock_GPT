@@ -1,0 +1,3 @@
+Gap is -24.16
+U/T is 0.10
+mean_U is 0.10
