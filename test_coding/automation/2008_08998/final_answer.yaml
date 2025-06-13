@@ -15,7 +15,7 @@
 '2':
   answer1: correct
   answer2: correct
-  answer3: incorrect
+  answer3: correct, F
   answer4: incorrect
   paper: '2008.08998'
   trial_idx: 2

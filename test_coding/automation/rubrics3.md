@@ -10,7 +10,6 @@ You need to analyze the band structure plots with particular attention to symmet
 3. Compare the symmetry you observe in the energy distribution with what would be expected for an isotropic {lattice} lattice.
 4. Based on your analysis, determine whether the band structure displays the full symmetry of the {lattice} lattice or a reduced symmetry.
 5. Band gap evaluation: 
-5. Band gap evaluation: 
     5.1 Scan all bands and determine the total number of bands, n_bands
     5.2 Given the filling factor, nu={nu}, locate the topmost filled band, which is nu * n_bands
     5.3 Identify their difference between lowest unfilled band, "nu * n_bands+1", and topmost filled band, "nu * n_bands". This is the band gap.
